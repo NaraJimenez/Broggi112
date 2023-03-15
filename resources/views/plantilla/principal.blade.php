@@ -19,20 +19,21 @@
 
     </head>
 
-    <body id="body">
+    <body id="body" >
         <!--Meter aqui el navbar-->
-        <!--Apartado del user-->
-        <nav class="navbar fixed-top navbar-light">
-            <div class="collapse navbar-collapse navbar-left"  id="navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                   <li class="active"><a href="#">Home</a></li>
-                   <li><a href="#">About</a></li>
-                   <li><a href="#">Contact</a></li>
-                </ul>
-             </div>
-          </nav>
-        <!--Footer-->
+        <nav>
+
+        <!--Apartado del user-->    
+
+        </nav>
         
+        
+        @yield('content')
+        <!--Footer-->
+    <div class="card-footer mb-0" id="footer">
+          <p class="text-black h6 text-center" >Copyright © 2023 Centre d'Estudis Politècnics. 
+            Tots els drets reservats. Política de privacitat. Avís legal.</p>
+    </div>
 
 
     </body>

@@ -21,11 +21,11 @@ Route::get('/', function () {
 //Ruta login (Inicio)
 
 
-//Ruta Index (Telefono)
-
+//Ruta Telefono
+Route::resource('/telf', '');
 
 //Ruta Carta llamada - Incidencia
-
+Route::resource('/carta1', '');
 
 //Ruta Carta llamada - Localización
 
@@ -34,13 +34,13 @@ Route::get('/', function () {
 
 
 //Ruta Graficos
-
+Route::resource('/graficos', '');
 
 //Ruta Video
 
 
 //Ruta Menu Admin
-
+Route::resource('/adminMenu', '');
 
 //Ruta Admin. usuarios (Tabla)
 
@@ -49,6 +49,6 @@ Route::get('/', function () {
 
 
 //Ruta Admin. Agencias
-
+Route::resource('/adminAgencias', '');
 
 
