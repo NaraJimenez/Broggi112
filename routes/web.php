@@ -25,7 +25,10 @@ Route::get('/', function () {
 Route::resource('/telf', '');
 
 //Ruta Carta llamada - Incidencia
-Route::resource('/carta1', '');
+//Route::resource('/carta1', '');
+Route::get('/carta1', function () {
+    return view('paginas/carta1');
+})->name('carta1');
 
 //Ruta Carta llamada - Localización
 

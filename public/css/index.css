@@ -1,7 +1,10 @@
-*{
+body{
     background-color: #EBEFEF;
 }
 
-#footer{
+footer{
     background-color: #156897;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

@@ -29,11 +29,14 @@
         
         
         @yield('content')
-        <!--Footer-->
-    <div class="card-footer mb-0" id="footer">
-          <p class="text-black h6 text-center" >Copyright © 2023 Centre d'Estudis Politècnics. 
-            Tots els drets reservats. Política de privacitat. Avís legal.</p>
-    </div>
+    
+    <!--Footer-->
+    <footer>
+        <div class="text-center p-3">         
+        <b>Copyright © 2023 Centre d'Estudis Politècnics.</b>  <br>
+            Tots els drets reservats. Política de privacitat. Avís legal.
+        </div>
+    </footer>
 
 
     </body>
