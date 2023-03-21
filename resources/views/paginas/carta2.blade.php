@@ -63,3 +63,9 @@
               
             </div>
           </div>
+
+          <div id="helper">
+            <a href="#">
+                <img src="{{ asset("/public/img/HelpBox.png") }}" alt="HTML tutorial" style="width:42px;height:42px;">
+                </a>
+          </div>

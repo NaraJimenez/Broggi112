@@ -184,3 +184,7 @@ footer{
     border: 3px solid #76DAE4;
     border-radius: 10px;
 }
+
+#linkMenuCarta{
+    text-decoration:none;
+}

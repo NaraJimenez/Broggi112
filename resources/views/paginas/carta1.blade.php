@@ -16,19 +16,27 @@
 
                 <!--BOTONES OPCIONES DE RELLENO-->
               <div id="botonesConjunto" class="mt-3 mb-1 d-flex justify-content-center">
-                <div id="boton1"> <a href="http://"></a>
-                  <div id="div" class="text-center mt-2"><b>1<br>Incidencias</b></div>
+                <div id="boton1"> 
+                  <a href="{{ asset("carta1") }}" id="linkMenuCarta">
+                    <div id="div" class="text-center mt-2"><b>1<br>Incidencias</b></div>
+                  </a>
                 </div>
-                <div id="boton2">
-                  <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
+
+                <div id="boton2">  
+                  <a href="{{ asset("carta2") }}" id="linkMenuCarta">
+                    <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
+                  </a>
                 </div>
+              
                 <div id="boton3" >
-                  <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
+                  <a href="{{ asset("carta3") }}" id="linkMenuCarta">
+                    <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
+                  </a>
                 </div>
               </div>
 
-            <div>
-              <!--PRIMER RECTANGULO:-->
+          <!--PRIMER RECTANGULO:-->
+            <div>    
               <div id="primerRectangulo" class="mt-4 ms-5">
                 <div id="contenidoPrimerRectangulo" class="mt-2">
                   <div id="numTelf" class="mt-4 ms-4 text-muted">Núm. Telf</div>
@@ -62,4 +70,10 @@
               
               
             </div>
+          </div>
+
+          <div id="helper">
+            <a href="#">
+              <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
+            </a>
           </div>
