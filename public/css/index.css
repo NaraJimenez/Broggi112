@@ -1,5 +1,7 @@
 body{
     background-color: #EBEFEF;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 footer{
@@ -11,12 +13,11 @@ footer{
 
 #CartaIncidencia{
     position: absolute;
-    width: 1015px;
+    width: 1020px;
     height: 539px;
     left: 470px;
     background: #35B5C9;
     border-radius: 20px;
-  
 }
 
 #boton1{
@@ -63,7 +64,6 @@ footer{
 }
 
 
-
 #numTelf{
     box-sizing: border-box;
     position: absolute;
@@ -76,11 +76,10 @@ footer{
 
 #codigoLlamada{
     box-sizing: border-box;
-
     position: absolute;
     width: 186px;
     height: 49px;
-    left: 260px;
+    left: 285px;
 
     
     background: #FFFFFF;
@@ -95,7 +94,7 @@ footer{
     position: absolute;
     width: 385px;
     height: 47px;
-    left: 63px;
+    left: 87px;
     top: 230px;   
     background: #FFFFFF;
     border: 3px solid #76DAE4;
@@ -106,7 +105,7 @@ footer{
     position: absolute;
     width: 385px;
     height: 148px;
-    left: 63px;
+    left: 87px;
     top: 300px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
@@ -117,9 +116,9 @@ footer{
     box-sizing: border-box;
     position: absolute;
     width: 430px;
-    height: 219px;
+    height: 221px;
     left: 525px;
-    top: 105px;
+    top: 103px;
     border: 1px solid #025D73;
     border-radius: 15px;
 
@@ -131,7 +130,7 @@ footer{
     width: 376px;
     height: 34px;
     left: 25px;
-    top: 23px;
+    top: 20px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
     border-radius: 10px;
@@ -139,20 +138,49 @@ footer{
 
 #incidenciaInci{
     box-sizing: border-box;
-
     position: absolute;
     width: 376px;
     height: 35px;
-    left: 676px;
-    top: 309px;
-
+    left: 25px;
+    top: 69px;
     background: #FFFFFF;
-    /* Bordes CLTTT */
-
     border: 3px solid #76DAE4;
     border-radius: 10px;
 }
-#definicionInci{}
-#indicacionesInci{}
+#definicionInci{
+    box-sizing: border-box;
+    position: absolute;
+    width: 376px;
+    height: 35px;
+    left: 25px;
+    top: 118px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+    font-size: 15px;
+    }
 
-#buscadorExpe{}
+#indicacionesInci{
+    box-sizing: border-box;
+    position: absolute;
+    width: 376px;
+    height: 35px;
+    left: 25px;
+    top:167px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+#buscadorExpe{
+    box-sizing: border-box;
+    position: absolute;
+    width: 430px;
+    height: 113px;
+    margin: auto;
+    top: 240px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}

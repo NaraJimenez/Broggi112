@@ -31,7 +31,9 @@ Route::get('/carta1', function () {
 })->name('carta1');
 
 //Ruta Carta llamada - Localización
-
+Route::get('/carta2', function () {
+    return view('paginas/carta2');
+})->name('carta2');
 
 //Ruta Carta llamada - Agencias
 

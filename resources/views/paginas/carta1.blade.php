@@ -16,20 +16,20 @@
 
                 <!--BOTONES OPCIONES DE RELLENO-->
               <div id="botonesConjunto" class="mt-3 mb-1 d-flex justify-content-center">
-                <div id="boton1">
-                  <div id="div" class="text-center mt-2">1<br>Incidencias</div>
+                <div id="boton1"> <a href="http://"></a>
+                  <div id="div" class="text-center mt-2"><b>1<br>Incidencias</b></div>
                 </div>
                 <div id="boton2">
-                  <div id="div" class="text-center mt-2">2<br>Localización</div>
+                  <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
                 </div>
                 <div id="boton3" >
-                  <div id="div" class="text-center mt-2">3<br>Agencias</div>
+                  <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
                 </div>
               </div>
 
             <div>
               <!--PRIMER RECTANGULO:-->
-              <div id="primerRectangulo" class="mt-4 ms-4">
+              <div id="primerRectangulo" class="mt-4 ms-5">
                 <div id="contenidoPrimerRectangulo" class="mt-2">
                   <div id="numTelf" class="mt-4 ms-4 text-muted">Núm. Telf</div>
                   <div id="codigoLlamada" class="mt-4 text-muted">Código Llamada</div>
@@ -43,26 +43,23 @@
               <!--SEGUNDO RECTANGULO-->
               <div id="segundoRectangulo" class="mt-4">
                 <select id="tipoInci" class="form-select form-select-sm" aria-label=".form-select-lg example">
-                  <option selected>Open this select menu</option>
+                  <option selected>Tipo</option>
                   <option value="1">One</option>
                 </select>
                 
                 <select id="incidenciaInci" class="form-select form-select-sm"  aria-label=".form-select-sm example">
-                  <option selected>Open this select menu</option>
+                  <option selected>Incidencia</option>
                   <option value="1">One</option>
-                </select><!--
-              <div id="definicionInci" class="text-muted text-center"> TIEMPO LLAMADA</div>
-              <div id="indicacionesInci" class="text-muted">Nota Comuna</div>-->
+                </select>
+                
+                <div id="definicionInci" class="text-muted "> Definición</div>
+                <div id="indicacionesInci" class="text-muted">Indicaciones</div>
+                
+                <!--Buscador de Expediente-->
+                <div id="buscadorExpe"></div>
+            </div>
             </div> 
               
-
-              <!--Buscador de Expediente-->
-              <div id="buscadorExpe"></div>
-            </div>
-
               
             </div>
           </div>
-
-
-        
