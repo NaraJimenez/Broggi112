@@ -93,37 +93,15 @@ background-color: #33cfe4;
     border-radius: 10px;
 }
 
-#incidenciaInci{
-    box-sizing: border-box;
-    position: absolute;
-    width: 376px;
-    height: 35px;
-    left: 25px;
-    top: 69px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-#definicionInci{
-    box-sizing: border-box;
-    position: absolute;
-    width: 376px;
-    height: 33px;
-    left: 26px;
-    top: 118px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-    font-size: 15px;
-    }
 
-#indicacionesInci{
+
+#opcionesCarta2{
     box-sizing: border-box;
     position: absolute;
     width: 376px;
-    height: 33px;
+    height: 220px;
     left: 26px;
-    top:167px;
+    top:100px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
     border-radius: 10px;

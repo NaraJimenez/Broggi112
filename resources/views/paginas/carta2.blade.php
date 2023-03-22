@@ -60,26 +60,42 @@
 
               <!--SEGUNDO RECTANGULO-->
               <div id="segundoRectangulo2" class="mt-4">
-                <select id="tipoInci" class="form-select form-select-sm" aria-label=".form-select-lg example">
-                  <option selected>Tipo</option>
-                  <option value="1">One</option>
-                </select>
-                
-                <select id="incidenciaInci" class="form-select form-select-sm"  aria-label=".form-select-sm example">
-                  <option selected>Incidencia</option>
-                  <option value="1">One</option>
-                </select>
-                
-                <div id="definicionInci" class="text-muted "> Definición</div>
-                <div id="indicacionesInci" class="text-muted">Indicaciones</div>
+
+                <!--Botones opciones localización-->
+                <div id="botonesLocalización">
+                  <div id="botonLoc1">
+
+                  </div>
+
+                  <div id="botonLoc2">
+
+                  </div>
+
+                  <div id="botonLoc3">
+
+                  </div>
+
+                  <div id="botonLoc4">
+
+                  </div>
+                </div>
+
+
+
+                <!--Opciones que apareceran segun el boton escogido-->
+                <div id="opcionesCarta2" class="text-muted text-center">
+                  <p class="mt-5">Opciones <br> de localización</p>
+                  </div>
                 
                 
             </div>
+            <!--FINAL SEGUNDO RECTANGULO-->
+
             </div> 
               
               
-            </div>
-          </div>
+            </div> <!--FINAL CARD BODY-->
+          </div> <!--FINAL CARD -->
 
           <div id="helper">
             <a href="#">
