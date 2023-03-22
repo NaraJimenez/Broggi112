@@ -5,7 +5,7 @@
   
 @section('content')
 
-@yield('css.carta1')
+@section('css.carta1')
 
 
           <div class="text-center mt-5 mb-5" id="titulo">
@@ -15,7 +15,7 @@
           <div class="card mt-3 mx-auto" id="CartaIncidencia">
             <div class="card-body">
 
-                <!--BOTONES OPCIONES DE RELLENO-->
+              <!--BOTONES OPCIONES DE RELLENO-->
               <div id="botonesConjunto" class="mt-3 mb-1 d-flex justify-content-center">
                 <div id="boton1"> 
                   <a href="{{ asset("carta1") }}" id="linkMenuCarta1">

@@ -8,25 +8,25 @@
     border-radius: 20px;
 }
 
-#boton1{
+#boton1c2{
     width: 170px;
     height: 70px;
+    background: #EBEFEF;
+    border-radius: 10px;
+    transform: rotate(0.26deg);
+}
+
+
+#boton2c2{
+    width: 170px;
+    height: 70px;
+    margin-left: 18px;
     background: #025D73;
     border-radius: 10px;
     transform: rotate(0.26deg);
 }
 
-
-#boton2{
-    width: 170px;
-    height: 70px;
-    margin-left: 18px;
-    background: #EBEFEF;
-    border-radius: 10px;
-    transform: rotate(0.26deg);
-}
-
-#boton3{
+#boton3c2{
     width: 170px;
     height: 70px;
     background: #EBEFEF;
@@ -35,68 +35,45 @@
     transform: rotate(0.26deg);
 }
 
-#primerRectangulo{
+/*Dentro de carta*/
+#primerRectangulo2{
     box-sizing: border-box;
     width: 438px;
-    height: 360px;
+    height: 150px;
     border: 1px solid #025D73;
     border-radius: 15px;
 }
 
-
-#numTelf{
+#catalunya{
     box-sizing: border-box;
     position: absolute;
-    width: 186px;
-    height: 49px;
+    width: 207px;
+    height: 35px;
+    left: 78px;
+    top: 135px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
     border-radius: 10px;
 }
 
-#codigoLlamada{
-    box-sizing: border-box;
-    position: absolute;
-    width: 186px;
-    height: 49px;
-    left: 285px;
-
+#checkboxCat{
+    margin-left: 280px;
+    margin-top: 37px;
     
-    background: #FFFFFF;
-    /* Bordes CLTTT */
-    
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-#tiempoLlamada{
-    box-sizing: border-box;
-
-    position: absolute;
-    width: 385px;
-    height: 47px;
-    left: 87px;
-    top: 230px;   
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-#notaComuna{
-    box-sizing: border-box;
-    position: absolute;
-    width: 385px;
-    height: 148px;
-    left: 87px;
-    top: 300px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
 }
 
-#segundoRectangulo{
+#checkCarta2{
+background-color: #33cfe4;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 28px;
+}
+
+#segundoRectangulo2{
     box-sizing: border-box;
     position: absolute;
     width: 430px;
-    height: 221px;
+    height: 353px;
     left: 525px;
     top: 103px;
     border: 1px solid #025D73;
@@ -104,13 +81,13 @@
 
 }
 
-#tipoInci{
+#provinciaSelect{
     box-sizing: border-box;
     position: absolute;
-    width: 376px;
+    width: 363px;
     height: 34px;
-    left: 25px;
-    top: 20px;
+    left: 100px;
+    top: 213px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
     border-radius: 10px;
@@ -153,27 +130,27 @@
     font-size: 15px;
 }
 
-#buscadorExpe{
+#buscadorExpe2{
     box-sizing: border-box;
     position: absolute;
-    width: 430px;
-    height: 113px;
-    margin: auto;
-    top: 240px;
+    width: 439px;
+    height: 182px;
+    margin-left: 47px;
+    top: 298px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
     border-radius: 10px;
 }
 
-#linkMenuCarta1, #linkMenuCarta2, #linkMenuCarta3{
+#linkMenuCarta1c2, #linkMenuCarta2c2, #linkMenuCarta3c2{
     text-decoration:none;
 }
 
-#linkMenuCarta1{
+#linkMenuCarta2c2{
     color: #FBFBFD;
 }
 
-#linkMenuCarta2, #linkMenuCarta3 {
+#linkMenuCarta1c2, #linkMenuCarta3c2 {
     color: #025D73;
 }
 
