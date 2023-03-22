@@ -5,6 +5,7 @@
   
 @section('content')
 
+@yield('css.carta1')
 
 
           <div class="text-center mt-5 mb-5" id="titulo">
@@ -17,19 +18,19 @@
                 <!--BOTONES OPCIONES DE RELLENO-->
               <div id="botonesConjunto" class="mt-3 mb-1 d-flex justify-content-center">
                 <div id="boton1"> 
-                  <a href="{{ asset("carta1") }}" id="linkMenuCarta">
+                  <a href="{{ asset("carta1") }}" id="linkMenuCarta1">
                     <div id="div" class="text-center mt-2"><b>1<br>Incidencias</b></div>
                   </a>
                 </div>
 
                 <div id="boton2">  
-                  <a href="{{ asset("carta2") }}" id="linkMenuCarta">
+                  <a href="{{ asset("carta2") }}" id="linkMenuCarta2">
                     <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
                   </a>
                 </div>
               
                 <div id="boton3" >
-                  <a href="{{ asset("carta3") }}" id="linkMenuCarta">
+                  <a href="{{ asset("carta3") }}" id="linkMenuCarta3">
                     <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
                   </a>
                 </div>
@@ -65,6 +66,14 @@
                 
                 <!--Buscador de Expediente-->
                 <div id="buscadorExpe"></div>
+
+                <!--HelpBox-->
+                
+                <div id="helper">
+                  <a href="#">
+                    <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
+                  </a>
+                </div>
             </div>
             </div> 
               
@@ -72,8 +81,4 @@
             </div>
           </div>
 
-          <div id="helper">
-            <a href="#">
-              <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
-            </a>
-          </div>
+          
