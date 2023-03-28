@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Provinvies;
+use App\Http\Controllers\Controller;
+use App\Models\Cartes_trucades_has_agencies;
 use Illuminate\Http\Request;
 
-class ProvinviesController extends Controller
+class CartesTrucadesHasAgenciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class ProvinviesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +32,10 @@ class ProvinviesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Provinvies  $provinvies
+     * @param  \App\Models\Cartes_trucades_has_agencies  $cartes_trucades_has_agencies
      * @return \Illuminate\Http\Response
      */
-    public function show(Provinvies $provinvies)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Provinvies  $provinvies
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Provinvies $provinvies)
+    public function show(Cartes_trucades_has_agencies $cartes_trucades_has_agencies)
     {
         //
     }
@@ -64,10 +44,10 @@ class ProvinviesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Provinvies  $provinvies
+     * @param  \App\Models\Cartes_trucades_has_agencies  $cartes_trucades_has_agencies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provinvies $provinvies)
+    public function update(Request $request, Cartes_trucades_has_agencies $cartes_trucades_has_agencies)
     {
         //
     }
@@ -75,10 +55,10 @@ class ProvinviesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Provinvies  $provinvies
+     * @param  \App\Models\Cartes_trucades_has_agencies  $cartes_trucades_has_agencies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provinvies $provinvies)
+    public function destroy(Cartes_trucades_has_agencies $cartes_trucades_has_agencies)
     {
         //
     }
