@@ -21,6 +21,10 @@ Route::get('/', function () {
 
 
 //Ruta Index (Telefono)
+// Route::view(uri: '/home', view:'layout.home')->name(name:'home');
+Route::get('/home', function() {
+    return view('NavBar.home');
+});
 
 
 //Ruta Carta llamada - Incidencia
