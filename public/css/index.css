@@ -1,0 +1,13 @@
+body{
+    background-color: #EBEFEF;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+footer{
+    background-color: #156897;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
