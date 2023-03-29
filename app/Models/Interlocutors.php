@@ -19,7 +19,7 @@ class Interlocutors extends Model
      */
     public function cartes_trucades(): HasMany
     {
-        return $this->hasMany(Cartes_trucades::class, 'interlocutros_id');
+        return $this->hasMany(Cartes_trucades::class, 'interlocutors_id');
     }
 
     /**
@@ -29,6 +29,6 @@ class Interlocutors extends Model
      */
     public function cartes_trucades_trucada(): HasMany
     {
-        return $this->hasMany(Cartes_trucades::class, 'interlocutros_id_trucada');
+        return $this->hasMany(Cartes_trucades::class, 'interlocutors_id_trucada');
     }
 }
