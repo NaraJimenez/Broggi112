@@ -2,7 +2,7 @@ import './bootstrap';
 
 import * as bootstrap from 'bootstrap'
 import { createApp } from 'vue'
-import cartaTrucada1 from './components/cartaTrucada1.vue'
+import menuCarta from './components/menuCarta.vue'
 
 //Vue comnatdo en una etiqueta llamada carta1
-createApp(cartaTrucada1).mount('#carta1');
+createApp(menuCarta).mount('#menuCarta');
