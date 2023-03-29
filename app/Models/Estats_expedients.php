@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Expedients;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Estats_expedients extends Model
 {
     use HasFactory;
 
-    protected $table = 'estats_expedients';
+    public $timestamps = false;
 
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    /**
+     * Get the Expedients that owns the Estats_expedients
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function expedients(): hasMany
+    {
+        return $this->hasMany(Expedients::class, 'estats_expedients_id');
+    }
 }

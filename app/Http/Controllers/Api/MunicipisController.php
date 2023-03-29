@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Municipis;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\MunicipisResources;
 
 class MunicipisController extends Controller
 {
@@ -15,7 +16,9 @@ class MunicipisController extends Controller
      */
     public function index()
     {
-        //
+        $municipis = Municipis::all();
+
+        return MunicipisResources::collection($municipis);
     }
 
     /**

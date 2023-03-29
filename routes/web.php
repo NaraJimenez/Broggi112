@@ -18,12 +18,10 @@ Route::get('/', function () {
 })->name('index');
 
 
-//Ruta login (Inicio)
+//SOLO ESTARÁ AQUI LA RUTA DEL LOGIN/INDEX
 
 
-//Ruta Telefono
-Route::resource('/telf', '');
-
+//ESTAS SON MIS RUTAS PARA PORBAR
 //Ruta Carta llamada - Incidencia
 //Route::resource('/carta1', '');
 Route::get('/carta1', function () {
@@ -35,25 +33,5 @@ Route::get('/carta2', function () {
     return view('paginas/carta2');
 })->name('carta2');
 
-//Ruta Carta llamada - Agencias
-
-
-//Ruta Graficos
-Route::resource('/graficos', '');
-
-//Ruta Video
-
-
-//Ruta Menu Admin
-Route::resource('/adminMenu', '');
-
-//Ruta Admin. usuarios (Tabla)
-
-
-//Ruta Admin. expedientes
-
-
-//Ruta Admin. Agencias
-Route::resource('/adminAgencias', '');
 
 

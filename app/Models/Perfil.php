@@ -2,28 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Usuaris;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Perfil extends Model
+class Perfils extends Model
 {
     use HasFactory;
 
-    protected $table = 'perfils';
-
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    public $timestamps = false;
 
     /**
-     * Get all of the usuaris for the Perfil
+     * Get the Usuari that owns the Perfils
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function usuaris()
+    public function usuaris(): hasMany
     {
-        return $this->belongsTo(User::class, 'perfils_id');
+        return $this->hasMany(Usuaris::class, 'perfils_id');
     }
 }
-
