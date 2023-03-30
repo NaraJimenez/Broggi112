@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-2">
-          <div id="catalunya" class="mt-4 ms-4 text-center"> Cataluña?</div>
+    <div id="contenidoPrimerRectangulo2" class="mt-2">
+          <div id="catalunya" class="mt-3 ms-4 text-center"> Cataluña?</div>
           <div>
             <label id="checkboxCat" >
               <input type="checkbox" id="checkCarta2" />
