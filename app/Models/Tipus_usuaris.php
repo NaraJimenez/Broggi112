@@ -13,7 +13,7 @@ class Tipus_usuaris extends Model
     public $timestamps = false;
 
     /**
-     * Get the Usuari that owns the Tipus_Usuaris
+     * Get the Usuari that owns the Tipus_usuaris
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
