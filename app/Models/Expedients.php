@@ -2,36 +2,36 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cartes_trucades;
+use App\Models\Estats_expedients;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 
 class Expedients extends Model
 {
     use HasFactory;
 
-    protected $table = 'expedients';
-
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    public $timestamps = false;
 
     /**
-     * The roles that belong to the Expedients
+     * Get the Estats_expedients that owns the Expedients
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function cartesTrucades(){
-        return $this->belongsToMany(Cartes_trucades::class, 'cartes_trucades_id');
+    public function estat_expedient(): BelongsTo
+    {
+        return $this->belongsTo(Estats_expedients::class, 'estats_expedients_id');
     }
 
     /**
-     * Get the user associated with the Expedients
+     * Get the Cartes_trucades that owns the Estats_expedients
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function estats_expedients()
+    public function cartes_trucades(): hasMany
     {
-        return $this->hasOne(Estats_expedients::class, 'estats_expedients_id');
+        return $this->hasMany(Cartes_trucades::class, 'expedients_id');
     }
 }

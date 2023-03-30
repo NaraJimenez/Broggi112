@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Perfil;
-use Illuminate\Http\Request;
+use App\Models\Interlocutors;
+use App\Http\Requests\StoreInterlocutorsRequest;
+use App\Http\Requests\UpdateInterlocutorsRequest;
 
-class PerfilController extends Controller
+class InterlocutorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,10 +31,10 @@ class PerfilController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreInterlocutorsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInterlocutorsRequest $request)
     {
         //
     }
@@ -41,10 +42,10 @@ class PerfilController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Interlocutors  $interlocutors
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfil $perfil)
+    public function show(Interlocutors $interlocutors)
     {
         //
     }
@@ -52,10 +53,10 @@ class PerfilController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Interlocutors  $interlocutors
      * @return \Illuminate\Http\Response
      */
-    public function edit(Perfil $perfil)
+    public function edit(Interlocutors $interlocutors)
     {
         //
     }
@@ -63,11 +64,11 @@ class PerfilController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Http\Requests\UpdateInterlocutorsRequest  $request
+     * @param  \App\Models\Interlocutors  $interlocutors
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil)
+    public function update(UpdateInterlocutorsRequest $request, Interlocutors $interlocutors)
     {
         //
     }
@@ -75,10 +76,10 @@ class PerfilController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Interlocutors  $interlocutors
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfil $perfil)
+    public function destroy(Interlocutors $interlocutors)
     {
         //
     }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Comarques;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ComarquesResources;
 
 class ComarquesController extends Controller
 {
@@ -15,7 +16,9 @@ class ComarquesController extends Controller
      */
     public function index()
     {
-        //
+        $comarques = Comarques::all();
+
+        return ComarquesResources::collection($comarques);
     }
 
     /**

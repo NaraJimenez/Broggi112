@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tipus_localitzacions;
-use App\Http\Resources\TipusLocalitzacionsResources;
-use Illuminate\Http\Request;
+use App\Models\Usuaris;
+use App\Http\Requests\StoreUsuarisRequest;
+use App\Http\Requests\UpdateUsuarisRequest;
 
-class TipusLocalitzacionsController extends Controller
+class UsuarisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class TipusLocalitzacionsController extends Controller
      */
     public function index()
     {
-        $types = Tipus_localitzacions::all();
-
-        return TipusLocalitzacionsResources::collection($types);
+        //
     }
 
     /**
@@ -33,10 +31,10 @@ class TipusLocalitzacionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreUsuarisRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUsuarisRequest $request)
     {
         //
     }
@@ -44,10 +42,10 @@ class TipusLocalitzacionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tipus_localitzacions  $tipus_localitzacions
+     * @param  \App\Models\Usuaris  $usuaris
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipus_localitzacions $tipus_localitzacions)
+    public function show(Usuaris $usuaris)
     {
         //
     }
@@ -55,10 +53,10 @@ class TipusLocalitzacionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tipus_localitzacions  $tipus_localitzacions
+     * @param  \App\Models\Usuaris  $usuaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipus_localitzacions $tipus_localitzacions)
+    public function edit(Usuaris $usuaris)
     {
         //
     }
@@ -66,11 +64,11 @@ class TipusLocalitzacionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tipus_localitzacions  $tipus_localitzacions
+     * @param  \App\Http\Requests\UpdateUsuarisRequest  $request
+     * @param  \App\Models\Usuaris  $usuaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tipus_localitzacions $tipus_localitzacions)
+    public function update(UpdateUsuarisRequest $request, Usuaris $usuaris)
     {
         //
     }
@@ -78,10 +76,10 @@ class TipusLocalitzacionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tipus_localitzacions  $tipus_localitzacions
+     * @param  \App\Models\Usuaris  $usuaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipus_localitzacions $tipus_localitzacions)
+    public function destroy(Usuaris $usuaris)
     {
         //
     }

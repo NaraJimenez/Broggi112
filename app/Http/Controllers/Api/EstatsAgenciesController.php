@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Estats_agencies;
 use Illuminate\Http\Request;
+use App\Models\Estats_agencies;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\EstatsAgenciesResources;
 
 class EstatsAgenciesController extends Controller
 {
@@ -15,7 +16,9 @@ class EstatsAgenciesController extends Controller
      */
     public function index()
     {
-        //
+        $estats = Estats_agencies::all();
+
+        return EstatsAgenciesResources::collection($estats);
     }
 
     /**
@@ -26,7 +29,7 @@ class EstatsAgenciesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

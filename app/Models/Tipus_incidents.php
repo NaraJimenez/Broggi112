@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Incidents;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tipus_incidents extends Model
 {
     use HasFactory;
 
-    protected $table = 'tipus_incidents';
+    public $timestamps = false;
 
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    /**
+     * Get the Incidents that owns the Tipus_incidents
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function incidents(): hasMany
+    {
+        return $this->hasMany(Incidents::class, 'incidents_id');
+    }
 }

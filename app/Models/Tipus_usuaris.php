@@ -2,23 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\hasMany;
 
-class Dades_personals extends Model
+class Tipus_usuaris extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
     /**
-     * Get the Usuari that owns the Dades_personals
+     * Get the Usuari that owns the Tipus_usuaris
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function cartes_trucades(): hasMany
+    public function usuaris(): hasMany
     {
-        return $this->hasMany(Cartes_trucades::class, 'dades_personals_id');
+        return $this->hasMany(Usuaris::class, 'tipus_usuaris_id');
     }
 }
