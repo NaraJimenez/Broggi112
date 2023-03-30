@@ -39,7 +39,7 @@
 #primerRectangulo2{
     box-sizing: border-box;
     width: 438px;
-    height: 150px;
+    height: 500px;
     border: 1px solid #025D73;
     border-radius: 15px;
 }
@@ -93,6 +93,28 @@ background-color: #33cfe4;
     border-radius: 10px;
 }
 
+#provinciaSelect1{
+    box-sizing: border-box;
+    position: absolute;
+    width: 363px;
+    height: 34px;
+    left: 100px;
+    top: 213px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
+#provinciaSelect2{
+    box-sizing: border-box;
+    position: absolute;
+    width: 363px;
+    height: 34px;
+    left: 100px;
+    top: 300px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
 
 
 #opcionesCarta2{

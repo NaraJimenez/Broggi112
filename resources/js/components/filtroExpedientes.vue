@@ -1,7 +1,5 @@
 <template>
-    <div>
-        
-    </div>
+    <div id="buscadorExpe"></div>
 </template>
 <script>
 export default {

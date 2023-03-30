@@ -22,20 +22,19 @@ Route::get('/', function () {
 
 
 //ESTAS SON MIS RUTAS PARA PORBAR
-//Ruta Carta llamada - Incidencia
-//Route::resource('/carta1', '');
-Route::get('/carta1', function () {
-    return view('paginas/carta1');
-})->name('carta1');
+
 
 //Ruta Carta llamada - Localización
 Route::get('/carta2', function () {
     return view('paginas/carta2');
 })->name('carta2');
 
-Route::get('/carta3', function () {
-    return view('paginas/carta3');
-})->name('carta3');
+//Ruta Carta llamada - Incidencia
+Route::get('/carta1Vue', function () {
+    return view('paginas/carta1Vue');
+})->name('carta1Vue');
 
-
+Route::get('/carta2Vue', function () {
+    return view('paginas/carta2Vue');
+})->name('carta2Vue');
 
