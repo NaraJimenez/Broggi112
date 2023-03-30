@@ -33,5 +33,9 @@ Route::get('/carta2', function () {
     return view('paginas/carta2');
 })->name('carta2');
 
+Route::get('/carta3', function () {
+    return view('paginas/carta3');
+})->name('carta3');
+
 
 
