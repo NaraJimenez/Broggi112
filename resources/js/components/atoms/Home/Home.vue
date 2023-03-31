@@ -13,8 +13,6 @@ import HomeButton from './HomeButton.vue'
 import Phone from './Phone.vue'
 
 
- 
-
 export default {
 
        components: {
@@ -26,4 +24,4 @@ export default {
 </script>
 <style>
 
-</style>
+</style>                                        

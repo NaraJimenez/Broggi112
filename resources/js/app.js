@@ -1,18 +1,24 @@
 import './bootstrap';
 import * as bootstrap from 'bootstrap';
 import { createApp } from 'vue';
-// import Button from './components/atoms/Button/Button.vue';
+import Button from './components/atoms/Button/Button.vue';
 import Navbar from './components/atoms/Button/Navbar.vue';
+import Menu from './components/atoms/Home/Menu.vue';
 // import App from './App.vue'
 // createApp(App).mount("#app")
 
-// createApp(Button).mount('#Button')
-createApp(Navbar).mount('#Navbar');
 
-console.log("HOLA");
+// createApp(Navbar).mount('#Navbar');
+
+
 
 // const app = createApp({})
 // app.component('navegacio', Navbar)
 // app.mount('#app')
 
-console.log("HOLA");
+createApp(Menu).mount('#Menu');
+createApp(Navbar).mount('#Navbar');
+
+
+
+// createApp(Button).mount('#Button');

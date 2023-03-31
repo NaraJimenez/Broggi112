@@ -8,12 +8,14 @@
         @yield('title')
     </title>
     {{-- <link rel="shortcut icon" href="{{ asset('img/favicon-politecnics.png') }}" type"image/x-icon"> --}}
-    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.scss', 'resources/js/app.js', '../../js/menu.js'])
 </head>
 <body> 
-    <div id="Navbar">
+    <div id="Menu" style="width:50px; height:50px; background-color:#cccccc;">
     
     </div>
+ 
     @yield('content')
 </body>
 </html>
+
