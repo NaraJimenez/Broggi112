@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="text-center mt-5 mb-5" id="titulo">
-        <h2>Carta Guardada //poner numero aqui//</h2>
+        <h2>Carta Registrada</h2>
     </div>
 
     <div class="card mt-2 mx-auto" id="CartaIncidencia">
