@@ -15,13 +15,13 @@
             <div>
             <div id="primerRectangulo2" class="mt-4 ms-5">
                 <div id="carta2Catalunya"></div>
-            </div>  
+            </div>
 
             <!--Buscador de Expediente
             <div id="filtroExpedientes"></div>-->
-            
+
             <div id="segundoRectangulo2" class="mt-4">
-                <div id="carta2Botones"></div>
+                <!--<div id="carta2Botones"></div>-->
                 <div id="carta2Localizacion"></div>
             </div>
 

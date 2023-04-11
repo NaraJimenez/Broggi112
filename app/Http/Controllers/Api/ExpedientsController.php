@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
 
+
+use Illuminate\Database\QueryException;
+use App\Http\Resources\ExpedientsResource;
 class ExpedientsController extends Controller
 {
     /**
@@ -15,7 +18,8 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        //
+        $expedients = Expedients::with("estatsExpedients")->get();
+        return ExpedientsResource::collection($expedients);
     }
 
     /**
@@ -26,7 +30,27 @@ class ExpedientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $expedients = new Expedients();
+
+
+        $expedients->data_creacio = $request->input('data_creacio');
+        $expedients->data_ultima_modificacio = $request->input('data_ultima_modificacio');
+        $expedients->estats_expedients_id = $request->input('estats_expedients_id');
+
+        try{
+
+            $expedients->save();
+            $response = (new ExpedientsResource($expedients))->response()->setStatusCode(201);
+        }
+        catch(QueryException $ex)
+        {
+
+            $mensaje = Utilitat::errorMessage($ex);
+            // $request->session()->flash('error', $mensaje);
+            $response = \response()->json(['error' => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**
@@ -37,7 +61,9 @@ class ExpedientsController extends Controller
      */
     public function show(Expedients $expedients)
     {
-        //
+        //$expedient = Expedients::with("estatsExpedients")->get();
+        $expedientNou = Expedients::with(["cartestrucades.provincies","cartestrucades.municipis","cartestrucades.usuari"])->where("id", $expedient->id)->first();
+        return new ExpedientsResource($expedientNou);
     }
 
     /**

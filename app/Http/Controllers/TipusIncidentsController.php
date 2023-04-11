@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Tipus_incidents;
 use Illuminate\Http\Request;
 
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\TipusIncidentsResources;
+
+
 class TipusIncidentsController extends Controller
 {
     /**
@@ -14,7 +19,8 @@ class TipusIncidentsController extends Controller
      */
     public function index()
     {
-        //
+        $tipusIncident = Tipus_incidents::with("incidents.cartestrucades")->get();
+        return TipusIncidentsResources::collection($tipusIncident);
     }
 
     /**
