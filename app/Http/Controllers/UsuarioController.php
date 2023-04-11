@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Usuaris;
+use App\Models\Tipus_usuaris;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class UsuarioController extends Controller
 {
     public function MostrarLogin()
     {
-// Generamos 10 usuarios de prueba
-// for ($i = 2; $i <= 10; $i++) {
-//     $usuario = new Usuario();
-//     $usuario->username = 'prueba'.$i;
-//     $usuario->contrasenya = \bcrypt('prueba'.$i);
-//     $usuario->nom = 'Nombre'.$i;
-//     $usuario->cognoms = 'Apellido'.$i;
-//     $usuario->tipus_usuaris_id = 1;
-//     $usuario->save();
-// }
-
         return view('auth.login');
     }
 
@@ -30,7 +21,7 @@ class UsuarioController extends Controller
         $username = $request->input('username');
         $contrasenya = $request->input('password');
 
-        $user = Usuario::where('username', $username)->first();
+        $user = Usuaris::where('username', $username)->first();
 
         if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
@@ -38,8 +29,6 @@ class UsuarioController extends Controller
         } else {
             $request->session()->flash('error', 'El Usuario o Contraseña no son correctos');
             $response = redirect('/login')->withInput();
-            dump($request->session()->get('error'));
-
         }
         return $response;
     }
@@ -49,5 +38,53 @@ class UsuarioController extends Controller
         Auth::logout();
         return redirect('/');
     }
-}
 
+    public function mostrarAdminUsers()
+    {
+        $usuarios = Usuaris::all();
+        $roles = Tipus_usuaris::all(); // Cambiar Rol a Tipus_usuaris
+
+        return view('paginas.adminUsers', compact('usuarios', 'roles'));
+    }
+    public function actualizarUsuario(Request $request, $id)
+    {
+        $usuario = Usuaris::find($id);
+
+        if ($usuario) {
+            $usuario->nom = $request->input('nom');
+            $usuario->cognoms = $request->input('cognoms');
+            $usuario->username = $request->input('username');
+            $usuario->tipus_usuaris_id = $request->input('tipus_usuaris_id');
+            $usuario->save();
+            return redirect()->back()->with('success', 'El usuario ha sido actualizado.');
+        } else {
+            return redirect()->back()->with('error', 'El usuario no se pudo encontrar.');
+        }
+    }
+    public function agregarUsuario(Request $request)
+    {
+        $usuario = new Usuaris;
+
+        $usuario->nom = $request->input('nom');
+        $usuario->cognoms = $request->input('cognoms');
+        $usuario->username = $request->input('username');
+        $usuario->tipus_usuaris_id = $request->input('tipus_usuaris_id');
+        $usuario->contrasenya = Hash::make($request->input('password'));
+
+        $usuario->save();
+
+        return redirect()->back()->with('success', 'El usuario ha sido agregado.');
+    }
+
+    public function eliminarUsuario($id)
+    {
+        $usuario = Usuaris::find($id);
+
+        if ($usuario) {
+            $usuario->delete();
+            return redirect()->back()->with('success', 'El usuario ha sido eliminado.');
+        } else {
+            return redirect()->back()->with('error', 'El usuario no se pudo encontrar.');
+        }
+    }
+}
