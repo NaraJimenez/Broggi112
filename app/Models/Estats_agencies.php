@@ -4,25 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 
 class Estats_agencies extends Model
 {
     use HasFactory;
 
-    protected $table = 'estats_agencies';
-
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    public $timestamps = false;
 
     /**
-     * Get the user associated with the Estats_agencies
+     * The Cartes_trucades_has_agencies that belong to the Estats_agencies
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function cartes_trucades_has_agencies()
+    public function cartes_trucades_has_agencies(): hasMany
     {
-        return $this->hasOne(Cartes_trucades_has_agencies::class, 'estats_agencies_id');
+        return $this->hasMany(Cartes_trucades_has_agencies::class, 'estats_agencies_id');
     }
 }

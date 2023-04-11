@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="{{ asset("css/carta1.css") }}">
         <link rel="stylesheet" href="{{ asset("css/carta2.css") }}">
 
+        <!--Vite-->
+        @vite(['resources/css/app.css', 'resources/css/app.scss', 'resources/js/app.js'])
     </head>
 
     <body id="body" >

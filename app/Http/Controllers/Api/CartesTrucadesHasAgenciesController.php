@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Perfil;
+use App\Http\Controllers\Controller;
+use App\Models\Cartes_trucades_has_agencies;
 use Illuminate\Http\Request;
 
-class PerfilController extends Controller
+class CartesTrucadesHasAgenciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,6 @@ class PerfilController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +32,10 @@ class PerfilController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Cartes_trucades_has_agencies  $cartes_trucades_has_agencies
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfil $perfil)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Perfil  $perfil
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Perfil $perfil)
+    public function show(Cartes_trucades_has_agencies $cartes_trucades_has_agencies)
     {
         //
     }
@@ -64,10 +44,10 @@ class PerfilController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Cartes_trucades_has_agencies  $cartes_trucades_has_agencies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil)
+    public function update(Request $request, Cartes_trucades_has_agencies $cartes_trucades_has_agencies)
     {
         //
     }
@@ -75,10 +55,10 @@ class PerfilController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Cartes_trucades_has_agencies  $cartes_trucades_has_agencies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfil $perfil)
+    public function destroy(Cartes_trucades_has_agencies $cartes_trucades_has_agencies)
     {
         //
     }

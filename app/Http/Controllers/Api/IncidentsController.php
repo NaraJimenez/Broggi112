@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Provinvies;
+use App\Models\Incidents;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\IncidentsResources;
 
-class ProvinviesController extends Controller
+class IncidentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class ProvinviesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $incidents = Incidents::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return IncidentsResources::collection($incidents);
     }
 
     /**
@@ -41,21 +35,10 @@ class ProvinviesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Provinvies  $provinvies
+     * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Provinvies $provinvies)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Provinvies  $provinvies
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Provinvies $provinvies)
+    public function show(Incidents $incidents)
     {
         //
     }
@@ -64,10 +47,10 @@ class ProvinviesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Provinvies  $provinvies
+     * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provinvies $provinvies)
+    public function update(Request $request, Incidents $incidents)
     {
         //
     }
@@ -75,10 +58,10 @@ class ProvinviesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Provinvies  $provinvies
+     * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provinvies $provinvies)
+    public function destroy(Incidents $incidents)
     {
         //
     }

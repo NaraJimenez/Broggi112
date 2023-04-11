@@ -3,31 +3,56 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class Cartes_trucades_has_agencies extends Model
 {
     use HasFactory;
 
-    protected $table = 'cartes_trucades_has_agencies';
-
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = ['cartes_trucades_id', 'agencies_id'];
+    public $timestamps = false;
     public $incrementing = false;
-    public $timestamps = false; // updated_at && created_at
+    protected $primaryKey = ['cartes_trucades_id', 'agencies_id'];
 
     /**
-     * Get the user that owns the Cartes_trucades_has_agencies
+     * Get the Cartes_trucades that owns the Cartes_trucades_has_agencies
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function cartes_trucades()
+    public function carta_trucada(): BelongsTo
     {
         return $this->belongsTo(Cartes_trucades::class, 'cartes_trucades_id');
     }
 
-    public function agencies()
+    /**
+     * Get the Agencies that owns the Cartes_trucades_has_agencies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function agencia(): BelongsTo
     {
         return $this->belongsTo(Agencies::class, 'agencies_id');
+    }
+
+    /**
+     * Get the Estats_agencies that owns the Cartes_trucades_has_agencies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function estat_agencia(): BelongsTo
+    {
+        return $this->belongsTo(Estats_agencies::class, 'estats_agencies_id');
+    }
+
+    /**
+     * Set the keys for a save update query.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function setKeysForSaveQuery($query)
+    {
+        return $query->where('cartes_trucades_id', $this->getAttribute('cartes_trucades_id'))
+                ->where('agencies_id', $this->getAttribute('agencies_id'));
     }
 }

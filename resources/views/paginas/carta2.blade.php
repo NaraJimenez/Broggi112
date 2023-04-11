@@ -24,12 +24,14 @@
 
                 <div id="boton2c2">  
                   <a href="{{ asset("carta2") }}" id="linkMenuCarta2c2">
+                  <a href="{{ url("carta2") }}" id="linkMenuCarta2c2">
                     <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
                   </a>
                 </div>
               
                 <div id="boton3c2" >
-                  <a href="{{ asset("carta3") }}" id="linkMenuCarta3c2">
+
+                  <a href="{{ url("carta3") }}" id="linkMenuCarta3c2">
                     <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
                   </a>
                 </div>
