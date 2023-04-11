@@ -1,24 +1,39 @@
 <template>
-    <div>
-        <select id="tipoInci" class="form-select form-select-sm" aria-label=".form-select-lg example">
-            <option selected>Tipo</option>
-            <option value="1">One</option>
+    <div class="form-group">
+        <!--<label for="docente">Tipo Incidente</label>-->
+        <select id="tipus_incidents" class="form-select form-select-sm" aria-label=".form-select-lg example" v-model="TipoSeleccionado">
+            <option v-for="tipus_incident in tipus_incidents" :value="tipus_incident">{{tipus_incidents.nombre}}</option>
           </select>
-          
+
           <select id="incidenciaInci" class="form-select form-select-sm"  aria-label=".form-select-sm example">
-            <option selected>Incidencia</option>
-            <option value="1">One</option>
+            <option v-for="incidenciaInci in tipoInci" :value="incidenciaInci">{{tipus_incidents.nombre}}</option>
           </select>
-          
-          <div id="definicionInci" class="text-muted "> Definición</div>
-          <div id="indicacionesInci" class="text-muted">Indicaciones</div>
+
+          <div id="definicionInci" class="text-muted "> <!--{{incidents.definicio}}--></div>
+          <div id="indicacionesInci" class="text-muted"><!--{{incidents.intruccions}}--></div>
     </div>
 </template>
 <script>
 export default {
-    
+    data(){
+        return {
+            tipoSeleccionado: {},//<-- el seleccionado estará aquí
+            tipus_incidents: [], // <-- La lista incidentes
+        }
+    },
+    created(){
+        const inciT = this
+        //Llamamos a la api/BBDD
+        axios
+            .get('tipusincidents')
+            //si todo va bien
+            .then(response => {
+                inciT.tipus_incidents = response.data
+            })
+    },
+
 }
 </script>
 <style>
-    
+
 </style>
