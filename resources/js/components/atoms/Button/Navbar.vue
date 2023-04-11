@@ -1,6 +1,6 @@
 <template>
     <div id="Navbar"  v-if="showNavbar">
-         <CrossButton imgSrc="../../../../../public/img/Cross.png"  @click="openNavbar()"></CrossButton>
+        <CrossButton  imgSrc="./img/Cross.png"  @click="openNavbar()"></CrossButton>
         <Button text="Inicio"></Button>
         <Button text="Video"></Button>
         <Button text="BigData"></Button>
@@ -31,24 +31,24 @@ export default {
             
     openNavbar () {
         this.showNavbar = false;
-    }
-        }
+        this.$emit('navbar-opened', false);
+    },
+        },
 
-    }
+    };
 </script>
 <style>
-#Navbar {
-  height: 100%;
-  width: 300px; 
-  background-color: #EBEFEF;
-  position: absolute;
-  overflow: auto;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
-  top: 0;
-  left: 0;
-}
+    #Navbar {
+        height: 100vh;
+        width: 300px; 
+        display: flex;
+        flex: 1 !important;
+        justify-content: center;
+        background-color: #EBEFEF;
+        position: absolute;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: center;
+    }
 </style>

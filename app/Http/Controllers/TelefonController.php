@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tipus_usuaris;
-use App\Models\Usuaris;
-use App\Models\Perfil;
-use Illuminate\Http\Request;
+use App\Models\Cartes_trucades;
+use App\Http\Requests;
+use App\Http\Requests\StoreTelefonRequest;
 
-class PerfilController extends Controller
+class TelefonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $user = Usuaris::pluck('username')->first();
-        $userRol = Tipus_usuaris::pluck('nom')->first();
-        return view ('layout.plantilla', compact('user', 'userRol'));
+        $phone = Cartes_trucades::pluck('telefon')->first();
+        return view ('NavBar.home', compact('phone'));
     }
 
     /**
@@ -34,10 +32,10 @@ class PerfilController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTelefonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTelefonRequest $request)
     {
         //
     }
@@ -45,10 +43,10 @@ class PerfilController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfil $perfil)
+    public function show(Telefon $telefon)
     {
         //
     }
@@ -56,10 +54,10 @@ class PerfilController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Perfil $perfil)
+    public function edit(Telefon $telefon)
     {
         //
     }
@@ -67,11 +65,11 @@ class PerfilController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Http\Requests\UpdateTelefonRequest  $request
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil)
+    public function update(UpdateTelefonRequest $request, Telefon $telefon)
     {
         //
     }
@@ -79,10 +77,10 @@ class PerfilController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfil $perfil)
+    public function destroy(Telefon $telefon)
     {
         //
     }

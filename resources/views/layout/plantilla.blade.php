@@ -7,14 +7,32 @@
     <title>
         @yield('title')
     </title>
-    {{-- <link rel="shortcut icon" href="{{ asset('img/favicon-politecnics.png') }}" type"image/x-icon"> --}}
-    @vite(['resources/css/app.scss', 'resources/js/app.js', '../../js/menu.js'])
+    <script src="https://kit.fontawesome.com/ed77576707.js" crossorigin="anonymous"></script>
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+    @yield('css-pagina')
 </head>
 <body> 
-    <div id="Menu" style="width:50px; height:50px; background-color:#cccccc;">
+    <div id="Menu" style="display:flex; position: absolute; top: 5vh; left: 5vh; width:50px; height:50px; background-color:red;">
     
     </div>
- 
+    <div class="profile">
+        @if (isset($user) && isset($userRol))
+            <div class="imgProfile" >
+                <span>{{ $user }}</span>
+                <span>{{ $userRol }}</span>
+            </div>
+        @else
+            <div class="messageProfile">
+                <span>No se ha registrado el usuario</span>
+            </div>
+        @endif
+        <div>
+            <img src="./img/ImagenUser.png" alt="profile" onclick="openMenuP()">
+        </div>
+        <div v-if="menuOpened">
+            <Menu @close-menu="closeMenu" @navbar-opened="openNavbar" @close-navbar="closeNavbar" />
+        </div>
+    </div>
     @yield('content')
 </body>
 </html>

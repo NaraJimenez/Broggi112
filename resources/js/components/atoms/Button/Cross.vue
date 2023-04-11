@@ -18,11 +18,14 @@ export default {
 <style>
     #CrossButton {
         display: flex;
+        top: 0;
+        right: 0;
+        margin-right: 10px;
+        margin-top: 10px;
+        position: absolute;
         justify-content: flex-end;
         align-content: center;
         flex-direction: row;
-        height: 100px;
-        width: 100px;
         cursor: pointer;
     }
     .cross{
@@ -30,6 +33,12 @@ export default {
         flex: 1;
         justify-content: flex-end;
     }
+
+    img{
+        width: 32px;
+        height: 22px;
+    }
+
      .hidden{
         display: none;
     }

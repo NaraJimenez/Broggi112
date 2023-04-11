@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TelefonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,7 @@ Route::get('/', function () {
 
 //Ruta Index (Telefono)
 // Route::view(uri: '/home', view:'layout.home')->name(name:'home');
-Route::get('/home', function() {
-    return view('NavBar.home');
-});
+Route::get('/home', 'App\Http\Controllers\TelefonController@index');
 
 
 //Ruta Carta llamada - Incidencia

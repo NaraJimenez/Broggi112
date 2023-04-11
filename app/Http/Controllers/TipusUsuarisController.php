@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tipus_usuaris;
-use App\Models\Usuaris;
-use App\Models\Perfil;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreTipus_usuarisRequest;
+use App\Http\Requests\UpdateTipus_usuarisRequest;
 
-class PerfilController extends Controller
+class TipusUsuarisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,7 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $user = Usuaris::pluck('username')->first();
-        $userRol = Tipus_usuaris::pluck('nom')->first();
-        return view ('layout.plantilla', compact('user', 'userRol'));
+        //
     }
 
     /**
@@ -34,10 +31,10 @@ class PerfilController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTipus_usuarisRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTipus_usuarisRequest $request)
     {
         //
     }
@@ -45,10 +42,10 @@ class PerfilController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Tipus_usuaris  $tipus_usuaris
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfil $perfil)
+    public function show(Tipus_usuaris $tipus_usuaris)
     {
         //
     }
@@ -56,10 +53,10 @@ class PerfilController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Tipus_usuaris  $tipus_usuaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(Perfil $perfil)
+    public function edit(Tipus_usuaris $tipus_usuaris)
     {
         //
     }
@@ -67,11 +64,11 @@ class PerfilController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Http\Requests\UpdateTipus_usuarisRequest  $request
+     * @param  \App\Models\Tipus_usuaris  $tipus_usuaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil)
+    public function update(UpdateTipus_usuarisRequest $request, Tipus_usuaris $tipus_usuaris)
     {
         //
     }
@@ -79,10 +76,10 @@ class PerfilController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perfil  $perfil
+     * @param  \App\Models\Tipus_usuaris  $tipus_usuaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfil $perfil)
+    public function destroy(Tipus_usuaris $tipus_usuaris)
     {
         //
     }
