@@ -1,7 +1,7 @@
 <template>
 <div id="NavbarButton">
   <button>
-        <!-- <image v-bind: {{ icon }} alt=''> -->
+        <img :src="icon" alt="">
         {{text}}
     </button>
 </div>
@@ -12,7 +12,6 @@
 export default {
         props: {
             text: String
-            // icon
         }
     }
 </script>

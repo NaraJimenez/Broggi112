@@ -1,11 +1,11 @@
 <template>
     <div id="Navbar"  v-if="showNavbar">
-        <CrossButton  imgSrc="./img/Cross.png"  @click="openNavbar()"></CrossButton>
-        <Button text="Inicio"></Button>
-        <Button text="Video"></Button>
-        <Button text="BigData"></Button>
-        <Button text="Admin"></Button>
-        <Button  text="Expedientes"></Button>
+        <CrossButton  imgSrc="img/Cross.png"  @click="openNavbar()"></CrossButton>
+        <Button text="Inicio" @click="goToPage('https://www.miweb.com/inicio')" img="./img/icon_home.png"></Button>
+        <Button text="Video" @click="goToPage('https://www.miweb.com/inicio')"></Button>
+        <Button text="BigData" @click="goToPage('https://www.miweb.com/inicio')"></Button>
+        <Button text="Admin" @click="goToPage('https://www.miweb.com/inicio')"></Button>
+        <Button  text="Expedientes" @click="goToPage('https://www.miweb.com/inicio')"></Button>
     </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
         this.showNavbar = false;
         this.$emit('navbar-opened', false);
     },
+    goToPage(url) {
+      window.location.href = url; // Redirigir a la nueva página
+    },
         },
 
     };
@@ -50,5 +53,8 @@ export default {
         left: 0;
         flex-direction: column;
         align-items: center;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 </style>

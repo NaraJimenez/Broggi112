@@ -16,7 +16,7 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $user = Usuaris::pluck('username')->first();
+        $user = Auth::user();
         $userRol = Tipus_usuaris::pluck('nom')->first();
         return view ('layout.plantilla', compact('user', 'userRol'));
     }

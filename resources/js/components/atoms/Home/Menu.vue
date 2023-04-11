@@ -1,7 +1,7 @@
 <template>
     <div id="MenuN">        
         <div id="Menu-button">
-            <img  @click="openMenu()" src="./img/Menu.png"/>
+            <img  @click="openMenu()" :src="'./img/Menu.png'"/>
         </div>
         <navbar v-if="showNavbar" @navbar-opened="showNavbar = $event"></navbar>
     </div>
@@ -29,7 +29,4 @@ export default {
     };
 </script>
 <style>
-#MenuN {
-   display: contents !important;
-}
 </style>
