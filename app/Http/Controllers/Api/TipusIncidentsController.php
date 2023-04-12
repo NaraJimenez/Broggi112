@@ -45,7 +45,8 @@ class TipusIncidentsController extends Controller
      */
     public function show(Tipus_incidents $tipus_incidents)
     {
-        //
+        $tipusIncidents = Tipus_incidents::pluck('nom');
+        return new TipusIncidentsResources($tipusIncidents);
     }
 
     /**

@@ -1,8 +1,9 @@
+
     <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\UsuarioController;
     use App\Http\Controllers\AdminController;
-
+    use Illuminate\Support\Facades\Auth;
     // Ruta para mostrar la página de inicio cuando se inicia sesión correctamente
     Route::get('/correcto', function () {
         return view('prova');

@@ -22,9 +22,9 @@ class IncidentsController extends Controller
 
 
         //AQUÍ NECESITARIAMOS PASARLE LA ID DEL TIPO DE INCIDENTE COMO PARÁMETRO, Y EN EL CONTROLLER QUE BUSQUE POR TAL EN VEZ DE SER ALEATORIO.
-        $incidents = Incidents::with("cartesTrucades")->get();
+       /* $incidents = Incidents::with("cartesTrucades")->get();
 
-        return IncidentResource::collection($incidents);
+        return IncidentsResources::collection($incidents);*/
 
         /* $incidents = Incidents::where('classes_incidents_id',$tipusIncident)->get();
         return IncidentResource::collection($incidents); */
@@ -52,7 +52,9 @@ class IncidentsController extends Controller
      */
     public function show(Incidents $incidents)
     {
-        //
+        $inci = Incidents::where('tipus_incidents_id', '=', $incidents)
+        ->get();
+        return new IncidentsResources($inci);
     }
 
     /**

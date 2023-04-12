@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Cartes_trucades;
+use App\Clases\Utilitat;
+use App\Models\Expedients;
 use Illuminate\Http\Request;
 
 
-use App\Clases\Utilitat;
-use App\Models\CartesTrucades;
+
+use App\Models\Cartes_trucades;
+use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
-use App\Http\Resources\CartesTrucadesResource;
+use App\Http\Resources\CartesTrucadesResources;
 
 class CartesTrucadesController extends Controller
 {
@@ -22,7 +23,7 @@ class CartesTrucadesController extends Controller
     public function index()
     {
         $cartesTrucades = Cartes_trucades::all();
-        return CartesTrucadesResource::collection($cartesTrucades);
+        return CartesTrucadesResources::collection($cartesTrucades);
     }
 
     /**
@@ -33,40 +34,97 @@ class CartesTrucadesController extends Controller
      */
     public function store(Request $request)
     {
-        $cartesTrucades = new CartesTrucades();
+        try {
+           // DB::beginTransaction();
+            $cartaTrucada = new Cartes_trucades();
+            $expedient = new Expedients();
 
-        //$cartesTrucades->codi_trucada = $request->input('codi_trucada');
 
-       // $cartesTrucades->data_hora = $request->input('data_hora');
-       // $cartesTrucades->temps_trucada = $request->input('temps_trucada');
+            //--------------EXPEDIENT----------------------
+            $expedient->estats_expedients_id = 1;
+            $expedient->save();
 
-       // $cartesTrucades->dades_personals_id = $request->input('dades_personals_id');
-       // $cartesTrucades->telefon = $request->input('telefon');
-        //$cartesTrucades->procedencia_trucada = $request->input('procedencia_trucada');
-        //$cartesTrucades->origen_trucada = $request->input('origen_trucada');
-        //$cartesTrucades->nom_trucada = $request->input('nom_trucada');
+            $cartaTrucada->expedients_id = $expedient->id;
+            //---------------------------------------------
 
-        $cartesTrucades->municipis_id_trucada = $request->input('municipis_id_trucada');
-        $cartesTrucades->adreca_trucada = $request->input('adreca_trucada');
-        $cartesTrucades->fora_catalunya = $request->input('fora_catalunya');
-        $cartesTrucades->provincies_id = $request->input('provincies_id');
-        $cartesTrucades->municipis_id = $request->input('municipis_id');
+            //--------------COMUNES-----------------
+            $cartaTrucada->temps_trucada = $request->input('tempsTrucada');
+            $cartaTrucada->codi_trucada = "TRUC-" . $request->input('codiTrucada');
+            $cartaTrucada->telefon = $request->input('phoneInput');
+            $cartaTrucada->fora_catalunya = $request->input('localitzacio');
+            //-------------------------------------
 
-        $cartesTrucades->incidents_id = $request->input('incidents_id');
-        $cartesTrucades->nota_comuna = $request->input('nota_comuna');
-       // $cartesTrucades->expedients_id = $request->input('expedients_id');
-       // $cartesTrucades->usuaris_id = $request->input('usuaris_id');
+            //--------------CATALUNYA-------------------
+            if ($request->input('localitzacio') == 1) {
+                $cartaTrucada->procedencia_trucada = $request->input('procedenciaInput');
+                $cartaTrucada->nom_trucada = $request->input('nomIntelocutor');
+                $cartaTrucada->municipis_id_trucada = $request->input('selectMunicipi');
+                $cartaTrucada->adreca_trucada = $request->input('adreca');
 
-        try{
 
-            $cartesTrucades->save();
-            $response = (new CartesTrucadesResource($cartesTrucades))->response()->setStatusCode(201);
-        }
-        catch(QueryException $ex)
-        {
+
+                //--------------------------------------------
+                $cartaTrucada->provincies_id = $request->input('selectProvincia');
+                $cartaTrucada->municipis_id = $request->input('selectMunicipi'); //Preguntar entre municipis id i municipis id trucada diferencia
+
+                $cartaTrucada->tipus_localitzacions_id = $request->input('tipusLoc');
+
+
+                if ($request->input('tipusLoc') == 1) {
+                    $carrerDescrip = $request->input('tipusVia') . ' ' . $request->input('nomVia') . ' ' . $request->input('numVia');
+                    $detallLoc = $request->input('escala') . ' ' . $request->input('pis') . ' ' . $request->input('porta');
+
+                    $cartaTrucada->descripcio_localitzacio = $carrerDescrip;
+                    $cartaTrucada->detall_localitzacio = $detallLoc;
+                    $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc1');
+                } else if ($request->input('tipusLoc') == 2) {
+                    $cartaTrucada->descripcio_localitzacio = $request->input('nomPunt');
+                    $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc2');
+                } else if ($request->input('tipusLoc') == 3) {
+                    $cartaTrucada->descripcio_localitzacio = $request->input('selectMunicipi');
+                    $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc3');
+                } else if ($request->input('tipusLoc') == 4) {
+                    $descripCarretera = $request->input('nomCarretera') . ' ' . $request->input('puntKilometric');
+
+                    $cartaTrucada->descripcio_localitzacio = $descripCarretera;
+                    $cartaTrucada->detall_localitzacio = $request->input('sentitCarretera');
+                    $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc4');
+                } else if ($request->input('tipusLoc') == 5) {
+                    $cartaTrucada->descripcio_localitzacio = $request->input('selectProvincia');
+                    $cartaTrucada->altres_ref_localitzacio = $request->input('referenciesLoc5');
+                }
+            }
+            //------------------------------------------------------
+            //---------------ALTRES (LOCALITZACÓ)-------------------
+            else {
+                $cartaTrucada->procedencia_trucada = $request->input('procedenciaInput');
+                $cartaTrucada->nom_trucada = $request->input('nomIntelocutor');
+                $cartaTrucada->municipis_id_trucada = $request->input('municipioInput');
+                $cartaTrucada->adreca_trucada = $request->input('adreca');
+                $cartaTrucada->provincies_id = $request->input('provinciaInput');
+            }
+            //--------------------------------------------------
+
+            //-------------------MES COMUNES--------------------
+            $cartaTrucada->incidents_id = $request->input('incident');
+            $cartaTrucada->nota_comuna = $request->input('notaComunaInput');
+            $cartaTrucada->usuaris_id = $request->input("usuaris_id");
+            //---------------------------------------
+
+            $cartaTrucada->save();
+
+            $response = (new CartesTrucadesResources($cartaTrucada))
+                ->response()
+                ->setStatusCode(201);
+            //DB::commit();
+        } catch (QueryException $ex) {
+            //DB::rollBack();
             $mensaje = Utilitat::errorMessage($ex);
-            // $request->session()->flash('error', $mensaje);
-            $response = \response()->json(['error' => $mensaje], 400);
+            $response = \response()
+                ->json(
+                    ['error' => $mensaje],
+                    400
+                );
         }
 
         return $response;
@@ -80,7 +138,8 @@ class CartesTrucadesController extends Controller
      */
     public function show(Cartes_trucades $cartes_trucades)
     {
-        //
+        $cartes_trucades = Cartes_trucades::find($cartes_trucades);
+        return new CartesTrucadesResources($cartes_trucades);
     }
 
     /**

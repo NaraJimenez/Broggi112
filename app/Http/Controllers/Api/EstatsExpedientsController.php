@@ -16,9 +16,9 @@ class EstatsExpedientsController extends Controller
      */
     public function index()
     {
-        $conditions = Estats_expedients::all();
+        $estatsExpedients = Estats_expedients::all();
 
-        return EstatsExpedientsResources::collection($conditions);
+        return EstatsExpedientsResources::collection($estatsExpedients);
     }
 
     /**

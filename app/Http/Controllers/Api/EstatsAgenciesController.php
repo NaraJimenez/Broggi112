@@ -16,9 +16,9 @@ class EstatsAgenciesController extends Controller
      */
     public function index()
     {
-        $estats = Estats_agencies::all();
+        $dades = Estats_agencies::all();
 
-        return EstatsAgenciesResources::collection($estats);
+        return EstatsAgenciesResources::collection($dades);
     }
 
     /**

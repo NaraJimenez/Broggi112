@@ -6,7 +6,7 @@
           </select>
 
           <select id="incidenciaInci" class="form-select form-select-sm"  aria-label=".form-select-sm example">
-            <option v-for="incidenciaInci in tipoInci" :value="incidenciaInci">{{tipus_incidents.nombre}}</option>
+            <option v-for="incidencia in incidencies" :value="incidenciaInci">{{tipus_incidents.nombre}}</option>
           </select>
 
           <div id="definicionInci" class="text-muted "> <!--{{incidents.definicio}}--></div>

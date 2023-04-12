@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\ComarquesController;
 use App\Http\Controllers\Api\IncidentsController;
 use App\Http\Controllers\Api\MunicipisController;
 use App\Http\Controllers\Api\ProvinciesController;
-use App\Http\Controllers\Api\TipusIncidentController;
+use App\Http\Controllers\Api\TipusIncidentsController;
 use App\Http\Controllers\Api\CartesTrucadesController;
 use App\Http\Controllers\Api\ExpedientsController;
 

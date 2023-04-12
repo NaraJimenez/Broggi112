@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Clases\Utilitat;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
 
 
+use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
-use App\Http\Resources\ExpedientsResource;
+use App\Http\Resources\ExpedientsResources;
+
 class ExpedientsController extends Controller
 {
     /**
@@ -18,8 +20,9 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        $expedients = Expedients::with("estatsExpedients")->get();
-        return ExpedientsResource::collection($expedients);
+        $expedients = Expedients::all();
+
+        return ExpedientsResources::collection($expedients);
     }
 
     /**
@@ -40,7 +43,7 @@ class ExpedientsController extends Controller
         try{
 
             $expedients->save();
-            $response = (new ExpedientsResource($expedients))->response()->setStatusCode(201);
+            $response = (new ExpedientsResources($expedients))->response()->setStatusCode(201);
         }
         catch(QueryException $ex)
         {
@@ -61,9 +64,8 @@ class ExpedientsController extends Controller
      */
     public function show(Expedients $expedients)
     {
-        //$expedient = Expedients::with("estatsExpedients")->get();
-        $expedientNou = Expedients::with(["cartestrucades.provincies","cartestrucades.municipis","cartestrucades.usuari"])->where("id", $expedient->id)->first();
-        return new ExpedientsResource($expedientNou);
+        $expedient = Expedients::find($expedients);
+        return new ExpedientsResources($expedient);
     }
 
     /**
