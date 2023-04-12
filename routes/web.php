@@ -38,7 +38,7 @@ Route::get('/carta2Vue', function () {
     return view('paginas/carta2Vue');
 })->name('carta2Vue');
 
-//Prueva de expediente
+//Prueba de expediente
 Route::get('/cartaExpediente', function () {
     return view('paginas/cartaExpediente');
 })->name('cartaExpediente');
