@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Incidents;
 use Illuminate\Http\Request;
 
+
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\IncidentsResources;
+use App\Models\Tipus_incidents;
+
+
 class IncidentsController extends Controller
 {
     /**
@@ -14,7 +21,9 @@ class IncidentsController extends Controller
      */
     public function index()
     {
-        //
+        $incidents = Incidents::with("cartesTrucades")->get();
+
+        return IncidentsResources::collection($incidents);
     }
 
     /**
