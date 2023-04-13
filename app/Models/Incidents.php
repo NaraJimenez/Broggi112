@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Cartes_trucades;
+//use App\Models\Cartes_trucades;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\hasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +12,9 @@ class Incidents extends Model
 {
     use HasFactory;
 
+    public $table = 'incidents';
+    public $primaryKey = 'id'; //Por defecto es id
+    public $incrementing = true; //Por defecto es true
     public $timestamps = false;
 
     /**
@@ -19,7 +22,7 @@ class Incidents extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function cartes_trucades(): hasMany
+    public function Cartes_trucades(): hasMany
     {
         return $this->hasMany(Cartes_trucades::class, 'incidents_id');
     }
@@ -29,8 +32,8 @@ class Incidents extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tipo_incident(): BelongsTo
+    public function Tipus_incidents(): BelongsTo
     {
-        return $this->belongsTo(Tipus_incidents::class, 'classes_incidents_id');
+        return $this->belongsTo(Tipus_incidents::class, 'tipus_incidents_id');
     }
 }

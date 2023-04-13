@@ -6,11 +6,11 @@
         <div>
             <label id="selectCat" >
                 <input type="radio" id="Si" value="0" v-model="picked" />
-                <label for="Si">Si</label> 
+                <label for="Si">Si</label>
                 <input type="radio" id="No" value="1" v-model="picked" class="ms-2"/>
                 <label for="No">No</label>
             </label>
-            
+
             <!--ESCONDER-->
             <span class="ms-2">Eligió: {{ picked }} </span>
             <!--Si es de Cataluña-->
@@ -20,13 +20,15 @@
                     <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id">
                         {{ provincia.nom }}
                     </option>
-                </select> <br>
+                </select>
+                <br>
                 <select v-model="selectedComarca" id="selectComarca" class="mt-4 ms-4">
                     <option disabled value="" class="text-center">Comarca</option>
                     <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">
                         {{ comarca.nom }}
                     </option>
-                </select> <br>
+                </select>
+                <br>
                 <select v-model="selectedMunicipi" id="selectMunicipio" class="mt-4 ms-4">
                     <option disabled value="" class="text-center">Municipio</option>
                     <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id">
@@ -82,62 +84,52 @@ export default {
         return {
             picked:[],
 
-
-
-
-            foraDeCatalunya: false,
             provincies: [],
             comarques: [],
             municipis: [],
+
+            //foraDeCatalunya: false,
             selectedProvinciaIdentiTrucada: "",
             selectedComarcaIdentiTrucada: "",
             selectedMunicipiIdentiTrucada: "",
             selectedProvincia: "",
             selectedComarca: "",
             selectedMunicipi: "",
-            carregant: true,
+
         };
     },
-    created() {
-        this.fetchProvincies();
+    selectProvincies() {
+        let me = this;
+          axios.get('/provincies/').then((response) => {
+              me.provincies = response.data;
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
     },
-    methods: {
-        toggleForaDeCatalunya() {
-            this.foraDeCatalunya = !this.foraDeCatalunya;
-        },
-        fetchProvincies() {
-            axios
-                .get("/api/provincies")
-                .then((response) => {
-                    this.provincies = response.data;
-                    this.carregant = false;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        fetchComarques() {
-            axios
-                .get(`/api/provincies/${this.selectedProvincia}/comarques`)
-                .then((response) => {
-                    this.comarques = response.data;
-                    this.selectedComarca = "";
-                    this.municipis = [];
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        fetchMunicipis() {
-            axios
-                .get(`/api/comarques/${this.selectedComarca}/municipis`)
-                .then((response) => {
-                    this.municipis = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
+    selectComarques() {
+        let me = this;
+        let provincia = this.trucada.selectProvincia;
+          axios.get('comarques/' + provincia).then((response) => {
+              me.comarques = response.data;
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },
+    selectMunicipis() {
+       let me = this;
+        let comarca = this.trucada.selectComarca;
+          axios.get('municipis/' + comarca).then((response) => {
+              me.municipis = response.data;
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+          this.selectAgencies();
     },
 
 }
@@ -164,7 +156,7 @@ export default {
     #selectCat{
         margin-left: 280px;
         margin-top: 37px;
-        
+
     }
     #selectProvincia {
         box-sizing: border-box;
@@ -208,7 +200,7 @@ export default {
         height: 34px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
-        border-radius: 10px; 
+        border-radius: 10px;
     }
     #provinciaInput {
         box-sizing: border-box;
@@ -217,7 +209,7 @@ export default {
         height: 34px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
-        border-radius: 10px; 
+        border-radius: 10px;
     }
 
 </style>

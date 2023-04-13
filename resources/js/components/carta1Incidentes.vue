@@ -6,14 +6,14 @@
             <select v-model="TipoSeleccionado" id="tipoInci" class="ms-3 mt-3">
                 <option value="" disabled>Tipo de Incidencia</option>
                 <option v-for="tipus_incident in tipus_incidents" :key="tipo.id" :value="tipus_incident">
-                    {{ tipus_incidents.nom }}
+                    {{ tipus_incident.nom }}
                 </option>
             </select>
 
-            <select v-model="TipoSeleccionado" id="incidenciaInci" class="ms-3  mt-3">
+            <select v-model="TipoSeleccionado" id="incidenciaInci" class="ms-3 mt-3">
                 <option value="" disabled>Incidencia</option>
-                <option v-for="incidencia in incidencies" :key="incidenciaInci" :value="tipus_incident">
-                    {{ tipus_incidents.nombre }}
+                <option v-for="incidente in incidentes" :key="incidenciaInci" :value="incidente">
+                    {{ incidente.nom }}
                 </option>
             </select>
             <!--
@@ -21,31 +21,54 @@
             <option v-for="incidencia in incidencies" :value="incidenciaInci">{{tipus_incidents.nombre}}</option>
             </select>-->
 
-            <!--<div id="definicionInci" class="text-muted "> {{incidents.definicio}}</div>-->
-            <!--<div id="indicacionesInci" class="text-muted">{{incidents.intruccions}}</div>-->
-            <input id="definicionInci"  type="text" name="nomSentido" placeholder="Definición" class="ms-3  mt-3">
-            <input id="indicacionesInci" type="text" name="nomSentido" placeholder="Instrucciones" class="ms-3  mt-3" >
+            <div v-for="incidente in incidentes">
+               <div id="definicionInci"  type="text" name="nomSentido"
+               placeholder="Definición" class="ms-3  mt-3"> {{incidente.definicio}}</div>
+                <div id="indicacionesInci" type="text" name="nomSentido"
+                placeholder="Instrucciones" class="ms-3  mt-3" >{{incidente.instruccions}}</div>
+            </div>
+
         </form>
     </div>
 </template>
 <script>
-export default {/*
+export default {
     data(){
         return {
-            tipoSeleccionado: {},//<-- el seleccionado estará aquí
+            /*
+            tipoSeleccionado: {},//<-- el seleccionado estará aquí*/
             tipus_incidents: [], // <-- La lista incidentes
+            incidentes: [],
+
+
         }
     },
     created(){
-        const inciT = this
+        /*this.selectProvincies();
+        this.selectTipusIncident();*/
+        const incidentesForm = this
         //Llamamos a la api/BBDD
         axios
+            .get('incidents')
+            //si todo va bien
+            .then(response => {
+                console.log(response);
+                incidentesForm.incidentes = response.data
+            })/*
             .get('tipusincidents')
             //si todo va bien
             .then(response => {
-                inciT.tipus_incidents = response.data
-            })
-    },*/
+                console.log(response);
+                incidentesForm.tipus_incidents = response.data
+            })*/
+    },
+    currentDateTime(){
+        const current = new Date();
+        const date = current.getFullYear()+'-'+(current.getMonth()+1)+'-'+current.getDate();
+        const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+        const dateTime = date +' '+ time;
+        trucada.dataCreacio = dateTime;
+    },
 
 }
 </script>

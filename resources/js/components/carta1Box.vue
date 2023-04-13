@@ -17,14 +17,80 @@
     </div>
 </template>
 <script>
+//import de componenetes hermanos
 export default {
     data (){
         return{
            //Objeto de elementos a guardar
             elementosGuardar:[],
-        }
+            elapsedTime: 0,
+            timer: undefined,
+
+            trucada: {
+      usuaris_id: this.useridm,
+      selectComarca: "",
+      tipusIncident: "",
+      procedenciaInput: '',
+      localitzacio: "",
+      phoneInput: '',
+      adreca: '',
+      antecedents: '',
+      tempsTrucada: 0,
+      nomIntelocutor: '',
+      selectMunicipi: '',
+      selectProvincia: "",
+      tipusLoc: '',
+      tipusVia: '',
+      nomVia: '',
+      numVia: '',
+      escala: '',
+      pis: '',
+      porta: '',
+      referenciesLoc1: '',
+      nomPunt: '',
+      referenciesLoc2: '',
+      referenciesLoc3: '',
+      nomCarretera: '',
+      puntKilometric: '',
+      sentitCarretera: '',
+      referenciesLoc4: '',
+      referenciesLoc5: '',
+      incident: '',
+      notaComunaInput: '',
+      codiTrucada: '',
+      agencia: ''
+      }
+        };
 
 
+    },
+    computed: {
+    formattedElapsedTime() {
+      const date = new Date(null);
+      date.setSeconds(this.elapsedTime / 1000);
+      const utc = date.toUTCString();
+      this.trucada.tempsTrucada = this.elapsedTime / 1000;
+      return utc.substr(utc.indexOf(":") - 2, 8);
+    },
+  },
+  methods: {
+    start() {
+      this.trucada.codiTrucada = this.codigoTrucada;
+      this.timer = setInterval(() => {
+        this.elapsedTime += 1000;
+      }, 1000);
+    },
+    stop(e) {
+      clearInterval(this.timer);
+      this.elapsedTime = 0;
+      if (e === 0) {
+          this.$emit('status', 'Declined');
+      } else {
+          this.$emit('status', 'Accepted');
+      }
+      this.currentDateTime();
+    },
+    
     }
 }
 </script>

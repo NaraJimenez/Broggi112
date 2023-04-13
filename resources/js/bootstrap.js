@@ -10,6 +10,7 @@ import axios from 'axios';
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+//Para llamar a las apis desde los Componentes
 window.axios.defaults.baseURL = '/Broggi112/public/api/';
 
 /**

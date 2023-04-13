@@ -16,8 +16,10 @@ class IncidentsController extends Controller
      */
     public function index()
     {
+        //Nos muestra todos los registros de la tabla
         $incidents = Incidents::all();
 
+        //Nos devuelve un array con los valores
         return IncidentsResources::collection($incidents);
 
 
@@ -51,10 +53,11 @@ class IncidentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Incidents $incidents)
-    {
+    {/*
         $inci = Incidents::where('tipus_incidents_id', '=', $incidents)
         ->get();
-        return new IncidentsResources($inci);
+        return new IncidentsResources($inci);*/
+        return new IncidentsResources($incidents);
     }
 
     /**

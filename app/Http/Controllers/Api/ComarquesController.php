@@ -40,9 +40,9 @@ class ComarquesController extends Controller
      */
     public function show(Comarques $comarques)
     {
-        $comarques = Comarques::where('provincies_id', '=', $comarques)
+        $comarca = Comarques::where('provincies_id', '=', $comarques)
                                     ->get();
-        return new ComarquesResources($comarques);
+        return new ComarquesResources($comarca);
     }
 
     /**

@@ -29,11 +29,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('Agencies', AgenciesController::class);
+Route::apiResource('agencies', AgenciesController::class);
 Route::apiResource('cartestrucades', CartesTrucadesController::class);
+
 Route::apiResource('tipusincidents', TipusIncidentsController::class);
 Route::apiResource('incidents', IncidentsController::class);
+
 Route::apiResource('provincies', ProvinciesController::class);
 Route::apiResource('comarques', ComarquesController::class);
 Route::apiResource('municipis', MunicipisController::class);
+
 Route::apiResource('expedients', ExpedientsController::class);

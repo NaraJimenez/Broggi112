@@ -16,8 +16,10 @@ class TipusIncidentsController extends Controller
      */
     public function index()
     {
+        //Nos muestra todos los registros de la tabla
         $TipusIncidents = Tipus_incidents::all();
 
+        //Nos devuelve un array con los valores
         return TipusIncidentsResources::collection($TipusIncidents);
 
 
@@ -45,8 +47,10 @@ class TipusIncidentsController extends Controller
      */
     public function show(Tipus_incidents $tipus_incidents)
     {
-        $tipusIncidents = Tipus_incidents::pluck('nom');
-        return new TipusIncidentsResources($tipusIncidents);
+       // $tipusIncidents = Tipus_incidents::pluck('nom');
+        //return new TipusIncidentsResources($tipusIncidents);
+        $tipus_incidents = Tipus_incidents::with('incidents')->find($tipus_incidents->id);
+        return new TipusIncidentsResources($tipus_incidents);
     }
 
     /**
