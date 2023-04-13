@@ -22,16 +22,20 @@
                 <!--Buscador de Expediente-->
                 <div id="filtroExpedientes"></div>
 
-                <!--HelpBox-->
-                <div id="helpBoxboton"></div>
+                <!--HelpBox
+                <div id="helpBoxboton"></div>-->
                 
-                <!--<div id="helper">
+                <div id="helper">
                   <a href="#">
                     <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
                   </a>
-                </div>-->
+                </div>
+                
             </div>
         </div>
+            <a href="{{url('/carta2Vue')}}"> 
+                    <button type="button" class="btn btn-primary float-right">NEXT</button>
+            </a>
     </div>
 
 

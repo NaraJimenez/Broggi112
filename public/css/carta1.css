@@ -16,7 +16,6 @@
     transform: rotate(0.26deg);
 }
 
-
 #boton2{
     width: 170px;
     height: 70px;
@@ -43,55 +42,6 @@
     border-radius: 15px;
 }
 
-
-#numTelf{
-    box-sizing: border-box;
-    position: absolute;
-    width: 186px;
-    height: 49px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-
-#codigoLlamada{
-    box-sizing: border-box;
-    position: absolute;
-    width: 186px;
-    height: 49px;
-    left: 285px;
-
-
-    background: #FFFFFF;
-    /* Bordes CLTTT */
-
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-#tiempoLlamada{
-    box-sizing: border-box;
-
-    position: absolute;
-    width: 385px;
-    height: 47px;
-    left: 87px;
-    top: 230px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-#notaComuna{
-    box-sizing: border-box;
-    position: absolute;
-    width: 385px;
-    height: 148px;
-    left: 87px;
-    top: 300px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-
 #segundoRectangulo{
     box-sizing: border-box;
     position: absolute;
@@ -102,55 +52,6 @@
     border: 1px solid #025D73;
     border-radius: 15px;
 
-}
-
-#tipoInci{
-    box-sizing: border-box;
-    position: absolute;
-    width: 376px;
-    height: 34px;
-    left: 25px;
-    top: 20px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-
-#incidenciaInci{
-    box-sizing: border-box;
-    position: absolute;
-    width: 376px;
-    height: 35px;
-    left: 25px;
-    top: 69px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
-#definicionInci{
-    box-sizing: border-box;
-    position: absolute;
-    width: 376px;
-    height: 33px;
-    left: 26px;
-    top: 118px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-    font-size: 15px;
-    }
-
-#indicacionesInci{
-    box-sizing: border-box;
-    position: absolute;
-    width: 376px;
-    height: 33px;
-    left: 26px;
-    top:167px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-    font-size: 15px;
 }
 
 #buscadorExpe{

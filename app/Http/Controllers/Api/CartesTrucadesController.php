@@ -49,7 +49,7 @@ class CartesTrucadesController extends Controller
 
             //--------------COMUNES-----------------
             $cartaTrucada->temps_trucada = $request->input('tempsTrucada');
-            $cartaTrucada->codi_trucada = "TRUC-" . $request->input('codiTrucada');
+            $cartaTrucada->codi_trucada = "TRUC-0" . $request->input('codiTrucada');
             $cartaTrucada->telefon = $request->input('phoneInput');
             $cartaTrucada->fora_catalunya = $request->input('localitzacio');
             //-------------------------------------
@@ -61,9 +61,7 @@ class CartesTrucadesController extends Controller
                 $cartaTrucada->municipis_id_trucada = $request->input('selectMunicipi');
                 $cartaTrucada->adreca_trucada = $request->input('adreca');
 
-
-
-                //--------------------------------------------
+            //--------------------------------------------
                 $cartaTrucada->provincies_id = $request->input('selectProvincia');
                 $cartaTrucada->municipis_id = $request->input('selectMunicipi'); //Preguntar entre municipis id i municipis id trucada diferencia
 
