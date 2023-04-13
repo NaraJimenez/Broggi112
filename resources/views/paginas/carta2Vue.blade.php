@@ -25,8 +25,21 @@
                 <div id="carta2Localizacion"></div>
             </div>
 
-</div>
+            </div>
+            
         </div>
+        <div>
+            <a href="{{url('/carta1Vue')}}"> 
+            <button type="button" class="btn btn-primary float-right">ATRAS</button>
+        </a>
+        <a href="{{url('')}}"> 
+            <button type="button" class="btn btn-primary float-right">NEXT</button>
+    </a>
+    <a href="{{url('')}}"> 
+        <button type="button" class="btn btn-primary float-right">SUBMIT</button>
+</a>
+        </div>
+        
     </div>
 
 

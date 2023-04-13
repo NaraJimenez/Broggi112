@@ -29,5 +29,51 @@ export default {
 }
 </script>
 <style>
+#numTelf{
+    box-sizing: border-box;
+    position: absolute;
+    width: 186px;
+    height: 49px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
 
+#codigoLlamada{
+    box-sizing: border-box;
+    position: absolute;
+    width: 186px;
+    height: 49px;
+    left: 285px;
+
+
+    background: #FFFFFF;
+    /* Bordes CLTTT */
+
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
+#tiempoLlamada{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 385px;
+    height: 47px;
+    left: 87px;
+    top: 230px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
+#notaComuna{
+    box-sizing: border-box;
+    position: absolute;
+    width: 385px;
+    height: 148px;
+    left: 87px;
+    top: 300px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
 </style>

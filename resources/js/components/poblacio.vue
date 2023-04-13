@@ -1,6 +1,22 @@
 <template>
     <div class="tab">
-        <label for="nombrePoblacion">Nombre Población</label>
-        <input class="" type="text" name="nombrePoblacion" placeholder="Nombre de la Población">
+        <label for="nombrePoblacion" class="ms-2 mt-3 mb-4">Nombre Población</label>
+        <input id="inputPoblacionNombre" class="ms-2 mt-3 mb-4" type="text" name="nombrePoblacion" placeholder="Introduce Población">
     </div>
-  </template>
+</template>
+<script>
+export default {
+
+}
+</script>
+<style>
+    #inputPoblacionNombre{
+        box-sizing: border-box;
+        position: absolute;
+        width: 220px;
+        height: 34px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+</style>
