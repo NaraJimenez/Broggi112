@@ -10,6 +10,9 @@ class Provincies extends Model
 {
     use HasFactory;
 
+    public $table = 'provincies';
+    public $primaryKey = 'id'; //Por defecto es id
+    public $incrementing = true; //Por defecto es true
     public $timestamps = false;
 
     /**
@@ -17,7 +20,7 @@ class Provincies extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function cartes_trucades(): hasMany
+    public function Cartes_trucades(): hasMany
     {
         return $this->hasMany(Cartes_trucades::class, 'provincies_id');
     }
@@ -27,7 +30,7 @@ class Provincies extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function comarques(): hasMany
+    public function Comarques(): hasMany
     {
         return $this->hasMany(Comarques::class, 'provincies_id');
     }

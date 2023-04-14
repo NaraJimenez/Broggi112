@@ -16,9 +16,9 @@ class ProvinciesController extends Controller
      */
     public function index()
     {
-        $provincias = Provincies::all();
+        $provincies = Provincies::all();
 
-        return ProvinciesResources::collection($provincias);
+        return ProvinciesResources::collection($provincies);
     }
 
     /**

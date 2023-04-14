@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Incidents;
+//use App\Models\Incidents;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\hasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +11,9 @@ class Tipus_incidents extends Model
 {
     use HasFactory;
 
+    public $table = 'tipus_incidents';
+    public $primaryKey = 'id'; //Por defecto es id
+    public $incrementing = true; //Por defecto es true
     public $timestamps = false;
 
     /**
@@ -18,8 +21,8 @@ class Tipus_incidents extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function incidents(): hasMany
+    public function Incidents(): hasMany
     {
-        return $this->hasMany(Incidents::class, 'incidents_id');
+        return $this->hasMany(Incidents::class, 'tipus_incidents_id');
     }
 }
