@@ -25,6 +25,7 @@
                     <option selected value="" class="text-center">Provincia</option>
                     <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
+
                 <br>
                 <select id="comarca"
                 name="comarca"
@@ -36,6 +37,7 @@
                     <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">{{comarca.nom}}</option>
                 </select>
                 <br>
+
                 <select id="selectMunicipi"
                 name="selectMunicipi"
                 v-model="localitzacio.selectMunicipi"

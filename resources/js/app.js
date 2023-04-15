@@ -10,10 +10,12 @@ import filtroExpedientes from './components/filtroExpedientes.vue'
 import carta2Catalunya from './components/carta2Catalunya.vue'
 import carta2Botones from './components/carta2Botones.vue'
 import carta2Localizacion from './components/carta2Localizacion.vue'
+import menuComponent from './components/menuComponent.vue'
 
 //Componente Menu Cartas de llamada
 createApp(menuCarta).mount('#menuCarta');
 //createApp(helpBoxboton).mount('#helpBoxboton');
+createApp(menuComponent).mount('#menuComponent');
 
 //Componentes Carta1
 createApp(carta1Box).mount('#carta1Box');

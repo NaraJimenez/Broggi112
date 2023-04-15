@@ -1,7 +1,7 @@
 <template>
   <div>
     <form>
-      <button 
+      <button
         class="mt-4 ms-2"
         v-for="tab in tabs"
         :key="tab"
@@ -19,7 +19,7 @@
   import PuntSingular from './puntSingular.vue'
   import Carretera from './carretera.vue'
   import Calle from './calle.vue'
-  
+
   export default {
     components: {
         Carretera,
@@ -32,7 +32,7 @@
         currentTab: 'Carretera',
         tabs: ['Carretera', 'Calle', 'Punt Singular', 'Poblacion']
 
-        
+
         }
     }
   }
@@ -81,15 +81,15 @@
 <!--
 <template>
 <MDBTabs v-model="activeTabId1">
-  // Tabs navs 
+  // Tabs navs
   <MDBTabNav pills tabsClasses="mb-3 mt-2">
     <MDBTabItem tabId="ex1-1" href="ex1-1">Carretera</MDBTabItem>
     <MDBTabItem tabId="ex1-2" href="ex1-2">Calle</MDBTabItem>
     <MDBTabItem tabId="ex1-4" href="ex1-4">Punto Singular</MDBTabItem>
     <MDBTabItem tabId="ex1-5" href="ex1-5">Población</MDBTabItem>
   </MDBTabNav>
-  //Tabs navs 
-  //Tabs content 
+  //Tabs navs
+  //Tabs content
   <MDBTabContent>
     <MDBTabPane tabId="ex1-1">Content #1</MDBTabPane>
     <MDBTabPane tabId="ex1-2">Content #2</MDBTabPane>
@@ -97,7 +97,7 @@
     <MDBTabPane tabId="ex1-4">Content #4</MDBTabPane>
     <MDBTabPane tabId="ex1-5">Content #5</MDBTabPane>
   </MDBTabContent>
-  //Tabs content 
+  //Tabs content
 </MDBTabs>
 </template>
 <script>

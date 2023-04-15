@@ -57,3 +57,8 @@ Route::get('/carta2Vue', function () {
 Route::get('/cartaExpediente', function () {
     return view('paginas/cartaExpediente');
 })->name('cartaExpediente');
+
+//Fusion componentes
+Route::get('/carta', function () {
+    return view('paginas/carta');
+})->name('carta');
