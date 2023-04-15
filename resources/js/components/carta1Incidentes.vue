@@ -1,31 +1,30 @@
 <template>
     <div>
         <form>
-            <!-- <div class="form-group">-->
-            <!--<label for="docente">Tipo Incidente</label>-->
-            <select v-model="TipoSeleccionado" id="tipoInci" class="ms-3 mt-3">
+            <select id="tipusIncident"
+            v-model="incidentes.tipusIncident"
+            name="tipusIncident"
+            class="form-select ms-3 mt-3"
+            aria-label="tipusIncident"
+            @change="selectIncidents()" >
                 <option value="" disabled>Tipo de Incidencia</option>
-                <option v-for="tipus_incident in tipus_incidents" :key="tipo.id" :value="tipus_incident">
-                    {{ tipus_incident.nom }}
-                </option>
+                <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id" :value="tipusIncident.id">{{tipusIncident.nom}}</option>
             </select>
 
-            <select v-model="TipoSeleccionado" id="incidenciaInci" class="ms-3 mt-3">
+            <select id="incident"
+            name="incident"
+            v-model="incidentes.incident"
+            class="form-select ms-3 mt-3"
+            aria-label="incident">
                 <option value="" disabled>Incidencia</option>
-                <option v-for="incidente in incidentes" :key="incidenciaInci" :value="incidente">
-                    {{ incidente.nom }}
-                </option>
+                <option v-for="incident in incidents" :key="incident.id" :value="incident.id">{{incident.nom}}</option>
             </select>
-            <!--
-            <select id="incidenciaInci" class="form-select form-select-sm"  aria-label=".form-select-sm example">
-            <option v-for="incidencia in incidencies" :value="incidenciaInci">{{tipus_incidents.nombre}}</option>
-            </select>-->
 
-            <div v-for="incidente in incidentes">
+            <div v-for="incident in incidents">
                <div id="definicionInci"  type="text" name="nomSentido"
-               placeholder="Definición" class="ms-3  mt-3"> {{incidente.definicio}}</div>
+               placeholder="Definición" class="ms-3  mt-3"> {{incident.definicio}}</div>
                 <div id="indicacionesInci" type="text" name="nomSentido"
-                placeholder="Instrucciones" class="ms-3  mt-3" >{{incidente.instruccions}}</div>
+                placeholder="Instrucciones" class="ms-3  mt-3" >{{incident.instruccions}}</div>
             </div>
 
         </form>
@@ -37,43 +36,58 @@ export default {
         return {
             /*
             tipoSeleccionado: {},//<-- el seleccionado estará aquí*/
-            tipus_incidents: [], // <-- La lista incidentes
-            incidentes: [],
+            //tipus_incidents: [],
+            incidents: [],
+            tipusIncidents: [],
 
-
+            incidentes: {
+                tipusIncident: '',
+                incident: '',
+            }
         }
     },
     created(){
-        /*this.selectProvincies();
-        this.selectTipusIncident();*/
-        const incidentesForm = this
-        //Llamamos a la api/BBDD
-        axios
-            .get('incidents')
-            //si todo va bien
-            .then(response => {
-                console.log(response);
-                incidentesForm.incidentes = response.data
-            })/*
-            .get('tipusincidents')
-            //si todo va bien
-            .then(response => {
-                console.log(response);
-                incidentesForm.tipus_incidents = response.data
-            })*/
+
+        this.selectTipusIncident();
+
+
     },
+    methods: {
+    selectTipusIncident() {
+        let me = this;
+          axios.get('tipusincidents')
+          .then((response) => {
+              me.tipusIncidents = response.data;
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },
+    selectIncidents() {
+        let me = this;
+        let tipusIncident = this.tipusIncident;
+          axios.get('incidents/' + tipusIncident)
+          .then((response) => {
+              me.incidents = response.data;
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => (this.loading = false));
+    },/*
     currentDateTime(){
         const current = new Date();
         const date = current.getFullYear()+'-'+(current.getMonth()+1)+'-'+current.getDate();
         const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
         const dateTime = date +' '+ time;
         trucada.dataCreacio = dateTime;
-    },
-
+    },*/
+    }
 }
 </script>
 <style>
-#tipoInci, #incidenciaInci, #definicionInci, #indicacionesInci {
+#tipusIncident, #incident, #definicionInci, #indicacionesInci {
     box-sizing: border-box;
     position: absolute;
     width: 376px;
@@ -85,12 +99,14 @@ export default {
     border-radius: 10px;
 }
 
-/*#tipoInci {
-    top: 5px;
-}*/
+#tipusIncident {
+   /* top: 5px;*/
+   height: 38px;
+}
 
-#incidenciaInci{
+#incident{
    top: 42px;
+   height: 38px;
 }
 
 #definicionInci{

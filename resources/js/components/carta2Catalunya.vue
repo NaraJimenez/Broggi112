@@ -1,4 +1,5 @@
 <template>
+
     <div id="contenidoPrimerRectangulo2" class="mt-2">
         <form>
             <!--OPCION - Si es de Cataluña o no-->
@@ -14,66 +15,52 @@
             <!--ESCONDER-->
             <span class="ms-2">Eligió: {{ picked }} </span>
             <!--Si es de Cataluña-->
-            <div v-if="picked === '0'">
-                <select v-model="selectedProvincia" id="selectProvincia" class="mt-2 ms-4">
-                    <option disabled value="" class="text-center">Provincia</option>
-                    <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id">
-                        {{ provincia.nom }}
-                    </option>
+            <div v-if="picked === '0' ">
+                <select id="selectProvincia"
+                name="selectProvincia"
+                class="form-select mt-2 ms-4"
+                aria-label="provincia"
+                v-model="localitzacio.selectProvincia"
+                @change="selectComarques()" >
+                    <option selected value="" class="text-center">Provincia</option>
+                    <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
                 <br>
-                <select v-model="selectedComarca" id="selectComarca" class="mt-4 ms-4">
-                    <option disabled value="" class="text-center">Comarca</option>
-                    <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">
-                        {{ comarca.nom }}
-                    </option>
+                <select id="comarca"
+                name="comarca"
+                class="form-select mt-4 ms-4"
+                aria-label="comarca"
+                v-model="localitzacio.selectComarca"
+                @change="selectMunicipis()">
+                    <option selected value="" class="text-center">Comarca</option>
+                    <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">{{comarca.nom}}</option>
                 </select>
                 <br>
-                <select v-model="selectedMunicipi" id="selectMunicipio" class="mt-4 ms-4">
-                    <option disabled value="" class="text-center">Municipio</option>
-                    <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id">
-                        {{ municipi.nom }}
-                    </option>
+                <select id="selectMunicipi"
+                name="selectMunicipi"
+                v-model="localitzacio.selectMunicipi"
+                class="form-select mt-4 ms-4"
+                aria-label="selectMunicipi"
+                for="selectMunicipi" >Municipio
+                    <option selected value="" class="text-center">Municipio</option>
+                    <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" >{{ municipi.nom }}</option>
                 </select>
             </div>
             <!--NO Cataluña-->
             <div v-else>
                 <div>
-                    <!-- <p>Message is: {{ message }}</p>-->
-                    <input id="provinciaInput" v-model="message" placeholder="Introduce Provincia" class="text-center mt-2 ms-4" />
+                    <input id="provinciaInput" v-model=" localitzacio.provinciaInput" placeholder="Introduce Provincia"
+                    class="form-control text-center mt-2 ms-4" type="text" name="provinciaInput"
+                    aria-describedby="provinciaInput"/>
                 </div>
 
                 <div>
-                    <!-- <p>Message is: {{ message }}</p>-->
-                    <input id="muniOpcional" v-model="message" placeholder="Introduce Municipio" class="text-center mt-5 ms-4" />
+                    <input id="muniOpcional" v-model=" localitzacio.muniOpcional" placeholder="Introduce Municipio"
+                    class="form-control text-center mt-5 ms-4" type="text" name="muniOpcional"
+                    aria-describedby="provinciaInput" />
                 </div>
             </div>
         </div>
-         <!-- <div>
-
-
-          Provincia
-          <select class="form-select" v-model="selectedProvinciaIdentiTrucada" @change="fetchComarques" required>
-            <option v-if="carregant" value="" disabled selected>Carregant...</option>
-            <option v-else value="" disabled selected>Provincia</option>
-            <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id">
-                {{ provincia.nom }}
-            </option>
-        </select>-->
-          <!--SI ES EN CATALUNYA APARECEN ESTOS SINO SE QUEDAN DESABILITADO
-          <select class="form-select" v-model="selectedComarcaIdentiTrucada" @change="fetchMunicipis" :disabled="!selectedProvincia" required>
-            <option value="" disabled selected>Comarca</option>
-            <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">
-                {{ comarca.nom }}
-            </option>
-          </select>
-          <select class="form-select" v-model="selectedMunicipiIdentiTrucada" :disabled="!selectedComarca" required>
-            <option value="" disabled selected>Municipi</option>
-            <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id">
-                {{ municipi.nom }}
-            </option>
-          </select>
-        </div>-->
         </form>
     </div>
 
@@ -82,56 +69,65 @@
 export default {
   data() {
         return {
-            picked:[],
 
+            picked:[],
             provincies: [],
             comarques: [],
             municipis: [],
 
-            //foraDeCatalunya: false,
-            selectedProvinciaIdentiTrucada: "",
-            selectedComarcaIdentiTrucada: "",
-            selectedMunicipiIdentiTrucada: "",
-            selectedProvincia: "",
-            selectedComarca: "",
-            selectedMunicipi: "",
-
+            localitzacio:{
+                selectedProvincia: '',
+                selectedComarca: '',
+                selectedMunicipi: '',
+                muniOpcional:'',
+                provinciaInput: '',
+            }
         };
     },
-    selectProvincies() {
+    methods: {
+        selectProvincies() {
+            let me = this;
+            axios
+                .get('provincies')
+                .then((response) => {
+                me.provincies = response.data;
+            })
+            /* .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => (this.loading = false));*/
+        },
+        selectComarques() {
+            let me = this;
+            let provincia = this.selectProvincia;
+            axios
+                .get('comarques/' + provincia)
+                .then((response) => {
+                    me.comarques = response.data;
+                })
+            /*  .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => (this.loading = false));*/
+        },
+        selectMunicipis() {
         let me = this;
-          axios.get('/provincies/').then((response) => {
-              me.provincies = response.data;
-          })
-          .catch((err) => {
-              console.log(err);
-          })
-          .finally(() => (this.loading = false));
+            let comarca = this.selectComarca;
+            axios
+                .get('municipis/' + comarca)
+                .then((response) => {
+                    me.municipis = response.data;
+                })
+            /*.catch((err) => {
+                console.log(err);
+            })
+            .finally(() => (this.loading = false));
+            this.selectAgencies();*/
+        },
     },
-    selectComarques() {
-        let me = this;
-        let provincia = this.trucada.selectProvincia;
-          axios.get('comarques/' + provincia).then((response) => {
-              me.comarques = response.data;
-          })
-          .catch((err) => {
-              console.log(err);
-          })
-          .finally(() => (this.loading = false));
+    created() {
+        this.selectProvincies();
     },
-    selectMunicipis() {
-       let me = this;
-        let comarca = this.trucada.selectComarca;
-          axios.get('municipis/' + comarca).then((response) => {
-              me.municipis = response.data;
-          })
-          .catch((err) => {
-              console.log(err);
-          })
-          .finally(() => (this.loading = false));
-          this.selectAgencies();
-    },
-
 }
 </script>
 <style>
@@ -142,6 +138,7 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
+
     #catalunya{
         box-sizing: border-box;
         position: absolute;
@@ -153,63 +150,67 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+
     #selectCat{
         margin-left: 280px;
         margin-top: 37px;
 
     }
+
     #selectProvincia {
         box-sizing: border-box;
         position: absolute;
         width: 363px;
-        height: 34px;
+        height: 37px;
+        left: 78px;
         /*left: 100px;
         top: 213px;*/
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
-    #selectComarca {
+    #comarca {
         box-sizing: border-box;
         position: absolute;
         width: 363px;
-        height: 34px;
-        /*left: 100px;
-        top: 213px;*/
-        background: #FFFFFF;
-        border: 3px solid #76DAE4;
-        border-radius: 10px;
-    }
-
-    #selectMunicipio{
-        box-sizing: border-box;
-        position: absolute;
-        width: 363px;
-        height: 34px;
+        height: 37px;
+        left: 78px;
         /*left: 100px;*/
-        top: 260px;
+        top: 225px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+    #selectMunicipi{
+        box-sizing: border-box;
+        position: absolute;
+        width: 363px;
+        height: 37px;
+        left: 78px;
+        /*left: 100px;*/
+        top: 270px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+
     #muniOpcional{
         box-sizing: border-box;
         position: absolute;
         width: 363px;
-        height: 34px;
-        background: #FFFFFF;
-        border: 3px solid #76DAE4;
-        border-radius: 10px;
-    }
-    #provinciaInput {
-        box-sizing: border-box;
-        position: absolute;
-        width: 363px;
-        height: 34px;
+        height: 35px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
 
+    #provinciaInput {
+        box-sizing: border-box;
+        position: absolute;
+        width: 363px;
+        height: 35px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
 </style>

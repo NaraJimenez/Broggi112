@@ -9,8 +9,8 @@
 
     <div class="card mt-2 mx-auto" id="CartaIncidencia">
         <div class="card-body">
-            <!--Componente Menu-->
-            <div id="menuCarta"></div>
+            <!--Componente Menu
+            <div id="menuCarta"></div>-->
 
             <!--Componente parte Izquierda de Carta1-->
             <div id="carta1Box"></div>

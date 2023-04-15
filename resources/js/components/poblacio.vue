@@ -1,7 +1,7 @@
 <template>
     <div class="tab">
-        <label for="nombrePoblacion" class="ms-2 mt-3 mb-4">Nombre Población</label>
-        <input id="inputPoblacionNombre" class="ms-2 mt-3 mb-4" type="text" name="nombrePoblacion" placeholder="Introduce Población">
+        <label for="inputPoblacionNombre" class="ms-2 mt-3 mb-4">Nombre Población</label>
+        <input id="inputPoblacionNombre" class="ms-2 mt-3 mb-4" type="text" name="inputPoblacionNombre" placeholder="Introduce Población">
     </div>
 </template>
 <script>

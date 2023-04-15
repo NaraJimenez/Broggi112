@@ -1,7 +1,7 @@
 <template>
     <div class="tab">
-        <label for="nombrePSingular" class="ms-2 mt-3 mb-4">Nombre Punto Singular</label>
-        <input id="inputPS" class="ms-2 mt-3 mb-4" type="text" name="nombrePSingular" placeholder=" Introduce Punto">
+        <label for="inputPS" class="ms-2 mt-3 mb-4">Nombre Punto Singular</label>
+        <input id="inputPS" class="ms-2 mt-3 mb-4" type="text" name="inputPS" placeholder=" Introduce Punto">
     </div>
 </template>
 <script>
