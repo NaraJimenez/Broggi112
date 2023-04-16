@@ -66,19 +66,20 @@
                             </div>
                         </div>
                 </div>
-                <div class="col mt-3 ms-3" id="rectangulo4"> <!--Tipo Localización-->
-                    <div>
-                        <button v-on:click="value=a">A</button>
-                        <button v-on:click="value=b">B</button>
-                        <button v-on:click="value=c">C</button>
-                        <button v-on:click="value=d">D</button>
+                <div class="col mt-3 ms-3" id="rectangulo4">
+                    <!--Tipo Localización-->
+                    <div class="selectSection">
+                        <button type="button" data-number="1" class="active" @click="mostrarOpciones()">1</button>
+                        <button type="button" data-number="2" @click="mostrarOpciones()">2</button>
+                        <button type="button" data-number="3" @click="mostrarOpciones()">3</button>
+                        <button type="button" data-number="4" @click="mostrarOpciones()">4</button>
                     </div>
-
-                    <div> <!--Elementos a mostrar-->
-                        <div>Escogido A</div>
-                        <div>Escogido B</div>
-                        <div>Escogido C</div>
-                        <div>Escogido D</div>
+                    <!--Elementos a mostrar-->
+                    <div class="contentSection">
+                        <div class="content" data-number="1">Escogido 1</div>
+                        <div class="content" data-number="2">Escogido 2</div>
+                        <div class="content" data-number="3">Escogido 3</div>
+                        <div class="content" data-number="4">Escogido 4</div>
 
                     </div>
 
@@ -108,6 +109,9 @@ export default {
         };
     },
     methods: {
+        mostrarOpciones(){
+
+        },
         selectProvincies() {
             let me = this;
             axios
@@ -189,6 +193,10 @@ export default {
         border-radius: 10px;
     }
     /*Divs dentro de los resctangulos*/
+    .content:not(:first-child) {
+        display: none;
+    }
+
     #catalunya{
         box-sizing: border-box;
         position: absolute;

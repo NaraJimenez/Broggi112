@@ -74,4 +74,8 @@
         background-color: #025D73;
         color: #FBFBFD;
     }
+    .tabs_header > button:hover {
+        background-color: #025D73;
+        color: #FBFBFD;
+    }
 </style>

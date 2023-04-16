@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Usuaris;
+/*use App\Models\Usuaris;
 use App\Models\Incidents;
 use App\Models\Municipis;
 use App\Models\Expedients;
@@ -14,101 +14,54 @@ use App\Models\Dades_personals;
 use App\Models\Tipus_localitzacions;
 use App\Models\Cartes_trucades_has_agencies;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;*/
 
 class Cartes_trucades extends Model
 {
     use HasFactory;
 
+    protected $table = 'cartes_trucades';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
-    /**
-     * The Cartes_trucades_has_agencies that belong to the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
-     */
-    public function cartes_trucades_has_agencies(): hasMany
+
+    public function expedients()
     {
-        return $this->hasMany(Cartes_trucades_has_agencies::class, 'cartes_trucades_id');
+        return $this->belongsTo(Expedients::class, 'expedients_id');
     }
 
-    /**
-     * Get the Usuaris that owns the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function usuari(): BelongsTo
+    public function interlocutor()
     {
-        return $this->belongsTo(Usuaris::class, 'usuaris_id');
+        return $this->belongsTo(Interlocutors::class, 'interlocutors_id');
     }
 
-    /**
-     * Get the Tipus_localitzacions associated with the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
-     */
-    public function tipo_localitzacio(): belongsTo
+    public function tipusLocalitzacio()
     {
-        return $this->belongsTo(Tipus_localitzacions::class, "tipus_localitzacions_id");
+        return $this->belongsTo(Tipus_localitzacions::class, 'tipus_localitzacions_id');
     }
 
-    /**
-     * Get the Expedient associated with the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
-     */
-    public function expedient(): belongsTo
-    {
-        return $this->belongsTo(Expedients::class, "expedients_id");
-    }
-
-    /**
-     * Get the Dades_personals associated with the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
-     */
-    public function dada_personal(): belongsTo
-    {
-        return $this->belongsTo(Dades_personals::class, "dades_personals_id");
-    }
-
-    /**
-     * Get the Provincies associated with the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
-     */
-    public function provincia(): belongsTo
-    {
-        return $this->belongsTo(Provincies::class, "provincies_id");
-    }
-
-    /**
-     * Get the Municipis that owns the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function municipi(): BelongsTo
+    public function municipi()
     {
         return $this->belongsTo(Municipis::class, 'municipis_id');
     }
 
-    /**
-     * Get the Municipis (trucada) that owns the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function municipi_trucada(): BelongsTo
+    public function provincia()
     {
-        return $this->belongsTo(Municipis::class, 'municipis_id_trucada');
+        return $this->belongsTo(Provincies::class, 'provincies_id');
     }
 
-    /**
-     * Get the Incidents that owns the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function incident(): BelongsTo
+    public function incident()
     {
         return $this->belongsTo(Incidents::class, 'incidents_id');
+    }
+
+    public function usuari()
+    {
+        return $this->belongsTo(Usuaris::class, 'usuaris_id');
+    }
+
+    public function cartes_trucades_has_agencies()
+    {
+        return $this->hasMany(Cartes_trucades_has_agencies::class, 'cartes_trucades_id');
     }
 }

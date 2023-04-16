@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 //use App\Models\Provincies;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\hasMany;
+//use Illuminate\Database\Eloquent\Relations\BelongsTo;
+//use Illuminate\Database\Eloquent\Relations\hasMany;
 
 
 class Comarques extends Model
@@ -24,9 +24,10 @@ class Comarques extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Provincies(): BelongsTo
+    public function Provincies() //: BelongsTo
     {
         return $this->belongsTo(Provincies::class, 'provincies_id');
+
     }
 
     /**
@@ -34,8 +35,9 @@ class Comarques extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function Municipis(): hasMany
+    public function Municipis() //: hasMany
     {
         return $this->hasMany(Municipis::class, 'comarques_id');
+
     }
 }
