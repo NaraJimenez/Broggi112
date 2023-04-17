@@ -17,6 +17,8 @@
             <component :is = 'component'/>
         </keep-alive>
 
+        
+
     </div>
 </template>
 <script>
@@ -36,6 +38,22 @@
                 tabs: ["pagina1", "pagina2", "pagina3"],
                 //El primer componente en mostrar
                 component: "pagina1"
+
+                //Este es el objeto que vamos a rellenar para poder subir nuestros datos a la BBDD
+                /*trucada {
+                    Provincia
+                    Municipi
+                    Comarca
+                    telefono
+                    numerollamada
+                    localizacion
+                    tiposIncidente
+                    incidente
+                    tiempo
+                    notaComuna
+
+
+                }*/
             }
         },
 

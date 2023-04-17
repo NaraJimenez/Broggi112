@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div> <form>
         <!--Elementos Carta-->
             <div class="row ms-3 mt-2">
+
 
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
@@ -10,7 +11,7 @@
                     <!--Código llamada-->
                     <div id="codigoLlamada" class="mt-4 text-muted">Código Llamada</div>
                     <!--Tiempo llamada-->
-                    <div id="tiempoLlamada" class="text-muted text-center"> TIEMPO LLAMADA
+                    <div id="tiempoLlamada" class="text-muted text-center"> {{ contadorFormatejat }}
                         <!--<p class="">Temps de trucada: {{ formattedElapsedTime }}</p>-->
                     </div>
                     <!--Nota Comuna-->
@@ -22,34 +23,32 @@
                 <!--FINAL PRIMER RECTANGULO-->
 
                 <!--Elementos Segundo Rectangulo-->
-                <div class="col" id="rectangulo2">
+                <div class="col mt-3" id="rectangulo2">
                     <!--Incidentes-->
-                    <div class="mt-3 ms-3" id="incidentes"><!--
-                        <select id="tipusIncident"
-                        v-model="incidentes.tipusIncident"
-                        name="tipusIncident"
-                        class="form-select ms-3 mt-3"
-                        aria-label="tipusIncident"
-                        @change="selectIncidents()" >
-                            <option value="" disabled>Tipo de Incidencia</option>
-                            <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id" :value="tipusIncident.id">{{tipusIncident.nom}}</option>
+                    <div class="mt-3 ms-3" id="incidentes">
+                        <!--Tipos de Incidente-->
+                        <select name="tipusIncident" id="tipusIncident" class="form-select ms-3 mt-3"
+                         required> <!--v-model="selectedTipusIncident" @change="fetchIncidents"-->
+                            <option value="" disabled selected>Tipo de Incidencia</option>
+                            <!--<option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
+                            :value="tipusIncident.id">{{tipusIncident.nom}}</option>-->
                         </select>
 
-                        <select id="incident"
-                        name="incident"
-                        v-model="incidentes.incident"
-                        class="form-select ms-3 mt-3"
-                        aria-label="incident">
-                            <option value="" disabled>Incidencia</option>
-                            <option v-for="incident in incidents" :key="incident.id" :value="incident.id">{{incident.nom}}</option>
+                        <!--Incidentes-->
+                        <select name="incident" id="incident" class="form-select ms-3 mt-3"
+                         required> <!--v-model="selectedIncident" :disabled="!selectedProvincia"-->
+                            <option value="" disabled selected>Incidencia</option>
+                           <!-- <option v-for="incident in incidents" :key="incident.id"
+                            :value="incident.id">{{incident.nom}}</option>-->
                         </select>
 
-                        <div v-for="incident in incidents">
-                        <div id="definicionInci"  type="text" name="nomSentido"
-                        placeholder="Definición" class="ms-3  mt-3"> {{incident.definicio}}</div>
-                            <div id="indicacionesInci" type="text" name="nomSentido"
-                            placeholder="Instrucciones" class="ms-3  mt-3" >{{incident.instruccions}}</div>
-                        </div>-->
+                        <!--Definición y Instrucciones de Incidentes-->
+                        <div>
+                            <div id="definicionInci"  type="text" name="definicion"
+                            placeholder="Definición" class="ms-3  mt-3">Definición</div>
+                            <div id="indicacionesInci" type="text" name="instrucciones"
+                            placeholder="Instrucciones" class="ms-3  mt-3">Instrucciones</div>
+                        </div>
                     </div>
                     <!--FINAL INCIDENTES-->
 
@@ -61,59 +60,79 @@
                 </div>
                 <!--FINAL PRIMER RECTANGULO-->
 
-            </div> <!--FINAL DIV ROW-->
+            </div> <!--FINAL DIV ROW--></form>
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
-           /* incidents: [],
+            /*
+            incidents: [],
             tipusIncidents: [],
 
-            incidentes: {
-                tipusIncident: '',
-                incident: '',
-            }*/
+            selectTipusIncident: "",
+            selectIncident: "",
+
+            selectedtTipusIncidentTrucada: "",
+            selectedIncidentTrucada:"",*/
+            fechaHoraActual: "",
+            contador: 0,
+            interval: null,
+
         }
     },
-    //Metodos
-    methods: {
-        //Seleccionamos de la BBDD los tipos de incidentes
-        selectTipusIncident() {
-            let me = this;
-            axios
-            .get('tipusincidents')
-            .then((response) => {
-                me.tipusIncidents = response.data;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => (this.loading = false));
-        },
-        //A partir de los incidentes sacamos los diferentes incidentes
-        selectIncidents() {
-            let me = this;
-            let tipusIncident = this.tipusIncident;
-            axios
-            .get('incidents/' + tipusIncident)
-            .then((response) => {
-                me.incidents = response.data;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => (this.loading = false));
-        },
-        //De los incidentes mostramos las instrucciones y definiciones
-
-    },
     created(){
-        this.selectTipusIncident();
+        //this.selectTipusIncident();
     },
     mounted() {
         console.log('Pagina 1 Montada')
+        //this.fetchTipusIncidents();
+        this.setFechaHoraActual();
+        this.iniciarContador();
+    },
+    beforeDestroy() {
+        clearInterval(this.interval);
+    },
+    computed: {
+        contadorFormatejat() {
+            const minutos = Math.floor(this.contador / 60);
+            const segundos = this.contador % 60;
+            return `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        },
+    },
+    methods: {
+        setFechaHoraActual() {
+            this.fechaHoraActual = new Date().toLocaleString('es-ES');
+        },
+        iniciarContador() {
+            this.interval = setInterval(() => {
+                this.contador++;
+            }, 1000);
+        },
+        /*
+        fetchTipusIncidents() {
+            axios
+                .get("/api/tipusincidents")
+                .then((response) => {
+                    this.tipusIncidents = response.data;
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+        fetchIncidents() {
+            axios
+                .get(`/api/tipusincidents/${this.selectedTipusIncident}/incidents`)
+                .then((response) => {
+                    this.incidents = response.data;
+                    this.selectedIncident = "";
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },*/
     },
 }
 </script>
