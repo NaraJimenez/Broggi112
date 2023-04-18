@@ -47,11 +47,11 @@ class TipusIncidentsController extends Controller
      */
     public function show(Tipus_incidents $tipusincident)
     {
-        $tipus_incidents = Tipus_incidents::with('Incidents')->find($tipusincident->id);
+        $tipus_incidente = Tipus_incidents::with('Incidents')->find($tipusincident->id);
         /*$tipus_incidents = Tipus_incidents::pluck('nom');
         return new TipusIncidentsResources($tipus_incidents);*/
         //$tipus_incidents = Tipus_incidents::with('incidents')->find($tipus_incidents->id);
-        return new TipusIncidentsResources($tipus_incidents);
+        return new TipusIncidentsResources($tipus_incidente);
     }
 
     /**

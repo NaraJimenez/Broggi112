@@ -5,7 +5,7 @@
                 <!--Datos Personales - METER COSAS DE LOS INTERLOCUTORES-->
               <div class="col mt-2" id="rec1">
                 <div  id="codExpediente">codigoExp</div>
-                <div id="codLlamda">codigoLlamda</div>
+                <div id="codLlamada" >codigoLlamda</div>
                 <div id="telefono">telefono</div>
                 <div id="fecha"> fecha</div>
                 <div id="nota">nota</div>
@@ -13,11 +13,11 @@
 
               <!--Agencias-->
               <div class="col" id="rec2">
-                <select name="" id="">
+                <select name="" id="" class="mt-2">
                     <option disabled selected value="" class="text-center">Agencies</option>
-                </select>
-                <select name="" id="">
-                    <option disabled selected value="" class="text-center">Agencies</option>
+                </select> <br> 
+                <select name="" id="" class="mt-2">
+                    <option disabled selected value="" class="text-center">Estados</option>
                 </select>
               </div>
               
@@ -67,7 +67,7 @@
               <!--MENU de Localización-->
               <div class="col" id="rec5">
                 <div class="d-flex align-items-start">
-                  <div class="nav flex-column nav-pills me-3" role="tablist" aria-orientation="vertical">
+                  <div class="nav flex-column nav-pills me-3 ms-3" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active" id="v-pills-carretera-tab" data-bs-toggle="pill" 
                     data-bs-target="#v-pills-carretera" type="button" role="tab" aria-controls="v-pills-carretera" aria-selected="true">Carretera</button>
                     <button class="nav-link" id="v-pills-calle-tab" data-bs-toggle="pill" 
@@ -78,7 +78,7 @@
                     data-bs-target="#v-pills-poblacion" type="button" role="tab" aria-controls="v-pills-poblacion" aria-selected="false">Población</button>
                   </div>
                   <!--Opciones Menú-->
-                  <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-content ms-3" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-carretera" role="tabpanel" aria-labelledby="v-pills-carretera-tab">
                       <!--CARRETERA-->
                         <label for="inputCarretera" class="ms-1 mt-3"> Nombre Carretera</label>
@@ -145,7 +145,7 @@ export default {
     #rec1 {
         box-sizing: border-box;
         /*position: absolute;*/
-        width: 400px;
+        width: 300px;
         height: 195px;
         left: 193px;
        /* top: 186px;*/
@@ -155,7 +155,7 @@ export default {
     #rec3 {
         box-sizing: border-box;
         /*position: absolute;*/
-        width: 400px;
+        width: 300px;
         height: 169px;
         left: 192px;
         /*top: 396px;*/
@@ -167,7 +167,7 @@ export default {
     #rec2 {
         box-sizing: border-box;
         /*position: absolute;*/
-        width: 400px;
+        width: 300px;
         height: 169px;
         left: 192px;
         /*top: 396px;*/
@@ -179,7 +179,7 @@ export default {
     #rec4 {
         box-sizing: border-box;
         /*position: absolute;*/
-        width: 400px;
+        width: 300px;
         height: 169px;
         left: 192px;
         /*top: 396px;*/
@@ -216,7 +216,7 @@ export default {
         border-radius: 10px;
     }
 
-    #codLlamda{
+    #codLlamada{
         box-sizing: border-box;
         /*position: absolute;*/
         width: 166px;

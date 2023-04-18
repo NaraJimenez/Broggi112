@@ -27,19 +27,20 @@
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente-->
-                        <select name="tipusIncident" id="tipusIncident" class="form-select ms-3 mt-3"
+                        <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
                          v-model="selectedTipusIncident" @change="fetchIncidents()" required> 
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
-                            :value="tipusIncident.id">{{tipusIncident.nom}}</option>
+                            :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
+                        
 
                         <!--Incidentes-->
-                        <select name="incident" id="incident" class="form-select ms-3 mt-3"
+                        <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
                         v-model="selectedIncident" :disabled="!selectedTipusIncident" required> 
                             <option value="" disabled selected>Incidencia</option>
                             <option v-for="incident in incidents" :key="incident.id"
-                            :value="incident.id">{{incident.nom}}</option>
+                            :value="incident.id">{{ incident.nom }}</option>
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
@@ -79,9 +80,9 @@ export default {
 
             selectedtTipusIncidentTrucada: "",
             selectedIncidentTrucada:"",
-            /*fechaHoraActual: "",
+            fechaHoraActual: "",
             contador: 0,
-            interval: null,*/
+            interval: null,
 
         }
     },
@@ -118,7 +119,7 @@ export default {
             axios
                 .get('/api/tipusincidents')
                 .then((response) => {
-                    this.tipusincidents = response.data;
+                    this.tipusIncidents = response.data;
                     this.incidents = [];
                     console.log(response.data);
                 })
@@ -128,14 +129,14 @@ export default {
         },
         fetchIncidents() {
             axios
-                .get('/api/tipusincidents/' + this.selectedTipusIncident)
+                .get('/api/incidents/' + this.selectedTipusIncident)
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
                     console.log(response.data);
                     this.incidents = this.tipusIncident.incidents;
                     this.selectedIncident = "";
-                   // this.municipis = [];
+                   
                 })
                 .catch((error) => {
                     console.error(error);
@@ -223,7 +224,7 @@ export default {
     }
 
     /*Divs - Parte izquierda*/
-    #tipusIncident, #incident, #definicionInci, #indicacionesInci {
+    #selectTipusIncident, #selectedIncident, #definicionInci, #indicacionesInci {
         box-sizing: border-box;
         position: absolute;
         width: 376px;
@@ -235,12 +236,12 @@ export default {
         border-radius: 10px;
     }
 
-    #tipusIncident {
+    #selectTipusIncident {
        /* top: 5px;*/
        height: 38px;
     }
 
-    #incident{
+    #selectedIncident{
        top: 42px;
        height: 38px;
     }

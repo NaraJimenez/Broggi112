@@ -164,7 +164,7 @@ export default {
         };
     },
     created() {
-       // this.selectProvincies();
+      
     },
     mounted() {
         console.log('Carta2 montada');
