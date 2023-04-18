@@ -10,6 +10,7 @@ import filtroExpedientes from './components/filtroExpedientes.vue'
 import carta2Catalunya from './components/carta2Catalunya.vue'
 import carta2Botones from './components/carta2Botones.vue'
 import carta2Localizacion from './components/carta2Localizacion.vue'
+import cartaExpediente from './components/cartaExpediente.vue'
 
 //Componente Menu Cartas de llamada
 createApp(menuCarta).mount('#menuCarta');
@@ -24,3 +25,6 @@ createApp(carta1Incidentes).mount('#carta1Incidentes');
 createApp(carta2Catalunya).mount('#carta2Catalunya');
 //createApp(carta2Botones).mount('#carta2Botones');
 createApp(carta2Localizacion).mount('#carta2Localizacion');
+
+//Componente Expedientes
+createApp(cartaExpediente).mount('#cartaExpediente');

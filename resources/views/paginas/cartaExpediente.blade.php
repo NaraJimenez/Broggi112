@@ -10,7 +10,8 @@
 
     <div class="card mt-2 mx-auto" id="CartaIncidencia">
         <div class="card-body">
-
+            <!--Componente de Expediente-->
+            <div id="cartaExpediente" ></div>
         </div>
     </div>
 
