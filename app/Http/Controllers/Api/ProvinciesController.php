@@ -38,9 +38,10 @@ class ProvinciesController extends Controller
      * @param  \App\Models\Provincies  $provincies
      * @return \Illuminate\Http\Response
      */
-    public function show(Provincies $provincies)
+    public function show(Provincies $provincy)
     {
-        //
+        $provincia = Provincies::with('Comarques')->find($provincy->id);
+        return new ProvinciesResources($provincia);
     }
 
     /**

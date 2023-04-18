@@ -15,17 +15,17 @@ import cartaExpediente from './components/cartaExpediente.vue'
 
 //Componente Menu Cartas de llamada
 createApp(menuCarta).mount('#menuCarta');
-//createApp(helpBoxboton).mount('#helpBoxboton');
+createApp(helpBoxboton).mount('#helpBoxboton');
 createApp(menuComponent).mount('#menuComponent');
 
 //Componentes Carta1
 createApp(carta1Box).mount('#carta1Box');
 createApp(carta1Incidentes).mount('#carta1Incidentes');
-//createApp(filtroExpedientes).mount('#filtroExpedientes');
+createApp(filtroExpedientes).mount('#filtroExpedientes');
 
 //Componenetes Carta2
 createApp(carta2Catalunya).mount('#carta2Catalunya');
-//createApp(carta2Botones).mount('#carta2Botones');
+createApp(carta2Botones).mount('#carta2Botones');
 createApp(carta2Localizacion).mount('#carta2Localizacion');
 
 //Componente Expedientes

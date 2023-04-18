@@ -54,8 +54,8 @@ class Municipis extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function Agencies() //: hasMany
+    /*public function Agencies() //: hasMany
     {
         return $this->hasMany(Agencies::class, 'municipis_id');
-    }
+    }*/
 }

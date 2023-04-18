@@ -22,8 +22,8 @@
                 <!--Buscador de Expediente-->
                 <div id="filtroExpedientes"></div>
 
-                <!--HelpBox
-                <div id="helpBoxboton"></div>-->
+                <!--HelpBox-->
+                <div id="helpBoxboton"></div>
 
                 <div id="helper">
                   <a href="#">

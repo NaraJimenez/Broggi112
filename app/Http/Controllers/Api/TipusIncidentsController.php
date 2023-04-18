@@ -45,12 +45,13 @@ class TipusIncidentsController extends Controller
      * @param  \App\Models\Tipus_incidents  $tipus_incidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipus_incidents $tipus_incidents)
+    public function show(Tipus_incidents $tipusincident)
     {
-        $tipus_incidents = Tipus_incidents::pluck('nom');
-        return new TipusIncidentsResources($tipus_incidents);
+        $tipus_incidents = Tipus_incidents::with('Incidents')->find($tipusincident->id);
+        /*$tipus_incidents = Tipus_incidents::pluck('nom');
+        return new TipusIncidentsResources($tipus_incidents);*/
         //$tipus_incidents = Tipus_incidents::with('incidents')->find($tipus_incidents->id);
-        //return new TipusIncidentsResources($tipus_incidents);
+        return new TipusIncidentsResources($tipus_incidents);
     }
 
     /**

@@ -14,7 +14,7 @@ class Comarques extends Model
 {
     use HasFactory;
 
-    public $table = 'provincies';
+    public $table = 'comarques';
     public $primaryKey = 'id'; //Por defecto es id
     public $incrementing = true; //Por defecto es true
     public $timestamps = false;

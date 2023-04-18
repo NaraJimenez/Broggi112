@@ -28,18 +28,18 @@
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente-->
                         <select name="tipusIncident" id="tipusIncident" class="form-select ms-3 mt-3"
-                         required> <!--v-model="selectedTipusIncident" @change="fetchIncidents"-->
+                         v-model="selectedTipusIncident" @change="fetchIncidents()" required> 
                             <option value="" disabled selected>Tipo de Incidencia</option>
-                            <!--<option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
-                            :value="tipusIncident.id">{{tipusIncident.nom}}</option>-->
+                            <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
+                            :value="tipusIncident.id">{{tipusIncident.nom}}</option>
                         </select>
 
                         <!--Incidentes-->
                         <select name="incident" id="incident" class="form-select ms-3 mt-3"
-                         required> <!--v-model="selectedIncident" :disabled="!selectedProvincia"-->
+                        v-model="selectedIncident" :disabled="!selectedTipusIncident" required> 
                             <option value="" disabled selected>Incidencia</option>
-                           <!-- <option v-for="incident in incidents" :key="incident.id"
-                            :value="incident.id">{{incident.nom}}</option>-->
+                            <option v-for="incident in incidents" :key="incident.id"
+                            :value="incident.id">{{incident.nom}}</option>
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
@@ -67,18 +67,21 @@
 export default {
     data() {
         return {
-            /*
-            incidents: [],
+            
             tipusIncidents: [],
+            tipusIncident: {},
 
-            selectTipusIncident: "",
-            selectIncident: "",
+            incidents: [],
+            incident: {},
+            
+            selectedTipusIncident: "",
+            selectedIncident: "",
 
             selectedtTipusIncidentTrucada: "",
-            selectedIncidentTrucada:"",*/
-            fechaHoraActual: "",
+            selectedIncidentTrucada:"",
+            /*fechaHoraActual: "",
             contador: 0,
-            interval: null,
+            interval: null,*/
 
         }
     },
@@ -87,7 +90,7 @@ export default {
     },
     mounted() {
         console.log('Pagina 1 Montada')
-        //this.fetchTipusIncidents();
+        this.fetchTipusIncidents();
         this.setFechaHoraActual();
         this.iniciarContador();
     },
@@ -110,13 +113,14 @@ export default {
                 this.contador++;
             }, 1000);
         },
-        /*
+        
         fetchTipusIncidents() {
             axios
-                .get("/api/tipusincidents")
+                .get('/api/tipusincidents')
                 .then((response) => {
-                    this.tipusIncidents = response.data;
-
+                    this.tipusincidents = response.data;
+                    this.incidents = [];
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -124,15 +128,19 @@ export default {
         },
         fetchIncidents() {
             axios
-                .get(`/api/tipusincidents/${this.selectedTipusIncident}/incidents`)
+                .get('/api/tipusincidents/' + this.selectedTipusIncident)
                 .then((response) => {
-                    this.incidents = response.data;
+                    //Pasamos el objeto con todos los tipos de de Incidentes
+                    this.tipusIncident = response.data;
+                    console.log(response.data);
+                    this.incidents = this.tipusIncident.incidents;
                     this.selectedIncident = "";
+                   // this.municipis = [];
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-        },*/
+        },
     },
 }
 </script>
