@@ -1,5 +1,5 @@
 <template>
-    
+
     <div id="contenidoPrimerRectangulo2" class="mt-2">
         <form>
             <!--OPCION - Si es de Cataluña o no-->
@@ -25,6 +25,7 @@
                     <option selected value="" class="text-center">Provincia</option>
                     <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" >{{ provincia.nom }}</option>
                 </select>
+
                 <br>
                 <select id="comarca"
                 name="comarca"
@@ -36,6 +37,7 @@
                     <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">{{comarca.nom}}</option>
                 </select>
                 <br>
+
                 <select id="selectMunicipi"
                 name="selectMunicipi"
                 v-model="localitzacio.selectMunicipi"
@@ -49,13 +51,13 @@
             <!--NO Cataluña-->
             <div v-else>
                 <div>
-                    <input id="provinciaInput" v-model=" localitzacio.provinciaInput" placeholder="Introduce Provincia" 
+                    <input id="provinciaInput" v-model=" localitzacio.provinciaInput" placeholder="Introduce Provincia"
                     class="form-control text-center mt-2 ms-4" type="text" name="provinciaInput"
                     aria-describedby="provinciaInput"/>
                 </div>
 
                 <div>
-                    <input id="muniOpcional" v-model=" localitzacio.muniOpcional" placeholder="Introduce Municipio" 
+                    <input id="muniOpcional" v-model=" localitzacio.muniOpcional" placeholder="Introduce Municipio"
                     class="form-control text-center mt-5 ms-4" type="text" name="muniOpcional"
                     aria-describedby="provinciaInput" />
                 </div>
@@ -154,6 +156,7 @@ export default {
     #selectCat{
         margin-left: 280px;
         margin-top: 37px;
+
     }
 
     #selectProvincia {
@@ -201,7 +204,6 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
-        left: 78px;
     }
 
     #provinciaInput {
@@ -212,6 +214,5 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
-        left: 78px;
     }
 </style>

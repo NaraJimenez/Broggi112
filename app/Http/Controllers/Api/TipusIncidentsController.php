@@ -23,7 +23,7 @@ class TipusIncidentsController extends Controller
         return TipusIncidentsResources::collection($tipusIncidents);
 
 
-/*
+        /*
         $tipusIncident = TipusIncident::with("incidents.cartestrucades")->get();
         return TipusIncidentResource::collection($tipusIncident);*/
     }
@@ -47,7 +47,7 @@ class TipusIncidentsController extends Controller
      */
     public function show(Tipus_incidents $tipus_incidents)
     {
-       $tipus_incidents = Tipus_incidents::pluck('nom');
+        $tipus_incidents = Tipus_incidents::pluck('nom');
         return new TipusIncidentsResources($tipus_incidents);
         //$tipus_incidents = Tipus_incidents::with('incidents')->find($tipus_incidents->id);
         //return new TipusIncidentsResources($tipus_incidents);

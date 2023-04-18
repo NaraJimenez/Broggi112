@@ -2,27 +2,30 @@
     <div>
     <div>
         <div id="botonesConjunto" class="mt-3 mb-1 d-flex justify-content-center">
-          <div id="boton1"> 
-            <a href="" id="linkMenuCarta1">
-              <div id="div" class="text-center mt-2"><b>1<br>Incidencias</b></div>
-            </a>
-          </div>
-    
-          <div id="boton2">  
+            <div id="boton1">
+                <a href="" id="linkMenuCarta1">
+                    <div id="div" class="text-center mt-2"><b>1<br>Incidencias</b></div>
+                </a>
+            </div>
+
+        <div id="boton2">
             <a href="" id="linkMenuCarta2">
-              <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
+                <div id="div" class="text-center mt-2"><b>2<br>Localización</b></div>
             </a>
-          </div>
-        
-          <div id="boton3" >
-            <a href="" id="linkMenuCarta3">
-              <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
-            </a>
-          </div>
         </div>
-      </div>
+
+        <div id="boton3" >
+            <a href="" id="linkMenuCarta3">
+                <div id="div" class="text-center mt-2"><b>3<br>Agencias</b></div>
+            </a>
+        </div>
+        </div>
+    </div>
 
     <div id="primerRectangulo" class="mt-4 ms-5">
+        <form></form>
+
+
         <div id="contenidoPrimerRectangulo" class="mt-2">
             <div id="numTelf" class="mt-4 ms-4 text-muted">Núm. Telf</div>
             <div id="codigoLlamada" class="mt-4 text-muted">Código Llamada</div>
@@ -32,7 +35,7 @@
             <div id="" class="text-muted" >
                 <textarea name="notaComunaInput" id="notaComunaInput" cols="10" rows="10" class="form-control"
                 placeholder="Nota Comuna"
-                v-model="trucada.notaComunaInput"></textarea> 
+                v-model="trucada.notaComunaInput"></textarea>
             </div>
         </div>
 
@@ -43,6 +46,7 @@
 </div>
 </template>
 <script>
+//import de componenetes hermanos
 export default {
     data(){
         return {
@@ -123,9 +127,9 @@ export default {
             const dateTime = date +' '+ time;
             trucada.dataCreacio = dateTime;
         },
-        
+
     },
-    
+
     mounted() {
 
     }

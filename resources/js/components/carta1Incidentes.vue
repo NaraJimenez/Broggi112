@@ -20,12 +20,12 @@
                 <option v-for="incident in incidents" :key="incident.id" :value="incident.id">{{incident.nom}}</option>
             </select>
 
-            <div v-for="incident in incidents">
+            <li v-for="incident in incidents">
                <div id="definicionInci"  type="text" name="nomSentido"
                placeholder="Definición" class="ms-3  mt-3"> {{incident.definicio}}</div>
                 <div id="indicacionesInci" type="text" name="nomSentido"
                 placeholder="Instrucciones" class="ms-3  mt-3" >{{incident.instruccions}}</div>
-            </div>
+            </li>
 
         </form>
     </div>
@@ -36,7 +36,7 @@ export default {
         return {
             /*
             tipoSeleccionado: {},//<-- el seleccionado estará aquí*/
-            //tipus_incidents: [], 
+            //tipus_incidents: [],
             incidents: [],
             tipusIncidents: [],
 
@@ -47,7 +47,7 @@ export default {
         }
     },
     created(){
-       
+
         this.selectTipusIncident();
 
 

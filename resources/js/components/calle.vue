@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-    
+
 }
 </script>
 <style>
@@ -32,6 +32,6 @@ export default {
         height: 34px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
-        border-radius: 10px; 
+        border-radius: 10px;
     }
 </style>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\hasMany;
+//use Illuminate\Database\Eloquent\Relations\hasMany;
 
 class Provincies extends Model
 {
@@ -20,7 +20,7 @@ class Provincies extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function Cartes_trucades(): hasMany
+    public function Cartes_trucades() //: hasMany
     {
         return $this->hasMany(Cartes_trucades::class, 'provincies_id');
     }
@@ -30,7 +30,7 @@ class Provincies extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function Comarques(): hasMany
+    public function Comarques() //: hasMany
     {
         return $this->hasMany(Comarques::class, 'provincies_id');
     }

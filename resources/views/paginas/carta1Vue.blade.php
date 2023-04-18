@@ -18,22 +18,22 @@
             <!--Componente parte derecha-->
             <div id="segundoRectangulo" class="mt-4">
                 <div id="carta1Incidentes"></div>
-                
+
                 <!--Buscador de Expediente-->
                 <div id="filtroExpedientes"></div>
 
                 <!--HelpBox
                 <div id="helpBoxboton"></div>-->
-                
+
                 <div id="helper">
                   <a href="#">
                     <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
                   </a>
                 </div>
-                
+
             </div>
         </div>
-            <a href="{{url('/carta2Vue')}}"> 
+            <a href="{{url('/carta2Vue')}}">
                     <button type="button" class="btn btn-primary float-right">NEXT</button>
             </a>
     </div>

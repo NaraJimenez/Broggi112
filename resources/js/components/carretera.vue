@@ -8,12 +8,12 @@
         <br>
         <label for="inputSentido" class="ms-2 mt-3 mb-4">Sentido</label>
         <input id="inputSentido" class="ms-2 mt-3 mb-4" type="text" name="inputSentido" placeholder="Introduce Sentido" >
-        
+
     </div>
 </template>
 <script>
 export default {
-    
+
 }
 </script>
 <style>
@@ -24,6 +24,6 @@ export default {
     height: 34px;
     background: #FFFFFF;
     border: 3px solid #76DAE4;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 </style>

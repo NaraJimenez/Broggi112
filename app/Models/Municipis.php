@@ -6,8 +6,8 @@ namespace App\Models;
 //use App\Models\Comarques;
 //use App\Models\Cartes_trucades;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\hasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+//use Illuminate\Database\Eloquent\Relations\hasMany;
+//use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Municipis extends Model
@@ -24,7 +24,7 @@ class Municipis extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Comarques(): BelongsTo
+    public function Comarques() //: BelongsTo
     {
         return $this->belongsTo(Comarques::class, 'comarques_id');
     }
@@ -34,7 +34,7 @@ class Municipis extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Cartes_trucades(): HasMany
+    public function Cartes_trucades() //: HasMany
     {
         return $this->hasMany(Cartes_trucades::class, 'municipis_id');
     }
@@ -54,7 +54,7 @@ class Municipis extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function Agencies(): hasMany
+    public function Agencies() //: hasMany
     {
         return $this->hasMany(Agencies::class, 'municipis_id');
     }

@@ -20,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //Para que le llegue al cliente en forma de array y no con un objeto y array dentro
         JsonResource::withoutWrapping();
+
     }
 }
