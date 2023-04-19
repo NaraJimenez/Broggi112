@@ -21,7 +21,7 @@
 
     </div>
 </template>
-<script>
+<script >
     //Importamos los componentes hijos
     import pagina1 from "./pagina1.vue";
     import pagina2 from "./pagina2.vue";

@@ -21,17 +21,17 @@
                             <select id="selectProvincia" name="selectProvincia" class="form-select mt-2 ms-3"
                             v-model="selectedProvincia" @change="fetchComarques()" required>
                                 <option disabled selected value="" class="text-center">Provincia</option>
-                                <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" class="text-center">
+                                <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id">
                                     {{ provincia.nom }}
                                 </option>
 
                             </select>
 
                             <!--Comarca-->
-                            <select id="selectComarca" name="selectComarca" class="form-select mt-2 ms-3"
+                            <select id="comarca" name="comarca" class="form-select mt-2 ms-3"
                             v-model="selectedComarca" @change="fetchMunicipis()" :disabled="!selectedProvincia" required>
                                 <option disabled selected  value="" class="text-center">Comarca</option>
-                                <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id" class="text-center">
+                                <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id">
                                     {{ comarca.nom }}
                                 </option>
 
@@ -40,7 +40,7 @@
                             <select id="selectMunicipi" name="selectMunicipi" class="form-select mt-2 ms-3"
                             v-model="selectedMunicipi" :disabled="!selectedComarca" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
-                                <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
+                                <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id">
                                     {{ municipi.nom }}
                                 </option>
 
@@ -144,27 +144,19 @@ export default {
     data() {
         return {
             picked:[],
-
             provincies: [],
-            provincia: {},
-            
             comarques: [],
-            comarca: {},
-
             municipis: [],
-
             selectedProvinciaTrucada: "",
             selectedComarcaTrucada: "",
             selectedMunicipiTrucada: "",
-
             selectedProvincia: "",
             selectedComarca: "",
             selectedMunicipi: "",
-
         };
     },
     created() {
-      
+       // this.selectProvincies();
     },
     mounted() {
         console.log('Carta2 montada');
@@ -177,7 +169,7 @@ export default {
                 .then((response) => {
                     this.provincies = response.data;
                     this.comarques = [];
-                    console.log(response.data);
+                    console.log(reponse.json()); 
                 })
                 .catch((error) => {
                     console.error(error);
@@ -185,11 +177,9 @@ export default {
         },
         fetchComarques() {
             axios
-                .get('/api/provincies/' + this.selectedProvincia)
+                .get(`/api/provincies/${this.selectedProvincia}/comarques`)
                 .then((response) => {
-                    this.provincia = response.data;
-                    console.log(response.data);
-                    this.comarques = this.provincia.comarques;
+                    this.comarques = response.data;
                     this.selectedComarca = "";
                     this.municipis = [];
                 })
@@ -199,12 +189,9 @@ export default {
         },
         fetchMunicipis() {
             axios
-                .get('/api/comarques/' + this.selectedComarca)
+                .get(`/api/comarques/${this.selectedComarca}/municipis`)
                 .then((response) => {
-                    this.comarca = response.data;
-                    console.log(response.data);
-                    this.municipis = this.comarca.municipis;
-                    //this.municipis = response.data;
+                    this.municipis = response.data;
                     this.selectedMunicipi = "";
                 })
                 .catch((error) => {
@@ -212,12 +199,11 @@ export default {
                 });
         },
         //Al finalizar la llamada se para el tiempo, aparece el modal y se quedan los datos guardados en un objeto
-        //finalizarLlamada(){
+        finalizarLlamada(){
             //Mostramos modal
             /*this.myModal = new Bootstrap.Modal('#finModal')
             this.myModal.show();*/
-
-        //}
+        }
     },
 }
 </script>
@@ -230,7 +216,6 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
-
     #rectangulo4 {
         box-sizing: border-box;
         position: absolute;
@@ -241,7 +226,6 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
-
     #expedientes2 {
         box-sizing: border-box;
         position: absolute;
@@ -257,7 +241,6 @@ export default {
     .content:not(:first-child) {
         display: none;
     }
-
     #catalunya{
         box-sizing: border-box;
         position: absolute;
@@ -269,13 +252,10 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #selectCat{
         margin-left: 280px;
         margin-top: 37px;
-
     }
-
     #selectProvincia {
         box-sizing: border-box;
         position: absolute;
@@ -288,7 +268,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #selectComarca{
+    #comarca {
         box-sizing: border-box;
         position: absolute;
         width: 363px;
@@ -312,7 +292,6 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #muniOpcional{
         box-sizing: border-box;
         position: absolute;
@@ -322,7 +301,6 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #provinciaInput {
         box-sizing: border-box;
         position: absolute;
@@ -332,24 +310,19 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     /*MENU TABS LOCALIZACION*/
     #tabOpciones{
         box-sizing: border-box;
-
        /* position: absolute;
         width: 381px;*/
         height: 252px;/*
         left: 669px;
         top: 326px;*/
-
         background: #FFFFFF;
         /* Boton principal Hover */
-
         border: 3px solid #025D73;
         border-radius: 10px;
     }
-
     #inputPob{
         box-sizing: border-box;
         /*position: absolute;*/
@@ -368,7 +341,6 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #inputVia, #inputCalle, #inputCasa, #inputEscalera, #inputPiso, #inputPuerta {
         box-sizing: border-box;
         position: absolute;
