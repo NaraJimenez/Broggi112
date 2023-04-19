@@ -26,18 +26,18 @@
                 <div class="col mt-3" id="rectangulo2">
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
-                        <!--Tipos de Incidente-->
+                        <!--Tipos de Incidente aria-label="selectTipusIncident"-->
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
-                         v-model="selectedTipusIncident" @change="fetchIncidents()"  aria-label="selectTipusIncident" required>
+                         v-model="selectedTipusIncident" @change="fetchIncidents()"   required>
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
 
 
-                        <!--Incidentes-->
+                        <!--Incidentes aria-label="selectedIncident"-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
-                        v-model="selectedIncident" :disabled="!selectedTipusIncident"  aria-label="selectedIncident" required>
+                        v-model="selectedIncident" :disabled="!selectedTipusIncident"   required>
                             <option value="" disabled selected>Incidencia</option>
                             <option v-for="incident in incidents" :key="incident.id"
                             :value="incident.id">{{ incident.nom }}</option>
@@ -69,6 +69,8 @@ export default {
     props: {},
     data() {
         return {
+
+            /*formChecked: false*/
 
             tipusIncidents: [],
             tipusIncident: {},

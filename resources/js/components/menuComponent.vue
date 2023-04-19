@@ -13,8 +13,8 @@
 
 
         <!--Componentes: variable que se encuentra en data-->
-        <keep-alive>
-            <component :is = 'component'/>
+        <keep-alive> <!-- @clicked="onClickChild"-->
+            <component :is = 'component' />
         </keep-alive>
 
 
@@ -45,21 +45,50 @@
 
                 //Este es el objeto que vamos a rellenar para poder subir nuestros datos a la BBDD
                 /*trucada {
-                    Provincia
-                    Municipi
-                    Comarca
-                    telefono
-                    numerollamada
-                    localizacion
-                    tiposIncidente
-                    incidente
-                    tiempo
-                    notaComuna
+                    usuaris_id: this.useridm,
+                    codiTrucada: '',
+                    phoneInput: '',
+                    tempsTrucada: 0,
+                    nomInterlocutor: '',
+                    cognomInterlocutor:'',
+                    selectProvincia: "",
+                    selectComarca: "",
+                    tipusIncident: "",
+                    selectMunicipi: '',
+                    selectProvincia: "",
+                    incident: "",
+                    tipusIncident: "",
+
+
+
 
 
                 }*/
             }
         },
+        /*methods: {
+            onClickChild (value) {
+                console.log(value) // someValue
+            },
+            enviarDatos() {
+                this.trucada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
+                this.trucada.iniciTrucada = new Date().toISOString();
+                console.log('Datos del objeto:', this.trucada);
+                axios
+                    .post("/api/cartestrucades", this.trucada)
+                    .then((response) => {
+                        console.log(response.data.message);
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            console.error('Error al guardar los datos:', error.response.data.message, 'Código de error:', error.response.data.code);
+                        } else {
+                            console.error('Error al guardar los datos:', error.message);
+                        }
+                    });
+            },
+        }*/
 
 
 

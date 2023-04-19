@@ -144,6 +144,8 @@ export default {
     props: {},
     data() {
         return {
+            /*formChecked: false*/
+
             picked:[],
 
             provincies: [],
