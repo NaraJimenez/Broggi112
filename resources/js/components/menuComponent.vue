@@ -17,7 +17,7 @@
             <component :is = 'component'/>
         </keep-alive>
 
-        
+
 
     </div>
 </template>
@@ -32,12 +32,16 @@
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
 
+        props: {},
+
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
                 tabs: ["pagina1", "pagina2", "pagina3"],
                 //El primer componente en mostrar
                 component: "pagina1"
+
+
 
                 //Este es el objeto que vamos a rellenar para poder subir nuestros datos a la BBDD
                 /*trucada {

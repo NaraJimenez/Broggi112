@@ -28,27 +28,27 @@
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente-->
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
-                         v-model="selectedTipusIncident" @change="fetchIncidents()" required> 
+                         v-model="selectedTipusIncident" @change="fetchIncidents()"  aria-label="selectTipusIncident" required>
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
-                        
+
 
                         <!--Incidentes-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
-                        v-model="selectedIncident" :disabled="!selectedTipusIncident" required> 
+                        v-model="selectedIncident" :disabled="!selectedTipusIncident"  aria-label="selectedIncident" required>
                             <option value="" disabled selected>Incidencia</option>
                             <option v-for="incident in incidents" :key="incident.id"
                             :value="incident.id">{{ incident.nom }}</option>
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
-                        <div>
+                        <div  v-for="(definicio, incident) in incident" :value="incident.id">
                             <div id="definicionInci"  type="text" name="definicion"
-                            placeholder="Definición" class="ms-3  mt-3">Definición</div>
+                            placeholder="Definición" class="ms-3  mt-3">{{ definicio }}</div>
                             <div id="indicacionesInci" type="text" name="instrucciones"
-                            placeholder="Instrucciones" class="ms-3  mt-3">Instrucciones</div>
+                            placeholder="Instrucciones" class="ms-3  mt-3">{{ instruccions }}</div>
                         </div>
                     </div>
                     <!--FINAL INCIDENTES-->
@@ -66,15 +66,18 @@
 </template>
 <script>
 export default {
+    props: {},
     data() {
         return {
-            
+
             tipusIncidents: [],
             tipusIncident: {},
 
             incidents: [],
             incident: {},
-            
+
+            IncidentEscogido:[],
+
             selectedTipusIncident: "",
             selectedIncident: "",
 
@@ -114,7 +117,7 @@ export default {
                 this.contador++;
             }, 1000);
         },
-        
+
         fetchTipusIncidents() {
             axios
                 .get('/api/tipusincidents')
@@ -129,14 +132,14 @@ export default {
         },
         fetchIncidents() {
             axios
-                .get('/api/incidents/' + this.selectedTipusIncident)
+                .get('/api/tipusincidents/' + this.selectedTipusIncident)
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
                     console.log(response.data);
                     this.incidents = this.tipusIncident.incidents;
                     this.selectedIncident = "";
-                   
+
                 })
                 .catch((error) => {
                     console.error(error);

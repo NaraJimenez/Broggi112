@@ -141,13 +141,14 @@
 </template>
 <script>
 export default {
+    props: {},
     data() {
         return {
             picked:[],
 
             provincies: [],
             provincia: {},
-            
+
             comarques: [],
             comarca: {},
 
@@ -164,7 +165,7 @@ export default {
         };
     },
     created() {
-      
+
     },
     mounted() {
         console.log('Carta2 montada');
