@@ -12,8 +12,8 @@
         </div>
 
 
-        <!--Componentes: variable que se encuentra en data-->
-        <keep-alive> <!-- @clicked="onClickChild"-->
+        <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
+        <keep-alive>
             <component :is = 'component' />
         </keep-alive>
 
@@ -96,7 +96,7 @@
 </script>
 <style>
     .tabs {
-       /* max-width: 1000px;*/
+        /* max-width: 1000px;*/
         margin: 0 auto;
         display: flex;
     }

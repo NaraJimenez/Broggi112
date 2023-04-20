@@ -17,7 +17,7 @@ export default {
         onClickButton (event) {
             this.$emit('clicked', 'someValue')
         }*/
-   }
+    }
 }
 </script>
 <style>
