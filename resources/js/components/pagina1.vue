@@ -44,7 +44,7 @@
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
-                        <div  v-for="(definicio, incident) in incident" :value="incident.id">
+                        <div  v-for="(definicio, instruccions) in incident" :value="incident.id">
                             <div id="definicionInci"  type="text" name="definicion"
                             placeholder="Definición" class="ms-3  mt-3">{{ definicio }}</div>
                             <div id="indicacionesInci" type="text" name="instrucciones"

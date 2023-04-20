@@ -14,7 +14,7 @@
 
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
         <keep-alive>
-            <component :is = 'component' />
+            <component :is = "component" @enviar-objeto="recibirObjeto" />
         </keep-alive>
 
 
@@ -32,40 +32,26 @@
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
 
-        props: {},
+        //props: {},
 
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
                 tabs: ["pagina1", "pagina2", "pagina3"],
                 //El primer componente en mostrar
-                component: "pagina1"
-
-
-
-                //Este es el objeto que vamos a rellenar para poder subir nuestros datos a la BBDD
-                /*trucada {
-                    usuaris_id: this.useridm,
-                    codiTrucada: '',
-                    phoneInput: '',
-                    tempsTrucada: 0,
-                    nomInterlocutor: '',
-                    cognomInterlocutor:'',
-                    selectProvincia: "",
-                    selectComarca: "",
-                    tipusIncident: "",
-                    selectMunicipi: '',
-                    selectProvincia: "",
-                    incident: "",
-                    tipusIncident: "",
-
-
-
-
-
-                }*/
+                component: "pagina1",
+                //Aqui se guardan los elementos que se van a enviar a la B
+                objetoRecibido: null,
             }
         },
+        methods: {
+            recibirObjeto(myForm) {
+                this.objetoRecibido = myForm;
+                console.log('Ha llegado al padre');
+            },
+
+        }
+
         /*methods: {
             onClickChild (value) {
                 console.log(value) // someValue

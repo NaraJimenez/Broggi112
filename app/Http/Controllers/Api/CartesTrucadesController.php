@@ -43,7 +43,9 @@ class CartesTrucadesController extends Controller
             $expedient->estats_expedients_id = 1;
             $expedient->save();*/
 
-            $cartaTrucada->expedients_id = $expedient->id;
+
+            /*$cartaTrucada->temps_trucada = $request->input('tempsTrucada'); */
+           /* $cartaTrucada->expedients_id = $expedient->id;
             $cartaTrucada->codi_trucada = $request->codiTrucada;
             $cartaTrucada->data_hora_trucada = new \DateTime($request->iniciTrucada);
             $cartaTrucada->durada = $request->duracioTrucada;
@@ -59,7 +61,7 @@ class CartesTrucadesController extends Controller
             $cartaTrucada->provincies_id = $request->selectedProvincia;
             $cartaTrucada->incidents_id = $request->incident;
             $cartaTrucada->expedients_id = $request->expedient;
-            $cartaTrucada->usuaris_id = $request->usuari;
+            $cartaTrucada->usuaris_id = $request->usuari;*/
 
             //Si la posicion es 0 se ponen los inputs
 

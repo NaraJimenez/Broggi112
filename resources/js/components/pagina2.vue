@@ -50,12 +50,14 @@
                         <div v-else>
                             <!--Input Provincia-->
                             <input  id="provinciaInput"  placeholder="Introduce Provincia"
-                            class="form-control text-center mt-2 ms-4" type="text" name="provinciaInput">
+                            class="form-control text-center mt-2 ms-4" type="text" name="provinciaInput"
+                            v-model="formData.provinciaInput" @input="validateForm">
                             <!--v-model="trucada.provincia" -Nombre en API a recoger-->
 
                             <!--Input Municipi - OPCIONAL-->
-                            <input id="muniOpcional" placeholder="Introduce Municipio"
-                            class="form-control text-center mt-5 ms-4" type="text" name="muniOpcional">
+                            <input id="municipioInput" placeholder="Introduce Municipio"
+                            class="form-control text-center mt-5 ms-4" type="text" name="municipioInput"
+                            v-model="formData.municipioInput" @input="validateForm">
                         </div>
 
                 </div>
@@ -130,13 +132,12 @@
                 </div>
                 <!--EXPEDIENTES-FILTRO-->
                 <div class=" ms-3 mt-4" id="expedientes2">Expedientes</div>
+
             </form>
 
+
         </div> <!--FINAL DIV ROW-->
-        <!--
-        <button style="margin-top: 135px;" @click="finalizarLlamada()">
-                Finalizar Llamada
-        </button>-->
+            <button :disabled="!formValid" @click="submitForm" style="margin-top:140px">Enviado</button>
     </div>
 </template>
 <script>
@@ -144,7 +145,13 @@ export default {
     props: {},
     data() {
         return {
-            /*formChecked: false*/
+            formValid: false,
+
+            //Este objeto de datos se pasará al padre una vez relleno
+            formData: {
+                provinciaInput: '',
+                municipioInput: ''
+            },
 
             picked:[],
 
@@ -172,8 +179,21 @@ export default {
     mounted() {
         console.log('Carta2 montada');
         this.fetchProvincies();
+        this.validateForm();
     },
     methods: {
+        validateForm() {
+            //La doble negación !! convierte el resultado en un valor booleano
+            this.formValid = !!this.formData.provinciaInput && !!this.formData.municipioInput;
+            console.log(this.formValid);
+
+            if (this.formValid == true) {
+                //se envia al componente padre, pasamos el objeto lleno
+                this.$emit('enviar-objeto', this.formData);
+                //console.log(this.formData);
+            }
+        },
+
         fetchProvincies() {
             axios
                 .get('/api/provincies')
@@ -316,7 +336,7 @@ export default {
         border-radius: 10px;
     }
 
-    #muniOpcional{
+    #municipioInput{
         box-sizing: border-box;
         position: absolute;
         width: 363px;
