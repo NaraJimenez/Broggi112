@@ -61,6 +61,8 @@ class CartesTrucadesController extends Controller
             $cartaTrucada->expedients_id = $request->expedient;
             $cartaTrucada->usuaris_id = $request->usuari;
 
+            //Si la posicion es 0 se ponen los inputs
+
             //CARTA TRUCADA ES SALVA
             $cartaTrucada->save();
 
