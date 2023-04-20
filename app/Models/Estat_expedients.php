@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Estats_expedients extends Model
+class Estat_expedients extends Model
 {
     use HasFactory;
 
-    protected $table = 'estats_expedients';
+    protected $table = 'estat_expedients';
 
     // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
     protected $primaryKey = 'id';

@@ -30,8 +30,9 @@ class Expedients extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function estats_expedients()
+    public function estat_expedient()
     {
-        return $this->hasOne(Estats_expedients::class, 'estats_expedients_id');
+        return $this->belongsTo(Estat_expedients::class, 'estat_expedients_id');
     }
+    
 }

@@ -1,51 +1,42 @@
 <template>
-  <div id="Profile" v-if="showNavbar">
-    <CrossButton imgSrc="./img/Cross.png" @click="closeNavbar"></CrossButton>
-    <Button text="Editar Perfil"></Button>
-    <Button text="Logout"></Button>
+  <div id="ProfileN">        
+    <div id="Profile-button">
+      <img @click="openMenuP()" :src="'./img/ImagenUser.png'"/>
+    </div>
+    <navbar-p v-if="showNavbarP"  @navbar-opened="showNavbarP = $event"></navbar-p>
   </div>
 </template>
 
 <script>
-import Button from "../Button/Button.vue";
-import CrossButton from "../Button/Cross.vue";
+import NavbarP from '../Button/NavbarP.vue';
 
 export default {
   components: {
-    Button,
-    CrossButton,
+    NavbarP, 
   },
-  data() {
-    return {
-      showNavbar: false,
+  data () {
+    return {    
+      showNavbarP: false
     };
   },
   methods: {
-    openNavbar() {
-      this.showNavbar = true;
-      this.$emit("navbar-opened", true);
-    },
-    closeNavbar() {
-      this.showNavbar = false;
-      this.$emit("close-navbar");
+    openMenuP() {
+      this.showNavbarP = true;
     },
   },
 };
 </script>
 
 <style>
-#Profile {
-  height: 100%;
-  width: 300px;
-  background-color: #ebefef;
-  position: absolute;
-  overflow: auto;
+#ProfileN {
   display: flex;
-  flex: 1 !important;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
-  top: 0;
-  left: 0;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+#Profile-button >img {
+  width: 64px;
+  height: 64px;
 }
 </style>

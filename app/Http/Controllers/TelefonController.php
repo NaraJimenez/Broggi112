@@ -15,8 +15,12 @@ class TelefonController extends Controller
      */
     public function index()
     {
-        $phone = Cartes_trucades::pluck('telefon')->first();
-        return view ('NavBar.home', compact('phone'));
+        $phones = Cartes_trucades::pluck('telefon')->toArray();
+        $count = sizeof($phones);
+        $randomIndex = rand(0, $count-1);
+        $randomPhone = $phones[$randomIndex];
+
+        return view ('NavBar.home', compact('randomPhone'));
     }
 
     /**

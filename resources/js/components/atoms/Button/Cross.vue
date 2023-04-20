@@ -1,7 +1,7 @@
 <template>
-<div id="CrossButton">
+<div class="CrossButton">
 <div class="Cross">
-        <img :src="imgSrc" alt="Cross Buttton" />
+        <img class="imgCross" :src="imgSrc" alt="Cross Buttton" />
     </div>
 </div>
 </template>
@@ -15,8 +15,8 @@ export default {
         }
     }
 </script>
-<style>
-    #CrossButton {
+<style scoped>
+    .CrossButton {
         display: flex;
         top: 0;
         right: 0;
@@ -34,7 +34,7 @@ export default {
         justify-content: flex-end;
     }
 
-    img{
+    .imgCross{
         width: 32px;
         height: 22px;
     }

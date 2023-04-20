@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estat_expedients;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
 class ExpedientsController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        //
+        $expedientes = Expedients::all();
+        $estados = Estat_expedients::all();
+        return view('AdminE.expedientes', compact('expedientes', 'estados'));
     }
 
     /**
@@ -68,9 +71,10 @@ class ExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Expedients $expedients)
-    {
-        //
-    }
+{
+  
+}
+
 
     /**
      * Remove the specified resource from storage.

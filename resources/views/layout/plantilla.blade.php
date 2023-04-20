@@ -12,11 +12,11 @@
     @yield('css-pagina')
 </head>
 <body> 
-    <div id="Menu" style="display:flex; position: absolute; top: 5vh; left: 5vh; width:50px; height:50px; background-color:red;">
+    <div id="Menu">
     
     </div>
-    <div class="profile">
-        @if (isset($user) && isset($userRol))
+    <div id="Profile" class="profile">
+        {{-- @if (isset($user) && isset($userRol))
             <div class="imgProfile" >
                 <span>{{ $user }}</span>
                 <span>{{ $userRol }}</span>
@@ -25,15 +25,10 @@
             <div class="messageProfile">
                 <span>No se ha registrado el usuario</span>
             </div>
-        @endif
-        <div>
-            <img src="./img/ImagenUser.png" alt="profile" onclick="openMenuP()">
-        </div>
-        <div v-if="menuOpened">
-            <Menu @close-menu="closeMenu" @navbar-opened="openNavbar" @close-navbar="closeNavbar" />
-        </div>
+        @endif --}}
     </div>
     @yield('content')
+    @yield('scripts')
 </body>
 </html>
 

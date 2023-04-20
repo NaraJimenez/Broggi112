@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TelefonController;
+use App\Http\Controllers\ExpedientsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +28,16 @@ Route::get('/', function () {
 Route::get('/home', 'App\Http\Controllers\TelefonController@index');
 
 
+
+
+
 //Ruta Carta llamada - Incidencia
 
 
 //Ruta Carta llamada - Localización
-
+Route::get('/mapbox', function () {
+    return view('Mapbox.mapbox');
+});
 
 //Ruta Carta llamada - Agencias
 
@@ -48,6 +55,8 @@ Route::get('/home', 'App\Http\Controllers\TelefonController@index');
 
 
 //Ruta Admin. expedientes
+Route::get('/expedientes', [ExpedientsController::class, 'index']);
+Route::post('/expedientes/update', 'ExpedientsController@update')->name('expedientes.update');
 
 
 //Ruta Admin. Agencias

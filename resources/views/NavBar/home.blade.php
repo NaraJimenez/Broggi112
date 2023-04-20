@@ -8,7 +8,7 @@
 @section('content')
 	<div class="mobile"> 
     <div class="screen">
-        <span>{{ $phone }}</span>
+        <span>{{ $randomPhone }}</span>
       <div class="bottom-bar">
           <div class="button-rounded red">
             <i class="fa-solid fa-phone fa-beat-fade"></i>
