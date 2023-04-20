@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tipus_localitzacions;
+use App\Http\Resources\TipusLocalitzacionsResources;
 use Illuminate\Http\Request;
 
 class TipusLocalitzacionsController extends Controller
@@ -14,7 +15,9 @@ class TipusLocalitzacionsController extends Controller
      */
     public function index()
     {
-        //
+        $types = Tipus_localitzacions::all();
+
+        return TipusLocalitzacionsResources::collection($types);
     }
 
     /**

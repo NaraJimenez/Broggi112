@@ -5,14 +5,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+//use App\Models\Provincies;
+//use Illuminate\Database\Eloquent\Relations\BelongsTo;
+//use Illuminate\Database\Eloquent\Relations\hasMany;
+
+
 class Comarques extends Model
 {
     use HasFactory;
 
-    protected $table = 'comarques';
+    public $table = 'comarques';
+    public $primaryKey = 'id'; //Por defecto es id
+    public $incrementing = true; //Por defecto es true
+    public $timestamps = false;
 
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
-    protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    /**
+     * Get the Provincies that owns the Comarques
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Provincies() //: BelongsTo
+    {
+        return $this->belongsTo(Provincies::class, 'provincies_id');
+
+    }
+
+    /**
+     * Get all of the Municipis for the Provincies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function Municipis() //: hasMany
+    {
+        return $this->hasMany(Municipis::class, 'comarques_id');
+
+    }
 }

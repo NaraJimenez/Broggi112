@@ -2,43 +2,37 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
-class User extends Authenticatable
+class Usuaris extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $table = 'usuaris';
+    public $timestamps = false;
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Get the Perfil associated with the Usuaris
      *
-     * @var array<int, string>
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function perfil(): belongsTo
+    {
+        return $this->belongsTo(Perfils::class, "perfils_id");
+    }
 
     /**
-     * The attributes that should be cast.
+     * Get all of the Cartes_trucades for the Usuaris
      *
-     * @var array<string, string>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function cartes_trucades(): HasMany
+    {
+        return $this->hasMany(Cartes_trucades::class, 'usuaris_id');
+    }
 }

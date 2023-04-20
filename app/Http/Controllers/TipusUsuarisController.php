@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tipus_usuaris;
-use App\Http\Requests\StoreTipus_usuarisRequest;
-use App\Http\Requests\UpdateTipus_usuarisRequest;
+use Illuminate\Http\Request;
 
 class TipusUsuarisController extends Controller
 {
@@ -31,10 +30,10 @@ class TipusUsuarisController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTipus_usuarisRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTipus_usuarisRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +63,11 @@ class TipusUsuarisController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTipus_usuarisRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tipus_usuaris  $tipus_usuaris
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTipus_usuarisRequest $request, Tipus_usuaris $tipus_usuaris)
+    public function update(Request $request, Tipus_usuaris $tipus_usuaris)
     {
         //
     }

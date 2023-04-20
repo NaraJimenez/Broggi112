@@ -1,0 +1,159 @@
+
+#CartaIncidencia{
+    position: absolute;
+    width: 1020px;
+    height: 539px;
+    left: 470px;
+    background: #35B5C9;
+    border-radius: 20px;
+}
+
+#boton1c2{
+    width: 170px;
+    height: 70px;
+    background: #EBEFEF;
+    border-radius: 10px;
+    transform: rotate(0.26deg);
+}
+
+
+#boton2c2{
+    width: 170px;
+    height: 70px;
+    margin-left: 18px;
+    background: #025D73;
+    border-radius: 10px;
+    transform: rotate(0.26deg);
+}
+
+#boton3c2{
+    width: 170px;
+    height: 70px;
+    background: #EBEFEF;
+    border-radius: 10px;
+    margin-left: 18px;
+    transform: rotate(0.26deg);
+}
+
+/*Dentro de carta*/
+
+
+
+
+
+
+#checkCarta2{
+background-color: #33cfe4;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 28px;
+}
+
+#segundoRectangulo2{
+    box-sizing: border-box;
+    position: absolute;
+    width: 430px;
+    height: 353px;
+    left: 525px;
+    top: 103px;
+    border: 1px solid #025D73;
+    border-radius: 15px;
+
+}
+
+#provinciaSelect{
+    box-sizing: border-box;
+    position: absolute;
+    width: 363px;
+    height: 34px;
+    left: 100px;
+    top: 213px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
+
+#opcionesCarta2{
+    box-sizing: border-box;
+    position: absolute;
+    width: 376px;
+    height: 220px;
+    left: 26px;
+    top:100px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+#buscadorExpe2{
+    box-sizing: border-box;
+    position: absolute;
+    width: 439px;
+    height: 182px;
+    margin-left: 47px;
+    top: 298px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
+
+#linkMenuCarta1c2, #linkMenuCarta2c2, #linkMenuCarta3c2{
+    text-decoration:none;
+}
+
+#linkMenuCarta2c2{
+    color: #FBFBFD;
+}
+
+#linkMenuCarta1c2, #linkMenuCarta3c2 {
+    color: #025D73;
+}
+
+#helper {
+    margin-left: 600px;
+    margin-top:00px;
+}
+#botonLoc1{
+    width: 98px;
+    height: 50px;
+    margin-left: 20px;
+    margin-top: 30px;
+    background: #025D73;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    }
+#botonLoc2{
+    width: 71px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 30px;
+    background: #76DAE4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    }
+    #botonLoc3{
+        width: 98px;
+        height: 50px;
+        margin-left: 10px;
+        margin-top: 30px;
+        background: #76DAE4;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+    #botonLoc4{
+        width: 98px;
+        height: 50px;
+        margin-left: 10px;
+        margin-top: 30px;
+        background: #76DAE4;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+#botonesLocalizacion{
+    margin-left: auto;
+}
+
+#botonCarta2{
+    text-decoration:none;
+}

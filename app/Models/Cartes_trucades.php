@@ -5,47 +5,61 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/*use App\Models\Usuaris;
+use App\Models\Incidents;
+use App\Models\Municipis;
+use App\Models\Expedients;
+use App\Models\Provincies;
+use App\Models\Dades_personals;
+use App\Models\Tipus_localitzacions;
+use App\Models\Cartes_trucades_has_agencies;
+use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;*/
+
 class Cartes_trucades extends Model
 {
     use HasFactory;
 
     protected $table = 'cartes_trucades';
-
-    // Id es la clave primaria default en Eloquent e incrementing es true por defecto.
     protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // updated_at && created_at
+    public $timestamps = false;
 
-    public function user()
-    {
-        return $this->hasOne(User::class, 'user_id');
-    }
-
-    public function tipusLocalitzacions()
-    {
-        return $this->hasOne(Tipus_localitzacions::class, 'tipus_localitzacions_id');
-    }
-
-    public function dadesPersonals()
-    {
-        return $this->hasOne(Dades_personals::class, 'dades_personals_id');
-    }
 
     public function expedients()
     {
-        return $this->hasOne(Expedients::class, 'expedients_id');
+        return $this->belongsTo(Expedients::class, 'expedients_id');
     }
 
-    public function incidents()
+    public function interlocutor()
     {
-        return $this->hasOne(Incidents::class, 'incidents_id');
+        return $this->belongsTo(Interlocutors::class, 'interlocutors_id');
     }
 
-    /**
-     * Get all of the comments for the Cartes_trucades
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    public function tipusLocalitzacio()
+    {
+        return $this->belongsTo(Tipus_localitzacions::class, 'tipus_localitzacions_id');
+    }
+
+    public function municipi()
+    {
+        return $this->belongsTo(Municipis::class, 'municipis_id');
+    }
+
+    public function provincia()
+    {
+        return $this->belongsTo(Provincies::class, 'provincies_id');
+    }
+
+    public function incident()
+    {
+        return $this->belongsTo(Incidents::class, 'incidents_id');
+    }
+
+    public function usuari()
+    {
+        return $this->belongsTo(Usuaris::class, 'usuaris_id');
+    }
+
     public function cartes_trucades_has_agencies()
     {
         return $this->hasMany(Cartes_trucades_has_agencies::class, 'cartes_trucades_id');
