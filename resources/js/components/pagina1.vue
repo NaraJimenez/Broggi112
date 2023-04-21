@@ -7,11 +7,11 @@
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
                     <!--Numero telefono-->
-                    <div id="numTelf" class="mt-4 ms-5 text-muted">Núm. Telf</div>
+                    <div id="inputNombre" class="mt-4 ms-5 text-muted">Nombre</div>
                     <!--Código llamada-->
-                    <div id="codigoLlamada" class="mt-4 text-muted">Código Llamada</div>
+                    <div id="inputApellidos" class="mt-4 text-muted">Apellidos</div>
                     <!--Tiempo llamada-->
-                    <div id="tiempoLlamada" class="text-muted text-center"> {{ contadorFormatejat }}
+                    <div id="telefonoLlamada" class="text-muted text-center"> Num telf
                         <!--<p class="">Temps de trucada: {{ formattedElapsedTime }}</p>-->
                     </div>
                     <!--Nota Comuna-->
@@ -23,7 +23,7 @@
                 <!--FINAL PRIMER RECTANGULO-->
 
                 <!--Elementos Segundo Rectangulo-->
-                <div class="col mt-3" id="rectangulo2">
+                <div class="col mt-4" id="rectangulo2">
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente aria-label="selectTipusIncident"-->
@@ -69,6 +69,12 @@ export default {
     props: {},
     data() {
         return {
+            //CREAR OBJETO
+            //BOOLEANO
+            //VALIDAR
+            //RELACIONAR CON EL PADRE
+            //ENVIAR FILTRO A PADRE o HERMANO
+
             /*formChecked: false*/
             tipusIncidents: [],
             tipusIncident: {},
@@ -79,9 +85,7 @@ export default {
             selectedIncident: "",
             selectedtTipusIncidentTrucada: "",
             selectedIncidentTrucada:"",
-            fechaHoraActual: "",
-            contador: 0,
-            interval: null,
+
         }
     },
     created(){
@@ -90,28 +94,10 @@ export default {
     mounted() {
         console.log('Pagina 1 Montada')
         this.fetchTipusIncidents();
-        this.setFechaHoraActual();
-        this.iniciarContador();
-    },
-    beforeDestroy() {
-        clearInterval(this.interval);
-    },
-    computed: {
-        contadorFormatejat() {
-            const minutos = Math.floor(this.contador / 60);
-            const segundos = this.contador % 60;
-            return `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-        },
+
     },
     methods: {
-        setFechaHoraActual() {
-            this.fechaHoraActual = new Date().toLocaleString('es-ES');
-        },
-        iniciarContador() {
-            this.interval = setInterval(() => {
-                this.contador++;
-            }, 1000);
-        },
+    
         fetchTipusIncidents() {
             axios
                 .get('/api/tipusincidents')
@@ -172,7 +158,7 @@ export default {
         border-radius: 10px;
     }
     /*ELEMENTOS DENTROS DE LOS DIVS*/
-    #numTelf{
+    #inputNombre{
         box-sizing: border-box;
         position: absolute;
         width: 186px;
@@ -181,7 +167,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #codigoLlamada{
+    #inputApellidos{
         box-sizing: border-box;
         position: absolute;
         width: 186px;
@@ -192,7 +178,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #tiempoLlamada{
+    #telefonoLlamada{
         box-sizing: border-box;
         position: absolute;
         width: 385px;

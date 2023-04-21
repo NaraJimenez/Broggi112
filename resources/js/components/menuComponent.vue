@@ -1,7 +1,11 @@
 <template >
     <div>
         <!--Pasamos las pestañas de los arrays y  /// class="align-items-center justify-content-center ms-4 h-100 mt-2 "-->
-        <div class="tabs mt-3 justify-content-center mb-1">
+       
+        <div class="tabs mt-3 justify-content-center mb-1"> 
+            <!--Codigo de Carta Llamada-->
+            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3">{{ codiTrucada }}</p> </div>
+            <!--TABS MENU-->
             <div class="tabs_header ">
                 <button
                 v-for="tab in tabs" :key="tab" @click="component = tab"
@@ -9,6 +13,8 @@
                     {{ tab }}
                 </button>
             </div>
+            <!--Tiempo de Llamada-->
+            <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{fechaHoraActual}}</div>
         </div>
 
 
@@ -42,17 +48,57 @@
                 component: "pagina1",
                 //Aqui se guardan los elementos que se van a enviar a la B
                 objetoRecibido: null,
+                //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
+
+                //TIEMPO
+                fechaHoraActual: "",
+                contador: 0,
+                interval: null,
+                iniciTrucada: "",
+                duracioTrucada: 0,
+
+                //Codigo Llamada
+                codiTrucada: this.generarCodiTrucada(),
             }
+        },
+        mounted() {
+            this.setFechaHoraActual();
+            this.iniciarContador();
+            
+        },
+        beforeDestroy() {
+            clearInterval(this.interval);
+        },
+        computed: {
+            contadorFormatejat() {
+                const minutos = Math.floor(this.contador / 60);
+                const segundos = this.contador % 60;
+                return `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            },
         },
         methods: {
             recibirObjeto(myForm) {
                 this.objetoRecibido = myForm;
                 console.log('Ha llegado al padre');
             },
+            setFechaHoraActual() {
+            this.fechaHoraActual = new Date().toLocaleString('es-ES');
+            },
+            iniciarContador() {
+                this.interval = setInterval(() => {
+                    this.contador++;
+                }, 1000);
+            },
+            convertirTiempoASegundos(tiempoFormateado) {
+                const [minutos, segundos] = tiempoFormateado.split(':');
+                return parseInt(minutos) * 60 + parseInt(segundos);
+            },
+            generarCodiTrucada() {
+                const timestamp = new Date().getTime();
+                return `TRUC-${timestamp}`;
+            },
 
         }
-
-        //SE ENVIA EL FORM Y LOS BOOLEANOS CUANDO LOS TRES SEAN VERDADEROS SE ENVIARÁ AL MODAL Y ESTE ARA LAS COMPARACIONES
 
         /*methods: {
             onClickChild (value) {
@@ -116,5 +162,13 @@
     .tabs_header > button:hover {
         background-color: #025D73;
         color: #FBFBFD;
+    }
+    #codiTrucada, #tiempoTrucada {
+        box-sizing: border-box;
+        width: 180px;
+        height: 57px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
     }
 </style>

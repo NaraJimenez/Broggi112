@@ -19,7 +19,7 @@
                         <div v-if="picked === '0' ">
                             <!--Provincia-->
                             <select id="selectProvincia" name="selectProvincia" class="form-select mt-2 ms-3"
-                            v-model="selectedProvincia" @change="fetchComarques()" required>
+                            v-model="formData.selectedProvincia" @change="fetchComarques()" required>
                                 <option disabled selected value="" class="text-center">Provincia</option>
                                 <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" class="text-center">
                                     {{ provincia.nom }}
@@ -29,7 +29,7 @@
 
                             <!--Comarca-->
                             <select id="selectComarca" name="selectComarca" class="form-select mt-2 ms-3"
-                            v-model="selectedComarca" @change="fetchMunicipis()" :disabled="!selectedProvincia" required>
+                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!selectedProvincia" required>
                                 <option disabled selected  value="" class="text-center">Comarca</option>
                                 <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id" class="text-center">
                                     {{ comarca.nom }}
@@ -38,7 +38,7 @@
                             </select>
                             <!--Municipi-->
                             <select id="selectMunicipi" name="selectMunicipi" class="form-select mt-2 ms-3"
-                            v-model="selectedMunicipi" :disabled="!selectedComarca" required>
+                            v-model="formData.selectedMunicipi" :disabled="!selectedComarca" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
                                     {{ municipi.nom }}
@@ -76,7 +76,7 @@
                                 <a class="nav-link text-center" data-bs-toggle="pill" href="#singular">Punto <br>Singular</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#oblacion">Población</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#Poblacion">Población</a>
                             </li>
                         </ul>
 
@@ -85,47 +85,58 @@
                             <!--CARRETERA-->
                             <div class="tab-pane container active" id="carretera">
                                 <label for="inputCarretera" class="ms-1 mt-3"> Nombre Carretera</label>
-                                <input id="inputCarretera" class="ms-1 mt-3" type="text" name="inputCarretera" placeholder="Introduce Carretera">
+                                <input id="inputCarretera" class="ms-1 mt-3" type="text" name="inputCarretera" 
+                                placeholder="Introduce Carretera" v-model="formData.inputCarretera">
                                 <br>
                                 <label for="inputpuntoKM" class="ms-1 mt-3">Punto Km</label>
-                                <input id="inputpuntoKM" class="ms-1 mt-3" type="text" name="inputpuntoKM" placeholder="Introduce Kilometro">
+                                <input id="inputpuntoKM" class="ms-1 mt-3" type="text" name="inputpuntoKM" 
+                                placeholder="Introduce Kilometro" v-model="formData.inputpuntoKM">
                                 <br>
                                 <label for="inputSentido" class="ms-1 mt-3 mb-4">Sentido</label>
-                                <input id="inputSentido" class="ms-1 mt-3 mb-4" type="text" name="inputSentido" placeholder="Introduce Sentido" >
+                                <input id="inputSentido" class="ms-1 mt-3 mb-4" type="text" name="inputSentido" 
+                                placeholder="Introduce Sentido" v-model="formData.inputSentido">
                             </div>
 
                             <!--CALLE-->
                             <div class="tab-pane container fade" id="calle">
                                 <label for="inputVia" class=" mt-2 ">Tipo vía</label>
-                                <input id="inputVia" class="ms-1 mt-1" type="text" name="inputVia" placeholder="Introduce Vía">
+                                <input id="inputVia" class="ms-1 mt-1" type="text" name="inputVia" 
+                                placeholder="Introduce Vía" v-model="formData.inputVia">
                                 <br>
                                 <label for="inputCalle" class="mt-3">Nombre Calle</label>
-                                <input id="inputCalle" class="ms-1 mt-2" type="text" name="inputCalle" placeholder="Introduce Calle">
+                                <input id="inputCalle" class="ms-1 mt-2" type="text" name="inputCalle" 
+                                placeholder="Introduce Calle" v-model="formData.inputCalle">
                                 <br>
                                 <label for="inputCasa" class="mt-3">Número</label>
-                                <input id="inputCasa" class=" ms-1 mt-2" type="text" name="inputCasa" placeholder="Introduce Casa">
+                                <input id="inputCasa" class=" ms-1 mt-2" type="text" name="inputCasa" 
+                                placeholder="Introduce Casa" v-model="formData.inputCasa">
                                 <br>
                                 <label for="inputEscalera" class="mt-3">Escalera</label>
-                                <input id="inputEscalera" class="ms-1 mt-2" type="text" name="inputEscalera" placeholder="Introduce Escalera">
+                                <input id="inputEscalera" class="ms-1 mt-2" type="text" name="inputEscalera" 
+                                placeholder="Introduce Escalera" v-model="formData.inputEscalera">
                                 <br>
                                 <label for="inputPiso" class="mt-3">Piso</label>
-                                <input id="inputPiso" class="ms-1 mt-2" type="text" name="ninputPiso" placeholder="Introduce Piso">
+                                <input id="inputPiso" class="ms-1 mt-2" type="text" name="ninputPiso" 
+                                placeholder="Introduce Piso" v-model="formData.inputPiso">
                                 <br>
                                 <label for="inputPuerta" class=" mt-3 ">Puerta</label>
-                                <input id="inputPuerta" class="ms-1 mt-2" type="text" name="inputPuerta" placeholder="Introduce Puerta">
+                                <input id="inputPuerta" class="ms-1 mt-2" type="text" name="inputPuerta" 
+                                placeholder="Introduce Puerta" v-model="formData.inputPuerta">
                             </div>
 
                             <!--PUNTO SINGULAR-->
                             <div class="tab-pane container fade mt-3" id="singular">
                                 <label for="inputPS" class="mt-1">Punto Singular</label>
-                                <input id="inputPS" class="ms-1" type="text" name="inputPS" placeholder=" Introduce Punto">
+                                <input id="inputPS" class="ms-1" type="text" name="inputPS" 
+                                placeholder=" Introduce Punto" v-model="formData.inputPS">
                             </div>
 
                             <!--POBLACION inputPoblacionNombre-->
                             <div class="tab-pane container fade mt-3" id="poblacion">
                                 <label for="inputPob" class="">Nombre Población</label>
                                 <input id="inputPob" class="" type="text"
-                                name="inputPob" placeholder="Introduce Poblacion">
+                                name="inputPob" placeholder="Introduce Poblacion"
+                                v-model="formData.inputPob">
                             </div>
                         </div>
                     </div>
@@ -148,21 +159,47 @@ export default {
             formValid: false,
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
+                //Si es o no de Cat
                 provinciaInput: '',
-                municipioInput: ''
+                municipioInput: '',
+                selectedProvincia: "",
+                selectedComarca: "",
+                selectedMunicipi: "",
+                //Carretera
+                inputCarretera: '',
+                inputpuntoKM:'',
+                inputSentido:'',
+                //Calle
+                inputVia:'',
+                inputCalle: '',
+                inputCasa:'',
+                inputEscalera: '',
+                inputPiso: '',
+                inputPuerta: '',
+                //Punto Singular
+                inputPS: '',
+                //Población
+                inputPob: '',
             },
+
+            //METER TODOS LOS INPUTS EN UNA SOLA ARRAY O OBJETO Y METERLO EN EL FORM COMO LOALIZACIÓN
+            //HA DE RECIBIR LA INFO DEL FILTRO
+
+
+
+
             picked:[],
             provincies: [],
             provincia: {},
             comarques: [],
             comarca: {},
             municipis: [],
-            selectedProvinciaTrucada: "",
+            /*selectedProvinciaTrucada: "",
             selectedComarcaTrucada: "",
             selectedMunicipiTrucada: "",
             selectedProvincia: "",
             selectedComarca: "",
-            selectedMunicipi: "",
+            selectedMunicipi: "",*/
         };
     },
     created() {

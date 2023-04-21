@@ -13,6 +13,7 @@ export default {
         console.log('Pagina 3 Montada')
     },
     methods: {
+        
         /*
         onClickButton (event) {
             this.$emit('clicked', 'someValue')
