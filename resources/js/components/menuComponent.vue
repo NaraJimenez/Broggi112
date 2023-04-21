@@ -12,12 +12,12 @@
         </div>
 
 
-        <!--Componentes: variable que se encuentra en data-->
+        <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
         <keep-alive>
-            <component :is = 'component'/>
+            <component :is = "component" @enviar-objeto="recibirObjeto" />
         </keep-alive>
 
-        
+
 
     </div>
 </template>
@@ -32,30 +32,49 @@
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
 
+        //props: {},
+
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
                 tabs: ["pagina1", "pagina2", "pagina3"],
                 //El primer componente en mostrar
-                component: "pagina1"
-
-                //Este es el objeto que vamos a rellenar para poder subir nuestros datos a la BBDD
-                /*trucada {
-                    Provincia
-                    Municipi
-                    Comarca
-                    telefono
-                    numerollamada
-                    localizacion
-                    tiposIncidente
-                    incidente
-                    tiempo
-                    notaComuna
-
-
-                }*/
+                component: "pagina1",
+                //Aqui se guardan los elementos que se van a enviar a la B
+                objetoRecibido: null,
             }
         },
+        methods: {
+            recibirObjeto(myForm) {
+                this.objetoRecibido = myForm;
+                console.log('Ha llegado al padre');
+            },
+
+        }
+
+        /*methods: {
+            onClickChild (value) {
+                console.log(value) // someValue
+            },
+            enviarDatos() {
+                this.trucada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
+                this.trucada.iniciTrucada = new Date().toISOString();
+                console.log('Datos del objeto:', this.trucada);
+                axios
+                    .post("/api/cartestrucades", this.trucada)
+                    .then((response) => {
+                        console.log(response.data.message);
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            console.error('Error al guardar los datos:', error.response.data.message, 'Código de error:', error.response.data.code);
+                        } else {
+                            console.error('Error al guardar los datos:', error.message);
+                        }
+                    });
+            },
+        }*/
 
 
 
@@ -63,7 +82,7 @@
 </script>
 <style>
     .tabs {
-       /* max-width: 1000px;*/
+        /* max-width: 1000px;*/
         margin: 0 auto;
         display: flex;
     }
