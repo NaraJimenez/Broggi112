@@ -44,17 +44,17 @@ class CartesTrucadesController extends Controller
             $expedient->save();*/
 
             //En el componente Padre
-            $cartaTrucada->temps_trucada = $request->input('tempsTrucada'); 
-            $cartaTrucada->codi_trucada = $request->input('tempsTrucada');
+            $cartaTrucada->temps_trucada = $request->input('tiempoTrucada'); 
+            $cartaTrucada->codi_trucada = $request->input('codiTrucada');
             $cartaTrucada->data_hora_trucada = $request->input('tempsTrucada');
             $cartaTrucada->durada = $request->input('tempsTrucada');
 
             //Primer Form
-            $cartaTrucada->telefon = $request->input('tempsTrucada'); 
-            $cartaTrucada->nom = $request->input('tempsTrucada'); 
-            $cartaTrucada->cognoms = $request->input('tempsTrucada'); 
-            $cartaTrucada->nota_comuna = $request->input('tempsTrucada'); 
-            $cartaTrucada->incidents_id = $request->input('tempsTrucada'); 
+            $cartaTrucada->telefon = $request->input('telefonoLlamada'); 
+            $cartaTrucada->nom = $request->input('inputNombre'); 
+            $cartaTrucada->cognoms = $request->input('inputApellidos'); 
+            $cartaTrucada->nota_comuna = $request->input('InputNotaComuna'); 
+            $cartaTrucada->incidents_id = $request->input('selectedIncident'); 
             $cartaTrucada->interlocutors_id = $request->input('tempsTrucada'); 
 
             //Segundo Form
@@ -65,11 +65,9 @@ class CartesTrucadesController extends Controller
             $cartaTrucada->municipis_id = $request->input('tempsTrucada'); 
             $cartaTrucada->provincies_id = $request->input('tempsTrucada'); 
 
-            //FINAL
+            //Elementos externos
             $cartaTrucada->expedients_id = $request->input('tempsTrucada'); 
             $cartaTrucada->usuaris_id= $request->input('tempsTrucada'); 
-
-            //Si la posicion es 0 se ponen los inputs en lozalitzación
 
             //CARTA TRUCADA ES SALVA
             $cartaTrucada->save();

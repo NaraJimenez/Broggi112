@@ -2,25 +2,24 @@
     <div> <form>
         <!--Elementos Carta-->
             <div class="row ms-3 mt-2">
-
-
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
                     <!--Nombre Interlocutor-->
-                    <input id="inputNombre" name="inputNombre" class="mt-4 ms-5 text-muted"  type="text" placeholder="Nombre interlocutor">
+                    <input id="inputNombre" name="inputNombre" class="mt-4 ms-5 text-muted"  type="text" 
+                    placeholder="Nombre interlocutor" v-model="inputNombre">
                     <!--Apellidos Interlocutor-->
-                    <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text" placeholder="Apellidos interlocutor">
+                    <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text" 
+                    placeholder="Apellidos interlocutor" v-model="inputApellidos">
                     <!--Telefono-->
-                    <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"> Num telf</div>
+                    <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
+                    v-bind="telefonoLlamada"> Num telf</div>
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
-                        <textarea name="notaComunaInput" id="notaComunaInput" cols="10" rows="10" class="form-control"
-                        placeholder="Nota Comuna"></textarea>
+                        <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
+                        placeholder="Nota Comuna" v-model="inputNotaComuna"></textarea>
                     </div>
                 </div>
-                <!--FINAL PRIMER RECTANGULO-->
-
-                <!--Elementos Segundo Rectangulo-->
+                <!----------Elementos Segundo Rectangulo------------>
                 <div class="col mt-4" id="rectangulo2">
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
@@ -31,7 +30,6 @@
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
-
 
                         <!--Incidentes aria-label="selectedIncident"-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
@@ -49,18 +47,14 @@
                             placeholder="Instrucciones" class="ms-3  mt-3">{{ instruccions }}</div>
                         </div>
                     </div>
-                    <!--FINAL INCIDENTES-->
-
-                    <!--Expedentes - Filtro/Buscador-->
-                    <div class="mt-5 ms-1" id="expedientes">Expedientes
-
-                    </div>
-                    <!--FINAL EXPEDIENTES-->
+                    <!----------Expedentes - Filtro/Buscador------------>
+                    <div class="mt-5 ms-1" id="expedientes">Expedientes</div>
                 </div>
                 <!--FINAL PRIMER RECTANGULO-->
 
-            </div> <!--FINAL DIV ROW--></form>
-            <button :disabled="!formValid" @click="submitForm" style="margin-top:140px">Enviado</button>
+            </div> <!--FINAL DIV ROW-->
+        </form>
+            <button :disabled="!formValid" @click="submitForm" style="margin-top:15px">Enviado</button>
     </div>
 </template>
 <script>
@@ -74,7 +68,7 @@ export default {
             //RELACIONAR CON EL PADRE
             //ENVIAR FILTRO A PADRE o HERMANO
             inputNombre: '',
-            inputApellido:'',
+            inputApellidos:'',
             inputNotaComuna:'',
             telefonoLlamada: null,
             /*formChecked: false*/
@@ -192,7 +186,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #notaComunaInput{
+    #inputNotaComuna{
         box-sizing: border-box;
         position: absolute;
         width: 385px;

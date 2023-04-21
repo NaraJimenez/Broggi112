@@ -51,11 +51,7 @@
                 objetoRecibido: null,
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
                 pasadoForm2: false,
-                /*
-                    tipus_localitzacions:
-                    detall_localitzacio
-                    altres_refs_localitzacio
-                */
+                
                 //TIEMPO
                 fechaHoraActual: "",
                 contador: 0,
