@@ -62,8 +62,8 @@ export default {
     props: {},
     data() {
         return {
+            formValid: false,
             //CREAR OBJETO
-            //BOOLEANO
             //VALIDAR
             //RELACIONAR CON EL PADRE
             //ENVIAR FILTRO A PADRE o HERMANO
