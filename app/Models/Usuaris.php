@@ -21,9 +21,9 @@ class Usuaris extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function perfil(): belongsTo
+    public function tipus_usuari()
     {
-        return $this->belongsTo(Perfils::class, "perfils_id");
+        return $this->belongsTo(Tipus_usuari::class);
     }
 
     /**

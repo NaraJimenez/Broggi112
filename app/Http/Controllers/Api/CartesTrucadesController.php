@@ -43,27 +43,33 @@ class CartesTrucadesController extends Controller
             $expedient->estats_expedients_id = 1;
             $expedient->save();*/
 
+            //En el componente Padre
+            $cartaTrucada->temps_trucada = $request->input('tempsTrucada'); 
+            $cartaTrucada->codi_trucada = $request->input('tempsTrucada');
+            $cartaTrucada->data_hora_trucada = $request->input('tempsTrucada');
+            $cartaTrucada->durada = $request->input('tempsTrucada');
 
-            /*$cartaTrucada->temps_trucada = $request->input('tempsTrucada'); */
-           /* $cartaTrucada->expedients_id = $expedient->id;
-            $cartaTrucada->codi_trucada = $request->codiTrucada;
-            $cartaTrucada->data_hora_trucada = new \DateTime($request->iniciTrucada);
-            $cartaTrucada->durada = $request->duracioTrucada;
-            $cartaTrucada->interlocutors_id = $request->interlocutorID;
-            $cartaTrucada->telefon = $request->numTel;
-            $cartaTrucada->nom = $request->nom;
-            $cartaTrucada->cognoms = $request->cognom;
-            $cartaTrucada->nota_comuna = $request->notacomuna;
-            $cartaTrucada->tipus_localitzacions_id = $request->tipusLocali;
-            $cartaTrucada->decripcio_localitzacio = $request->descripcio;
-            $cartaTrucada->detall_localitzacio = $request->detalls;
-            $cartaTrucada->municipis_id = $request->selectedMunicipi;
-            $cartaTrucada->provincies_id = $request->selectedProvincia;
-            $cartaTrucada->incidents_id = $request->incident;
-            $cartaTrucada->expedients_id = $request->expedient;
-            $cartaTrucada->usuaris_id = $request->usuari;*/
+            //Primer Form
+            $cartaTrucada->telefon = $request->input('tempsTrucada'); 
+            $cartaTrucada->nom = $request->input('tempsTrucada'); 
+            $cartaTrucada->cognoms = $request->input('tempsTrucada'); 
+            $cartaTrucada->nota_comuna = $request->input('tempsTrucada'); 
+            $cartaTrucada->incidents_id = $request->input('tempsTrucada'); 
+            $cartaTrucada->interlocutors_id = $request->input('tempsTrucada'); 
 
-            //Si la posicion es 0 se ponen los inputs
+            //Segundo Form
+            $cartaTrucada->tipus_localitzacions_id = $request->input('tempsTrucada'); 
+            $cartaTrucada->decripcio_localitzacio = $request->input('tempsTrucada'); 
+            $cartaTrucada->detall_localitzacio = $request->input('tempsTrucada'); 
+            $cartaTrucada->altres_ref_localitzacio = $request->input('tempsTrucada'); 
+            $cartaTrucada->municipis_id = $request->input('tempsTrucada'); 
+            $cartaTrucada->provincies_id = $request->input('tempsTrucada'); 
+
+            //FINAL
+            $cartaTrucada->expedients_id = $request->input('tempsTrucada'); 
+            $cartaTrucada->usuaris_id= $request->input('tempsTrucada'); 
+
+            //Si la posicion es 0 se ponen los inputs en lozalitzación
 
             //CARTA TRUCADA ES SALVA
             $cartaTrucada->save();

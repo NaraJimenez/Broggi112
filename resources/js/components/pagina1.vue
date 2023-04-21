@@ -6,14 +6,12 @@
 
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
-                    <!--Numero telefono-->
-                    <div id="inputNombre" class="mt-4 ms-5 text-muted">Nombre</div>
-                    <!--Código llamada-->
-                    <div id="inputApellidos" class="mt-4 text-muted">Apellidos</div>
-                    <!--Tiempo llamada-->
-                    <div id="telefonoLlamada" class="text-muted text-center"> Num telf
-                        <!--<p class="">Temps de trucada: {{ formattedElapsedTime }}</p>-->
-                    </div>
+                    <!--Nombre Interlocutor-->
+                    <input id="inputNombre" name="inputNombre" class="mt-4 ms-5 text-muted"  type="text" placeholder="Nombre interlocutor">
+                    <!--Apellidos Interlocutor-->
+                    <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text" placeholder="Apellidos interlocutor">
+                    <!--Telefono-->
+                    <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"> Num telf</div>
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="notaComunaInput" id="notaComunaInput" cols="10" rows="10" class="form-control"
@@ -62,6 +60,7 @@
                 <!--FINAL PRIMER RECTANGULO-->
 
             </div> <!--FINAL DIV ROW--></form>
+            <button :disabled="!formValid" @click="submitForm" style="margin-top:140px">Enviado</button>
     </div>
 </template>
 <script>
@@ -74,7 +73,10 @@ export default {
             //VALIDAR
             //RELACIONAR CON EL PADRE
             //ENVIAR FILTRO A PADRE o HERMANO
-
+            inputNombre: '',
+            inputApellido:'',
+            inputNotaComuna:'',
+            telefonoLlamada: null,
             /*formChecked: false*/
             tipusIncidents: [],
             tipusIncident: {},
@@ -97,7 +99,8 @@ export default {
 
     },
     methods: {
-    
+        
+        //Selectores de los Tipus Incidentes con los Incidentes
         fetchTipusIncidents() {
             axios
                 .get('/api/tipusincidents')

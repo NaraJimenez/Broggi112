@@ -38,7 +38,8 @@
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
 
-        //props: {},
+        //props: {}, para pasar datos al filtro
+        //telèfon, si es de cat o no, tipus de incident.
 
         data() {
             return {
@@ -49,7 +50,12 @@
                 //Aqui se guardan los elementos que se van a enviar a la B
                 objetoRecibido: null,
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
-
+                pasadoForm2: false,
+                /*
+                    tipus_localitzacions:
+                    detall_localitzacio
+                    altres_refs_localitzacio
+                */
                 //TIEMPO
                 fechaHoraActual: "",
                 contador: 0,
@@ -77,12 +83,9 @@
             },
         },
         methods: {
-            recibirObjeto(myForm) {
-                this.objetoRecibido = myForm;
-                console.log('Ha llegado al padre');
-            },
+            //Tiempo
             setFechaHoraActual() {
-            this.fechaHoraActual = new Date().toLocaleString('es-ES');
+                this.fechaHoraActual = new Date().toLocaleString('es-ES');
             },
             iniciarContador() {
                 this.interval = setInterval(() => {
@@ -93,9 +96,17 @@
                 const [minutos, segundos] = tiempoFormateado.split(':');
                 return parseInt(minutos) * 60 + parseInt(segundos);
             },
+            //Codigo Llamada
             generarCodiTrucada() {
                 const timestamp = new Date().getTime();
                 return `TRUC-${timestamp}`;
+            },
+            //Recibir Objeto
+            recibirObjeto(myForm) {
+                this.objetoRecibido = myForm;
+                console.log('Ha llegado al padre');
+                this.pasadoForm2 = true;
+                console.log(this.pasadoForm2)
             },
 
         }
