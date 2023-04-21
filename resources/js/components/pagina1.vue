@@ -40,11 +40,11 @@
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
-                        <div  v-for="(definicio, instruccions) in incident" :value="incident.id">
+                        <div>
                             <div id="definicionInci"  type="text" name="definicion"
-                            placeholder="Definición" class="ms-3  mt-3">{{ definicio }}</div>
+                            placeholder="Definición" class="ms-3  mt-3" v-for="definicio in incident">{{ definicio }}</div>
                             <div id="indicacionesInci" type="text" name="instrucciones"
-                            placeholder="Instrucciones" class="ms-3  mt-3">{{ instruccions }}</div>
+                            placeholder="Instrucciones" class="ms-3  mt-3" v-for="instruccions in incident">{{ instruccions }}</div>
                         </div>
                     </div>
                     <!----------Expedentes - Filtro/Buscador------------>
@@ -74,13 +74,14 @@ export default {
             /*formChecked: false*/
             tipusIncidents: [],
             tipusIncident: {},
+            
             incidents: [],
             incident: {},
             IncidentEscogido:[],
             selectedTipusIncident: "",
             selectedIncident: "",
-            selectedtTipusIncidentTrucada: "",
-            selectedIncidentTrucada:"",
+            
+
 
         }
     },
@@ -113,9 +114,10 @@ export default {
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
-                    console.log(response.data);
+                    
                     this.incidents = this.tipusIncident.incidents;
                     this.selectedIncident = "";
+
                 })
                 .catch((error) => {
                     console.error(error);
