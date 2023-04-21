@@ -52,6 +52,8 @@
 
         }
 
+        //SE ENVIA EL FORM Y LOS BOOLEANOS CUANDO LOS TRES SEAN VERDADEROS SE ENVIARÁ AL MODAL Y ESTE ARA LAS COMPARACIONES
+
         /*methods: {
             onClickChild (value) {
                 console.log(value) // someValue

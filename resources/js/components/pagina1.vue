@@ -30,17 +30,17 @@
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
                          v-model="selectedTipusIncident" @change="fetchIncidents()"   required>
                             <option value="" disabled selected>Tipo de Incidencia</option>
-                            <!--<option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
-                            :value="tipusIncident.id">{{tipusIncident.nom}}</option>-->
+                            <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
+                            :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
-                        
 
-                        <!--Incidentes-->
+
+                        <!--Incidentes aria-label="selectedIncident"-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
-                        v-model="selectedIncident" :disabled="!selectedTipusIncident" required> 
+                        v-model="selectedIncident" :disabled="!selectedTipusIncident"   required>
                             <option value="" disabled selected>Incidencia</option>
-                           <!-- <option v-for="incident in incidents" :key="incident.id"
-                            :value="incident.id">{{incident.nom}}</option>-->
+                            <option v-for="incident in incidents" :key="incident.id"
+                            :value="incident.id">{{ incident.nom }}</option>
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
@@ -69,18 +69,16 @@ export default {
     props: {},
     data() {
         return {
-            
+            /*formChecked: false*/
             tipusIncidents: [],
             tipusIncident: {},
-
             incidents: [],
             incident: {},
-            
+            IncidentEscogido:[],
             selectedTipusIncident: "",
             selectedIncident: "",
-
             selectedtTipusIncidentTrucada: "",
-            selectedIncidentTrucada:"",*/
+            selectedIncidentTrucada:"",
             fechaHoraActual: "",
             contador: 0,
             interval: null,
@@ -91,7 +89,7 @@ export default {
     },
     mounted() {
         console.log('Pagina 1 Montada')
-        //this.fetchTipusIncidents();
+        this.fetchTipusIncidents();
         this.setFechaHoraActual();
         this.iniciarContador();
     },
@@ -114,12 +112,13 @@ export default {
                 this.contador++;
             }, 1000);
         },
-        
         fetchTipusIncidents() {
             axios
-                .get("/api/tipusincidents")
+                .get('/api/tipusincidents')
                 .then((response) => {
                     this.tipusIncidents = response.data;
+                    this.incidents = [];
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -127,16 +126,18 @@ export default {
         },
         fetchIncidents() {
             axios
-                .get('/api/incidents/' + this.selectedTipusIncident)
+                .get('/api/tipusincidents/' + this.selectedTipusIncident)
                 .then((response) => {
-                    this.incidents = response.data;
+                    //Pasamos el objeto con todos los tipos de de Incidentes
+                    this.tipusIncident = response.data;
+                    console.log(response.data);
+                    this.incidents = this.tipusIncident.incidents;
                     this.selectedIncident = "";
-                   
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-        },*/
+        },
     },
 }
 </script>
@@ -214,7 +215,7 @@ export default {
         border-radius: 10px;
     }
     /*Divs - Parte izquierda*/
-    #tipusIncident, #incident, #definicionInci, #indicacionesInci {
+    #selectTipusIncident, #selectedIncident, #definicionInci, #indicacionesInci {
         box-sizing: border-box;
         position: absolute;
         width: 376px;
@@ -225,11 +226,11 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #tipusIncident {
+    #selectTipusIncident {
        /* top: 5px;*/
        height: 38px;
     }
-    #incident{
+    #selectedIncident{
        top: 42px;
        height: 38px;
     }
