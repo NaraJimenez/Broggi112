@@ -40,3 +40,6 @@ Route::apiResource('comarques', ComarquesController::class);
 Route::apiResource('municipis', MunicipisController::class);
 
 Route::apiResource('expedients', ExpedientsController::class);
+
+//Buscador
+Route::get('/cartestrucades/search/{name}/{date}', [CartesTrucadesController::class, 'search']);

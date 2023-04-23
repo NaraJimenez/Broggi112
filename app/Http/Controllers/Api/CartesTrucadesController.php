@@ -192,4 +192,12 @@ class CartesTrucadesController extends Controller
     {
         //
     }
+
+    public function search($name, $date)
+{
+    $cartes = Cartes_trucades::where('name', 'like', '%'.$name.'%')
+                            ->where('date', 'like', '%'.$date.'%')
+                            ->get();
+    return response()->json($cartes);
+}
 }

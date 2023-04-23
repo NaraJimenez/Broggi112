@@ -41,6 +41,7 @@
                             v-model="formData.selectedMunicipi" :disabled="!selectedComarca" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
+                                    <!--@input="searchCartes" v-model="name"-->
                                     {{ municipi.nom }}
                                 </option>
 
@@ -143,7 +144,11 @@
                     </div>
                 </div>
                 <!--EXPEDIENTES-FILTRO-->
-                <div class=" ms-3 mt-4" id="expedientes2">Expedientes</div>
+                <div class=" ms-3 mt-4" id="expedientes2">
+                    <ul>
+                        <li v-for="carta in searchResults" :key="carta.id">{{ carta.name }} - {{ carta.date }}</li>
+                      </ul>
+                </div>
 
             </form>
 
@@ -153,7 +158,34 @@
     </div>
 </template>
 <script>
+import { ref, reactive } from "vue";
 export default {
+    setup() {
+    const name = ref("");
+    const date = ref("");
+    const searchResults = reactive([]);
+
+    const searchCartes = () => {
+      fetch(`/api/cartestrucades/search/${name.value}/${date.value}`)
+        .then((response) => response.json())
+        .then((data) => {
+          searchResults.splice(0, searchResults.length, ...data);
+        });
+    };
+
+    return {
+      name,
+      date,
+      searchResults,
+      searchCartes,
+    };
+},
+
+
+
+
+
+
     props: {},
     data() {
         return {
