@@ -14,7 +14,9 @@ class ProvinciesController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $userRol = Tipus_usuaris::pluck('nom')->first();
+        return view ('layout.plantilla', compact('user', 'userRol'));
     }
 
     /**

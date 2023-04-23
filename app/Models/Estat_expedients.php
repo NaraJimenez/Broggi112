@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\Relations\hasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Estats_expedients extends Model
+class Estat_expedients extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $table = 'estat_expedients';
 
     /**
      * Get the Expedients that owns the Estats_expedients
