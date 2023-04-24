@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración de Usuarios</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <style>
@@ -15,10 +15,8 @@
             border-radius: 10px;
             overflow: hidden;
             overflow-y: scroll;
-            max-height: 500px;
-            /* ajusta esta propiedad según tus necesidades */
-        }
-
+            max-height: 800px;
+                }
 
         th,
         td {
@@ -53,13 +51,11 @@
 </head>
 
 <body class="bg-light">
-    <div class="page-container container d-flex justify-content-center align-items-center vh-100">
-        <div class="card p-4" style="background-color: #11ADC4; color: #fff; width: 100%;">
+    <div class="page-container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card p-4 mx-auto align-self-center" style="background-color: #11ADC4; color: #fff; width: 75%;">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1 class="text-start" style="color: #025D73;">Administración de Usuarios</h1>
-                <button class="btn btn-primary agregar-btn" type="button">
-                    <i class="bi bi-plus"></i> Agregar usuario
-                </button>
+                <a href="{{ route('usuarios.agregar.mostrar') }}" class="btn btn-primary"><i class="bi bi-plus"></i> Agregar usuario</a>
             </div>
             <table class="table table-striped table-bordered">
                 <thead class="bg-light text-dark fw-bold">
@@ -74,37 +70,36 @@
                 </thead>
                 <tbody>
                     @foreach ($usuarios as $usuario)
-                        <tr>
-                            <td>{{ $usuario->id }}</td>
-                            <td>{{ $usuario->username }}</td>
-                            <td>{{ $usuario->nom }}</td>
-                            <td>{{ $usuario->cognoms }}</td>
-                            <td>{{ $usuario->tipus_usuaris_id }}</td>
-                            <td>
-                                <button class="btn btn-primary d-inline-block editar-btn" type="button"
-                                    data-id="{{ $usuario->id }}" data-username="{{ $usuario->username }}"
-                                    data-nombre="{{ $usuario->nom }}" data-apellido="{{ $usuario->cognoms }}"
-                                    data-tipo="{{ $usuario->tipus_usuaris_id }}" data-toggle="modal"
-                                    data-target="#modalEditar">
-                                    <i class="bi bi-pencil"></i> Editar
-                                </button>
-                                <form action="{{ route('usuarios.eliminar', ['id' => $usuario->id]) }}" method="POST"
-                                    class="d-inline-block">
+                    <tr>
+                        <td>{{ $usuario->id }}</td>
+                        <td>{{ $usuario->username }}</td>
+                        <td>{{ $usuario->nom }}</td>
+                        <td>{{ $usuario->cognoms }}</td>
+                        <td>{{ $usuario->tipus_usuaris_id }}</td>
+                        <td>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-primary d-inline-block editar-btn me-2" type="button"
+                                data-id="{{ $usuario->id }}" data-username="{{ $usuario->username }}"
+                                data-nombre="{{ $usuario->nom }}" data-apellido="{{ $usuario->cognoms }}"
+                                data-tipo="{{ $usuario->tipus_usuaris_id }}" onclick="window.location.href='{{ route('usuarios.editar', $usuario->id) }}'">
+                               <i class="bi bi-pencil"></i> Editar
+                               </button>
+                                <form method="POST" action="{{ route('usuarios.eliminar', ['id' => $usuario->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
+                                    <input type="hidden" name="id" value="{{ $usuario->id }}">
+                                    <button class="btn btn-danger d-inline-block" type="submit">
                                         <i class="bi bi-trash"></i> Eliminar
                                     </button>
                                 </form>
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
-
-
+        <script>
+          </script>
 </body>
-<script></script>
 </html>
