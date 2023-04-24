@@ -40,7 +40,7 @@
                 <!--Si se han encontrado elementos en el filtro-->
                 <div>
                     <p>Estas son las Carta Guardadas que coinciden:</p>
-                    <select v-model="selected" multiple></select>
+                    <!--<select v-model="selected" multiple></select>-->
                 </div>
                 <!--Si NO han encontrado elementos en el filtro-->
                 <div>
@@ -195,7 +195,7 @@
                     });
             },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
-            /*actualizarCarta(){
+            actualizarCarta(){
                 //Con el id del expediente se crea una carta asociado a este
 
                 this.cartaTrucadaRealizada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
@@ -215,7 +215,7 @@
                             console.error('Error al guardar los datos:', error.message);
                         }
                     });
-            }*/
+            }
 
         }
 
