@@ -45,7 +45,7 @@
                             <div id="definicionInci"  type="text" name="definicion"
                             placeholder="Definición" class="ms-3 mt-3"></div> <!--{{ definicio }}-->
                             <div id="indicacionesInci" type="text" name="instrucciones"
-                            placeholder="Instrucciones" class="ms-3 mt-3"></div><!--{{ instruccions }}-->
+                            placeholder="Indicaciones" class="ms-3 mt-3"></div><!--{{ instruccions }}-->
                         </div>
                     </div>
                     <!----------Expedentes - Filtro/Buscador------------>

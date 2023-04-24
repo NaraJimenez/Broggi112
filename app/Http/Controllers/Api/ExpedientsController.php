@@ -62,10 +62,10 @@ class ExpedientsController extends Controller
      * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedients $expedients)
+    public function show(Expedients $expedient)
     {
-        $expedient = Expedients::find($expedients);
-        return new ExpedientsResources($expedient);
+        $expediente = Expedients::find($expedient);
+        return new ExpedientsResources($expediente);
     }
 
     /**

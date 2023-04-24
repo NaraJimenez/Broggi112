@@ -19,9 +19,9 @@
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
-            @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada()" />
-            <!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
-        </keep-alive>
+            @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada" />
+            
+        </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
 
     </div>
 
@@ -94,7 +94,7 @@
 
                     //FALTA METER EL TIEMPO Y EL CODIGO AQUI
 
-                }
+                },
 
                 //TIEMPO
                 fechaHoraActual: "",
@@ -173,7 +173,7 @@
             confirmFinalizarLlamada(){
                 this.myModal = new bootstrap.Modal('#myModal', options);
                 this.myModal.show();
-            }
+            },
             //Guardar a la Base de Datos la Carta
             guardarCarta(cartaTrucadaRealizada){
                 this.cartaTrucadaRealizada = cartaTrucadaRealizada;
@@ -193,7 +193,7 @@
                             console.error('Error al guardar los datos:', error.message);
                         }
                     });
-            }
+            },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
             actualizarCarta(){
                 //Con el id del expediente se crea una carta asociado a este
