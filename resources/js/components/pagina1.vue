@@ -11,8 +11,8 @@
                     <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text"
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
-                    <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-bind="formData1.telefonoLlamada"> Num telf</div>
+                    <input id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
+                    v-bind="formData1.telefonoLlamada" v-model="searchTerm"> Num telf</input>
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
@@ -29,7 +29,7 @@
                         >
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
-                            :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
+                            :value="tipusIncident.id" v-model="selectedOption">{{ tipusIncident.nom }}</option>
                         </select>
 
                         <!--Incidentes aria-label="selectedIncident"-->
@@ -51,7 +51,7 @@
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
                         <ul>
-                            <li ></li>
+                            <li  v-for="result in searchResults" :key="result.id"> {{ result.columna1 }} . {{ result.columna2 }}</li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +80,12 @@ export default {
                 selectedIncident: "",
             },
 
+            //BUSCADOR
+            searchTerm: '',
+            selectedOption: 'opcion1',
+            searchResults: [],
 
+            //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
 
@@ -103,7 +108,25 @@ export default {
         this.validateForm1();
 
     },
+    watch: {
+        //watch para detectar cambios en el input y el select y hacer una llamada a la API usando fetch con los valores seleccionados
+        searchTerm: function() {
+            this.getSearchResults();
+        },
+        selectedOption: function() {
+            this.getSearchResults();
+        },
+    },
     methods: {
+        // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
+        async getSearchResults() {
+            const response = await fetch(`/api/cartestrucades?searchTerm=${this.searchTerm}&selectedOption=${this.selectedOption}`);
+            const data = await response.json();
+            //mostramos los resultados de la búsqueda
+            this.searchResults = data;
+            //emitimos un evento al padre con los resultados actualizados
+            this.$emit('search-results-updated', this.searchResults);
+        },
         validateForm1() {
             //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
             this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos;

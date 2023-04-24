@@ -192,4 +192,28 @@ class CartesTrucadesController extends Controller
     {
         //
     }
+    /*recibirá los parámetros de búsqueda y devolverá los resultados  */
+    public function search1(Cartes_trucades $category, $type)
+    {
+        $cartes = Cartes_trucades::where('category', $category)
+                                ->where('type', $type)
+                                ->get();
+        return response()->json($cartes);
+    }
+
+    //Prueba 2
+    public function search(Request $request)
+{
+    $inputValue = $request->inputValue;
+    $selectValue1 = $request->selectValue1;
+    $selectValue2 = $request->selectValue2;
+
+    $results = DB::table('table_name')
+                ->where('column1', $selectValue1)
+                ->where('column2', $selectValue2)
+                ->where('column3', 'LIKE', '%'.$inputValue.'%')
+                ->get();
+
+    return response()->json($results);
+}
 }

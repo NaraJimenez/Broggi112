@@ -19,7 +19,8 @@
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
-            @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada()" />
+            @enviar-objeto3="recibirObjeto3" @search-results-updated="handleSearchResultsUpdated"
+            :resultados="searchResults" @finalizarLlamada="confirmFinalizarLlamada()" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
 
@@ -68,9 +69,6 @@
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
 
-        //props: {}, para pasar datos al filtro
-        //telèfon, si es de cat o no, tipus de incident.
-
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
@@ -95,6 +93,9 @@
 
                 //Modal
                 myModal: {},
+
+                //Buscador
+                searchResults: [],
             }
         },
         mounted() {
@@ -113,6 +114,15 @@
             },
         },
         methods: {
+            //el componente hijo y actualizando el estado del componente padre con los resultados
+            handleSearchResultsUpdated(results) {
+                this.searchResults = results;
+            },
+            //Nuevos resultados enviados por el form 2
+            nuevoResultado(resultados) {
+            // Manejar el evento emitido por el componente hijo
+            this.resultados = resultados
+            }
             //Tiempo
             setFechaHoraActual() {
                 this.fechaHoraActual = new Date().toLocaleString('es-ES');

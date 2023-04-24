@@ -41,7 +41,7 @@
                             v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
-                                    <!--@input="searchCartes" v-model="name"-->
+                                    <!--@input="searchCartes" v-model="selectedOption"-->
                                     {{ municipi.nom }}
                                 </option>
 
@@ -162,33 +162,12 @@
 <script>
 import { ref, reactive } from "vue";
 export default {
-    setup() {
-    const name = ref("");
-    const date = ref("");
-    const searchResults = reactive([]);
-
-    const searchCartes = () => {
-      fetch(`/api/cartestrucades/search/${name.value}/${date.value}`)
-        .then((response) => response.json())
-        .then((data) => {
-          searchResults.splice(0, searchResults.length, ...data);
-        });
-    };
-
-    return {
-      name,
-      date,
-      searchResults,
-      searchCartes,
-    };
-},
-
-
-
-
-
-
-    props: {},
+    props: {
+        resultados: {
+            type: Array,
+            default: () => [],
+        }
+    },
     data() {
         return {
             //ESTE HAY QUE PONERLO DENTRO DE LA CARTA
@@ -204,6 +183,12 @@ export default {
             comarques: [],
             comarca: {},
             municipis: [],
+
+            //Opcion escogida para hacer el filtro
+            selectedOption: '',
+
+            //Resultados filtrados
+            resultadosFiltrados: [];
 
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
@@ -238,14 +223,15 @@ export default {
         this.fetchProvincies();
         this.validateForm();
     },
-    methods: {
-        //Select tab este guardara el tipo de localizacion
-        setActiveElement(value) {
-      const element = document.querySelector(`.tab-pane.container.active[value="${value}"]`);
-      if (element) {
-        this.activeElement = value;
-      }
+    watch: {
+        resultados: {
+            handler(nuevosResultados) {
+            // Hacer una llamada a la API para obtener los resultados actualizados
+            },
+            immediate: true
+        }
     },
+    methods: {
         validateForm() {
             //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
             this.formValid = !!this.formData.provinciaInput && !!this.formData.municipioInput;

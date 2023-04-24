@@ -43,5 +43,7 @@ Route::apiResource('expedients', ExpedientsController::class);
 
 
 
-//Buscador
-Route::get('/cartestrucades/search/{telefonoLlamada}', [CartesTrucadesController::class, 'search']);
+//Buscador -- prueba1
+Route::get('/cartestrucades/search/{category}/{type}', [CartesTrucadesController::class, 'search']);
+
+Route::get('/search', [CartesTrucadesController::class, 'search']);
