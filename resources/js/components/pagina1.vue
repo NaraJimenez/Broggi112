@@ -12,11 +12,11 @@
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
                     <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-bind="telefonoLlamada"> Num telf</div>
+                    v-bind="formData1.telefonoLlamada"> Num telf</div>
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
-                        placeholder="Nota Comuna" v-model="inputNotaComuna"></textarea>
+                        placeholder="Nota Comuna" v-model="formData1.inputNotaComuna"></textarea>
                     </div>
                 </div>
                 <!----------Elementos Segundo Rectangulo------------>
@@ -25,7 +25,7 @@
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente aria-label="selectTipusIncident"-->
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
-                        v-model="selectedTipusIncident" @change="fetchIncidents()"   required
+                        v-model="formData1.selectedTipusIncident" @change="fetchIncidents()"   required
                         >
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
@@ -34,7 +34,7 @@
 
                         <!--Incidentes aria-label="selectedIncident"-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
-                        v-model="selectedIncident" :disabled="!selectedTipusIncident"   required>
+                        v-model="formData1.selectedIncident" :disabled="!formData1.selectedTipusIncident"   required>
                             <option value="" disabled selected>Incidencia</option>
                             <option v-for="incident in incidents" :key="incident.id"
                             :value="incident.id">{{ incident.nom }}</option>
@@ -51,7 +51,7 @@
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
                         <ul>
-                            <li v-for="item in searchResults" :key="item.id">{{ item.name }}</li>
+                            <li ></li>
                         </ul>
                     </div>
                 </div>
@@ -74,12 +74,12 @@ export default {
             formData1: {
                 inputNombre: '',
                 inputApellidos:'',
-
+                inputNotaComuna:'',
+                telefonoLlamada: null,
+                selectedTipusIncident: "",
+                selectedIncident: "",
             },
-            inputNotaComuna:'',
-            telefonoLlamada: null,
-            selectedTipusIncident: "",
-            selectedIncident: "",
+
 
             tipusIncidents: [],
             tipusIncident: {},
@@ -87,7 +87,8 @@ export default {
             incidents: [],
             incident: {},
             IncidentEscogido:[],
-
+            selectedTipusIncident: "",
+            selectedIncident: "",
 
 
 
@@ -128,13 +129,14 @@ export default {
         },
         fetchIncidents() {
             axios
-                .get('/api/tipusincidents/' + this.selectedTipusIncident)
+                .get('/api/tipusincidents/' + this.formData1.selectedTipusIncident)
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
 
                     this.incidents = this.tipusIncident.incidents;
-                    this.selectedIncident = "";
+                    this.formData1.selectedIncident = "";
+                    console.log();
 
                 })
                 .catch((error) => {

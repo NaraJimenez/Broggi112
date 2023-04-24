@@ -31,9 +31,9 @@ export default {
                 //se envia al componente padre, pasamos el objeto lleno
                     this.$emit('enviar-objeto3', this.formData3);
                     //Enviamos al finalizar al padre para abrir el modal
-                    submitForm(
+                    /*submitForm(
                         this.$emit('finalizarLlamada');
-                   )
+                   )*/
                 //console.log(this.formData);
             }
         },

@@ -62,3 +62,8 @@ Route::get('/cartaExpediente', function () {
 Route::get('/carta', function () {
     return view('paginas/carta');
 })->name('carta');
+
+//Prueba de graficos
+Route::get('/graficos', function () {
+    return view('paginas/graficos');
+})->name('graficos');

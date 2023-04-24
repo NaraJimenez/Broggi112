@@ -20,8 +20,8 @@
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
             @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada()" />
-            <!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
-        </keep-alive>
+
+        </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
 
     </div>
 
@@ -40,7 +40,7 @@
                 <!--Si se han encontrado elementos en el filtro-->
                 <div>
                     <p>Estas son las Carta Guardadas que coinciden:</p>
-                    <select v-model="selected" multiple></select>
+                    <!--<select v-model="selected" multiple></select>-->
                 </div>
                 <!--Si NO han encontrado elementos en el filtro-->
                 <div>
@@ -57,7 +57,7 @@
       </div>
 
 </template>
-<script >
+<script>
     //Importamos los componentes hijos
     import pagina1 from "./pagina1.vue";
     import pagina2 from "./pagina2.vue";
@@ -82,19 +82,6 @@
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
                 pasadoForm1: false,
                 pasadoForm2: false,
-                pasadoForm3: false,
-                todosFormsRecibidos: false,
-
-                //Objeto en que se guardan todos los elementos de la carta - Objeto padre
-                cartaTrucadaRealizada: {
-                    //Aqui se guardan los elementos que se van a enviar a la B
-                    objetoRecibido1: null,
-                    objetoRecibido: null,
-                    objetoRecibido3: null,
-
-                    //FALTA METER EL TIEMPO Y EL CODIGO AQUI
-
-                }
 
                 //TIEMPO
                 fechaHoraActual: "",
@@ -173,7 +160,7 @@
             confirmFinalizarLlamada(){
                 this.myModal = new bootstrap.Modal('#myModal', options);
                 this.myModal.show();
-            }
+            },
             //Guardar a la Base de Datos la Carta
             guardarCarta(cartaTrucadaRealizada){
                 this.cartaTrucadaRealizada = cartaTrucadaRealizada;
@@ -193,7 +180,7 @@
                             console.error('Error al guardar los datos:', error.message);
                         }
                     });
-            }
+            },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
             actualizarCarta(){
                 //Con el id del expediente se crea una carta asociado a este

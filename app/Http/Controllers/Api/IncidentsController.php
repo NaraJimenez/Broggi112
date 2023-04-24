@@ -53,9 +53,7 @@ class IncidentsController extends Controller
      */
     public function show(Incidents $incident)
     {
-        $incidente= Incidents::where('tipus_incidents_id', '=', $incident)
-        ->get();/*
-        return new IncidentsResources($inci);*/
+        $incidente= Incidents::where('tipus_incidents_id', '=', $incident)->get();
         return new IncidentsResources($incidente);
     }
 

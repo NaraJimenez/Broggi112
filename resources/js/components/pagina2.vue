@@ -29,7 +29,7 @@
 
                             <!--Comarca-->
                             <select id="selectComarca" name="selectComarca" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!selectedProvincia" required>
+                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!formData.selectedProvincia" required>
                                 <option disabled selected  value="" class="text-center">Comarca</option>
                                 <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id" class="text-center">
                                     {{ comarca.nom }}
@@ -38,7 +38,7 @@
                             </select>
                             <!--Municipi-->
                             <select id="selectMunicipi" name="selectMunicipi" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedMunicipi" :disabled="!selectedComarca" required>
+                            v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
                                     <!--@input="searchCartes" v-model="name"-->
@@ -84,7 +84,7 @@
                         <!-- Tab/Pestañas Localización-->
                         <div class="tab-content" id="tabOpciones">
                             <!--CARRETERA-->
-                            <div class="tab-pane container active" id="carretera" value="1" >
+                            <div class="tab-pane container active" id="carretera">
                                 <label for="inputCarretera" class="ms-1 mt-3"> Nombre Carretera</label>
                                 <input id="inputCarretera" class="form-control ms-1 mt-3" type="text" name="inputCarretera"
                                 placeholder="Introduce Carretera" v-model="formData.inputCarretera">
@@ -99,7 +99,7 @@
                             </div>
 
                             <!--CALLE-->
-                            <div class="tab-pane container fade" id="calle" value="2" >
+                            <div class="tab-pane container fade" id="calle">
                                 <label for="inputVia" class=" mt-2 ">Tipo vía</label>
                                 <input id="inputVia" class="form-control ms-1 mt-1" type="text" name="inputVia"
                                 placeholder="Introduce Vía" v-model="formData.inputVia">
@@ -126,18 +126,20 @@
                             </div>
 
                             <!--PUNTO SINGULAR-->
-                            <div class="tab-pane container fade mt-3" id="singular" value="3">
+                            <div class="tab-pane container fade mt-3" id="singular">
                                 <label for="inputPS" class="mt-1">Punto Singular</label>
                                 <input id="inputPS" class="form-control ms-1" type="text" name="inputPS"
                                 placeholder=" Introduce Punto" v-model="formData.inputPS">
                             </div>
 
                             <!--POBLACION inputPoblacionNombre-->
-                            <div class="tab-pane container fade mt-3" id="poblacion" value="4" >
-                                <label for="inputPob" class=" ms-1">Nombre Población</label>
-                                <input id="inputPob" class="form-control  ms-1" type="text"
-                                name="inputPob" placeholder="Introduce Poblacion"
-                                v-model="formData.inputPob">
+                            <div class="tab-pane container fade mt-3" id="poblacion">
+                                <div class="form-group">
+                                    <label for="inputPob">Nombre Población</label>
+                                    <input id="inputPob" class="form-control" type="text"
+                                    name="inputPob" placeholder="Introduce Poblacion"
+                                    v-model="formData.inputPob">
+                                </div>
                             </div>
                         </div>
                         <p id="activeElement" name="activeElement" > {{ activeElement }}</p>
@@ -146,8 +148,8 @@
                 <!--EXPEDIENTES-FILTRO-->
                 <div class=" ms-3 mt-4" id="expedientes2">
                     <ul>
-                        <li v-for="carta in searchResults" :key="carta.id">{{ carta.name }} - {{ carta.date }}</li>
-                      </ul>
+                        <li></li>
+                    </ul>
                 </div>
 
             </form>
@@ -192,6 +194,17 @@ export default {
             //ESTE HAY QUE PONERLO DENTRO DE LA CARTA
             activeElement: '1',
             formValid: false,
+            opcionTab: '',
+            //PRUEBAS
+            activeElement: '1',
+            picked:[],
+            //Para hacer las consultas
+            provincies: [],
+            provincia: {},
+            comarques: [],
+            comarca: {},
+            municipis: [],
+
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
                 //Si es o no de Cat
@@ -200,8 +213,6 @@ export default {
                 selectedProvincia: "",
                 selectedComarca: "",
                 selectedMunicipi: "",
-
-                //
                 //Carretera
                 inputCarretera: '',
                 inputpuntoKM:'',
@@ -218,25 +229,6 @@ export default {
                 //Población
                 inputPob: '',
             },
-
-            //METER TODOS LOS INPUTS EN UNA SOLA ARRAY O OBJETO Y METERLO EN EL FORM COMO LOALIZACIÓN
-            //HA DE RECIBIR LA INFO DEL FILTRO
-
-
-
-            //Esto se pone dentro de la carta
-            picked:[],
-            provincies: [],
-            provincia: {},
-            comarques: [],
-            comarca: {},
-            municipis: [],
-            /*selectedProvinciaTrucada: "",
-            selectedComarcaTrucada: "",
-            selectedMunicipiTrucada: "",
-            selectedProvincia: "",
-            selectedComarca: "",
-            selectedMunicipi: "",*/
         };
     },
     created() {
@@ -278,12 +270,12 @@ export default {
         },
         fetchComarques() {
             axios
-                .get('/api/provincies/' + this.selectedProvincia)
+                .get('/api/provincies/' + this.formData.selectedProvincia)
                 .then((response) => {
                     this.provincia = response.data;
                     console.log(response.data);
                     this.comarques = this.provincia.comarques;
-                    this.selectedComarca = "";
+                    this.formData.selectedComarca = "";
                     this.municipis = [];
                 })
                 .catch((error) => {
@@ -292,24 +284,18 @@ export default {
         },
         fetchMunicipis() {
             axios
-                .get('/api/comarques/' + this.selectedComarca)
+                .get('/api/comarques/' + this.formData.selectedComarca)
                 .then((response) => {
                     this.comarca = response.data;
                     console.log(response.data);
                     this.municipis = this.comarca.municipis;
                     //this.municipis = response.data;
-                    this.selectedMunicipi = "";
+                    this.formData.selectedMunicipi = "";
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         },
-        //Al finalizar la llamada se para el tiempo, aparece el modal y se quedan los datos guardados en un objeto
-        //finalizarLlamada(){
-            //Mostramos modal
-            /*this.myModal = new Bootstrap.Modal('#finModal')
-            this.myModal.show();*/
-        //}
     },
 }
 </script>
@@ -449,7 +435,8 @@ export default {
     }
     #inputVia, #inputCalle, #inputCasa, #inputEscalera, #inputPiso, #inputPuerta {
         box-sizing: border-box;
-        position: absolute;
+
+        display: block;
         width: 220px;
         height: 34px;
         background: #FFFFFF;
