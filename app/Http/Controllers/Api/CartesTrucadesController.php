@@ -140,9 +140,9 @@ class CartesTrucadesController extends Controller
      * @param  \App\Models\Cartes_trucades  $cartes_trucades
      * @return \Illuminate\Http\Response
      */
-    public function show(Cartes_trucades $cartes_trucades)
+    public function show(Cartes_trucades $cartestrucade)
     {
-        $cartes_trucades = Cartes_trucades::find($cartes_trucades);
+        $cartes_trucades = Cartes_trucades::find($cartestrucade);
         return new CartesTrucadesResources($cartes_trucades);
     }
 
@@ -167,7 +167,7 @@ class CartesTrucadesController extends Controller
 
             try {
                 $cartes_trucades->save();
-                $response = (new CartesTrucadesResource($cartes_trucades))
+                $response = (new CartesTrucadesResources($cartes_trucades))
                     ->response()
                     ->setStatusCode(201);
             } catch (QueryException $ex) {
@@ -191,5 +191,12 @@ class CartesTrucadesController extends Controller
     public function destroy(Cartes_trucades $cartes_trucades)
     {
         //
+    }
+    //Buscador
+    public function search($telefono, $municipio_id){
+        $cartes = Cartes_trucades::where('telefono', 'like', '%'.$telefono.'%')
+                                ->where('date', 'like', '%'.$municipio_id.'%')
+                                ->get();
+        return response()->json($cartes);
     }
 }

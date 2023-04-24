@@ -59,14 +59,14 @@
 </template>
 <script >
     //Importamos los componentes hijos
-    import pagina1 from "./pagina1.vue";
-    import pagina2 from "./pagina2.vue";
-    import pagina3 from "./pagina3.vue";
+    import Incidencia from "./Incidencia.vue";
+    import Localización from "./Localización.vue";
+    import Agencias from "./Agencias.vue";
 
 
     export default {
         //Pasamos los componentes
-        components: { pagina1, pagina2, pagina3 },
+        components: { Incidencia, Localización, Agencias },
 
         //props: {}, para pasar datos al filtro
         //telèfon, si es de cat o no, tipus de incident.
@@ -74,9 +74,9 @@
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
-                tabs: ["pagina1", "pagina2", "pagina3"],
+                tabs: ["Incidencia", "Localización", "Agencias"],
                 //El primer componente en mostrar
-                component: "pagina1",
+                component: "Incidencia",
 
 
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true

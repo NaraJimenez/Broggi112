@@ -32,12 +32,9 @@ class ExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {/*
         $expedients = new Expedients();
-
-
         $expedients->data_creacio = $request->input('data_creacio');
-        $expedients->data_ultima_modificacio = $request->input('data_ultima_modificacio');
         $expedients->estats_expedients_id = $request->input('estats_expedients_id');
 
         try{
@@ -53,7 +50,7 @@ class ExpedientsController extends Controller
             $response = \response()->json(['error' => $mensaje], 400);
         }
 
-        return $response;
+        return $response;*/
     }
 
     /**

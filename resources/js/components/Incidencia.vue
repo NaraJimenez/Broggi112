@@ -12,7 +12,7 @@
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
                     <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-bind="telefonoLlamada"> Num telf</div>
+                    v-bind="telefonoLlamada">{{  telefonoLlamada }}</div>
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
@@ -77,7 +77,7 @@ export default {
 
             },
             inputNotaComuna:'',
-            telefonoLlamada: null,
+            telefonoLlamada: 8895522,
             selectedTipusIncident: "",
             selectedIncident: "",
 
