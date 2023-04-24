@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estat_expedients;
-use App\Models\Expedients;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-class ExpedientsController extends Controller
+use App\Models\Cartes_trucades;
+use App\Http\Requests;
+use App\Http\Requests\StoreTelefonRequest;
+
+class TelefonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,12 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        $expedientes = Expedients::all();
-        $estados = Estat_expedients::all();
-        return view('AdminE.expedientes', compact('expedientes', 'estados'));
+        $phones = Cartes_trucades::pluck('telefon')->toArray();
+        $count = sizeof($phones);
+        $randomIndex = rand(0, $count-1);
+        $randomPhone = $phones[$randomIndex];
+
+        return view ('NavBar.home', compact('randomPhone'));
     }
 
     /**
@@ -33,10 +36,10 @@ class ExpedientsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTelefonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTelefonRequest $request)
     {
         //
     }
@@ -44,10 +47,10 @@ class ExpedientsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedients $expedients)
+    public function show(Telefon $telefon)
     {
         //
     }
@@ -55,10 +58,10 @@ class ExpedientsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expedients $expedients)
+    public function edit(Telefon $telefon)
     {
         //
     }
@@ -66,23 +69,22 @@ class ExpedientsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Http\Requests\UpdateTelefonRequest  $request
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expedients $expedients)
-{
-  
-}
-
+    public function update(UpdateTelefonRequest $request, Telefon $telefon)
+    {
+        //
+    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Expedients  $expedients
+     * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expedients $expedients)
+    public function destroy(Telefon $telefon)
     {
         //
     }

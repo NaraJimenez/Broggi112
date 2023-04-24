@@ -1,5 +1,3 @@
-import './bootstrap';
-
 import * as bootstrap from 'bootstrap'
 import { createApp } from 'vue'
 import menuCarta from './components/menuCarta.vue'
@@ -12,6 +10,8 @@ import carta2Botones from './components/carta2Botones.vue'
 import carta2Localizacion from './components/carta2Localizacion.vue'
 import menuComponent from './components/menuComponent.vue'
 import cartaExpediente from './components/cartaExpediente.vue'
+import Menu from './components/atoms/Home/Menu.vue';
+import Profile from './components/atoms/Home/Profile.vue';
 
 //Componente Menu Cartas de llamada
 createApp(menuCarta).mount('#menuCarta');
@@ -30,3 +30,9 @@ createApp(carta2Localizacion).mount('#carta2Localizacion');
 
 //Componente Expedientes
 createApp(cartaExpediente).mount('#cartaExpediente');
+
+//Menú perfil
+createApp(Profile).mount('#Profile');
+
+//Menú barras
+createApp(Menu).mount('#Menu');
