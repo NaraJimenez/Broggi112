@@ -1,0 +1,92 @@
+
+#CartaIncidencia{
+    position: absolute;
+    width: 1020px;
+    height: 539px;
+    left: 470px;
+    background: #35B5C9;
+    border-radius: 20px;
+}
+#CartaIncidenciaExpe{
+    position: absolute;
+    width: 1020x;
+    height: 615px;
+    left: 250px;
+    background: #35B5C9;
+    border-radius: 20px;
+}
+
+#boton1{
+    width: 170px;
+    height: 70px;
+    background: #025D73;
+    border-radius: 10px;
+    transform: rotate(0.26deg);
+}
+
+#boton2{
+    width: 170px;
+    height: 70px;
+    margin-left: 18px;
+    background: #EBEFEF;
+    border-radius: 10px;
+    transform: rotate(0.26deg);
+}
+
+#boton3{
+    width: 170px;
+    height: 70px;
+    background: #EBEFEF;
+    border-radius: 10px;
+    margin-left: 18px;
+    transform: rotate(0.26deg);
+}
+
+#primerRectangulo{
+    box-sizing: border-box;
+    width: 438px;
+    height: 360px;
+    border: 1px solid #025D73;
+    border-radius: 15px;
+}
+
+#segundoRectangulo{
+    box-sizing: border-box;
+    position: absolute;
+    width: 430px;
+    height: 221px;
+    left: 525px;
+    top: 103px;
+    border: 1px solid #025D73;
+    border-radius: 15px;
+
+}
+
+#buscadorExpe{
+    box-sizing: border-box;
+    position: absolute;
+    width: 430px;
+    height: 113px;
+    margin: auto;
+    top: 240px;
+    background: #FFFFFF;
+    border: 3px solid #76DAE4;
+    border-radius: 10px;
+}
+
+#linkMenuCarta1, #linkMenuCarta2, #linkMenuCarta3{
+    text-decoration:none;
+}
+
+#linkMenuCarta1{
+    color: #FBFBFD;
+}
+
+#linkMenuCarta2, #linkMenuCarta3 {
+    color: #025D73;
+}
+
+#helper {
+    margin-left: 600px;
+    margin-top:00px;
+}
