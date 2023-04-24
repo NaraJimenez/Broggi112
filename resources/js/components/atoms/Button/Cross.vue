@@ -18,7 +18,7 @@ export default {
 <style scoped>
     .CrossButton {
         display: flex;
-        top: 0;
+        top:0;
         right: 0;
         margin-right: 10px;
         margin-top: 10px;
