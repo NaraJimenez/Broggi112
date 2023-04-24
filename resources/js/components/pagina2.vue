@@ -29,7 +29,7 @@
 
                             <!--Comarca-->
                             <select id="selectComarca" name="selectComarca" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!selectedProvincia" required>
+                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!formData.selectedProvincia" required>
                                 <option disabled selected  value="" class="text-center">Comarca</option>
                                 <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id" class="text-center">
                                     {{ comarca.nom }}
@@ -38,7 +38,7 @@
                             </select>
                             <!--Municipi-->
                             <select id="selectMunicipi" name="selectMunicipi" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedMunicipi" :disabled="!selectedComarca" required>
+                            v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
                                     {{ municipi.nom }}
@@ -142,7 +142,11 @@
                     </div>
                 </div>
                 <!--EXPEDIENTES-FILTRO-->
-                <div class=" ms-3 mt-4" id="expedientes2">Expedientes</div>
+                <div class=" ms-3 mt-4" id="expedientes2">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
 
             </form>
 
@@ -236,12 +240,12 @@ export default {
         },
         fetchComarques() {
             axios
-                .get('/api/provincies/' + this.selectedProvincia)
+                .get('/api/provincies/' + this.formData.selectedProvincia)
                 .then((response) => {
                     this.provincia = response.data;
                     console.log(response.data);
                     this.comarques = this.provincia.comarques;
-                    this.selectedComarca = "";
+                    this.formData.selectedComarca = "";
                     this.municipis = [];
                 })
                 .catch((error) => {
@@ -250,24 +254,18 @@ export default {
         },
         fetchMunicipis() {
             axios
-                .get('/api/comarques/' + this.selectedComarca)
+                .get('/api/comarques/' + this.formData.selectedComarca)
                 .then((response) => {
                     this.comarca = response.data;
                     console.log(response.data);
                     this.municipis = this.comarca.municipis;
                     //this.municipis = response.data;
-                    this.selectedMunicipi = "";
+                    this.formData.selectedMunicipi = "";
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         },
-        //Al finalizar la llamada se para el tiempo, aparece el modal y se quedan los datos guardados en un objeto
-        //finalizarLlamada(){
-            //Mostramos modal
-            /*this.myModal = new Bootstrap.Modal('#finModal')
-            this.myModal.show();*/
-        //}
     },
 }
 </script>

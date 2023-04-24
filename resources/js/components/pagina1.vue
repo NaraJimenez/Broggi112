@@ -5,11 +5,11 @@
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
                     <!--Nombre Interlocutor-->
-                    <input id="inputNombre" name="inputNombre" class="mt-4 ms-5 text-muted"  type="text" 
-                    placeholder="Nombre interlocutor" v-model="inputNombre">
+                    <input id="inputNombre" name="inputNombre" class="mt-4 ms-5 text-muted"  type="text"
+                    placeholder="Nombre interlocutor" v-model="formData1.inputNombre" @input="validateForm1">
                     <!--Apellidos Interlocutor-->
-                    <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text" 
-                    placeholder="Apellidos interlocutor" v-model="inputApellidos">
+                    <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text"
+                    placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
                     <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
                     v-bind="telefonoLlamada"> Num telf</div>
@@ -25,7 +25,8 @@
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente aria-label="selectTipusIncident"-->
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
-                         v-model="selectedTipusIncident" @change="fetchIncidents()"   required>
+                        v-model="selectedTipusIncident" @change="fetchIncidents()"   required
+                        >
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
@@ -40,15 +41,19 @@
                         </select>
 
                         <!--Definición y Instrucciones de Incidentes-->
-                        <div>
+                        <div >
                             <div id="definicionInci"  type="text" name="definicion"
-                            placeholder="Definición" class="ms-3  mt-3" v-for="definicio in incident">{{ definicio }}</div>
+                            placeholder="Definición" class="ms-3 mt-3"></div> <!--{{ definicio }}-->
                             <div id="indicacionesInci" type="text" name="instrucciones"
-                            placeholder="Instrucciones" class="ms-3  mt-3" v-for="instruccions in incident">{{ instruccions }}</div>
+                            placeholder="Instrucciones" class="ms-3 mt-3"></div><!--{{ instruccions }}-->
                         </div>
                     </div>
                     <!----------Expedentes - Filtro/Buscador------------>
-                    <div class="mt-5 ms-1" id="expedientes">Expedientes</div>
+                    <div class="mt-5 ms-1" id="expedientes">
+                        <ul>
+                            <li v-for="item in searchResults" :key="item.id">{{ item.name }}</li>
+                        </ul>
+                    </div>
                 </div>
                 <!--FINAL PRIMER RECTANGULO-->
 
@@ -63,24 +68,27 @@ export default {
     data() {
         return {
             formValid: false,
-            //CREAR OBJETO
             //VALIDAR
             //RELACIONAR CON EL PADRE
             //ENVIAR FILTRO A PADRE o HERMANO
-            inputNombre: '',
-            inputApellidos:'',
+            formData1: {
+                inputNombre: '',
+                inputApellidos:'',
+
+            },
             inputNotaComuna:'',
             telefonoLlamada: null,
-            /*formChecked: false*/
+            selectedTipusIncident: "",
+            selectedIncident: "",
+
             tipusIncidents: [],
             tipusIncident: {},
-            
+
             incidents: [],
             incident: {},
             IncidentEscogido:[],
-            selectedTipusIncident: "",
-            selectedIncident: "",
-            
+
+
 
 
         }
@@ -89,12 +97,22 @@ export default {
         //this.selectTipusIncident();
     },
     mounted() {
-        console.log('Pagina 1 Montada')
+        console.log('Pagina 1 Montada');
         this.fetchTipusIncidents();
+        this.validateForm1();
 
     },
     methods: {
-        
+        validateForm1() {
+            //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
+            this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos;
+            console.log(this.formValid);
+            if (this.formValid == true) {
+                //se envia al componente padre, pasamos el objeto lleno
+                this.$emit('enviar-objeto1', this.formData1);
+                //console.log(this.formData);
+            }
+        },
         //Selectores de los Tipus Incidentes con los Incidentes
         fetchTipusIncidents() {
             axios
@@ -114,7 +132,7 @@ export default {
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
-                    
+
                     this.incidents = this.tipusIncident.incidents;
                     this.selectedIncident = "";
 

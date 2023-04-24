@@ -34,10 +34,7 @@ class ExpedientsController extends Controller
     public function store(Request $request)
     {
         $expedients = new Expedients();
-
-
         $expedients->data_creacio = $request->input('data_creacio');
-        $expedients->data_ultima_modificacio = $request->input('data_ultima_modificacio');
         $expedients->estats_expedients_id = $request->input('estats_expedients_id');
 
         try{
@@ -62,10 +59,10 @@ class ExpedientsController extends Controller
      * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedients $expedients)
+    public function show(Expedients $expedient)
     {
-        $expedient = Expedients::find($expedients);
-        return new ExpedientsResources($expedient);
+        $expediente = Expedients::find($expedient);
+        return new ExpedientsResources($expediente);
     }
 
     /**

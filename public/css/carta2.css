@@ -1,45 +1,9 @@
 
-#CartaIncidencia{
-    position: absolute;
-    width: 1020px;
-    height: 539px;
-    left: 470px;
-    background: #35B5C9;
-    border-radius: 20px;
-}
-
-#boton1c2{
-    width: 170px;
-    height: 70px;
-    background: #EBEFEF;
-    border-radius: 10px;
-    transform: rotate(0.26deg);
-}
-
-
-#boton2c2{
-    width: 170px;
-    height: 70px;
-    margin-left: 18px;
-    background: #025D73;
-    border-radius: 10px;
-    transform: rotate(0.26deg);
-}
-
-#boton3c2{
-    width: 170px;
-    height: 70px;
-    background: #EBEFEF;
-    border-radius: 10px;
-    margin-left: 18px;
-    transform: rotate(0.26deg);
-}
-
 /*Dentro de carta*/
 
 
 
-
+/*
 
 
 #checkCarta2{
@@ -156,4 +120,4 @@ background-color: #33cfe4;
 
 #botonCarta2{
     text-decoration:none;
-}
+}*/
