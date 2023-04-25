@@ -9,10 +9,12 @@ import carta2Catalunya from './components/carta2Catalunya.vue'
 import carta2Botones from './components/carta2Botones.vue'
 import carta2Localizacion from './components/carta2Localizacion.vue'
 import menuComponent from './components/menuComponent.vue'
+import mapbox from './components/pagina3.vue';
 import cartaExpediente from './components/cartaExpediente.vue'
 import Menu from './components/atoms/Home/Menu.vue';
 import Profile from './components/atoms/Home/Profile.vue';
 import MenuA from './components/atoms/Home/MenuA.vue';
+
 
 //Componente Menu Cartas de llamada
 createApp(menuCarta).mount('#menuCarta');
@@ -28,6 +30,7 @@ createApp(filtroExpedientes).mount('#filtroExpedientes');
 createApp(carta2Catalunya).mount('#carta2Catalunya');
 createApp(carta2Botones).mount('#carta2Botones');
 createApp(carta2Localizacion).mount('#carta2Localizacion');
+
 
 //Componente Expedientes
 createApp(cartaExpediente).mount('#cartaExpediente');

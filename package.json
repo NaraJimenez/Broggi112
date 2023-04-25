@@ -16,10 +16,12 @@
     },
     "dependencies": {
         "@formkit/vue": "^0.16.4",
+        "@mapbox/mapbox-sdk": "^0.15.0",
         "@popperjs/core": "^2.11.7",
         "@vitejs/plugin-vue": "^4.1.0",
         "bootstrap-icons": "^1.10.4",
         "flowbite": "^1.6.5",
+        "mapbox-gl": "^2.14.1",
         "mdb-vue-ui-kit": "^3.2.0",
         "vue": "^3.2.47",
         "vue-form-wizard": "^0.8.4",

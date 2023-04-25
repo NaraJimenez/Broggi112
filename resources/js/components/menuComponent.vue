@@ -35,7 +35,7 @@
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
-                tabs: ["pagina1", "pagina2", "pagina3"],
+                tabs: ["pagina1", "pagina2", "Mapa"],
                 //El primer componente en mostrar
                 component: "pagina1"
 
