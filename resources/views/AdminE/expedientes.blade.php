@@ -18,18 +18,18 @@
       <div id="popup" class="popup"  data-expediente-id="">
         <div class="popup-contents">
           <span class="close" onclick="ocultarPopup()">&times;</span>
-          <form action="/expedientes/update" method="POST" class="popup-content">
-            @method('POST') <!-- Especifica el método HTTP utilizado en el formulario -->
-          <p>Selecciona un color:</p>
+          <form action="{{ url ('/expedientes/update')}}" method="POST" class="popup-content">
+            @csrf
+           <p>Selecciona un color:</p>
           {{-- Ciclo foreach para mostrar los colores --}}
           @foreach ($estados as $estado_opcion)
           <div class="popup-color">
-            <span class="popupCircle color-circle" style="background-color:  {{$estado_opcion->colors}}" onclick="setColor(this)" data-color="{{ $estado_opcion->colors }}"></span>
-            <span class="popUpestat">{{ $estado_opcion->estat}}</span>
+            <span class="popupCircle color-circle" style="background-color:  {{$estado_opcion->colors}}" onclick="setColor(this)" data-color="{{ $estado_opcion->colors }}" data-id="{{ $estado_opcion->id }}"></span>
+            <span class="popUpestat">{{ $estado_opcion->estat}} </span>
           </div>
           @endforeach
           {{-- Inputs para enviar los datos del formulario --}}
-          <input type="hidden" name="expediente_id" value="">
+          <input type="hidden"  id="expediente_id" name="expediente_id" value="">
           <input type="hidden" id="color-input" name="color_id" value="">
           {{-- Envía los datos --}}
           <button type="submit" id="actualizar-btn">Actualizar</button>
@@ -68,7 +68,7 @@
               <td><span>{{$expediente->codi}}</span></td>
               <td colspan="2" class="estados">
                   {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
-                  <span class="circle" data-id="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup()" ></span>
+                  <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup()" ></span>
                   {{-- Se muestra el estado actual del expediente --}}
                   <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
               </td>
@@ -97,10 +97,12 @@
   function mostrarPopup(element) {
       var popup = document.getElementById("popup");
       popup.style.display = "flex";
-      popup.dataset.expedienteId = element.parentNode.parentNode.firstElementChild.innerHTML;
+      // popup.dataset.expedienteId = element.parentNode.parentNode.firstElementChild.innerHTML;
 
        // Establecer el color seleccionado actualmente en el popup
        var colorInput = document.getElementById('color-input');
+       var expediente_id = document.getElementById('expediente_id');
+       expediente_id.value = element.getAttribute('data-id');
       var colorCircles = document.querySelectorAll('.color-circle');
       for (var i = 0; i < colorCircles.length; i++) {
         if (colorCircles[i].getAttribute('data-color') === colorInput.value) {
@@ -113,8 +115,10 @@
 
   function setColor(element) {
   var colorInput = document.getElementById('color-input');
-  colorInput.value = element.getAttribute('data-color');
-  
+  colorInput.value = element.getAttribute('data-id');
+  var colorInput = document.getElementById('color-input');
+  colorInput.value = element.getAttribute('data-id');
+
   var colorCircles = document.querySelectorAll('.color-circle');
   for (var i = 0; i < colorCircles.length; i++) {
     colorCircles[i].style.backgroundColor = '';

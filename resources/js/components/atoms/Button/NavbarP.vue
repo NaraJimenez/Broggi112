@@ -2,7 +2,7 @@
   <div id="NavbarP" v-if="showNavbarP">
     <CrossButton imgSrc="img/Cross.png" @click="closeNavbarP"></CrossButton>
     <Button text="Editar Perfil" :icon="'./img/icon _edit.png'"></Button>
-    <Button text="Logout" :icon="'./img/icon _logout.png'"></Button>
+    <Button text="Logout" @click="goToPage('http://localhost:8080/proyecto2/Broggi112/public/login')" :icon="'./img/icon _logout.png'"></Button>
   </div>
 </template>
 

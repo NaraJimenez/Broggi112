@@ -77,12 +77,13 @@ class ExpedientsController extends Controller
      */
   
     //  Actualiza el estado del expediente
-    public function update(Request $request, $id){
+    public function update(Request $request){
         
-        $estado = Estat_expedients::find($id);
-        $estado->colors = $request->input('color-input');
+        $id = $request->input('expediente_id');
+        $expediente = Expedients::find($id);
+        $expediente->estat_expedients_id = $request->input('color-input');
        
-        $estado->save();
+        $expediente->save();
 
         return redirect()->back()->with('success', 'El estado del expediente se ha actualizado.');
     }
