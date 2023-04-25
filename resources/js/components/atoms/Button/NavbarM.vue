@@ -1,11 +1,11 @@
 <template>
     <div id="Navbar"  v-if="showNavbarM">
         <CrossButton  imgSrc="img/Cross.png"  @click="closeNavbar()"></CrossButton>
-        <Button text="Inicio" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon_home.png'"></Button>
+        <Button text="Inicio" @click="goToPage('http://localhost:8080/proyecto2/Broggi112/public/carta')" :icon="'./img/icon_home.png'"></Button>
         <Button text="Video" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon_video.png'"></Button>
         <Button text="BigData" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon _bar .png'"></Button>
         <Button text="Admin" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon _admin.png'"></Button>
-        <Button  text="Expedientes" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon _file.png'"></Button>
+        <Button  text="Expedientes" @click="goToPage('http://localhost:8080/proyecto2/Broggi112/public/expedientes')" :icon="'./img/icon _file.png'"></Button>
     </div>
 </template>
 
