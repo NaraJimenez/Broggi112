@@ -1,4 +1,5 @@
 @extends('layout.plantilla')
+
 @section('title')
   Home
 @endsection

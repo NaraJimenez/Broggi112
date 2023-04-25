@@ -1,9 +1,10 @@
 <template>
-    <div id="Navbar"  v-if="showNavbarM">
+    <div id="NavbarA"  v-if="showNavbarA">
         <CrossButton  imgSrc="img/Cross.png"  @click="closeNavbar()"></CrossButton>
         <Button text="Inicio" @click="goToPage('http://localhost:8080/proyecto2/Broggi112/public/home')" :icon="'./img/icon_home.png'"></Button>
         <Button text="Video" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon_video.png'"></Button>
         <Button text="BigData" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon _bar .png'"></Button>
+        <Button text="Admin" @click="goToPage('https://www.miweb.com/inicio')" :icon="'./img/icon _admin.png'"></Button>
         <Button  text="Expedientes" @click="goToPage('http://localhost:8080/proyecto2/Broggi112/public/expedientes')" :icon="'./img/icon _file.png'"></Button>
     </div>
 </template>
@@ -22,14 +23,14 @@ export default {
        },
         data () {
             return {    
-                showNavbarM: true,
+                showNavbarA: true,
 
             };
         },
         methods:{
             
     closeNavbar () {
-        this.showNavbarM = false;
+        this.showNavbarA = false;
         this.$emit('navbar-opened', false);
     },
     goToPage(url) {

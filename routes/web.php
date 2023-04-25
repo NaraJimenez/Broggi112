@@ -38,7 +38,14 @@ Route::get('/', function () {
 
 //Ruta Index (Telefono)
 // Route::view(uri: '/home', view:'layout.home')->name(name:'home');
-Route::get('/home', 'App\Http\Controllers\TelefonController@index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function () {
+        $user = Auth::user();
+
+        return view('home', compact('user'));
+    });
+});
+
 
 
 

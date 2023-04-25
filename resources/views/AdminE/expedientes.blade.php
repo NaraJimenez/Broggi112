@@ -1,3 +1,4 @@
+
 @extends('layout.plantilla') <!-- Se extiende de la plantilla base -->
 
 @section('title')
@@ -154,3 +155,4 @@
 
   </script>
 @endsection
+
