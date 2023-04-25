@@ -225,3 +225,7 @@
         text-align: center;
         width: 100%;
     }
+    
+    .table tr.selected {
+        background-color: yellow;
+    }

@@ -15,9 +15,14 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
+       
+          // Obtiene la lista de expedientes y estados
         $expedientes = Expedients::all();
         $estados = Estat_expedients::all();
-        return view('AdminE.expedientes', compact('expedientes', 'estados'));
+
+          // Devuelve la vista expedientes y le pasa los datos
+          return view('AdminE.expedientes', compact('expedientes', 'estados'));
+
     }
 
     /**
@@ -70,11 +75,19 @@ class ExpedientsController extends Controller
      * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expedients $expedients)
-{
   
-}
+    public function update(Request $request, $id){
+        
+        $estado = Estat_expedients::find($id);
+        $estado->colors = $request->input('color-input');
+       
+        $estado->save();
 
+        return redirect()->back()->with('success', 'El estado del expediente se ha actualizado.');
+    }
+    
+    
+    
 
     /**
      * Remove the specified resource from storage.

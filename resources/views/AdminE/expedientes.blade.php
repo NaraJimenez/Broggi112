@@ -13,17 +13,23 @@
 
 @section('content')
     <div class="admin-background">
-
-      <div id="popup" class="popup">
+      <div id="popup" class="popup"  data-expediente-id="">
         <div class="popup-content">
           <span class="close" onclick="ocultarPopup()">&times;</span>
+          <form action="/expedientes/update" method="POST">
+            @method('POST')
           <p>Selecciona un color:</p>
-          @foreach ($estados as $estado)
+          {{-- Ciclo foreach para mostrar los colores --}}
+          @foreach ($estados as $estado_opcion)
           <div class="popup-color">
-            <span id="popUp" class="popupCircle" style="background-color:  {{$estado->colors}}" onclick="cambiarEstado(this)"></span>
-            <span class="popUpestat">{{ $estado->estat}}</span>
+            <span class="popupCircle color-circle" style="background-color:  {{$estado_opcion->colors}}" onclick="setColor(this)" data-color="{{ $estado_opcion->colors }}"></span>
+            <span class="popUpestat">{{ $estado_opcion->estat}}</span>
           </div>
-        @endforeach
+          @endforeach
+          <input type="hidden" name="expediente_id" value="">
+          <input type="hidden" id="color-input" name="color_id" value="">
+          <button type="submit" id="actualizar-btn">Actualizar</button>
+</form>
         </div>
       </div>
 
@@ -43,11 +49,14 @@
           </thead>
           <tbody>
             @foreach ($expedientes as $expediente)
+            @php
+              $expediente_id = $expediente->id;
+            @endphp
                 <tr>
                   <td>{{$expediente->id}}</td>
                   <td><span>{{$expediente->codi}}</span></td>
                   <td colspan="2" class="estados">
-                    <span class="circle" data-id="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors }}" onclick="mostrarPopup()" ></span>
+                    <span class="circle" data-id="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup()" ></span>
                     <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
                   </td>
                   <td><img src="./img/Carta.png" alt="Carta"></td>
@@ -73,7 +82,30 @@
       var popup = document.getElementById("popup");
       popup.style.display = "flex";
       popup.dataset.expedienteId = element.parentNode.parentNode.firstElementChild.innerHTML;
+
+       // Establecer el color seleccionado actualmente en el popup
+       var colorInput = document.getElementById('color-input');
+      var colorCircles = document.querySelectorAll('.color-circle');
+      for (var i = 0; i < colorCircles.length; i++) {
+        if (colorCircles[i].getAttribute('data-color') === colorInput.value) {
+          colorCircles[i].style.backgroundColor = colorInput.value;
+        } else {
+          colorCircles[i].style.backgroundColor = '';
+        }
+      }
     }
+
+  function setColor(element) {
+  var colorInput = document.getElementById('color-input');
+  colorInput.value = element.getAttribute('data-color');
+  
+  var colorCircles = document.querySelectorAll('.color-circle');
+  for (var i = 0; i < colorCircles.length; i++) {
+    colorCircles[i].style.backgroundColor = '';
+  }
+  element.style.backgroundColor = element.getAttribute('data-color');
+}
+    
 
     function ocultarPopup() {
       var popup = document.getElementById("popup");
