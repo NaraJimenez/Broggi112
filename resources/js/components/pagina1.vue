@@ -51,7 +51,9 @@
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
                         <ul>
-                            <li></li>
+                            <li v-for="result in formData1.searchResults" :key="result.id">
+                                <span>Expediente ID {{ result.id }} Codigo {{ result.codi }} Estado {{result.estat_expedients_id}}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -77,7 +79,9 @@ export default {
                 selectedTipusIncident: "",
                 selectedIncident: "",
                 searchResults: [],
-            },         
+            },
+
+            
             //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},

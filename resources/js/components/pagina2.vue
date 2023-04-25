@@ -247,7 +247,8 @@ export default {
                 axios
                 .get('/api/search/' + this.searchResults.telefono + '/' + this.searchResults.incident + '/' + this.formData.selectedMunicipi)
                 .then((response) => {
-                    this.formData.searchResults = response.data;
+                    this.searchResults = response.data;
+                    this.formData.searchResults = this.searchResults;
 
                 })
                 .catch((error) => {

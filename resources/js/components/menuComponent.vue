@@ -16,9 +16,9 @@
         </div>
 
 
-        <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
+        <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"--> <!--:resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" -->
         <keep-alive>
-            <component :is = "component"  @enviar-objeto1="recibirObjeto1" :resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" 
+            <component :is = "component"  @enviar-objeto1="recibirObjeto1" 
             @enviar-objeto="recibirObjeto" @enviar-objeto3="recibirObjeto3" 
              @finalizarLlamada="confirmFinalizarLlamada()" />
             
