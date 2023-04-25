@@ -44,6 +44,7 @@ body {
     animation: blinker 1s linear infinite;
     max-width: 20%;
     height: auto;
+    z-index: -1;
 }
 
 .message {

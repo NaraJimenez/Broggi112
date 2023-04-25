@@ -4,7 +4,6 @@
 @endsection
 @section('css-pagina')
 <link  href="{{asset('css/home.css')}}" rel="stylesheet" type="text/css">
-<link href="{{asset('js/home.js')}}" rel="text/js">
 @endsection
 @section('content')
 <div class="message-container">
