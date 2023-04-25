@@ -11,8 +11,8 @@
                     <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text"
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
-                    <div id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-bind="formData1.telefonoLlamada"> Num telf</div>
+                    <input id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
+                    v-model="formData1.telefonoLlamada">
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
@@ -51,7 +51,7 @@
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
                         <ul>
-                            <li ></li>
+                            <li  v-for="result in searchResults" :key="result.id"> {{ result.columna1 }} . {{ result.columna2 }}</li>
                         </ul>
                     </div>
                 </div>
@@ -78,15 +78,29 @@ export default {
                 telefonoLlamada: null,
                 selectedTipusIncident: "",
                 selectedIncident: "",
+                searchResults: [],
             },
             
 
+            //BUSCADOR
+            searchTerm: '',
+            selectedOption: '',
+            
+            //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
-
             incidents: [],
             incident: {},
             IncidentEscogido:[],
+            selectedTipusIncident: "",
+            selectedIncident: "",
+
+            // paramSearch: {
+            //     telefon: '',
+            //     // selectMunicipi: 0, 
+            //     incidents_id:0,
+            // }
+
 
         }
     },
@@ -99,14 +113,51 @@ export default {
         this.validateForm1();
 
     },
+    // watch: {
+    //     //watch para detectar cambios en el input y el select y hacer una llamada a la API usando fetch con los valores seleccionados
+    //     "formData1.telefonoLlamada": function(value) {
+    //         this.searchTerm = value;
+    //         this.getSearchResults();
+    //     },
+
+    //     "formData1.selectedIncident": function(newValue, oldValue)  {     
+    //         console.log("OLD: "+ oldValue + " NEW: " + newValue);
+    //         this.selectedOption = newValue;
+    //         this.getSearchResults();
+    //     },
+    // },
     methods: {
+        // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
+        async getSearchResults() {
+            const response = await
+                axios
+                .get('/api/search/' + this.formData1.telefonoLlamada + '/' + this.formData1.selectedIncident)
+                .then((response) => {
+                    this.formData1.searchResults = response.data;
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+                
+            // const data = await response.json();
+            // //mostramos los resultados de la búsqueda
+            // this.searchResults = data;
+            //emitimos un evento al padre con los resultados actualizados
+            // this.$emit('search-results-updated', this.searchResults);
+            this.$emit('enviar-objeto1', this.formData1);
+        },
+
+
+        //VALIDACION DEL FORMULARIO
         validateForm1() {
             //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
             this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
-                this.$emit('enviar-objeto1', this.formData1);
+                this.getSearchResults();
+               
                 //console.log(this.formData);
             }
         },

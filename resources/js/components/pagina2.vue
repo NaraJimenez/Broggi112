@@ -8,15 +8,15 @@
                     <div id="catalunya" class="mt-2 ms-3 text-center mb-2"> Cataluña?</div>
                         <div>
                             <label id="selectCat" >
-                                <input type="radio" id="Si" value="1" v-model="picked" />
+                                <input type="radio" id="Si" value="1" v-model="formData.catEscogido" />
                                 <label for="Si">Si</label>
-                                <input type="radio" id="No" value="0" v-model="picked" class="ms-2"/>
+                                <input type="radio" id="No" value="0" v-model="formData.catEscogido" class="ms-2"/>
                                 <label for="No">No</label>
                             </label>
                         </div>
                         <!--DEPENDE DE LA OPCION-->
                         <!--SI ES CATALUÑA-->
-                        <div v-if=" picked === '1' ">
+                        <div v-if=" formData.catEscogido === '1' ">
                             <!--Provincia-->
                             <select id="selectProvincia" name="selectProvincia" class="form-select mt-2 ms-3"
                             v-model="formData.selectedProvincia" @change="fetchComarques()" required>
@@ -171,8 +171,14 @@
     </div>
 </template>
 <script>
+import { ref, reactive } from "vue";
 export default {
-    props: {},
+    props: {
+        resultados: {
+            type: Array,
+            default: () => [],
+        }
+    },
     data() {
         return {
             formValid: false,
@@ -186,15 +192,24 @@ export default {
             comarques: [],
             comarca: {},
             municipis: [],
+            catEscogido:null,
+
+            //Opcion escogida para hacer el filtro
+            selectedOption: '',
+            //Resultados filtrados
+            resultadosFiltrados: [],
 
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
                 //Si es o no de Cat
+                catEscogido:null,
                 provinciaInput: '',
                 municipioInput: '',
                 selectedProvincia: "",
                 selectedComarca: "",
                 selectedMunicipi: "",
+                //Menu Tab - FALTA METER
+                menuTabEscogido: '',
                 //Carretera
                 inputCarretera: '',
                 inputpuntoKM:'',
@@ -219,6 +234,14 @@ export default {
         console.log('Carta2 montada');
         this.fetchProvincies();
         this.validateForm();
+    },
+    watch: {
+        resultados: {
+            handler(nuevosResultados) {
+            // Hacer una llamada a la API para obtener los resultados actualizados
+            },
+            immediate: true
+        }
     },
     methods: {
         //Select tab este guardara el tipo de localizacion

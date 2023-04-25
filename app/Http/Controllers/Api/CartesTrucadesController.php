@@ -9,6 +9,7 @@ use App\Models\Interlocutors;
 
 
 use App\Models\Cartes_trucades;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use App\Http\Resources\CartesTrucadesResources;
@@ -73,7 +74,7 @@ class CartesTrucadesController extends Controller
             //Segundo FORM
              //TIPOS_LOCALIZACION --Guardamos en la tabla de tipos de localizacion
              //FALTA PASAR VALOR DEL PICKED
-            if ($request->input('picked') == 0) {
+            if ($request->input('catEscogido') == 0) {
                 //PROVINCIA
                 $cartaTrucada->provincies_id = $request->input('selectProvincia');
                 //MUNICIPI
@@ -193,11 +194,21 @@ class CartesTrucadesController extends Controller
         //
     }
 
-    //Buscador
-  /*  public function search($telefono) {
-        $cartes = Cartes_trucades::where('telefonoLlamada', 'like', '%'.$telefono.'%')
-                               // ->where('municipio_id', 'like', '%'.$municipio_id.'%')
-                                ->get();
-        return response()->json($cartes);
-    }*/
+    //BUSCADOR PRUEBA 2
+    public function search($telefon, $incident = 0)
+    {
+
+        // $selectValue2 = $request->selectMunicipi;
+    
+        $results = Expedients::join('cartes_trucades', 'cartes_trucades.expedients_id', '=', 'expedients.id')
+                    ->join('incidents', 'cartes_trucades.incidents_id', '=', 'incidents.id')
+                    ->where('incidents.tipus_incidents_id', $incident) 
+                    // ->orWhere('cartes_trucades.municipis_id', $selectValue2)
+                    ->orWhere('cartes_trucades.telefon', 'LIKE', '%'.$telefon.'%')
+                    ->select('expedients.*')
+                    ->get();
+    
+        return response()->json($results);
+    }
+
 }

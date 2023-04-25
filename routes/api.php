@@ -42,4 +42,5 @@ Route::apiResource('municipis', MunicipisController::class);
 Route::apiResource('expedients', ExpedientsController::class);
 
 //Buscador
-Route::get('/cartestrucades/search/{telefonoLlamada}', [CartesTrucadesController::class, 'search']);
+//Route::get('/cartestrucades/search/{telefonoLlamada}', [CartesTrucadesController::class, 'search']);
+Route::get('/search/{telefon}/{incident?}', [CartesTrucadesController::class, 'search']);

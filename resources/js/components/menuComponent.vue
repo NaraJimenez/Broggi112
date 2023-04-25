@@ -19,7 +19,8 @@
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
-            @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada()" />
+            @enviar-objeto3="recibirObjeto3" 
+            :resultados="searchResults" @finalizarLlamada="confirmFinalizarLlamada()" />
             
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
 
@@ -108,6 +109,8 @@
 
                 //Modal
                 myModal: {},
+                //Buscador
+                searchResults: [],
             }
         },
         mounted() {
@@ -126,6 +129,16 @@
             },
         },
         methods: {
+            //el componente hijo y actualizando el estado del componente padre con los resultados
+            handleSearchResultsUpdated(results) {
+                console.log('hola');
+                this.searchResults = results;
+            },
+            //Nuevos resultados enviados por el form 2
+            nuevoResultado(resultados) {
+            // Manejar el evento emitido por el componente hijo
+            this.resultados = resultados
+            },
             //Tiempo
             setFechaHoraActual() {
                 this.fechaHoraActual = new Date().toLocaleString('es-ES');
@@ -154,12 +167,12 @@
                 //Se guarda dentro del objeto padre
             },
             recibirObjeto1(myForm1) {
-                this.objetoRecibido1 = myForm1;
+                debugger;
                 console.log('Ha llegado al padre FORM 1');
                 this.pasadoForm1 = true;
                 console.log(this.pasadoForm1);
                 //Se guarda dentro del objeto padre
-                this.cartaTrucadaRealizada.objetoRecibido1 = objetoRecibido1;
+                this.cartaTrucadaRealizada.objetoRecibido1 = myForm1;
             },
             recibirObjeto3(myForm3) {
                 this.objetoRecibido3 = myForm3;
