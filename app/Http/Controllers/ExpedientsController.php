@@ -76,6 +76,7 @@ class ExpedientsController extends Controller
      * @return \Illuminate\Http\Response
      */
   
+    //  Actualiza el estado del expediente
     public function update(Request $request, $id){
         
         $estado = Estat_expedients::find($id);

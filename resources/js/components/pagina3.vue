@@ -1,6 +1,6 @@
 <template >
-    <div>
-        <div>Pagina 3</div>
+    <div id="Mapbox">
+        <div></div>
     </div>
 </template>
 <script>

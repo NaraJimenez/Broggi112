@@ -42,11 +42,6 @@ Route::get('/home', 'App\Http\Controllers\TelefonController@index');
 
 
 
-
-
-//ESTAS SON MIS RUTAS PARA PORBAR
-
-
 //Ruta Carta llamada - Localización
 Route::get('/mapbox', function () {
     return view('Mapbox.mapbox');
@@ -62,9 +57,6 @@ Route::get('/mapbox', function () {
 
 
 //Ruta Menu Admin
-
-
-//Ruta Admin. usuarios (Tabla)
 
 
 //Ruta Admin. expedientes

@@ -1,11 +1,11 @@
-@extends('layout.plantilla')
+@extends('layout.plantilla') <!-- Se extiende de la plantilla base -->
 
 @section('title')
-  Expedientes
+  Expedientes <!-- El título de la página -->
 @endsection
 
 @section('css-pagina')
-<link  href="{{asset('css/expedientes.css')}}" rel="stylesheet" type="text/css">
+<link  href="{{asset('css/expedientes.css')}}" rel="stylesheet" type="text/css"> <!-- Estilos CSS para la página -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -13,11 +13,13 @@
 
 @section('content')
     <div class="admin-background">
+      
+      <!-- Popup para actualizar el estado de un expediente -->
       <div id="popup" class="popup"  data-expediente-id="">
-        <div class="popup-content">
+        <div class="popup-contents">
           <span class="close" onclick="ocultarPopup()">&times;</span>
-          <form action="/expedientes/update" method="POST">
-            @method('POST')
+          <form action="/expedientes/update" method="POST" class="popup-content">
+            @method('POST') <!-- Especifica el método HTTP utilizado en el formulario -->
           <p>Selecciona un color:</p>
           {{-- Ciclo foreach para mostrar los colores --}}
           @foreach ($estados as $estado_opcion)
@@ -26,55 +28,69 @@
             <span class="popUpestat">{{ $estado_opcion->estat}}</span>
           </div>
           @endforeach
+          {{-- Inputs para enviar los datos del formulario --}}
           <input type="hidden" name="expediente_id" value="">
           <input type="hidden" id="color-input" name="color_id" value="">
+          {{-- Envía los datos --}}
           <button type="submit" id="actualizar-btn">Actualizar</button>
-</form>
+          </form>
         </div>
       </div>
+      
+     {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes --}}
+<div class="header-file">
+  <p class="title"> Administración de expedientes</p>
+  <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por expediente...">
+</div>
 
-      <div class="header-file">
-        <p class="title"> Administración de expedientes</p>
-        <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar...">
-      </div>
-      <div class="admin-content" >
-        <table style="border-spacing: 10px 0">
-          <thead>
-            <tr>
+{{-- Esta sección muestra la tabla con los expedientes --}}
+<div class="admin-content" >
+  <table style="border-spacing: 10px 0">
+      <thead>
+          <tr>
               <th>Id</th>
               <th>Codigo Expediente</th>
               <th colspan="2">Estado</th>
               <th>Carta</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($expedientes as $expediente)
-            @php
-              $expediente_id = $expediente->id;
-            @endphp
-                <tr>
-                  <td>{{$expediente->id}}</td>
-                  <td><span>{{$expediente->codi}}</span></td>
-                  <td colspan="2" class="estados">
-                    <span class="circle" data-id="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup()" ></span>
-                    <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
-                  </td>
-                  <td><img src="./img/Carta.png" alt="Carta"></td>
-                </tr> 
-            @endforeach
-          </tbody>
-        </table>        
-      </div>
-    </div>
+          </tr>
+      </thead>
+      <tbody>
+          {{-- Se itera sobre cada expediente para mostrarlos en la tabla --}}
+          @foreach ($expedientes as $expediente)
+          {{-- Se obtiene el id del expediente --}}
+          @php
+          $expediente_id = $expediente->id;
+          @endphp
+          <tr>
+              {{-- Se muetra el id del expediente --}}
+              <td>{{$expediente->id}}</td>
+              {{-- Se muestra el código del expediente --}}
+              <td><span>{{$expediente->codi}}</span></td>
+              <td colspan="2" class="estados">
+                  {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
+                  <span class="circle" data-id="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup()" ></span>
+                  {{-- Se muestra el estado actual del expediente --}}
+                  <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
+              </td>
+              {{-- Se muestra una imagen de una carta que abrirá un popup con expedientes --}}
+              <td><img src="./img/Carta.png" alt="Carta"></td>
+          </tr> 
+          @endforeach
+      </tbody>
+  </table>        
+</div>
 
-    <div class="button-container">
-      <div class="buttons">
-        <button class="button">Usuario</button>
-        <button class="button-selected">Expedientes</button>
-        <button class="button">Agencias</button>
-      </div>
+{{-- Esta sección muestra los botones de navegación de la página --}}
+<div class="button-container">
+  <div class="buttons">
+      <button class="button">Usuario</button>
+      {{-- El botón de Expedientes aparece seleccionado por defecto --}}
+      <button class="button-selected">Expedientes</button>
+      <button class="button">Agencias</button>
   </div>
+</div>
 @endsection
+
 
 @section('scripts')
   <script>
@@ -106,12 +122,13 @@
   element.style.backgroundColor = element.getAttribute('data-color');
 }
     
-
+//Se oculta el popup
     function ocultarPopup() {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
     }
 
+    // Filtra el expediente según el código
     function buscar() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchInput");
