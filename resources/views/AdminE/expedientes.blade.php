@@ -83,7 +83,7 @@
 {{-- Esta sección muestra los botones de navegación de la página --}}
 <div class="button-container">
   <div class="buttons">
-      <button class="button">Usuario</button>
+      <a class="button" href="{{ url('/adminuser') }}">Usuario</a>
       {{-- El botón de Expedientes aparece seleccionado por defecto --}}
       <button class="button-selected">Expedientes</button>
       <button class="button">Agencias</button>
