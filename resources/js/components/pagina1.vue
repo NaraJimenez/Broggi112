@@ -29,7 +29,7 @@
                         >
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
-                            :value="tipusIncident.id" v-model="selectedOption">{{ tipusIncident.nom }}</option>
+                            :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
 
                         <!--Incidentes aria-label="selectedIncident"-->
@@ -66,7 +66,7 @@
 </template>
 <script>
 export default {
-    props: {},
+    //props: {},
     data() {
         return {
             formValid: false,
@@ -100,15 +100,7 @@ export default {
         this.validateForm1();
 
     },
-    watch: {
-        //watch para detectar cambios en el input y el select y hacer una llamada a la API usando fetch con los valores seleccionados
-        searchTerm: function() {
-            this.getSearchResults();
-        },
-        selectedOption: function() {
-            this.getSearchResults();
-        },
-    },
+
     methods: {
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
         async getSearchResults() {

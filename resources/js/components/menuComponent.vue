@@ -19,10 +19,11 @@
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"--> <!--:resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" -->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
+            :objeto-recibido="cartaTrucadaRealizada.objetoRecibido1"
             @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada()" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
-
+        <!--:carta-trucada-realizada="cartaTrucadaRealizada.objetoRecibido1" :search-results="objetoRecibido1.searchResults"-->
     </div>
 
     <!--MODAL-->
@@ -62,8 +63,6 @@
     import pagina1 from "./pagina1.vue";
     import pagina2 from "./pagina2.vue";
     import pagina3 from "./pagina3.vue";
-
-
     export default {
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
@@ -73,25 +72,29 @@
                 tabs: ["pagina1", "pagina2", "pagina3"],
                 //El primer componente en mostrar
                 component: "pagina1",
-
-
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
                 pasadoForm1: false,
                 pasadoForm2: false,
-
+                pasadoForm3: false,
+                todosFormsRecibidos: false,
+                //Objeto en que se guardan todos los elementos de la carta - Objeto padre
+                cartaTrucadaRealizada: {
+                    //Aqui se guardan los elementos que se van a enviar a la B
+                    objetoRecibido1: null,
+                    objetoRecibido: null,
+                    objetoRecibido3: null,
+                    //FALTA METER EL TIEMPO Y EL CODIGO AQUI
+                },
                 //TIEMPO
                 fechaHoraActual: "",
                 contador: 0,
                 interval: null,
                 iniciTrucada: "",
                 duracioTrucada: 0,
-
                 //Codigo Llamada
                 codiTrucada: this.generarCodiTrucada(),
-
                 //Modal
                 myModal: {},
-
                 //Buscador final se guarda aqui y este se ha de mostrar en el modal
                 searchResults: [],
             }
@@ -99,7 +102,6 @@
         mounted() {
             this.setFechaHoraActual();
             this.iniciarContador();
-
         },
         beforeDestroy() {
             clearInterval(this.interval);
@@ -112,17 +114,6 @@
             },
         },
         methods: {
-            // //el componente hijo y actualizando el estado del componente padre con los resultados
-            // handleSearchResultsUpdated(results) {
-            //     console.log('hola');
-            //     this.searchResults = results;
-            // },
-            // //Nuevos resultados enviados por el form 2
-            // nuevoResultado(resultados) {
-            // // Manejar el evento emitido por el componente hijo
-            // this.resultados = resultados
-            // },
-
             //Tiempo
             setFechaHoraActual() {
                 this.fechaHoraActual = new Date().toLocaleString('es-ES');
@@ -136,13 +127,11 @@
                 const [minutos, segundos] = tiempoFormateado.split(':');
                 return parseInt(minutos) * 60 + parseInt(segundos);
             },
-
             //Codigo Llamada
             generarCodiTrucada() {
                 const timestamp = new Date().getTime();
                 return `TRUC-${timestamp}`;
             },
-
             //SE RECIBEN LOS OBJETOS
             //FORM 1
             recibirObjeto1(myForm1) {
@@ -173,7 +162,6 @@
                 this.cartaTrucadaRealizada.objetoRecibido3 = myForm3;
                 //CUANDO SE RELLENAN TODOS LOS FORMS SE ACTIVA EL BOTON DE ENVIAR EN LA PAGINA 3
             },
-
             //FINALIZAR LLAMADA
             confirmFinalizarLlamada(){
                 this.myModal = new bootstrap.Modal('#myModal', options);
@@ -202,7 +190,6 @@
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
             actualizarCarta(){
                 //Con el id del expediente se crea una carta asociado a este
-
                 this.cartaTrucadaRealizada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
@@ -221,9 +208,7 @@
                         }
                     });
             }
-
         }
-
     }
 </script>
 <style>
@@ -232,12 +217,10 @@
         margin: 0 auto;
         display: flex;
     }
-
     .tabs_header{
         margin-bottom: 10px;
         padding: 0;
     }
-
     .tabs_header > button {
         text-align: center;
         width: 170px;
@@ -247,12 +230,10 @@
         color: black;
         border-radius: 10px;
         border-color: none;
-
         /*Para darle feedback al user*/
         cursor: pointer;
         transition: 0.4s all ease-out;
     }
-
     .tabs_header > button.selected {
         background-color: #025D73;
         color: #FBFBFD;
