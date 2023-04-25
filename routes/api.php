@@ -41,9 +41,6 @@ Route::apiResource('municipis', MunicipisController::class);
 
 Route::apiResource('expedients', ExpedientsController::class);
 
-
-
-//Buscador -- prueba1
-Route::get('/cartestrucades/search/{category}/{type}', [CartesTrucadesController::class, 'search']);
-
-Route::get('/search', [CartesTrucadesController::class, 'search']);
+//Buscador
+//Route::get('/search/{telefon}/{incident?}', [CartesTrucadesController::class, 'search']);
+Route::get('/search/{telefon}/{incident?}/{municipi?}', [CartesTrucadesController::class, 'search']);

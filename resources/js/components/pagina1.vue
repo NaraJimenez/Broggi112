@@ -12,7 +12,7 @@
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
                     <input id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-bind="formData1.telefonoLlamada" v-model="searchTerm"> Num telf</input>
+                    v-model="formData1.telefonoLlamada">
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
@@ -51,7 +51,9 @@
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
                         <ul>
-                            <li  v-for="result in searchResults" :key="result.id"> {{ result.columna1 }} . {{ result.columna2 }}</li>
+                            <li v-for="result in formData1.searchResults" :key="result.id">
+                                <span>Expediente ID {{ result.id }} Codigo {{ result.codi }} Estado {{result.estat_expedients_id}}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -68,9 +70,7 @@ export default {
     data() {
         return {
             formValid: false,
-            //VALIDAR
-            //RELACIONAR CON EL PADRE
-            //ENVIAR FILTRO A PADRE o HERMANO
+            //Form que se envia al padre
             formData1: {
                 inputNombre: '',
                 inputApellidos:'',
@@ -78,25 +78,17 @@ export default {
                 telefonoLlamada: null,
                 selectedTipusIncident: "",
                 selectedIncident: "",
+                searchResults: [],
             },
 
-            //BUSCADOR
-            searchTerm: '',
-            selectedOption: 'opcion1',
-            searchResults: [],
 
-            //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
-
             incidents: [],
             incident: {},
             IncidentEscogido:[],
             selectedTipusIncident: "",
             selectedIncident: "",
-
-
-
         }
     },
     created(){
@@ -120,20 +112,30 @@ export default {
     methods: {
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
         async getSearchResults() {
-            const response = await fetch(`/api/cartestrucades?searchTerm=${this.searchTerm}&selectedOption=${this.selectedOption}`);
-            const data = await response.json();
-            //mostramos los resultados de la búsqueda
-            this.searchResults = data;
+            const response = await
+                axios
+                .get('/api/search/' + this.formData1.telefonoLlamada + '/' + this.formData1.selectedIncident)
+                .then((response) => {
+                    this.formData1.searchResults = response.data;
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
             //emitimos un evento al padre con los resultados actualizados
-            this.$emit('search-results-updated', this.searchResults);
+            this.$emit('enviar-objeto1', this.formData1);
         },
+
+
+        //VALIDACION DEL FORMULARIO
         validateForm1() {
             //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
             this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
-                this.$emit('enviar-objeto1', this.formData1);
+                this.getSearchResults();
                 //console.log(this.formData);
             }
         },

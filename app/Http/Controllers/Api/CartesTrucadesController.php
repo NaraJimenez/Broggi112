@@ -9,6 +9,7 @@ use App\Models\Interlocutors;
 
 
 use App\Models\Cartes_trucades;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use App\Http\Resources\CartesTrucadesResources;
@@ -73,7 +74,7 @@ class CartesTrucadesController extends Controller
             //Segundo FORM
              //TIPOS_LOCALIZACION --Guardamos en la tabla de tipos de localizacion
              //FALTA PASAR VALOR DEL PICKED
-            if ($request->input('picked') == 0) {
+            if ($request->input('catEscogido') == 0) {
                 //PROVINCIA
                 $cartaTrucada->provincies_id = $request->input('selectProvincia');
                 //MUNICIPI
@@ -192,28 +193,19 @@ class CartesTrucadesController extends Controller
     {
         //
     }
-    /*recibirá los parámetros de búsqueda y devolverá los resultados  */
-    public function search1(Cartes_trucades $category, $type)
+
+    //BUSCADOR PRUEBA 2
+    public function search($telefon, $incident = 0, $municipi = 0)
     {
-        $cartes = Cartes_trucades::where('category', $category)
-                                ->where('type', $type)
-                                ->get();
-        return response()->json($cartes);
+        $results = Expedients::join('cartes_trucades', 'cartes_trucades.expedients_id', '=', 'expedients.id')
+                    ->join('incidents', 'cartes_trucades.incidents_id', '=', 'incidents.id')
+                    ->where('incidents.tipus_incidents_id', $incident)
+                    ->orWhere('cartes_trucades.municipis_id', $municipi)
+                    ->orWhere('cartes_trucades.telefon', 'LIKE', '%'.$telefon.'%')
+                    ->select('expedients.*')
+                    ->get();
+
+        return response()->json($results);
     }
 
-    //Prueba 2
-    public function search(Request $request)
-{
-    $inputValue = $request->inputValue;
-    $selectValue1 = $request->selectValue1;
-    $selectValue2 = $request->selectValue2;
-
-    $results = DB::table('table_name')
-                ->where('column1', $selectValue1)
-                ->where('column2', $selectValue2)
-                ->where('column3', 'LIKE', '%'.$inputValue.'%')
-                ->get();
-
-    return response()->json($results);
-}
 }

@@ -8,15 +8,15 @@
                     <div id="catalunya" class="mt-2 ms-3 text-center mb-2"> Cataluña?</div>
                         <div>
                             <label id="selectCat" >
-                                <input type="radio" id="Si" value="0" v-model="picked" />
+                                <input type="radio" id="Si" value="1" v-model="formData.catEscogido" />
                                 <label for="Si">Si</label>
-                                <input type="radio" id="No" value="1" v-model="picked" class="ms-2"/>
+                                <input type="radio" id="No" value="0" v-model="formData.catEscogido" class="ms-2"/>
                                 <label for="No">No</label>
                             </label>
                         </div>
                         <!--DEPENDE DE LA OPCION-->
                         <!--SI ES CATALUÑA-->
-                        <div v-if="picked === '0' ">
+                        <div v-if=" formData.catEscogido === '1' ">
                             <!--Provincia-->
                             <select id="selectProvincia" name="selectProvincia" class="form-select mt-2 ms-3"
                             v-model="formData.selectedProvincia" @change="fetchComarques()" required>
@@ -163,9 +163,9 @@
 import { ref, reactive } from "vue";
 export default {
     props: {
-        resultados: {
+        searchResults: {
             type: Array,
-            default: () => [],
+            required: true
         }
     },
     data() {
@@ -183,21 +183,19 @@ export default {
             comarques: [],
             comarca: {},
             municipis: [],
-
-            //Opcion escogida para hacer el filtro
-            selectedOption: '',
-
-            //Resultados filtrados
-            resultadosFiltrados: [];
+            catEscogido:null,
 
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
                 //Si es o no de Cat
+                catEscogido:null,
                 provinciaInput: '',
                 municipioInput: '',
                 selectedProvincia: "",
                 selectedComarca: "",
                 selectedMunicipi: "",
+                //Menu Tab - FALTA METER
+                menuTabEscogido: '',
                 //Carretera
                 inputCarretera: '',
                 inputpuntoKM:'',
@@ -213,6 +211,8 @@ export default {
                 inputPS: '',
                 //Población
                 inputPob: '',
+                //Se guardan la busqueda para enviar al padre de nuevo
+                searchResults: [],
             },
         };
     },
@@ -232,13 +232,40 @@ export default {
         }
     },
     methods: {
+        //Select tab este guardara el tipo de localizacion
+        setActiveElement(value) {
+            const element = document.querySelector(`.tab-pane.container.active[value="${value}"]`);
+            if (element) {
+                this.activeElement = value;
+
+            }
+        },
+        // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
+        async getSearchResults() {
+            const response = await
+                axios
+                .get('/api/search/' + this.searchResults.telefono + '/' + this.searchResults.incident + '/' + this.formData.selectedMunicipi)
+                .then((response) => {
+                    this.searchResults = response.data;
+                    this.formData.searchResults = this.searchResults;
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            //emitimos un evento al padre con los resultados actualizados
+            this.$emit('enviar-objeto', this.formData);
+        },
+
+        //Validar Form
         validateForm() {
             //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
             this.formValid = !!this.formData.provinciaInput && !!this.formData.municipioInput;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
-                this.$emit('enviar-objeto', this.formData);
+                this.getSearchResults();
                 //console.log(this.formData);
             }
         },
