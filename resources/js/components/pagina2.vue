@@ -174,9 +174,9 @@
 import { ref, reactive } from "vue";
 export default {
     props: {
-        resultados: {
+        searchResults: {
             type: Array,
-            default: () => [],
+            required: true
         }
     },
     data() {
@@ -193,11 +193,6 @@ export default {
             comarca: {},
             municipis: [],
             catEscogido:null,
-
-            //Opcion escogida para hacer el filtro
-            selectedOption: '',
-            //Resultados filtrados
-            resultadosFiltrados: [],
 
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
@@ -225,6 +220,8 @@ export default {
                 inputPS: '',
                 //Población
                 inputPob: '',
+                //Se guardan la busqueda para enviar al padre de nuevo
+                searchResults: [],
             },
         };
     },
@@ -235,14 +232,6 @@ export default {
         this.fetchProvincies();
         this.validateForm();
     },
-    watch: {
-        resultados: {
-            handler(nuevosResultados) {
-            // Hacer una llamada a la API para obtener los resultados actualizados
-            },
-            immediate: true
-        }
-    },
     methods: {
         //Select tab este guardara el tipo de localizacion
         setActiveElement(value) {
@@ -252,13 +241,31 @@ export default {
 
             }
         },
+        // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
+        async getSearchResults() {
+            const response = await
+                axios
+                .get('/api/search/' + this.searchResults.telefono + '/' + this.searchResults.incident + '/' + this.formData.selectedMunicipi)
+                .then((response) => {
+                    this.formData.searchResults = response.data;
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+                
+            //emitimos un evento al padre con los resultados actualizados
+            this.$emit('enviar-objeto', this.formData);
+        },
+
+        //Validar Form
         validateForm() {
             //La doble negación !! convierte el resultado en un valor booleano
             this.formValid = !!this.formData.provinciaInput && !!this.formData.municipioInput;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
-                this.$emit('enviar-objeto', this.formData);
+                this.getSearchResults();
                 //console.log(this.formData);
             }
         },

@@ -18,9 +18,9 @@
 
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"-->
         <keep-alive>
-            <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
-            @enviar-objeto3="recibirObjeto3" 
-            :resultados="searchResults" @finalizarLlamada="confirmFinalizarLlamada()" />
+            <component :is = "component"  @enviar-objeto1="recibirObjeto1" :resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" 
+            @enviar-objeto="recibirObjeto" @enviar-objeto3="recibirObjeto3" 
+             @finalizarLlamada="confirmFinalizarLlamada()" />
             
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
 
@@ -68,10 +68,6 @@
     export default {
         //Pasamos los componentes
         components: { pagina1, pagina2, pagina3 },
-
-        //props: {}, para pasar datos al filtro
-        //telèfon, si es de cat o no, tipus de incident.
-
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
@@ -109,7 +105,8 @@
 
                 //Modal
                 myModal: {},
-                //Buscador
+
+                //Buscador final se guarda aqui y este se ha de mostrar en el modal
                 searchResults: [],
             }
         },
@@ -129,16 +126,17 @@
             },
         },
         methods: {
-            //el componente hijo y actualizando el estado del componente padre con los resultados
-            handleSearchResultsUpdated(results) {
-                console.log('hola');
-                this.searchResults = results;
-            },
-            //Nuevos resultados enviados por el form 2
-            nuevoResultado(resultados) {
-            // Manejar el evento emitido por el componente hijo
-            this.resultados = resultados
-            },
+            // //el componente hijo y actualizando el estado del componente padre con los resultados
+            // handleSearchResultsUpdated(results) {
+            //     console.log('hola');
+            //     this.searchResults = results;
+            // },
+            // //Nuevos resultados enviados por el form 2
+            // nuevoResultado(resultados) {
+            // // Manejar el evento emitido por el componente hijo
+            // this.resultados = resultados
+            // },
+
             //Tiempo
             setFechaHoraActual() {
                 this.fechaHoraActual = new Date().toLocaleString('es-ES');
@@ -152,36 +150,44 @@
                 const [minutos, segundos] = tiempoFormateado.split(':');
                 return parseInt(minutos) * 60 + parseInt(segundos);
             },
+
             //Codigo Llamada
             generarCodiTrucada() {
                 const timestamp = new Date().getTime();
                 return `TRUC-${timestamp}`;
             },
-            //Recibir Objeto -- FALTA PONER this.cartaTrucadaRealizada.
-            recibirObjeto(myForm) {
-                this.objetoRecibido = myForm;
-                console.log('Ha llegado al padre FORM 2');
-                this.pasadoForm2 = true;
-                console.log(this.pasadoForm2)
-                this.cartaTrucadaRealizada.objetoRecibido = objetoRecibido;
-                //Se guarda dentro del objeto padre
-            },
+
+            //SE RECIBEN LOS OBJETOS
+            //FORM 1
             recibirObjeto1(myForm1) {
-                debugger;
+                //debugger;
                 console.log('Ha llegado al padre FORM 1');
                 this.pasadoForm1 = true;
                 console.log(this.pasadoForm1);
                 //Se guarda dentro del objeto padre
                 this.cartaTrucadaRealizada.objetoRecibido1 = myForm1;
+                
             },
+            //FORM 2
+            recibirObjeto(myForm) {
+                //this.objetoRecibido = myForm;
+                console.log('Ha llegado al padre FORM 2');
+                this.pasadoForm2 = true;
+                console.log(this.pasadoForm2)
+                //Se guarda dentro del objeto padre
+                this.cartaTrucadaRealizada.objetoRecibido = myForm;
+            },
+            //FORM 3 
             recibirObjeto3(myForm3) {
-                this.objetoRecibido3 = myForm3;
+                //this.objetoRecibido3 = myForm3;
                 console.log('Ha llegado al padre FORM 3');
                 this.pasadoForm3 = true;
                 console.log(this.pasadoForm3);
                 //Se guarda dentro del objeto padre
-                this.cartaTrucadaRealizada.objetoRecibido3 = objetoRecibido3;
+                this.cartaTrucadaRealizada.objetoRecibido3 = myForm3;
+                //CUANDO SE RELLENAN TODOS LOS FORMS SE ACTIVA EL BOTON DE ENVIAR EN LA PAGINA 3 
             },
+
             //FINALIZAR LLAMADA
             confirmFinalizarLlamada(){
                 this.myModal = new bootstrap.Modal('#myModal', options);

@@ -51,7 +51,7 @@
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
                         <ul>
-                            <li  v-for="result in searchResults" :key="result.id"> {{ result.columna1 }} . {{ result.columna2 }}</li>
+                            <li></li>
                         </ul>
                     </div>
                 </div>
@@ -68,9 +68,7 @@ export default {
     data() {
         return {
             formValid: false,
-            //VALIDAR
-            //RELACIONAR CON EL PADRE
-            //ENVIAR FILTRO A PADRE o HERMANO
+            //Form que se envia al padre
             formData1: {
                 inputNombre: '',
                 inputApellidos:'',
@@ -79,13 +77,7 @@ export default {
                 selectedTipusIncident: "",
                 selectedIncident: "",
                 searchResults: [],
-            },
-            
-
-            //BUSCADOR
-            searchTerm: '',
-            selectedOption: '',
-            
+            },         
             //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
@@ -94,14 +86,6 @@ export default {
             IncidentEscogido:[],
             selectedTipusIncident: "",
             selectedIncident: "",
-
-            // paramSearch: {
-            //     telefon: '',
-            //     // selectMunicipi: 0, 
-            //     incidents_id:0,
-            // }
-
-
         }
     },
     created(){
@@ -113,19 +97,6 @@ export default {
         this.validateForm1();
 
     },
-    // watch: {
-    //     //watch para detectar cambios en el input y el select y hacer una llamada a la API usando fetch con los valores seleccionados
-    //     "formData1.telefonoLlamada": function(value) {
-    //         this.searchTerm = value;
-    //         this.getSearchResults();
-    //     },
-
-    //     "formData1.selectedIncident": function(newValue, oldValue)  {     
-    //         console.log("OLD: "+ oldValue + " NEW: " + newValue);
-    //         this.selectedOption = newValue;
-    //         this.getSearchResults();
-    //     },
-    // },
     methods: {
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
         async getSearchResults() {
@@ -140,11 +111,7 @@ export default {
                     console.error(error);
                 });
                 
-            // const data = await response.json();
-            // //mostramos los resultados de la búsqueda
-            // this.searchResults = data;
             //emitimos un evento al padre con los resultados actualizados
-            // this.$emit('search-results-updated', this.searchResults);
             this.$emit('enviar-objeto1', this.formData1);
         },
 
@@ -157,7 +124,6 @@ export default {
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
                 this.getSearchResults();
-               
                 //console.log(this.formData);
             }
         },

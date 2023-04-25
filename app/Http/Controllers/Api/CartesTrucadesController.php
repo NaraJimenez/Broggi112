@@ -195,15 +195,12 @@ class CartesTrucadesController extends Controller
     }
 
     //BUSCADOR PRUEBA 2
-    public function search($telefon, $incident = 0)
+    public function search($telefon, $incident = 0, $municipi = 0)
     {
-
-        // $selectValue2 = $request->selectMunicipi;
-    
         $results = Expedients::join('cartes_trucades', 'cartes_trucades.expedients_id', '=', 'expedients.id')
                     ->join('incidents', 'cartes_trucades.incidents_id', '=', 'incidents.id')
                     ->where('incidents.tipus_incidents_id', $incident) 
-                    // ->orWhere('cartes_trucades.municipis_id', $selectValue2)
+                    ->orWhere('cartes_trucades.municipis_id', $municipi)
                     ->orWhere('cartes_trucades.telefon', 'LIKE', '%'.$telefon.'%')
                     ->select('expedients.*')
                     ->get();
