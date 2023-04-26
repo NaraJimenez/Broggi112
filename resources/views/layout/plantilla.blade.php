@@ -16,7 +16,7 @@
 </head>
 <body> 
     <div id="Menu">
-        
+    
     </div>
     <div id="Profile" class="profile">
         {{-- @if (Auth::check() && $user->tipus_usuaris_id == 2)
@@ -26,18 +26,8 @@
             <div id="menuA" ></div>
         </div>
            
-        @endif
-
-        @if (Auth::check())
-        <div>
-            <span>{{ $user->nom }}</span> 
-                <span>{{ $user->tipus_usuaris_id }}</span>
-        
-            <div id="Menu">
-        
-            </div>
-        </div>   
         @endif --}}
+
     </div>
 
     @yield('content')

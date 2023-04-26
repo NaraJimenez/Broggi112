@@ -63,6 +63,24 @@
         width: 100%;
         height: 100%;
     }
+    /* Estilos para la paginación */
+    
+    .pagination-style {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pagination-style span,
+    a {
+        background-color: #76DAE4;
+        color: white;
+        text-decoration: none;
+        margin: 0 5px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
     /* Estilos para los botones */
     
     .buttons-container {

@@ -17,9 +17,8 @@ class ExpedientsController extends Controller
     {
        
           // Obtiene la lista de expedientes y estados
-        $expedientes = Expedients::all();
+        $expedientes = Expedients::paginate(6);
         $estados = Estat_expedients::all();
-
           // Devuelve la vista expedientes y le pasa los datos
           return view('AdminE.expedientes', compact('expedientes', 'estados'));
 

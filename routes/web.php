@@ -7,6 +7,8 @@
     use Illuminate\Support\Facades\Auth;
     use App\Http\Controllers\TelefonController;
     use App\Http\Controllers\ExpedientsController;
+    use App\Models\Usuaris;
+
     // Ruta para mostrar la página de inicio cuando se inicia sesión correctamente
     Route::get('/correcto', function () {
         return view('prova');

@@ -13,14 +13,13 @@
 @endsection
 
 @section('content')
-    <div class="admin-background">
-      
-      <!-- Popup para actualizar el estado de un expediente -->
-      <div id="popup" class="popup"  data-expediente-id="">
-        <div class="popup-contents">
-          <span class="close" onclick="ocultarPopup()">&times;</span>
-          <form action="{{ url ('/expedientes/update')}}" method="POST" class="popup-content">
-            @csrf
+<div class="admin-background">
+  <!-- Popup para actualizar el estado de un expediente -->
+  <div id="popup" class="popup"  data-expediente-id="">
+    <div class="popup-contents">
+      <span class="close" onclick="ocultarPopup()">&times;</span>
+      <form action="{{ url ('/expedientes/update')}}" method="POST" class="popup-content">
+          @csrf
            <p>Selecciona un color:</p>
           {{-- Ciclo foreach para mostrar los colores --}}
           @foreach ($estados as $estado_opcion)
@@ -34,19 +33,19 @@
           <input type="hidden" id="color-input" name="color_id" value="">
           {{-- Envía los datos --}}
           <button type="submit" id="actualizar-btn">Actualizar</button>
-          </form>
-        </div>
-      </div>
-      
-     {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes --}}
-<div class="header-file">
-  <p class="title"> Administración de expedientes</p>
-  <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por expediente...">
-</div>
+      </form>
+    </div>
+  </div>
 
-{{-- Esta sección muestra la tabla con los expedientes --}}
-<div class="admin-content" >
-  <table style="border-spacing: 10px 0">
+       {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes  --}}
+  <div class="header-file">
+    <p class="title"> Administración de expedientes</p>
+    <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por expediente...">
+  </div>
+
+  {{-- Esta sección muestra la tabla con los expedientes --}}
+  <div class="admin-content" >
+    <table style="border-spacing: 10px 0">
       <thead>
           <tr>
               <th>Id</th>
@@ -56,30 +55,35 @@
           </tr>
       </thead>
       <tbody>
-          {{-- Se itera sobre cada expediente para mostrarlos en la tabla --}}
-          @foreach ($expedientes as $expediente)
+        {{-- Se itera sobre cada expediente para mostrarlos en la tabla --}}
+        @foreach ($expedientes as $expediente)
           {{-- Se obtiene el id del expediente --}}
           @php
           $expediente_id = $expediente->id;
           @endphp
           <tr>
-              {{-- Se muetra el id del expediente --}}
-              <td>{{$expediente->id}}</td>
-              {{-- Se muestra el código del expediente --}}
-              <td><span>{{$expediente->codi}}</span></td>
-              <td colspan="2" class="estados">
-                  {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
-                  <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup(event)" ></span>
-                  {{-- Se muestra el estado actual del expediente --}}
-                  <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
-              </td>
-              {{-- Se muestra una imagen de una carta que abrirá un popup con expedientes --}}
-              <td><img src="./img/Carta.png" alt="Carta"></td>
+            {{-- Se muetra el id del expediente --}}
+            <td>{{$expediente->id}}</td>
+            {{-- Se muestra el código del expediente --}}
+            <td><span>{{$expediente->codi}}</span></td>
+            <td colspan="2" class="estados">
+              {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
+                <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup(event)" ></span>
+              {{-- Se muestra el estado actual del expediente --}}
+                <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
+            </td>
+            {{-- Se muestra una imagen de una carta que abrirá un popup con expedientes --}}
+            <td><img src="./img/Carta.png" alt="Carta"></td>
           </tr> 
-          @endforeach
+        @endforeach
       </tbody>
-  </table>        
+    </table>   
 </div>
+<div class="pagination pagination-style">
+  {{ $expedientes->links('pagination::default') }}
+</div>
+</div> 
+
 
 {{-- Esta sección muestra los botones de navegación de la página --}}
 <div class="button-container">
@@ -90,6 +94,8 @@
       <button class="button">Agencias</button>
   </div>
 </div>
+
+  
 @endsection
 
 
