@@ -19,10 +19,10 @@
         
     </div>
     <div id="Profile" class="profile">
-        {{-- @if (Auth::check() && Auth::user()->rol == '2')
+        @if (Auth::check() && Auth::user()->rol == '2')
         <div>
             <span>{{ Auth::user()->name }}</span>
-            <span>{{ session('rol') }}</span>
+            <span>Administrador</span>
             <div id="menuA" ></div>
         </div>
            
@@ -38,7 +38,7 @@
         </div>   
         @else 
         <a href="{{ url('/logout') }}"
-        @endif --}}
+        @endif
     </div>
 
     @yield('content')
