@@ -152,22 +152,23 @@ window.onload = function() {
     }
 
     // Filtra el expediente según el código
-    function buscar() {
+   
+function buscar() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchInput");
   filter = input.value.toUpperCase();
   table = document.querySelector("table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1]; // Filtrar por la segunda columna (Codigo Expediente)
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
+  td = tr[i].getElementsByTagName("td")[2]; // Filtrar por la cuarta columna (Estado del Expediente)
+  if (td) {
+  txtValue = td.textContent || td.innerText;
+  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+  tr[i].style.display = "";
+  } else {
+  tr[i].style.display = "none";
+  }
+  }
   }
 }
   </script>
