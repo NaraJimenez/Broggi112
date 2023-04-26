@@ -43,9 +43,9 @@
                         <!--Definición y Instrucciones de Incidentes-->
                         <div >
                             <div id="definicionInci"  type="text" name="definicion"
-                            placeholder="Definición" class="ms-3 mt-3"></div> <!--{{ definicio }}-->
+                            placeholder="Definición" class="ms-3 mt-3"> {{ selectedIncidentData.definicio }}</div> <!--{{ definicio }}-->
                             <div id="indicacionesInci" type="text" name="instrucciones"
-                            placeholder="Instrucciones" class="ms-3 mt-3"></div><!--{{ instruccions }}-->
+                            placeholder="Instrucciones" class="ms-3 mt-3">{{ selectedIncidentData.instruccions }}</div><!--{{ instruccions }}-->
                         </div>
                     </div>
                     <!----------Expedentes - Filtro/Buscador------------>
@@ -61,12 +61,16 @@
 
             </div> <!--FINAL DIV ROW-->
         </form>
+        <div>
+            <!--<img v-show="formValid" src="../../../public/img/cheque.png" alt="Imagen 1" />
+            <img v-show="!formValid" src="../../../public/img/alerta.png" alt="Imagen 2" />-->
+          </div>
             <button :disabled="!formValid" @click="submitForm" style="margin-top:15px">Enviado</button>
     </div>
 </template>
 <script>
 export default {
-    props: {},
+    //props: {},
     data() {
         return {
             formValid: false,
@@ -99,7 +103,15 @@ export default {
         console.log('Pagina 1 Montada');
         this.fetchTipusIncidents();
         this.validateForm1();
+        
 
+    },
+    computed: {
+        selectedIncidentData() {
+            // Obtener el incidente seleccionado
+            const selectedIncident = this.formData1.selectedIncident;
+            return this.incidents.find(inc => inc.id === selectedIncident) || {};
+        }
     },
     methods: {
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
