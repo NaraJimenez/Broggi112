@@ -2,7 +2,7 @@
 @extends('layout.plantilla') <!-- Se extiende de la plantilla base -->
 
 @section('title')
-  Expedientes <!-- El título de la página -->
+  Expedientes 
 @endsection
 
 @section('css-pagina')
@@ -25,7 +25,7 @@
           {{-- Ciclo foreach para mostrar los colores --}}
           @foreach ($estados as $estado_opcion)
           <div class="popup-color">
-            <span class="popupCircle color-circle" style="background-color:  {{$estado_opcion->colors}}" onclick="setColor(this)" data-color="{{ $estado_opcion->colors }}" data-id="{{ $estado_opcion->id }}"></span>
+            <span class="popupCircle color-circle" style="background-color:  {{$estado_opcion->colors}}" onclick="setColor(event)" data-color="{{ $estado_opcion->colors }}" data-id="{{ $estado_opcion->id }}"></span>
             <span class="popUpestat">{{ $estado_opcion->estat}} </span>
           </div>
           @endforeach
@@ -69,7 +69,7 @@
               <td><span>{{$expediente->codi}}</span></td>
               <td colspan="2" class="estados">
                   {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
-                  <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup()" ></span>
+                  <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup(event)" ></span>
                   {{-- Se muestra el estado actual del expediente --}}
                   <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
               </td>
@@ -95,36 +95,45 @@
 
 @section('scripts')
   <script>
-  function mostrarPopup(element) {
-      var popup = document.getElementById("popup");
-      popup.style.display = "flex";
-      // popup.dataset.expedienteId = element.parentNode.parentNode.firstElementChild.innerHTML;
-
-       // Establecer el color seleccionado actualmente en el popup
-       var colorInput = document.getElementById('color-input');
-       var expediente_id = document.getElementById('expediente_id');
-       expediente_id.value = element.getAttribute('data-id');
-      var colorCircles = document.querySelectorAll('.color-circle');
-      for (var i = 0; i < colorCircles.length; i++) {
-        if (colorCircles[i].getAttribute('data-color') === colorInput.value) {
-          colorCircles[i].style.backgroundColor = colorInput.value;
-        } else {
-          colorCircles[i].style.backgroundColor = '';
-        }
+ function mostrarPopup(element) {
+    
+    var popup = document.getElementById("popup");
+    popup.style.display = "flex";
+    
+    // Establecer el expediente_id seleccionado en el popup
+    var expediente_id = document.getElementById('expediente_id');
+    expediente_id.value = element.target.getAttribute('data-id');
+    
+    // Establecer el color seleccionado actualmente en el popup
+    var colorInput = document.getElementById('color-input');
+    var colorCircles = document.querySelectorAll('.color-circle');
+    for (var i = 0; i < colorCircles.length; i++) {
+      if (colorCircles[i].getAttribute('data-color') === colorInput.value) {
+        colorCircles[i].style.backgroundColor = colorInput.value;
+      } else {
+        colorCircles[i].style.backgroundColor = '';
       }
     }
+    
+    // Establecer el color en cada circunferencia de color
+    var colorCircles = document.querySelectorAll('.color-circle');
+    for (var i = 0; i < colorCircles.length; i++) {
+      colorCircles[i].style.backgroundColor = colorCircles[i].getAttribute('data-color');
+    }
+}
+
 
   function setColor(element) {
   var colorInput = document.getElementById('color-input');
-  colorInput.value = element.getAttribute('data-id');
+  colorInput.value = element.target.getAttribute('data-id');
   var colorInput = document.getElementById('color-input');
-  colorInput.value = element.getAttribute('data-id');
+  colorInput.value = element.target.getAttribute('data-id');
 
   var colorCircles = document.querySelectorAll('.color-circle');
   for (var i = 0; i < colorCircles.length; i++) {
     colorCircles[i].style.backgroundColor = '';
   }
-  element.style.backgroundColor = element.getAttribute('data-color');
+  element.style.backgroundColor = element.target.getAttribute('data-color');
 }
     
 //Se oculta el popup

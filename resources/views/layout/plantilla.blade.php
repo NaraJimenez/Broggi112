@@ -17,13 +17,11 @@
         
     </div>
     <div id="Profile" class="profile">
-        {{-- @if (Auth::check() && Auth::$user()->rol->nombre == 'Administrador')
+        {{-- @if (Auth::check() && Auth::user()->rol == '2')
         <div>
-            <span>{{ $user }}</span>
-            <span>{{ $userRol }}</span>
-            <div id="menuA" >
-            
-            </div>
+            <span>{{ Auth::user()->name }}</span>
+            <span>{{ session('rol') }}</span>
+            <div id="menuA" ></div>
         </div>
            
         @endif
@@ -36,14 +34,13 @@
         
             </div>
         </div>   
-        
         @else 
         <a href="{{ url('/logout') }}"
         @endif --}}
     </div>
+
     @yield('content')
     @yield('scripts')
-
 </body>
 </html>
 

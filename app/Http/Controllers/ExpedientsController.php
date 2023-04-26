@@ -81,7 +81,7 @@ class ExpedientsController extends Controller
         
         $id = $request->input('expediente_id');
         $expediente = Expedients::find($id);
-        $expediente->estat_expedients_id = $request->input('color-input');
+        $expediente->estat_expedients_id = $request->input('color_id');
        
         $expediente->save();
 

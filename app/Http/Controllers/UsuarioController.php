@@ -13,6 +13,7 @@ class UsuarioController extends Controller
 {
     public function MostrarLogin()
     {
+        
         return view('auth.login');
     }
 
@@ -24,7 +25,9 @@ class UsuarioController extends Controller
         $user = Usuaris::where('username', $username)->first();
 
         if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
+            // $rol = Tipus_usuaris::where('id', $user->tipus_usuaris_id)->first(); // Obtener el rol del usuario
             Auth::login($user);
+            // $request->session()->put('rol', $rol->nom); // Guardar el rol en la sesión del usuario
             $response = redirect('/home');
         } else {
             $request->session()->flash('error', 'El Usuario o Contraseña no son correctos');
@@ -43,7 +46,7 @@ class UsuarioController extends Controller
     {
         $usuarios = Usuaris::all();
         $roles = Tipus_usuaris::all(); // Cambiar Rol a Tipus_usuaris
-
+     
         return view('paginas.adminUsers', compact('usuarios', 'roles'));
     }
     public function actualizarUsuario(Request $request, $id)
