@@ -2,8 +2,6 @@
     <div> <form>
         <!--Elementos Carta-->
             <div class="row ms-3 mt-2">
-
-
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
                     <!--Nombre Interlocutor-->
@@ -21,13 +19,11 @@
                         placeholder="Nota Comuna" v-model="formData1.inputNotaComuna"></textarea>
                     </div>
                 </div>
-                <!--FINAL PRIMER RECTANGULO-->
-
-                <!--Elementos Segundo Rectangulo-->
-                <div class="col mt-3" id="rectangulo2">
+                <!----------Elementos Segundo Rectangulo------------>
+                <div class="col mt-4" id="rectangulo2">
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
-                        <!--Tipos de Incidente-->
+                        <!--Tipos de Incidente aria-label="selectTipusIncident"-->
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
                         v-model="formData1.selectedTipusIncident" @change="fetchIncidents()"   required
                         >
@@ -35,9 +31,8 @@
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
-                        
 
-                        <!--Incidentes-->
+                        <!--Incidentes aria-label="selectedIncident"-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
                         v-model="formData1.selectedIncident" :disabled="!formData1.selectedTipusIncident"   required>
                             <option value="" disabled selected>Incidencia</option>
@@ -89,14 +84,13 @@ export default {
                 selectedIncident: "",
                 searchResults: [],
             },
-
             
             //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
             incidents: [],
             incident: {},
-            
+            IncidentEscogido:[],
             selectedTipusIncident: "",
             selectedIncident: "",
         }
@@ -109,7 +103,6 @@ export default {
         this.fetchTipusIncidents();
         this.validateForm1();
         
-
     },
     computed: {
         selectedIncidentData() {
@@ -126,7 +119,6 @@ export default {
                 .get('/api/search/' + this.formData1.telefonoLlamada + '/' + this.formData1.selectedIncident)
                 .then((response) => {
                     this.formData1.searchResults = response.data;
-
                 })
                 .catch((error) => {
                     console.error(error);
@@ -135,8 +127,6 @@ export default {
             //emitimos un evento al padre con los resultados actualizados
             this.$emit('enviar-objeto1', this.formData1);
         },
-
-
         //VALIDACION DEL FORMULARIO
         validateForm1() {
             //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
@@ -167,11 +157,9 @@ export default {
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
-
                     this.incidents = this.tipusIncident.incidents;
                     this.formData1.selectedIncident = "";
                     console.log();
-
                 })
                 .catch((error) => {
                     console.error(error);
@@ -189,7 +177,6 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px
     }
-
     #incidentes {
         box-sizing: border-box;
         position: absolute;
@@ -200,7 +187,6 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
-
     #expedientes {
         box-sizing: border-box;
         position: absolute;
@@ -212,9 +198,8 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     /*ELEMENTOS DENTROS DE LOS DIVS*/
-    #numTelf{
+    #inputNombre{
         box-sizing: border-box;
         position: absolute;
         width: 186px;
@@ -223,8 +208,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
-    #codigoLlamada{
+    #inputApellidos{
         box-sizing: border-box;
         position: absolute;
         width: 186px;
@@ -235,7 +219,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #tiempoLlamada{
+    #telefonoLlamada{
         box-sizing: border-box;
         position: absolute;
         width: 385px;
@@ -246,7 +230,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #notaComunaInput{
+    #inputNotaComuna{
         box-sizing: border-box;
         position: absolute;
         width: 385px;
@@ -257,7 +241,6 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     /*Divs - Parte izquierda*/
     #selectTipusIncident, #selectedIncident, #definicionInci, #indicacionesInci {
         box-sizing: border-box;
@@ -270,23 +253,18 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #selectTipusIncident {
        /* top: 5px;*/
        height: 38px;
     }
-
     #selectedIncident{
        top: 42px;
        height: 38px;
     }
-
     #definicionInci{
         top: 85px;
     }
-
     #indicacionesInci{
         top: 128px;
     }
-
 </style>

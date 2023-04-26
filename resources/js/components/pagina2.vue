@@ -52,7 +52,8 @@
                         <div v-else>
                             <!--Input Provincia-->
                             <input  id="provinciaInput"  placeholder="Introduce Provincia"
-                            class="form-control text-center mt-2 ms-4" type="text" name="provinciaInput">
+                            class="form-control text-center mt-2 ms-4" type="text" name="provinciaInput"
+                            v-model="formData.provinciaInput" @input="validateForm">
                             <!--v-model="trucada.provincia" -Nombre en API a recoger-->
 
                             <!--Input Municipi - OPCIONAL-->
@@ -98,12 +99,11 @@
                                     placeholder="Introduce Kilometro" v-model="formData.inputpuntoKM">
                                 </div>
                                 <br>
-                                <label for="inputSentido" class="ms-1 mt-3 mb-4">Sentido</label>
-                                <input id="inputSentido" class="form-control ms-1 mt-3 mb-4" type="text" name="inputSentido" 
-                                placeholder="Introduce Sentido" v-model="formData.inputSentido">
-                            </div>
-
-                            </div>
+                                <div class="ms-1 mt-3 mb-4">
+                                    <label for="inputSentido">Sentido</label>
+                                    <input id="inputSentido" class="form-control" type="text" name="inputSentido"
+                                    placeholder="Introduce Sentido" v-model="formData.inputSentido">
+                                </div>
 
                             </div>
 
@@ -169,11 +169,9 @@
 
             </form>
 
+
         </div> <!--FINAL DIV ROW-->
-        <!--
-        <button style="margin-top: 135px;" @click="finalizarLlamada()">
-                Finalizar Llamada
-        </button>-->
+            <button :disabled="!formValid" @click="submitForm" style="margin-top:140px">Enviado</button>
     </div>
 </template>
 <script>
@@ -196,7 +194,6 @@ export default {
             comarca: {},
             municipis: [],
             //catEscogido:null,
-
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
                 selectedNavItem: 'Carretera',
@@ -230,7 +227,6 @@ export default {
         };
     },
     created() {
-      
     },
     mounted() {
         console.log('Carta2 montada');
@@ -254,16 +250,13 @@ export default {
                 .get('/api/search/' + this.formData.selectedMunicipi)
                 .then((response) => {
                     this.formData.searchResults = response.data;
-
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-
             //emitimos un evento al padre con los resultados actualizados
             this.$emit('enviar-objeto', this.formData);
         },
-
         //Validar Form
         validateForm() {
            /* if (this.formData.catEscogido === '1') {
@@ -277,7 +270,6 @@ export default {
                 this.formValid = !!this.formData.provinciaInput;
                 //el && !!this.formData.municipioInput es opcional
             }*/
-
             this.formValid = !!this.formData.provinciaInput
             //  QUIZAS METER ESTO DENTRO DEL BOOLEANO CUANDOES TRUE
             console.log(this.formValid);
@@ -339,7 +331,6 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
-
     #rectangulo4 {
         box-sizing: border-box;
         position: absolute;
@@ -350,7 +341,6 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
-
     #expedientes2 {
         box-sizing: border-box;
         position: absolute;
@@ -366,7 +356,6 @@ export default {
     .content:not(:first-child) {
         display: none;
     }
-
     #catalunya{
         box-sizing: border-box;
         position: absolute;
@@ -378,13 +367,10 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #selectCat{
         margin-left: 280px;
         margin-top: 37px;
-
     }
-
     #selectProvincia {
         box-sizing: border-box;
         position: absolute;
@@ -421,8 +407,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
-    #muniOpcional{
+    #municipioInput{
         box-sizing: border-box;
         position: absolute;
         width: 363px;
@@ -431,7 +416,6 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #provinciaInput {
         box-sizing: border-box;
         position: absolute;
@@ -441,24 +425,19 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     /*MENU TABS LOCALIZACION*/
     #tabOpciones{
         box-sizing: border-box;
-
        /* position: absolute;
         width: 381px;*/
         height: 252px;/*
         left: 669px;
         top: 326px;*/
-
         background: #FFFFFF;
         /* Boton principal Hover */
-
         border: 3px solid #025D73;
         border-radius: 10px;
     }
-
     #inputPob{
         box-sizing: border-box;
         /*position: absolute;*/
@@ -477,10 +456,8 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-
     #inputVia, #inputCalle, #inputCasa, #inputEscalera, #inputPiso, #inputPuerta {
         box-sizing: border-box;
-
         display: block;
         width: 220px;
         height: 34px;

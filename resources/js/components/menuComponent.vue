@@ -11,6 +11,8 @@
                     {{ tab }}
                 </button>
             </div>
+            <!--Tiempo de Llamada-->
+            <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{fechaHoraActual}}</div>
         </div>
 
 
@@ -139,7 +141,6 @@
                 console.log(this.pasadoForm1);
                 //Se guarda dentro del objeto padre
                 this.cartaTrucadaRealizada.objetoRecibido1 = myForm1;
-
             },
             //FORM 2
             recibirObjeto(myForm) {
@@ -211,7 +212,7 @@
 </script>
 <style>
     .tabs {
-       /* max-width: 1000px;*/
+        /* max-width: 1000px;*/
         margin: 0 auto;
         display: flex;
     }
