@@ -4,6 +4,7 @@
         <div>
             <button class="btn btn-primary" :disabled="!formValid" @click="submitForm">Finalitzar Llamada</button>
             <!--@click='onClickButton'-->
+            <map></map>
         </div>
     </div>
 </template>
