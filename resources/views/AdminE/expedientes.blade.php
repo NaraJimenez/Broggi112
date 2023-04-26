@@ -91,7 +91,7 @@
       <a class="button" href="{{ url('/adminuser') }}">Usuario</a>
       {{-- El botón de Expedientes aparece seleccionado por defecto --}}
       <a class="button-selected"  href="{{ url('/expedientes') }}">Expedientes</a>
-      <button class="button">Agencias</button>
+      <a class="button">Agencias</a>
   </div>
 </div>
 
@@ -166,7 +166,9 @@ function buscar() {
   table = document.querySelector("table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-  td = tr[i].getElementsByTagName("td")[2]; // Filtrar por la cuarta columna (Estado del Expediente)
+  td = tr[i].getElementsByTagName("td")[2];
+  td = tr[i].getElementsByTagName("td")[1];
+   // Filtrar por la cuarta columna (Estado del Expediente)
   if (td) {
   txtValue = td.textContent || td.innerText;
   if (txtValue.toUpperCase().indexOf(filter) > -1) {

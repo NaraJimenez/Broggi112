@@ -83,43 +83,42 @@
     }
     /* Estilos para los botones */
     
-    .buttons-container {
+    .button-container {
+        position: absolute;
+        right: 0;
+        top: 350px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         flex-direction: row;
+        margin-left: auto;
     }
     
     .buttons {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         width: 150px;
         height: 58px;
-        border-radius: 30%;
-        flex-direction: column;
+        border-radius: 15%;
         margin: auto;
     }
     
     .button {
+        margin-top: 10px;
+        width: 155px;
+        height: 58px;
         background-color: #76DAE4;
         color: white;
     }
-    /* Estilos para los botones */
     
-    .buttons {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-left: auto;
-        /* se agrega esta propiedad */
-    }
-    
-    .button {
-        background-color: #76DAE4;
+    .button-selected {
+        margin-top: 10px;
+        width: 155px;
+        height: 58px;
+        background-color: #11ADC4;
         color: white;
-        margin-left: 10px;
-        /* se agrega esta propiedad */
     }
     /* Estilos para la tabla */
     
