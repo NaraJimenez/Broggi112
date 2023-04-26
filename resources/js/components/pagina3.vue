@@ -1,13 +1,16 @@
 <template>
   <div id="mapas">
-    <div  class="map-container" id="map"></div>
+    <div  class="map-container" id="map">
+      <!-- <Mapbox></Mapbox> -->
+    </div>
   </div>
 </template>
 
 <script>
 
-
+// import Mapbox from "../components/atoms/Mapbox/Mapbox.vue";
 export default {
+  // components: Mapbox,
   name: 'Mapa',
   data() {
     return {
@@ -57,7 +60,11 @@ export default {
 
 <style>
 .map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 400px;
   width: 600px;
+  background-color: red;
 }
 </style>
