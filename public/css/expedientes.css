@@ -6,6 +6,10 @@
     }
     /* Estilos para el fondo de la página */
     
+    #popup {
+        display: none;
+    }
+    
     .admin-background {
         display: flex;
         justify-content: center;

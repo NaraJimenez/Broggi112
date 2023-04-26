@@ -95,8 +95,15 @@
 
 @section('scripts')
   <script>
- function mostrarPopup(element) {
-    
+
+//Que no se abra el popup, al abrir la página
+window.onload = function() {
+  var popup = document.getElementById("popup");
+  popup.style.display = "none";
+};
+
+
+ function mostrarPopup(element) {   
     var popup = document.getElementById("popup");
     popup.style.display = "flex";
     
@@ -124,16 +131,18 @@
 
 
   function setColor(element) {
-  var colorInput = document.getElementById('color-input');
-  colorInput.value = element.target.getAttribute('data-id');
+  var circle = event.target;
   var colorInput = document.getElementById('color-input');
   colorInput.value = element.target.getAttribute('data-id');
 
   var colorCircles = document.querySelectorAll('.color-circle');
   for (var i = 0; i < colorCircles.length; i++) {
-    colorCircles[i].style.backgroundColor = '';
+    if (colorCircles[i] === element.target) {
+      colorCircles[i].style.backgroundColor = element.target.getAttribute('data-color');
+    } else {
+      colorCircles[i].style.backgroundColor = '';
+    }
   }
-  element.style.backgroundColor = element.target.getAttribute('data-color');
 }
     
 //Se oculta el popup
@@ -161,7 +170,6 @@
     }
   }
 }
-
   </script>
 @endsection
 

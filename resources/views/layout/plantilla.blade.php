@@ -19,7 +19,7 @@
         
     </div>
     <div id="Profile" class="profile">
-        @if (Auth::check() && $user->tipus_usuaris_id == 2)
+        {{-- @if (Auth::check() && $user->tipus_usuaris_id == 2)
         <div>
             <span>{{ $user->nom }}</span>
             <span>Administrador</span>
@@ -37,7 +37,7 @@
         
             </div>
         </div>   
-        @endif
+        @endif --}}
     </div>
 
     @yield('content')
