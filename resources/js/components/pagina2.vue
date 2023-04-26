@@ -167,7 +167,7 @@
 
 
         </div> <!--FINAL DIV ROW-->
-            <button :disabled="!formValid" @click="submitForm" style="margin-top:140px">Enviado</button>
+            <button :disabled="!formValid" @click="openModalWithData" style="margin-top:140px">Enviado</button>
     </div>
 </template>
 <script>
@@ -237,6 +237,12 @@ export default {
        // this.formData = {searchResults: this.searchResults }
     },
     methods: {
+        //PRUEBA MODAL
+        openModalWithData() {
+            this.$emit('openModalWithData');
+        },
+
+
         //Select tab este guardara el tipo de localizacion
         handleNavItemSelection(value) {
             this.formData.selectedNavItem = value.target.textContent;
@@ -262,7 +268,7 @@ export default {
         //Validar Form
         validateForm() {
             //La doble negación !! convierte el resultado en un valor booleano
-            this.formValid = !!this.formData.provinciaInput && !!this.formData.municipioInput;
+            this.formValid = !!this.formData.provinciaInput;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno

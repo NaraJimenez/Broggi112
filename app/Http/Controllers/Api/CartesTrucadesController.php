@@ -36,7 +36,7 @@ class CartesTrucadesController extends Controller
     public function store(Request $request)
     {
         try {
-
+            DB::beginTransaction();
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
             $expedient = new Expedients();
@@ -121,9 +121,9 @@ class CartesTrucadesController extends Controller
             $response = (new CartesTrucadesResources($cartaTrucada))
                 ->response()
                 ->setStatusCode(201);
-            //DB::commit();
+            DB::commit();
         } catch (QueryException $ex) {
-            //DB::rollBack();
+            DB::rollBack();
             $mensaje = Utilitat::errorMessage($ex);
             $response = \response()
                 ->json(
