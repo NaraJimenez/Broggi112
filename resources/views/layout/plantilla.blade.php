@@ -19,9 +19,9 @@
         
     </div>
     <div id="Profile" class="profile">
-        @if (Auth::check() && Auth::user()->rol == '2')
+        @if (Auth::check() && $user->tipus_usuaris_id == 2)
         <div>
-            <span>{{ Auth::user()->name }}</span>
+            <span>{{ $user->nom }}</span>
             <span>Administrador</span>
             <div id="menuA" ></div>
         </div>
@@ -30,14 +30,13 @@
 
         @if (Auth::check())
         <div>
-            {{ Auth::user()->nombre }} {{ Auth::user()->rol }}
+            <span>{{ $user->nom }}</span> 
+                <span>{{ $user->tipus_usuaris_id }}</span>
         
             <div id="Menu">
         
             </div>
         </div>   
-        @else 
-        <a href="{{ url('/logout') }}"
         @endif
     </div>
 

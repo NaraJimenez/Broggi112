@@ -12,6 +12,12 @@
         return view('prova');
     });
 
+
+    // Rutas para autenticación de usuarios
+    Route::get('/login', [UsuarioController::class, 'MostrarLogin'])->name('login');
+    Route::post('/login', [UsuarioController::class, 'login']);
+    Route::get('/logout', [UsuarioController::class, 'logout']);
+
     //Rutas para administracion de usuarios
     Route::get('/adminuser', [UsuarioController::class, 'mostrarAdminUsers'])->name('adminUser');
     Route::delete('/usuarios/eliminar/{id}', [UsuarioController::class, 'eliminarUsuario'])->name('usuarios.eliminar');
@@ -31,9 +37,11 @@
     Route::middleware(['auth'])->group(function () {
         Route::get('/home', function () {
             $user = Auth::user();
-            return view('partials.home', compact('user'));
+            return view('NavBar.home', compact('user'));
         });
     });
+
+   
 
 Route::get('/', function () {
     return view('index');
@@ -42,13 +50,6 @@ Route::get('/', function () {
 
 //Ruta Index (Telefono)
 // Route::view(uri: '/home', view:'layout.home')->name(name:'home');
-Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function () {
-        $user = Auth::user();
-
-        return view('home', compact('user'));
-    });
-});
 
 
 

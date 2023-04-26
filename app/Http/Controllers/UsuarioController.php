@@ -25,7 +25,7 @@ class UsuarioController extends Controller
 
         if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
-            $response = redirect('/correcto');
+            $response = redirect('/home');
         } else {
             $request->session()->flash('error', 'El Usuario o Contraseña no son correctos');
             $response = redirect('/login')->withInput();
