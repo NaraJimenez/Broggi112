@@ -275,7 +275,7 @@ export default {
                 //el && !!this.formData.municipioInput es opcional
             }*/
 
-            this.formValid = !!this.formData.provinciaInput && !!this.formData.municipioInput
+            this.formValid = !!this.formData.provinciaInput
             //  QUIZAS METER ESTO DENTRO DEL BOOLEANO CUANDOES TRUE
             console.log(this.formValid);
             if (this.formValid == true) {
