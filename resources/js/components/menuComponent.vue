@@ -174,7 +174,7 @@ import axios from 'axios';
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
                 axios
-                    .post("/api/cartestrucades", this.cartaTrucadaRealizada)
+                    .post("/Broggi112/public/api/cartestrucades", this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
                         location.reload();
@@ -195,7 +195,7 @@ import axios from 'axios';
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
                 //HAY QUE PASARLE EL NUMERO DE ID DEL EXPE
                 axios
-                    .post("/api/cartestrucades", this.cartaTrucadaRealizada)
+                    .post("/Broggi112/public/api/cartestrucades", this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
                         location.reload();

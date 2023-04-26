@@ -248,7 +248,7 @@ export default {
         async getSearchResults() {
             const response = await
                 axios
-                .get('/api/search/' + this.formData.selectedMunicipi)
+                .get('/Broggi112/public/api/search/' + this.formData.selectedMunicipi)
                 .then((response) => {
                     this.formData.searchResults = response.data;
                 })
@@ -282,7 +282,7 @@ export default {
         },
         fetchProvincies() {
             axios
-                .get('/api/provincies')
+                .get('/Broggi112/public/api/provincies')
                 .then((response) => {
                     this.provincies = response.data;
                     this.comarques = [];
@@ -294,7 +294,7 @@ export default {
         },
         fetchComarques() {
             axios
-                .get('/api/provincies/' + this.formData.selectedProvincia)
+                .get('/Broggi112/public/api/provincies/' + this.formData.selectedProvincia)
                 .then((response) => {
                     this.provincia = response.data;
                     console.log(response.data);

@@ -117,7 +117,7 @@ export default {
         async getSearchResults() {
             const response = await
                 axios
-                .get('/api/search/' + this.formData1.telefonoLlamada + '/' + this.formData1.selectedIncident)
+                .get('/Broggi112/public/api/search/' + this.formData1.telefonoLlamada + '/' + this.formData1.selectedIncident)
                 .then((response) => {
                     this.formData1.searchResults = response.data;
                 })
@@ -142,7 +142,7 @@ export default {
         //Selectores de los Tipus Incidentes con los Incidentes
         fetchTipusIncidents() {
             axios
-                .get('/api/tipusincidents')
+                .get('/Broggi112/public/api/tipusincidents')
                 .then((response) => {
                     this.tipusIncidents = response.data;
                     this.incidents = [];
@@ -154,7 +154,7 @@ export default {
         },
         fetchIncidents() {
             axios
-                .get('/api/tipusincidents/' + this.formData1.selectedTipusIncident)
+                .get('/Broggi112/public/api/tipusincidents/' + this.formData1.selectedTipusIncident)
                 .then((response) => {
                     //Pasamos el objeto con todos los tipos de de Incidentes
                     this.tipusIncident = response.data;
