@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="mapas">
     <div  class="map-container" id="map"></div>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
         })
         .send()
         .then((response) => {
+            console.log('Atontao')
             if (
                 !response ||
                 !response.body ||
@@ -48,6 +49,8 @@ export default {
             // Create a marker and add it to the map.
             new mapboxgl.Marker().setLngLat(feature.center).addTo(this.map);
         });
+
+        console.log('gilipollas');
   }
 };
 </script>
@@ -55,6 +58,6 @@ export default {
 <style>
 .map-container {
   height: 400px;
-  width: 100%;
+  width: 600px;
 }
 </style>

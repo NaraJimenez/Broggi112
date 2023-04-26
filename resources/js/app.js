@@ -9,12 +9,12 @@ import carta2Catalunya from './components/carta2Catalunya.vue'
 import carta2Botones from './components/carta2Botones.vue'
 import carta2Localizacion from './components/carta2Localizacion.vue'
 import menuComponent from './components/menuComponent.vue'
-import mapbox from './components/pagina3.vue';
 import cartaExpediente from './components/cartaExpediente.vue'
 import Menu from './components/atoms/Home/Menu.vue';
 import Profile from './components/atoms/Home/Profile.vue';
 import MenuA from './components/atoms/Home/MenuA.vue';
 import Mapa from './components/pagina3.vue';
+
 
 
 
@@ -47,4 +47,5 @@ createApp(Menu).mount('#Menu');
 //Menú barrasA
 createApp(MenuA).mount('#MenuA');
 
-Vue.component('Mapa', Mapa);
+
+createApp(Mapa).mount('#mapa');

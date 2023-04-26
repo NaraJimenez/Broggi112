@@ -3,17 +3,17 @@
 @section('title')
 Mapbox
 @endsection  
-
 @section('css-pagina')
-<link  href="{{asset('css/mapbox.css')}}" rel="stylesheet" type="text/css">
+
 @endsection
 
 @section('content')
-  <Mapa />
+
+  <div id="mapa"></div>
 @endsection
 
 @section('scripts-pagina')
-<script src="{{ asset('js/app.js') }}"></script>
+
 @endsection 
 
  
