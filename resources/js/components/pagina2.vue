@@ -175,6 +175,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import { ref, reactive } from "vue";
 export default {
     props: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 // import Mapbox from "../components/atoms/Mapbox/Mapbox.vue";
 export default {
   // components: Mapbox,
