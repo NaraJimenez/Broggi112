@@ -1,9 +1,12 @@
 
+
     <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\UsuarioController;
     use App\Http\Controllers\AdminController;
     use Illuminate\Support\Facades\Auth;
+    use App\Http\Controllers\TelefonController;
+    use App\Http\Controllers\ExpedientsController;
     // Ruta para mostrar la página de inicio cuando se inicia sesión correctamente
     Route::get('/correcto', function () {
         return view('prova');
@@ -33,25 +36,43 @@ Route::get('/', function () {
 })->name('index');
 
 
-//SOLO ESTARÁ AQUI LA RUTA DEL LOGIN/INDEX
+//Ruta Index (Telefono)
+// Route::view(uri: '/home', view:'layout.home')->name(name:'home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function () {
+        $user = Auth::user();
+
+        return view('home', compact('user'));
+    });
+});
 
 
-//ESTAS SON MIS RUTAS PARA PORBAR
 
 
 //Ruta Carta llamada - Localización
-Route::get('/carta2', function () {
-    return view('paginas/carta2');
-})->name('carta2');
+Route::get('/mapbox', function () {
+    return view('Mapbox.mapbox');
+});
 
-//Ruta Carta llamada - Incidencia
-Route::get('/carta1Vue', function () {
-    return view('paginas/carta1Vue');
-})->name('carta1Vue');
+//Ruta Carta llamada - Agencias
 
-Route::get('/carta2Vue', function () {
-    return view('paginas/carta2Vue');
-})->name('carta2Vue');
+
+//Ruta Graficos
+
+
+//Ruta Video
+
+
+//Ruta Menu Admin
+
+
+//Ruta Admin. expedientes
+Route::get('/expedientes', [ExpedientsController::class, 'index']);
+Route::post('/expedientes/update', [ExpedientsController::class, 'update']) ->name('expedientes.update');
+
+
+//Ruta Admin. Agencias
+
 
 //Prueba de expediente
 Route::get('/cartaExpediente', function () {

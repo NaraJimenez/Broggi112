@@ -2,6 +2,8 @@
     <div> <form>
         <!--Elementos Carta-->
             <div class="row ms-3 mt-2">
+
+
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
                     <!--Nombre Interlocutor-->
@@ -19,11 +21,13 @@
                         placeholder="Nota Comuna" v-model="formData1.inputNotaComuna"></textarea>
                     </div>
                 </div>
-                <!----------Elementos Segundo Rectangulo------------>
-                <div class="col mt-4" id="rectangulo2">
+                <!--FINAL PRIMER RECTANGULO-->
+
+                <!--Elementos Segundo Rectangulo-->
+                <div class="col mt-3" id="rectangulo2">
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
-                        <!--Tipos de Incidente aria-label="selectTipusIncident"-->
+                        <!--Tipos de Incidente-->
                         <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
                         v-model="formData1.selectedTipusIncident" @change="fetchIncidents()"   required
                         >
@@ -31,8 +35,9 @@
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
+                        
 
-                        <!--Incidentes aria-label="selectedIncident"-->
+                        <!--Incidentes-->
                         <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
                         v-model="formData1.selectedIncident" :disabled="!formData1.selectedTipusIncident"   required>
                             <option value="" disabled selected>Incidencia</option>
@@ -91,7 +96,7 @@ export default {
             tipusIncident: {},
             incidents: [],
             incident: {},
-            IncidentEscogido:[],
+            
             selectedTipusIncident: "",
             selectedIncident: "",
         }
@@ -184,6 +189,7 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px
     }
+
     #incidentes {
         box-sizing: border-box;
         position: absolute;
@@ -194,6 +200,7 @@ export default {
         border: 1px solid #025D73;
         border-radius: 15px;
     }
+
     #expedientes {
         box-sizing: border-box;
         position: absolute;
@@ -205,8 +212,9 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+
     /*ELEMENTOS DENTROS DE LOS DIVS*/
-    #inputNombre{
+    #numTelf{
         box-sizing: border-box;
         position: absolute;
         width: 186px;
@@ -215,7 +223,8 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #inputApellidos{
+
+    #codigoLlamada{
         box-sizing: border-box;
         position: absolute;
         width: 186px;
@@ -226,7 +235,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #telefonoLlamada{
+    #tiempoLlamada{
         box-sizing: border-box;
         position: absolute;
         width: 385px;
@@ -237,7 +246,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
-    #inputNotaComuna{
+    #notaComunaInput{
         box-sizing: border-box;
         position: absolute;
         width: 385px;
@@ -248,6 +257,7 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+
     /*Divs - Parte izquierda*/
     #selectTipusIncident, #selectedIncident, #definicionInci, #indicacionesInci {
         box-sizing: border-box;
@@ -260,18 +270,23 @@ export default {
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+
     #selectTipusIncident {
        /* top: 5px;*/
        height: 38px;
     }
+
     #selectedIncident{
        top: 42px;
        height: 38px;
     }
+
     #definicionInci{
         top: 85px;
     }
+
     #indicacionesInci{
         top: 128px;
     }
+
 </style>

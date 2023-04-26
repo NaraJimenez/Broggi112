@@ -36,7 +36,7 @@ class CartesTrucadesController extends Controller
     public function store(Request $request)
     {
         try {
-
+           // DB::beginTransaction();
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
             $expedient = new Expedients();
@@ -115,7 +115,6 @@ class CartesTrucadesController extends Controller
             //Elementos externos
             $cartaTrucada->usuaris_id= $request->input('tempsTrucada');
 
-            //CARTA TRUCADA ES SALVA
             $cartaTrucada->save();
 
             $response = (new CartesTrucadesResources($cartaTrucada))

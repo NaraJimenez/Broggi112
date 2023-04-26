@@ -11,8 +11,6 @@
                     {{ tab }}
                 </button>
             </div>
-            <!--Tiempo de Llamada-->
-            <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{fechaHoraActual}}</div>
         </div>
 
 
@@ -213,7 +211,7 @@
 </script>
 <style>
     .tabs {
-        /* max-width: 1000px;*/
+       /* max-width: 1000px;*/
         margin: 0 auto;
         display: flex;
     }
