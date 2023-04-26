@@ -12,16 +12,20 @@
         return view('prova');
     });
 
-    // Rutas para autenticación de usuarios
-    Route::get('/login', [UsuarioController::class, 'MostrarLogin'])->name('login');
-    Route::post('/login', [UsuarioController::class, 'login']);
-    Route::get('/logout', [UsuarioController::class, 'logout']);
-
+    //Rutas para administracion de usuarios
     Route::get('/adminuser', [UsuarioController::class, 'mostrarAdminUsers'])->name('adminUser');
     Route::delete('/usuarios/eliminar/{id}', [UsuarioController::class, 'eliminarUsuario'])->name('usuarios.eliminar');
     Route::put('/usuarios/actualizar/{id}', [UsuarioController::class, 'actualizarUsuario'])->name('usuarios.actualizar');
+    Route::get('/usuarios/agregar', [UsuarioController::class, 'mostrarafegirUsuario'])->name('usuarios.agregar.mostrar');
     Route::post('/usuarios/agregar', [UsuarioController::class, 'agregarUsuario'])->name('usuarios.agregar');
+    Route::get('/usuarios/editar/{id}', [UsuarioController::class, 'mostraractualizarUsuario'])->name('usuarios.editar');
 
+    //Agencias
+    Route::delete('/adminagencias/eliminar/{id}', [AgenciesController::class, 'eliminar'])->name('agencias.eliminar');
+    Route::get('/adminagencias', [AgenciesController::class, 'index'])->name('adminagencias');
+    Route::get('/adminagencias/crear', [AgenciesController::class, 'crear'])->name('agencias.crear');
+    Route::get('/adminagencias/afegir', [AgenciesController::class, 'afegir'])->name('agencias.afegir');
+    Route::resource('agencias', AgenciasController::class);
 
     // Rutas que requieren autenticación de usuario
     Route::middleware(['auth'])->group(function () {
