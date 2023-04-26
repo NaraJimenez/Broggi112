@@ -22,13 +22,12 @@ export default {
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
         .forwardGeocode({
-            query: 'Plaça Urquinaona, Barcelona',
+            query: '${this.cartaTrucadaRealizada.objetoRecibido}',
             autocomplete: false,
             limit: 1
         })
         .send()
         .then((response) => {
-            console.log('Atontao')
             if (
                 !response ||
                 !response.body ||
@@ -63,8 +62,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
-  width: 600px;
-  background-color: red;
+  height: 300px;
+  width: 900px;
 }
 </style>
