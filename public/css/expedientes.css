@@ -10,6 +10,10 @@
         display: none;
     }
     
+    #popupC {
+        display: none;
+    }
+    
     .admin-background {
         display: flex;
         justify-content: center;

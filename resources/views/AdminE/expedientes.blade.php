@@ -37,6 +37,13 @@
     </div>
   </div>
 
+  <div id="popupC" class="popup"  data-expediente-id="">
+    <div class="popup-contents">
+      <span class="close" onclick="ocultarPopup()">&times;</span>
+      <p style="color: azure; font-size:20px">Poner foreach y poner todas las cartass de llamada del expediente.</p>
+    </div>
+  </div>
+
        {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes  --}}
   <div class="header-file">
     <p class="title"> Administración de expedientes</p>
@@ -73,7 +80,7 @@
                 <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
             </td>
             {{-- Se muestra una imagen de una carta que abrirá un popup con expedientes --}}
-            <td><img src="./img/Carta.png" alt="Carta"></td>
+            <td><span  data-idC="{{ optional($expediente)->id }}" onclick="mostrarPopupC(event)"><img src="./img/Carta.png" alt="Carta"></span></td>
           </tr> 
         @endforeach
       </tbody>
@@ -106,6 +113,8 @@
 window.onload = function() {
   var popup = document.getElementById("popup");
   popup.style.display = "none";
+  var popupC = document.getElementById("popupC");
+  popupC.style.display = "none";
 };
 
 
@@ -155,6 +164,8 @@ window.onload = function() {
     function ocultarPopup() {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
+      var popupC = document.getElementById("popupC");
+      popupC.style.display = "none";
     }
 
     // Filtra el expediente según el código
@@ -167,7 +178,7 @@ function buscar() {
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
   td = tr[i].getElementsByTagName("td")[2];
-  td = tr[i].getElementsByTagName("td")[1];
+
    // Filtrar por la cuarta columna (Estado del Expediente)
   if (td) {
   txtValue = td.textContent || td.innerText;
@@ -178,6 +189,18 @@ function buscar() {
   }
   }
   }
+}
+
+
+
+function mostrarPopupC(element) {   
+
+  var popupC = document.getElementById("popupC");
+    popupC.style.display = "flex";
+    
+  // Establecer el expediente_id seleccionado en el popup
+  var expediente_id = document.getElementById('expediente_id');
+    expediente_id.value = element.target.getAttribute('data-idC');
 }
   </script>
 @endsection
