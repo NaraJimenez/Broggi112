@@ -25,6 +25,13 @@ class AgenciesController extends Controller
         
     }
 
+    public function mapbox(){
+        $datosA = DB::table('agencies')
+            ->select('nom', 'carrer', 'codi_postal')
+            ->get();
+        return response()->json($datosA);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

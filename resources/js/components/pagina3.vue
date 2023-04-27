@@ -10,8 +10,15 @@
 import axios from 'axios';
 // import Mapbox from "../components/atoms/Mapbox/Mapbox.vue";
 export default {
+  // Paso los atributos de las agencias
+
   // components: Mapbox,
   name: 'Mapa',
+   props: {
+    agencias: {
+      type: Array,
+      required: true
+    },
   data() {
     return {
       map: null
@@ -22,7 +29,8 @@ export default {
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
         .forwardGeocode({
-            query: '${this.cartaTrucadaRealizada.objetoRecibido}',
+          // Deja en query el que tienes tú
+            query: 'objetoRecibido.selectMunicipi', 
             autocomplete: false,
             limit: 1
         })
@@ -48,14 +56,40 @@ export default {
                 zoom: 10
             });
 
-            // Create a marker and add it to the map.
-            new mapboxgl.Marker().setLngLat(feature.center).addTo(this.map);
-        });
+              this.agencias.forEach((agencia) => {
+              // Aquí creo el marker para cada agencia
+              mapboxClient.geocoding
+                .forwardGeocode({
+                    query: agencia.carrer + ' ' + agencia.codi_postal + ' ' + agencia.nom,
+                    autocomplete: false,
+                    limit: 1
+                })
+                .send()
+                .then((response) => {
+                    if (
+                        !response ||
+                        !response.body ||
+                        !response.body.features ||
+                        !response.body.features.length
+                    ) {
+                        console.error('Invalid response:');
+                        console.error(response);
+                        return;
+                    }
+                    const feature = response.body.features[0];
 
-        
+                    new mapboxgl.Marker()
+                      .setLngLat(feature.center)
+                      .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                        .setHTML('<h3>' + agencia.nom + '</h3><p>' + agencia.carrer + ' ' + agencia.codi_postal + '</p>'))
+                      .addTo(this.map);
+                });
+            });
+        });
   }
-};
+}
 </script>
+
 
 <style>
 .map-container {
