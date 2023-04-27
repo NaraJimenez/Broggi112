@@ -16,9 +16,16 @@ class TipusIncidentsController extends Controller
      */
     public function index()
     {
-        $typesIncidents = Tipus_incidents::all();
+        //Nos muestra todos los registros de la tabla
+        $tipusIncidents = Tipus_incidents::all();
 
-        return TipusIncidentsResources::collection($typesIncidents); 
+        //Nos devuelve un array con los valores
+        return TipusIncidentsResources::collection($tipusIncidents);
+
+
+        /*
+        $tipusIncident = TipusIncident::with("incidents.cartestrucades")->get();
+        return TipusIncidentResource::collection($tipusIncident);*/
     }
 
     /**
@@ -38,9 +45,10 @@ class TipusIncidentsController extends Controller
      * @param  \App\Models\Tipus_incidents  $tipus_incidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipus_incidents $tipus_incidents)
+    public function show(Tipus_incidents $tipusincident)
     {
-        //
+        $tipus_incidente = Tipus_incidents::with('Incidents')->find($tipusincident->id);
+        return new TipusIncidentsResources($tipus_incidente);
     }
 
     /**

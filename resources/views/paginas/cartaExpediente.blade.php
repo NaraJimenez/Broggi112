@@ -8,9 +8,10 @@
         <h2>Carta Registrada</h2>
     </div>
 
-    <div class="card mt-2 mx-auto" id="CartaIncidencia">
+    <div class="card mt-2 " id="CartaIncidenciaExpe">
         <div class="card-body">
-
+            <!--Componente de Expediente-->
+            <div id="cartaExpediente" ></div>
         </div>
     </div>
 

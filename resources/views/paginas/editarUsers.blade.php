@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="card bg-color border border-0">
+    @if (Route::currentRouteName() == 'mi.ruta')
+    <dialog close class="popup col-8 justify-content-center align-items-center">
+        <div class="card bg-color border border-0 ">
             <div class="card-header">
                 <h5 class="card-title">Editar usuario</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -60,11 +60,34 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>
-</div>
-<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-
-</div>
-</div>
+    </dialog>
+    <dialog close class='popup-add'>
+        <form action="{{ route('usuarios.agregar') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nom" name="nom">
+            </div>
+            <div class="mb-3">
+                <label for="cognoms" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="cognoms" name="cognoms">
+            </div>
+            <div class="mb-3">
+                <label for="tipus_usuaris_id" class="form-label">Tipo de usuario</label>
+                <select class="form-select" id="tipus_usuaris_id" name="tipus_usuaris_id">
+                    @foreach ($roles as $rol)
+                        <option value="{{ $rol->id }}">
+                            {{ $rol->nom }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="button" class="btn btn-secondary cancelar-btn">Cancelar</button>
+        </form>
+    </dialog>
 </body>

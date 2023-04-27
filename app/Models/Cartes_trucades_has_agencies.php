@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+//use Illuminate\Database\Eloquent\Factories\HasFactory;
+//use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class Cartes_trucades_has_agencies extends Model
@@ -26,6 +28,6 @@ class Cartes_trucades_has_agencies extends Model
         }
        public function estatAgencies()
        {
-            return $this->n(estat_agencies::class, 'estat_agencies_id');
+            return $this->belongsTo(estat_agencies::class, 'estat_agencies_id');
        }
-    }
+}

@@ -20,6 +20,9 @@ class AgenciesController extends Controller
         $agencies = Agencies::with('municipi')->get();
 
         return AgenciesResources::collection($agencies);
+
+        //SACAR DE LA BBDD -- El nombre de las agencias guardadas
+        
     }
 
     /**

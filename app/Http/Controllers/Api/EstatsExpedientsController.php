@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\Estats_expedients;
+use App\Models\Estat_expedients;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EstatsExpedientsResources;
 
@@ -16,9 +16,9 @@ class EstatsExpedientsController extends Controller
      */
     public function index()
     {
-        $conditions = Estats_expedients::all();
+        $estatsExpedients = Estat_expedients::all();
 
-        return EstatsExpedientsResources::collection($conditions);
+        return EstatsExpedientsResources::collection($estatsExpedients);
     }
 
     /**
@@ -38,7 +38,7 @@ class EstatsExpedientsController extends Controller
      * @param  \App\Models\Estats_expedients  $estats_expedients
      * @return \Illuminate\Http\Response
      */
-    public function show(Estats_expedients $estats_expedients)
+    public function show(Estat_expedients $estats_expedients)
     {
         //
     }
@@ -50,7 +50,7 @@ class EstatsExpedientsController extends Controller
      * @param  \App\Models\Estats_expedients  $estats_expedients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estats_expedients $estats_expedients)
+    public function update(Request $request, Estat_expedients $estats_expedients)
     {
         //
     }
@@ -61,7 +61,7 @@ class EstatsExpedientsController extends Controller
      * @param  \App\Models\Estats_expedients  $estats_expedients
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estats_expedients $estats_expedients)
+    public function destroy(Estat_expedients $estats_expedients)
     {
         //
     }

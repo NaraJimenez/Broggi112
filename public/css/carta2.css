@@ -1,66 +1,9 @@
 
-#CartaIncidencia{
-    position: absolute;
-    width: 1020px;
-    height: 539px;
-    left: 470px;
-    background: #35B5C9;
-    border-radius: 20px;
-}
-
-#boton1c2{
-    width: 170px;
-    height: 70px;
-    background: #EBEFEF;
-    border-radius: 10px;
-    transform: rotate(0.26deg);
-}
-
-
-#boton2c2{
-    width: 170px;
-    height: 70px;
-    margin-left: 18px;
-    background: #025D73;
-    border-radius: 10px;
-    transform: rotate(0.26deg);
-}
-
-#boton3c2{
-    width: 170px;
-    height: 70px;
-    background: #EBEFEF;
-    border-radius: 10px;
-    margin-left: 18px;
-    transform: rotate(0.26deg);
-
-
 /*Dentro de carta*/
-#primerRectangulo2{
-    box-sizing: border-box;
-    width: 438px;
-    height: 500px;
-    border: 1px solid #025D73;
-    border-radius: 15px;
-}
 
-#catalunya{
-    box-sizing: border-box;
-    position: absolute;
-    width: 207px;
-    height: 35px;
-    left: 78px;
-    top: 135px;
-    background: #FFFFFF;
-    border: 3px solid #76DAE4;
-    border-radius: 10px;
-}
 
-#checkboxCat{
-    margin-left: 280px;
-    margin-top: 37px;
-    
-}
+
+
 
 #checkCarta2{
 background-color: #33cfe4;

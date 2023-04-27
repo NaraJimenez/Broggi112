@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cartes_trucades_has_agencies;
-use Illuminate\Http\Request;
+use App\Http\Resources\CartesTrucadesHasAgenciesResources;
 
 class CartesTrucadesHasAgenciesController extends Controller
 {
@@ -15,7 +16,9 @@ class CartesTrucadesHasAgenciesController extends Controller
      */
     public function index()
     {
-        //
+        $trucadesHasAgencies = Cartes_trucades_has_agencies::all();
+
+        return CartesTrucadesHasAgenciesResources::collection($trucadesHasAgencies);
     }
 
     /**

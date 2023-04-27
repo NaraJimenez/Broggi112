@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Clases\Utilitat;
 use App\Models\Expedients;
 use Illuminate\Http\Request;
+
+
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
+use App\Http\Resources\ExpedientsResources;
 
 class ExpedientsController extends Controller
 {
@@ -15,7 +20,9 @@ class ExpedientsController extends Controller
      */
     public function index()
     {
-        //
+        $expedients = Expedients::all();
+
+        return ExpedientsResources::collection($expedients);
     }
 
     /**
@@ -26,7 +33,23 @@ class ExpedientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $expedients = new Expedients();
+        $expedients->estats_expedients_id = $request->input('estats_expedients_id');
+
+        try{
+
+            $expedients->save();
+            $response = (new ExpedientsResources($expedients))->response()->setStatusCode(201);
+        }
+        catch(QueryException $ex)
+        {
+
+            $mensaje = Utilitat::errorMessage($ex);
+            // $request->session()->flash('error', $mensaje);
+            $response = \response()->json(['error' => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**
@@ -35,9 +58,10 @@ class ExpedientsController extends Controller
      * @param  \App\Models\Expedients  $expedients
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedients $expedients)
+    public function show(Expedients $expedient)
     {
-        //
+        $expediente = Expedients::find($expedient);
+        return new ExpedientsResources($expediente);
     }
 
     /**

@@ -16,9 +16,22 @@ class IncidentsController extends Controller
      */
     public function index()
     {
+        //Nos muestra todos los registros de la tabla
         $incidents = Incidents::all();
 
+        //Nos devuelve un array con los valores
         return IncidentsResources::collection($incidents);
+
+
+        //AQUÍ NECESITARIAMOS PASARLE LA ID DEL TIPO DE INCIDENTE COMO PARÁMETRO, Y EN EL CONTROLLER QUE BUSQUE POR TAL EN VEZ DE SER ALEATORIO.
+       /* $incidents = Incidents::with("cartesTrucades")->get();
+        return IncidentsResources::collection($incidents);*/
+
+        /* $incidents = Incidents::where('classes_incidents_id',$tipusIncident)->get();
+        return IncidentResource::collection($incidents); */
+        // $incidents = Incidents::all();
+        // return IncidentResource::collection($incidents);
+        //
     }
 
     /**
@@ -38,9 +51,10 @@ class IncidentsController extends Controller
      * @param  \App\Models\Incidents  $incidents
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidents $incidents)
+    public function show(Incidents $incident)
     {
-        //
+        $incidente= Incidents::where('tipus_incidents_id', '=', $incident)->get();
+        return new IncidentsResources($incidente);
     }
 
     /**
