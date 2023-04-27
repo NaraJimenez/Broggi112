@@ -180,7 +180,7 @@ import { ref, reactive } from "vue";
 export default {
     props: {
         //searchResults: Array,
-        objetoRecibido: Object
+        objetoRecibido1: Object
     },
     data() {
         return {
@@ -231,8 +231,8 @@ export default {
         console.log('Carta2 montada');
         this.fetchProvincies();
         this.validateForm();
-        if (this.objetoRecibido) {
-            this.formData.searchResults = this.objetoRecibido.searchResults
+        if (this.objetoRecibido1) {
+            this.formData.searchResults = this.objetoRecibido1.searchResults
             console.log('ha pasado bien');
         }
     },

@@ -52,6 +52,7 @@ class CartesTrucadesController extends Controller
 
            /* EXPEDIENTES -- Guardamos en tabla Expedientes*/
             $expedient->estat_expedients_id = 1;
+            $expedient->codi = 'EXP01' ; 
             $expedient->save();
 
             //Cogemos el id de los expedientes

@@ -19,7 +19,7 @@
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"--> <!--:resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" -->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
-            :objeto-recibido="cartaTrucadaRealizada.objetoRecibido1"
+            :objeto-recibido="cartaTrucadaRealizada.objetoRecibido" :objeto-recibido1="cartaTrucadaRealizada.objetoRecibido1"
             @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->

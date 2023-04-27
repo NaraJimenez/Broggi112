@@ -42,6 +42,7 @@
     //     });
     // });
 
+ 
 
 Route::get('/', function () {
     return view('index');
@@ -74,8 +75,8 @@ Route::get('/mapbox', function () {
 
 //Ruta Admin. expedientes
 Route::get('/expedientes', [ExpedientsController::class, 'index']);
-Route::post('/expedientes/update', [ExpedientsController::class, 'update']) ->name('expedientes.update');
-Route::get('/mostrarcartasllamadas/{id}', [ExpedientsController::class, 'cartasllamadas'])->name('mostrarcartasllamadas');
+Route::post('/expedientes/update', [ExpedientsController::class, 'update'])->name('expedientes.update');
+
 
 //Ruta Admin. Agencias
 
@@ -86,9 +87,9 @@ Route::get('/cartaExpediente', function () {
 })->name('cartaExpediente');
 
 //Fusion componentes 
-/*Route::get('/carta', function () {
+Route::get('/carta', function () {
     return view('paginas/carta');
-})->name('carta');*/
+})->name('carta');
 
 //carta cogiendoel telefono
 Route::get('/carta/{phone}', function ($phone) {

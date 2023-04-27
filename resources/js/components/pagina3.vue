@@ -11,6 +11,10 @@ import axios from 'axios';
 // import Mapbox from "../components/atoms/Mapbox/Mapbox.vue";
 export default {
   // components: Mapbox,
+  props: {
+        //searchResults: Array,
+        objetoRecibido: Object
+    },
   name: 'Mapa',
   data() {
     return {
@@ -22,7 +26,7 @@ export default {
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
         .forwardGeocode({
-            query: '${this.cartaTrucadaRealizada.objetoRecibido.selectedMunicipi}',
+            query: this.objetoRecibido.selectedMunicipi.toString(),
             autocomplete: false,
             limit: 1
         })

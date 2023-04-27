@@ -8,20 +8,21 @@ use App\Http\Requests\StoreTelefonRequest;
 
 class TelefonController extends Controller
 {
-    
-    public function index(){
-    // Generar un número aleatorio de 6 dígitos
-    $num1 = rand(10000000, 99999999);
-    
-    // Generar un número aleatorio de 3 dígitos
-    $num2 = rand(100, 999);
-    
-    // Concatenar los números para formar un número de 9 dígitos que comience con 6
-    $randomPhone = '6' . $num1;
-    
-    return view ('NavBar.home', compact('randomPhone'));
-}
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $phones = Cartes_trucades::pluck('telefon')->toArray();
+        $count = sizeof($phones);
+        $randomIndex = rand(0, $count-1);
+        $randomPhone = $phones[$randomIndex];
+
+        return view ('NavBar.home', compact('randomPhone'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,10 +39,10 @@ class TelefonController extends Controller
      * @param  \App\Http\Requests\StoreTelefonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTelefonRequest $request)
+    /*public function store(StoreTelefonRequest $request)
     {
         //
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -49,10 +50,10 @@ class TelefonController extends Controller
      * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function show(Telefon $telefon)
+    /*public function show(Telefon $telefon)
     {
         //
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -60,10 +61,10 @@ class TelefonController extends Controller
      * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Telefon $telefon)
+    /*public function edit(Telefon $telefon)
     {
         //
-    }
+    }*/
 
     /**
      * Update the specified resource in storage.
@@ -72,10 +73,10 @@ class TelefonController extends Controller
      * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTelefonRequest $request, Telefon $telefon)
+    /*public function update(UpdateTelefonRequest $request, Telefon $telefon)
     {
         //
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -83,8 +84,8 @@ class TelefonController extends Controller
      * @param  \App\Models\Telefon  $telefon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Telefon $telefon)
+    /*public function destroy(Telefon $telefon)
     {
         //
-    }
+    }*/
 }

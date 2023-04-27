@@ -81,6 +81,7 @@ export default {
                 inputApellidos:'',
                 inputNotaComuna:'',
                 telefonoLlamada: this.randomPhone,
+                //this.randomPhone
                 selectedTipusIncident: "",
                 selectedIncident: "",
                 searchResults: [],
