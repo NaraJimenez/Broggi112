@@ -120,8 +120,8 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-poblacion" role="tabpanel" aria-labelledby="v-pills-poblacion-tab">
-                      <!--POBLACION inputPoblacionNombre-->
-                      <div class=" mt-3" id="poblacion">
+                      <!--POBLACION inputPoblacionNombre MIRAR COMO ESTA HECHO EN tab-->
+                      <div class=" mt-3" id="poblacion">   
                         <label for="inputPob" class="">Nombre Población</label>
                         <input id="inputPob" class="" type="text"
                         name="inputPob" placeholder="Introduce Poblacion">
