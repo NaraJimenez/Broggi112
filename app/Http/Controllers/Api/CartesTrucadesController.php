@@ -36,13 +36,22 @@ class CartesTrucadesController extends Controller
     public function store(Request $request)
     {
         try {
-           // DB::beginTransaction();
+            DB::beginTransaction();
+
+          /*  if(){
+                //SE SELECCIONA ID
+                //id pasado despues de seleccionarlo en el modal
+                $idExpedienteSeleccionado = $request->input('selected');
+            }else{
+                //SE CREA DE CERO
+            }*/
+
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
             $expedient = new Expedients();
 
            /* EXPEDIENTES -- Guardamos en tabla Expedientes*/
-            $expedient->estats_expedients_id = 1;
+            $expedient->estat_expedients_id = 1;
             $expedient->save();
 
             //Cogemos el id de los expedientes
@@ -72,8 +81,6 @@ class CartesTrucadesController extends Controller
 
 
             //Segundo FORM
-             //TIPOS_LOCALIZACION --Guardamos en la tabla de tipos de localizacion
-             //FALTA PASAR VALOR DEL PICKED
             if ($request->input('catEscogido') == 0) {
                 //PROVINCIA
                 $cartaTrucada->provincies_id = $request->input('selectProvincia');
@@ -81,23 +88,23 @@ class CartesTrucadesController extends Controller
                 $cartaTrucada->municipis_id = $request->input('selecMunicipi');
 
                 //SE PASA EL INDEX DEL TAB
-                $cartaTrucada->tipus_localitzacions_id = $request->input('activeElement');
+                $cartaTrucada->tipus_localitzacions_id = $request->input('selectedNavItem');
 
 
-                if($request->input('activeElement') == 1){
+                if($request->input('selectedNavItem') == 1){
                     $descripCarretera = $request->input('inputCarretera') . ' ' . $request->input('inputpuntoKM');
 
                     $cartaTrucada->descripcio_localitzacio = $descripCarretera;
                     $cartaTrucada->detall_localitzacio = $request->input('inputSentido');
-                } else if ($request->input('activeElement') == 2){
+                } else if ($request->input('selectedNavItem') == 2){
                     $carrerDescrip = $request->input('inputVia') . ' ' . $request->input('inputCalle') . ' ' . $request->input('inputCasa');
                     $detallLoc = $request->input('inputEscalera') . ' ' . $request->input('inputPiso') . ' ' . $request->input('inputPuerta');
 
                     $cartaTrucada->descripcio_localitzacio = $carrerDescrip;
                     $cartaTrucada->detall_localitzacio = $detallLoc;
-                } else if ($request->input('activeElement') == 3) {
+                } else if ($request->input('selectedNavItem') == 3) {
                     $cartaTrucada->descripcio_localitzacio = $request->input('inputPS');
-                } else if ($request->input('activeElement') == 4) {
+                } else if ($request->input('selectedNavItem') == 4) {
                     $cartaTrucada->descripcio_localitzacio = $request->input('inputPob');
                 }
 
@@ -108,21 +115,25 @@ class CartesTrucadesController extends Controller
                 //MUNICIPI
                 $cartaTrucada->municipis_id = $request->input('municipioInput');
 
-                //No catalunya se mete en los inputs de provincia y monicipi en detall localitzacio?
+                //No catalunya se mete en los inputs de provincia y monicipi en altres referencies 
+                /*$noCat =  $request->input('provinciaInput') . ' ' . $request->input('municipioInput')
+                $cartaTrucada->altres_ref_localitzacio = $noCat;
+                */
 
             }
 
             //Elementos externos
-            $cartaTrucada->usuaris_id= $request->input('tempsTrucada');
+            //$cartaTrucada->usuaris_id= $request->input('tiempoTrucada');
 
+            //CARTA TRUCADA ES SALVA
             $cartaTrucada->save();
 
             $response = (new CartesTrucadesResources($cartaTrucada))
                 ->response()
                 ->setStatusCode(201);
-            //DB::commit();
+            DB::commit();
         } catch (QueryException $ex) {
-            //DB::rollBack();
+            DB::rollBack();
             $mensaje = Utilitat::errorMessage($ex);
             $response = \response()
                 ->json(
@@ -198,12 +209,12 @@ class CartesTrucadesController extends Controller
     {
         $results = Expedients::join('cartes_trucades', 'cartes_trucades.expedients_id', '=', 'expedients.id')
                     ->join('incidents', 'cartes_trucades.incidents_id', '=', 'incidents.id')
-                    ->where('incidents.tipus_incidents_id', $incident) 
+                    ->where('incidents.tipus_incidents_id', $incident)
                     ->orWhere('cartes_trucades.municipis_id', $municipi)
                     ->orWhere('cartes_trucades.telefon', 'LIKE', '%'.$telefon.'%')
                     ->select('expedients.*')
                     ->get();
-    
+
         return response()->json($results);
     }
 

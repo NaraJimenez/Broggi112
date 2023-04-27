@@ -2,7 +2,7 @@
     <div>
         <div class="tabs mt-3 justify-content-center mb-1">
             <!--Codigo de Carta Llamada-->
-            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3">{{ codiTrucada }}</p> </div>
+            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3">{{ cartaTrucadaRealizada.codiTrucada }}</p> </div>
             <!--TABS MENU-->
             <div class="tabs_header ">
                 <button
@@ -12,7 +12,7 @@
                 </button>
             </div>
             <!--Tiempo de Llamada-->
-            <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{fechaHoraActual}}</div>
+            <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{cartaTrucadaRealizada.fechaHoraActual}}</div>
         </div>
 
 
@@ -20,37 +20,38 @@
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
             :objeto-recibido="cartaTrucadaRealizada.objetoRecibido1"
-            @enviar-objeto3="recibirObjeto3" @finalizarLlamada="confirmFinalizarLlamada()" />
+            @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
         <!--:carta-trucada-realizada="cartaTrucadaRealizada.objetoRecibido1" :search-results="objetoRecibido1.searchResults"-->
     </div>
 
-    <!--MODAL-->
-    <div class="modal" tabindex="-1" id="myModal">
+     <!--MODAL-->
+     <div class="modal" tabindex="-1" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Llamada Finalizada</h5>
-              <!--<p>{{ cartaTrucadaRealizada. codiTrucada }}</p>
-              <p>{{ cartaTrucadaRealizada.duracioTrucada }}</p>-->
+              <h5 class="modal-title">Llamada Finalizada - {{ cartaTrucadaRealizada.codiTrucada }}</h5>
               <!--Hay que me ter en el header, el codigo de llamada y lo que ha durado-->
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!--Si se han encontrado elementos en el filtro-->
-                <div>
-                    <p>Estas son las Carta Guardadas que coinciden:</p>
-                    <!--<select v-model="selected" multiple></select>-->
-                </div>
                 <!--Si NO han encontrado elementos en el filtro-->
-                <div>
-                    <p>No se ha encontrado ninguna incidencia, al "Crear" se creará una carta guardad nueva.</p>
+                <div v-if="expedientesBuscados.length === 0">
+                    <p>No se ha encontrado ninguna coincidencia, al "Crear" se creará una
+                        carta nueva asociado a un nuevo expediente.</p>
+                </div>
+                <!--Si se han encontrado elementos en el filtro-->
+                <div v-else>
+                    <p>Estas son los Expedientes que coinciden:</p>
+                    <select name="selected" id="selected" multiple v-model="cartaTrucadaRealizada.selected">
+                        <option v-for="expedienteBuscado in expedientesBuscados" :value="expedienteBuscado">{{ expedienteBuscado }}</option>
+                    </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <!--Si no se encunetran elmentos en el filtro, el boton sera deseable-->
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="actualizarCarta()">Actualizar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="actualizarExpe()">Actualizar</button>
               <button type="button" class="btn btn-primary" @click="guardarCarta(cartaTrucadaRealizada)">Crear</button>
             </div>
           </div>
@@ -61,18 +62,18 @@
 <script>
 import axios from 'axios';
     //Importamos los componentes hijos
-    import pagina1 from "./pagina1.vue";
-    import pagina2 from "./pagina2.vue";
-    import pagina3 from "./pagina3.vue";
+    import Incidencia from "./pagina1.vue";
+    import Localización from "./pagina2.vue";
+    import Agencias from "./pagina3.vue";
     export default {
         //Pasamos los componentes
-        components: { pagina1, pagina2, pagina3 },
+        components: { Incidencia, Localización, Agencias },
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
-                tabs: ["pagina1", "pagina2", "pagina3"],
+                tabs: ["Incidencia", "Localización", "Agencias"],
                 //El primer componente en mostrar
-                component: "pagina1",
+                component: "Incidencia",
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
                 pasadoForm1: false,
                 pasadoForm2: false,
@@ -84,20 +85,22 @@ import axios from 'axios';
                     objetoRecibido1: null,
                     objetoRecibido: null,
                     objetoRecibido3: null,
-                    //FALTA METER EL TIEMPO Y EL CODIGO AQUI
+                    //TIEMPO
+                    fechaHoraActual: "",
+                    contador: 0,
+                    interval: null,
+                    iniciTrucada: "",
+                    duracioTrucada: 0,
+                    //Codigo Llamada
+                    codiTrucada: this.generarCodiTrucada(), 
+                    //Expediente seleccionado con el que relacionar la carta
+                    selected:"",
                 },
-                //TIEMPO
-                fechaHoraActual: "",
-                contador: 0,
-                interval: null,
-                iniciTrucada: "",
-                duracioTrucada: 0,
-                //Codigo Llamada
-                codiTrucada: this.generarCodiTrucada(),
+                
                 //Modal
                 myModal: {},
                 //Buscador final se guarda aqui y este se ha de mostrar en el modal
-                searchResults: [],
+                expedientesBuscados: [],
             }
         },
         mounted() {
@@ -109,19 +112,19 @@ import axios from 'axios';
         },
         computed: {
             contadorFormatejat() {
-                const minutos = Math.floor(this.contador / 60);
-                const segundos = this.contador % 60;
+                const minutos = Math.floor(this.cartaTrucadaRealizada.contador / 60);
+                const segundos = this.cartaTrucadaRealizada.contador % 60;
                 return `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
             },
         },
         methods: {
             //Tiempo
             setFechaHoraActual() {
-                this.fechaHoraActual = new Date().toLocaleString('es-ES');
+                this.cartaTrucadaRealizada.fechaHoraActual = new Date().toLocaleString('es-ES');
             },
             iniciarContador() {
-                this.interval = setInterval(() => {
-                    this.contador++;
+                this.cartaTrucadaRealizada.interval = setInterval(() => {
+                    this.cartaTrucadaRealizada.contador++;
                 }, 1000);
             },
             convertirTiempoASegundos(tiempoFormateado) {
@@ -164,7 +167,8 @@ import axios from 'axios';
             },
             //FINALIZAR LLAMADA
             confirmFinalizarLlamada(){
-                this.myModal = new bootstrap.Modal('#myModal', options);
+                this.expedientesBuscados = this.cartaTrucadaRealizada.objetoRecibido.searchResults;
+                this.myModal = new bootstrap.Modal('#myModal', this.expedientesBuscados);
                 this.myModal.show();
             },
             //Guardar a la Base de Datos la Carta
@@ -174,10 +178,12 @@ import axios from 'axios';
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
                 axios
-                    .post("/Broggi112/public/api/cartestrucades", this.cartaTrucadaRealizada)
+                    .post('/Broggi112/public/api/cartestrucades', this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
-                        location.reload();
+                        //this.myModal.hide();
+                        //Al acabar aparece mensaje y te envia a la pagina inicial
+                        //location.reload();
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -188,7 +194,7 @@ import axios from 'axios';
                     });
             },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
-            actualizarCarta(){
+            actualizarExpe(){
                 //Con el id del expediente se crea una carta asociado a este
                 this.cartaTrucadaRealizada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
