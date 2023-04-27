@@ -34,14 +34,14 @@
     Route::resource('agencias', AgenciasController::class);
 
     // Rutas que requieren autenticación de usuario
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/home', function () {
-            $user = Auth::user();
-            return view('NavBar.home', compact('user'));
-        });
-    });
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::get('/home', function () {
+    //         $user = Auth::user();
+    //         return view('NavBar.home', compact('user'));
+    //     });
+    // });
 
-
+ 
 
 Route::get('/', function () {
     return view('index');
@@ -50,6 +50,7 @@ Route::get('/', function () {
 
 //Ruta Index (Telefono)
 // Route::view(uri: '/home', view:'layout.home')->name(name:'home');
+Route::get('/home', [TelefonController::class, 'index']);
 
 
 
