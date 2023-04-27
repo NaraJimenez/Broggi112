@@ -1,5 +1,3 @@
-
-
     <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\UsuarioController;
@@ -61,7 +59,7 @@ Route::get('/mapbox', function () {
 
 //Ruta Admin. expedientes
 Route::get('/expedientes', [ExpedientsController::class, 'index']);
-Route::post('/expedientes/update', 'ExpedientsController@update')->name('expedientes.update');
+Route::post('/expedientes/update', [ExpedientsController::class, 'update'])->name('expedientes.update');
 
 
 //Ruta Admin. Agencias
@@ -76,3 +74,7 @@ Route::get('/cartaExpediente', function () {
 Route::get('/carta', function () {
     return view('paginas/carta');
 })->name('carta');
+
+Route::get('/grafico', function () {
+    return view('paginas/GraficosIncidencias');
+});
