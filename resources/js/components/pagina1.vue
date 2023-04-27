@@ -71,7 +71,7 @@
 <script>
 import axios from 'axios';
 export default {
-    //props: {},
+    props: ['randomPhone'],
     data() {
         return {
             formValid: false,
@@ -80,7 +80,7 @@ export default {
                 inputNombre: '',
                 inputApellidos:'',
                 inputNotaComuna:'',
-                telefonoLlamada: null,
+                telefonoLlamada: this.randomPhone,
                 selectedTipusIncident: "",
                 selectedIncident: "",
                 searchResults: [],

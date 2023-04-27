@@ -66,7 +66,7 @@ import axios from 'axios';
     import Localización from "./pagina2.vue";
     import Agencias from "./pagina3.vue";
     export default {
-       // props: ['phone'],
+        props: ['randomPhone'],
         //Pasamos los componentes
         components: { Incidencia, Localización, Agencias },
         data() {

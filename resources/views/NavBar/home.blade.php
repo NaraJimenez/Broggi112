@@ -16,7 +16,7 @@
         <div id="emergency-alert" class="alert">
             <p class="alert-message">¡¡¡Emergencia!!! Acepta la llamada</p>
         </div>
-        <a href="{{ route('carta', ['phone' => $randomPhone]) }}">
+        <a href="{{ route('carta', ['phone' => $randomPhone]) }}" class="bottom-bar">
           <div class="button-rounded red">
             <i class="fa-solid fa-phone fa-beat-fade"></i>
           </a>

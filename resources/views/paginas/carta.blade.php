@@ -10,9 +10,11 @@
     <div class="card" id="CartaIncidencia">
         <div class="card-body">
             <!--Componente Menu-->
-            <div id="menuComponent"></div>       
+            <div id="menuComponent" :random-phone="{{ $randomPhone }}"></div>       
     </div>
 </div>
 
-
+<?php
+    $randomPhone = $_GET['phone'];
+?>
 @endsection

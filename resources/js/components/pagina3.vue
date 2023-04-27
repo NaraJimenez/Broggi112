@@ -22,7 +22,7 @@ export default {
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
         .forwardGeocode({
-            query: '${this.cartaTrucadaRealizada.objetoRecibido}',
+            query: '${this.cartaTrucadaRealizada.objetoRecibido.selectedMunicipi}',
             autocomplete: false,
             limit: 1
         })

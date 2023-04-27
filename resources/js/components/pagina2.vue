@@ -185,16 +185,14 @@ export default {
     data() {
         return {
             formValid: false,
-            opcionTab: '',
-            //PRUEBAS
-            //picked:[],
+
             //Para hacer las consultas
             provincies: [],
             provincia: {},
             comarques: [],
             comarca: {},
             municipis: [],
-            //catEscogido:null,
+
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
                 selectedNavItem: '1',

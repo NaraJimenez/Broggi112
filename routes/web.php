@@ -86,9 +86,14 @@ Route::get('/cartaExpediente', function () {
     return view('paginas/cartaExpediente');
 })->name('cartaExpediente');
 
-//Fusion componentes /{phone}
-Route::get('/carta', function () {
+//Fusion componentes 
+/*Route::get('/carta', function () {
     return view('paginas/carta');
+})->name('carta');*/
+
+//carta cogiendoel telefono
+Route::get('/carta/{phone}', function ($phone) {
+    return view('carta')->with('phone', $phone);
 })->name('carta');
 
 //Prueba de graficos
