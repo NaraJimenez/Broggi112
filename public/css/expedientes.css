@@ -208,6 +208,11 @@
     }
     
     .close {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
         color: #aaa;
         float: right;
         font-size: 28px;

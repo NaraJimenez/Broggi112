@@ -160,18 +160,18 @@
                 </div>
                 <!--EXPEDIENTES-FILTRO-->
                 <div class=" ms-3 mt-4" id="expedientes2">
-                    <ul>
-                        <li v-for="result in formData.searchResults" :key="result.id">
+                    <tr >
+                        <td v-for="result in formData.searchResults" :key="result.id" style="display: table-row;">
                             <span>Expediente ID {{ result.id }} Codigo {{ result.codi }} Estado {{result.estat_expedients_id}}</span>
-                        </li>
-                    </ul>
+                        </td>
+                    </tr>
                 </div>
 
             </form>
 
 
         </div> <!--FINAL DIV ROW-->
-            <button :disabled="!formValid" @click="submitForm" style="margin-top:140px">Enviado</button>
+        <button :disabled="!formValid" @click="openModalWithData" style="margin-top:140px">Enviado</button>
     </div>
 </template>
 <script>
@@ -197,7 +197,7 @@ export default {
             //catEscogido:null,
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
-                selectedNavItem: 'Carretera',
+                selectedNavItem: '1',
                 //Si es o no de Cat
                 catEscogido:'1',
                 provinciaInput: '',
@@ -239,9 +239,14 @@ export default {
         }
     },
     methods: {
+        //PRUEBA MODAL
+        openModalWithData() {
+            this.$emit('openModalWithData');
+        },
         //Select tab este guardara el tipo de localizacion
-        handleNavItemSelection(value) {
-            this.formData.selectedNavItem = value.target.textContent;
+        handleNavItemSelection(event) {
+            const selectedNavItem = event.target.getAttribute('value');
+            this.formData.selectedNavItem = parseInt(selectedNavItem);
             console.log(this.formData.selectedNavItem);
         },
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
@@ -308,7 +313,7 @@ export default {
         },
         fetchMunicipis() {
             axios
-                .get('/api/comarques/' + this.formData.selectedComarca)
+                .get('/Broggi112/public/api/comarques/' + this.formData.selectedComarca)
                 .then((response) => {
                     this.comarca = response.data;
                     console.log(response.data);
@@ -352,6 +357,7 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        overflow: auto;
     }
     /*Divs dentro de los resctangulos*/
     .content:not(:first-child) {

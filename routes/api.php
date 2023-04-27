@@ -44,3 +44,6 @@ Route::apiResource('expedients', ExpedientsController::class);
 //Buscador
 //Route::get('/search/{telefon}/{incident?}', [CartesTrucadesController::class, 'search']);
 Route::get('/search/{telefon}/{incident?}/{municipi?}', [CartesTrucadesController::class, 'search']);
+
+// Ruta de API de GRAFICOS
+Route::get('graficos', [GraficoController::class, 'datos']);

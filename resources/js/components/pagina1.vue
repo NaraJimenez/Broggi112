@@ -50,11 +50,11 @@
                     </div>
                     <!----------Expedentes - Filtro/Buscador------------>
                     <div class="mt-5 ms-1" id="expedientes">
-                        <ul>
-                            <li v-for="result in formData1.searchResults" :key="result.id">
+                        <tr >
+                            <td v-for="result in formData1.searchResults" :key="result.id" style="display: table-row;">
                                 <span>Expediente ID {{ result.id }} Codigo {{ result.codi }} Estado {{result.estat_expedients_id}}</span>
-                            </li>
-                        </ul>
+                            </td>
+                        </tr>
                     </div>
                 </div>
                 <!--FINAL PRIMER RECTANGULO-->
@@ -64,7 +64,7 @@
         <div>
             <!--<img v-show="formValid" src="../../../public/img/cheque.png" alt="Imagen 1" />
             <img v-show="!formValid" src="../../../public/img/alerta.png" alt="Imagen 2" />-->
-          </div>
+        </div>
             <button :disabled="!formValid" @click="submitForm" style="margin-top:15px">Enviado</button>
     </div>
 </template>
@@ -198,6 +198,7 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        overflow: auto;
     }
     /*ELEMENTOS DENTROS DE LOS DIVS*/
     #inputNombre{
@@ -264,8 +265,11 @@ export default {
     }
     #definicionInci{
         top: 85px;
+        overflow: auto;
     }
     #indicacionesInci{
         top: 128px;
+        overflow: auto;
     }
+
 </style>

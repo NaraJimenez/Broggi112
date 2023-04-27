@@ -1,5 +1,3 @@
-
-
     <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\UsuarioController;
@@ -8,6 +6,7 @@
     use App\Http\Controllers\TelefonController;
     use App\Http\Controllers\ExpedientsController;
     use App\Models\Usuaris;
+    use App\Http\Controllers\GraficoController;
 
     // Ruta para mostrar la página de inicio cuando se inicia sesión correctamente
     Route::get('/correcto', function () {
@@ -36,13 +35,12 @@
     Route::resource('agencias', AgenciasController::class);
 
     // Rutas que requieren autenticación de usuario
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/home', function () {
-            $user = Auth::user();
-            return view('NavBar.home', compact('user'));
-        });
-    });
-
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::get('/home', function () {
+    //         $user = Auth::user();
+    //         return view('NavBar.home', compact('user'));
+    //     });
+    // });
 
 
 Route::get('/', function () {
@@ -52,6 +50,7 @@ Route::get('/', function () {
 
 //Ruta Index (Telefono)
 // Route::view(uri: '/home', view:'layout.home')->name(name:'home');
+Route::get('/home', [TelefonController::class, 'index']);
 
 
 
@@ -86,12 +85,14 @@ Route::get('/cartaExpediente', function () {
     return view('paginas/cartaExpediente');
 })->name('cartaExpediente');
 
-//Fusion componentes
+//Fusion componentes /{phone}
 Route::get('/carta', function () {
     return view('paginas/carta');
 })->name('carta');
 
 //Prueba de graficos
-Route::get('/graficos', function () {
-    return view('paginas/graficos');
-})->name('graficos');
+// Route::get('/graficos', function () {
+//     return view('paginas/graficos');
+// })->name('graficos');
+
+Route::get('graficos', [GraficoController::class, 'incidentes']);
