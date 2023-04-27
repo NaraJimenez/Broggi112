@@ -35,7 +35,7 @@
         <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}" method="POST" >
             {{-- Poner controlador --}}
             {{--  {{ old('password') }} {{ old('username') }} --}}
-@csrf
+            @csrf
             <input type="text" id="username" class="input" name="username" placeholder="Usuario">
             <input type="password" class="input" id="password" name="password" placeholder="Contraseña">
             <input class="enviar" type="submit" value="Ingresar">

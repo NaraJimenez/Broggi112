@@ -13,14 +13,13 @@
 @endsection
 
 @section('content')
-    <div class="admin-background">
-      
-      <!-- Popup para actualizar el estado de un expediente -->
-      <div id="popup" class="popup"  data-expediente-id="">
-        <div class="popup-contents">
-          <span class="close" onclick="ocultarPopup()">&times;</span>
-          <form action="{{ url ('/expedientes/update')}}" method="POST" class="popup-content">
-            @csrf
+<div class="admin-background">
+  <!-- Popup para actualizar el estado de un expediente -->
+  <div id="popup" class="popup"  data-expediente-id="">
+    <div class="popup-contents">
+      <span class="close" onclick="ocultarPopup()">&times;</span>
+      <form action="{{ url ('/expedientes/update')}}" method="POST" class="popup-content">
+          @csrf
            <p>Selecciona un color:</p>
           {{-- Ciclo foreach para mostrar los colores --}}
           @foreach ($estados as $estado_opcion)
@@ -34,19 +33,26 @@
           <input type="hidden" id="color-input" name="color_id" value="">
           {{-- Envía los datos --}}
           <button type="submit" id="actualizar-btn">Actualizar</button>
-          </form>
-        </div>
-      </div>
-      
-     {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes --}}
-<div class="header-file">
-  <p class="title"> Administración de expedientes</p>
-  <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por expediente...">
-</div>
+      </form>
+    </div>
+  </div>
 
-{{-- Esta sección muestra la tabla con los expedientes --}}
-<div class="admin-content" >
-  <table style="border-spacing: 10px 0">
+  <div id="popupC" class="popup"  data-expediente-id="">
+    <div class="popup-contents">
+      <span class="close" onclick="ocultarPopup()">&times;</span>
+      <p style="color: azure; font-size:20px">Poner foreach y poner todas las cartass de llamada del expediente.</p>
+    </div>
+  </div>
+
+       {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes  --}}
+  <div class="header-file">
+    <p class="title"> Administración de expedientes</p>
+    <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por estado...">
+  </div>
+
+  {{-- Esta sección muestra la tabla con los expedientes --}}
+  <div class="admin-content" >
+    <table style="border-spacing: 10px 0">
       <thead>
           <tr>
               <th>Id</th>
@@ -56,30 +62,35 @@
           </tr>
       </thead>
       <tbody>
-          {{-- Se itera sobre cada expediente para mostrarlos en la tabla --}}
-          @foreach ($expedientes as $expediente)
+        {{-- Se itera sobre cada expediente para mostrarlos en la tabla --}}
+        @foreach ($expedientes as $expediente)
           {{-- Se obtiene el id del expediente --}}
           @php
           $expediente_id = $expediente->id;
           @endphp
           <tr>
-              {{-- Se muetra el id del expediente --}}
-              <td>{{$expediente->id}}</td>
-              {{-- Se muestra el código del expediente --}}
-              <td><span>{{$expediente->codi}}</span></td>
-              <td colspan="2" class="estados">
-                  {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
-                  <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup(event)" ></span>
-                  {{-- Se muestra el estado actual del expediente --}}
-                  <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
-              </td>
-              {{-- Se muestra una imagen de una carta que abrirá un popup con expedientes --}}
-              <td><img src="./img/Carta.png" alt="Carta"></td>
+            {{-- Se muetra el id del expediente --}}
+            <td>{{$expediente->id}}</td>
+            {{-- Se muestra el código del expediente --}}
+            <td><span>{{$expediente->codi}}</span></td>
+            <td colspan="2" class="estados">
+              {{-- Se muestra un círculo con el color del estado del expediente y un popup para cambiar el estado --}}
+                <span class="circle" data-id="{{ optional($expediente)->id }}" data-id_color="{{ optional($expediente->estat_expedient)->id }}" style="background-color: {{ optional($expediente->estat_expedient)->colors ?? '#ccc' }}" onclick="mostrarPopup(event)" ></span>
+              {{-- Se muestra el estado actual del expediente --}}
+                <span class="estat">{{ optional($expediente->estat_expedient)->estat }}</span>
+            </td>
+            {{-- Se muestra una imagen de una carta que abrirá un popup con expedientes --}}
+            <td><span  data-idC="{{ optional($expediente)->id }}" onclick="mostrarPopupC(event)"><img src="./img/Carta.png" alt="Carta"></span></td>
           </tr> 
-          @endforeach
+        @endforeach
       </tbody>
-  </table>        
+    </table>   
 </div>
+<div class="pagination pagination-style">
+  {{ $expedientes->links('pagination::default') }}
+</div>
+</div> 
+
 
 {{-- Esta sección muestra los botones de navegación de la página --}}
 <div class="button-container">
@@ -87,16 +98,27 @@
       <a class="button" href="{{ url('/adminuser') }}">Usuario</a>
       {{-- El botón de Expedientes aparece seleccionado por defecto --}}
       <a class="button-selected"  href="{{ url('/expedientes') }}">Expedientes</a>
-      <button class="button">Agencias</button>
+      <a class="button">Agencias</a>
   </div>
 </div>
+
+  
 @endsection
 
 
 @section('scripts')
   <script>
- function mostrarPopup(element) {
-    
+
+//Que no se abra el popup, al abrir la página
+window.onload = function() {
+  var popup = document.getElementById("popup");
+  popup.style.display = "none";
+  var popupC = document.getElementById("popupC");
+  popupC.style.display = "none";
+};
+
+
+ function mostrarPopup(element) {   
     var popup = document.getElementById("popup");
     popup.style.display = "flex";
     
@@ -124,44 +146,62 @@
 
 
   function setColor(element) {
-  var colorInput = document.getElementById('color-input');
-  colorInput.value = element.target.getAttribute('data-id');
+  var circle = event.target;
   var colorInput = document.getElementById('color-input');
   colorInput.value = element.target.getAttribute('data-id');
 
   var colorCircles = document.querySelectorAll('.color-circle');
   for (var i = 0; i < colorCircles.length; i++) {
-    colorCircles[i].style.backgroundColor = '';
+    if (colorCircles[i] === element.target) {
+      colorCircles[i].style.backgroundColor = element.target.getAttribute('data-color');
+    } else {
+      colorCircles[i].style.backgroundColor = '';
+    }
   }
-  element.style.backgroundColor = element.target.getAttribute('data-color');
 }
     
 //Se oculta el popup
     function ocultarPopup() {
       var popup = document.getElementById("popup");
       popup.style.display = "none";
+      var popupC = document.getElementById("popupC");
+      popupC.style.display = "none";
     }
 
     // Filtra el expediente según el código
-    function buscar() {
+   
+function buscar() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchInput");
   filter = input.value.toUpperCase();
   table = document.querySelector("table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1]; // Filtrar por la segunda columna (Codigo Expediente)
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
+  td = tr[i].getElementsByTagName("td")[2];
+
+   // Filtrar por la cuarta columna (Estado del Expediente)
+  if (td) {
+  txtValue = td.textContent || td.innerText;
+  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+  tr[i].style.display = "";
+  } else {
+  tr[i].style.display = "none";
+  }
+  }
   }
 }
 
+
+
+function mostrarPopupC(element) {   
+
+  var popupC = document.getElementById("popupC");
+    popupC.style.display = "flex";
+    
+  // Establecer el expediente_id seleccionado en el popup
+  var expediente_id = document.getElementById('expediente_id');
+    expediente_id.value = element.target.getAttribute('data-idC');
+}
   </script>
 @endsection
 

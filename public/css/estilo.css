@@ -1,0 +1,29 @@
+.border-estilo {
+    border-top: 10px solid #025D73;
+    border-right: 15px solid #025D73;
+    border-left: 2px solid #025D73;
+    border-bottom: 2px solid #025D73;
+    box-shadow: 2px 2px.4em rgb(88, 88, 81);
+    border-radius: 20px;
+  }
+
+  .border-estilo2 {
+    border-top: 8px solid #FDC618;
+    border-right: 10px solid #FDC618;
+    border-left: 2px solid #FDC618;
+    border-bottom: 2px solid #FDC618;
+    box-shadow: 2px 2px.4em rgb(88, 88, 81);
+    border-radius: 20px;
+  }
+
+#grafica{
+    max-width: 1500px;
+    align-self: center;
+}
+
+.posgrafica {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px; /* Ajusta la altura del contenedor al tamaño de la ventana */
+}
