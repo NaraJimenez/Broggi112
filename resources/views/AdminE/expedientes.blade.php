@@ -47,7 +47,7 @@
        {{-- En esta sección contiene un formulario de búsqueda para buscar expedientes según el código de expedientes  --}}
   <div class="header-file">
     <p class="title"> Administración de expedientes</p>
-    <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por expediente...">
+    <input type="text" id="searchInput" onkeyup="buscar()" placeholder="Buscar por estado...">
   </div>
 
   {{-- Esta sección muestra la tabla con los expedientes --}}
