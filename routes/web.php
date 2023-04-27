@@ -26,7 +26,7 @@
     Route::get('/usuarios/agregar', [UsuarioController::class, 'mostrarafegirUsuario'])->name('usuarios.agregar.mostrar');
     Route::post('/usuarios/agregar', [UsuarioController::class, 'agregarUsuario'])->name('usuarios.agregar');
     Route::get('/usuarios/editar/{id}', [UsuarioController::class, 'mostraractualizarUsuario'])->name('usuarios.editar');
-
+    Route::get('/usuario/editar/{id}', [UsuarioController::class, 'mostrarcontrasenarUsuario'])->name('usuario.editar');
     //Agencias
     Route::delete('/adminagencias/eliminar/{id}', [AgenciesController::class, 'eliminar'])->name('agencias.eliminar');
     Route::get('/adminagencias', [AgenciesController::class, 'index'])->name('adminagencias');

@@ -52,7 +52,7 @@ export default {
             new mapboxgl.Marker().setLngLat(feature.center).addTo(this.map);
         });
 
-        console.log('gilipollas');
+        
   }
 };
 </script>

@@ -101,4 +101,12 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'El usuario no se pudo encontrar.');
         }
     }
+
+    public function mostrarcontrasenarUsuario(Request $request)
+    {
+        $roles = Tipus_usuaris::all(); // Cambiar Rol a Tipus_usuaris
+        $usuario = Usuaris::find($request->id);
+        $editar = 1;
+        return view('paginas.adminUsuarios.gestionarUsersC', compact('usuario', 'editar', 'roles'));
+    }
 }
