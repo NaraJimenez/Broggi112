@@ -141,33 +141,3 @@ const suma4 = TipusIncident1.data[3] + TipusIncident2.data[3] + TipusIncident3.d
 
 const elementoResultado4 = document.getElementById("abandonadas");
 elementoResultado4.textContent = suma4;
-
-
-fetch(url)
-    .then(response => response.json())
-    .then(datos => mostrar(datos))
-    .catch(error => console.log(error))
-
-const mostrar = (incidencias) => {
-    incidencias.forEach(element => {
-        grafica1.data['labels'].push(element.definicio)
-        // CAMBIAR LOS ELEMENTOS QUE COGE. Y el myChart deberia asignarse el nombre de grafica directamente
-        grafica1.data['datasets'][0].data.push(element.nom)
-    });
-    console.log(grafica1.data)
-}
-    // Seleccionar las cartas de llamada filtrando por el tipo de incidente para poder sumarlo al grafico
-
-
-// CONEXION BD
-
-$(document).ready(function() {
-    $.ajax({
-        url: "GraficoController.php",
-        dataType: "json",
-        success: function(data) {
-            // Manipular los datos en tu código JavaScript
-            console.log(data);
-        }
-    });
-});

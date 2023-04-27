@@ -90,6 +90,8 @@ Route::get('/carta', function () {
 })->name('carta');
 
 //Prueba de graficos
-Route::get('/graficos', function () {
-    return view('paginas/graficos');
-})->name('graficos');
+// Route::get('/graficos', function () {
+//     return view('paginas/graficos');
+// })->name('graficos');
+
+Route::get('graficos', [App\http\Controllers\GraficoController::class, 'incidentes']);
