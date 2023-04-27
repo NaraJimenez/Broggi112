@@ -20,7 +20,7 @@ class Expedients extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-   
+
 
     /**
      * Get the Cartes_trucades that owns the Estats_expedients
@@ -31,5 +31,9 @@ class Expedients extends Model
     {
         return $this->belongsTo(Estat_expedients::class, 'estat_expedients_id');
     }
-    
+    public function cartes_trucades() {
+        return $this->hasMany(Cartes_trucades::class, 'expedients_id');
+    }
+
+
 }

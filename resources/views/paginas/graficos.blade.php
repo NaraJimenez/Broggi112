@@ -1,4 +1,4 @@
-@extends('plantilla.principal')
+@extends('layout.plantilla')
 
 @section('titulo', 'Broggi - Carta Trucada')
 

@@ -8,21 +8,20 @@ use App\Http\Requests\StoreTelefonRequest;
 
 class TelefonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $phones = Cartes_trucades::pluck('telefon')->toArray();
-        $count = sizeof($phones);
-        $randomIndex = rand(0, $count-1);
-        $randomPhone = $phones[$randomIndex];
-
-        return view ('NavBar.home', compact('randomPhone'));
-    }
-
+    
+    public function index(){
+    // Generar un número aleatorio de 6 dígitos
+    $num1 = rand(10000000, 99999999);
+    
+    // Generar un número aleatorio de 3 dígitos
+    $num2 = rand(100, 999);
+    
+    // Concatenar los números para formar un número de 9 dígitos que comience con 6
+    $randomPhone = '6' . $num1;
+    
+    return view ('NavBar.home', compact('randomPhone'));
+}
+    
     /**
      * Show the form for creating a new resource.
      *
