@@ -86,7 +86,7 @@ Route::get('/cartaExpediente', function () {
     return view('paginas/cartaExpediente');
 })->name('cartaExpediente');
 
-//Fusion componentes
+//Fusion componentes /{phone}
 Route::get('/carta', function () {
     return view('paginas/carta');
 })->name('carta');

@@ -16,10 +16,10 @@
         <div id="emergency-alert" class="alert">
             <p class="alert-message">¡¡¡Emergencia!!! Acepta la llamada</p>
         </div>
-        <div class="bottom-bar">
+        <a href="{{ route('carta', ['phone' => $randomPhone]) }}">
           <div class="button-rounded red">
             <i class="fa-solid fa-phone fa-beat-fade"></i>
-          </div>
+          </a>
       </div>
     </div>
   </div>
