@@ -6,6 +6,7 @@
     use App\Http\Controllers\TelefonController;
     use App\Http\Controllers\ExpedientsController;
     use App\Models\Usuaris;
+    use App\Http\Controllers\GraficoController;
 
     // Ruta para mostrar la página de inicio cuando se inicia sesión correctamente
     Route::get('/correcto', function () {
@@ -95,4 +96,4 @@ Route::get('/carta', function () {
 //     return view('paginas/graficos');
 // })->name('graficos');
 
-Route::get('graficos', [App\http\Controllers\GraficoController::class, 'incidentes']);
+Route::get('graficos', [GraficoController::class, 'incidentes']);

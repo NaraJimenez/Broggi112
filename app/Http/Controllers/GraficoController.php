@@ -15,7 +15,7 @@ class GraficoController extends Controller{
   public function incidentes(){
 
 
-    return view('paginas.graficos');
+    return view('paginas.GraficosIncidencias');
   }
 }
 
