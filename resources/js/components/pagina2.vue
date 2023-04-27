@@ -29,7 +29,7 @@
 
                             <!--Comarca-->
                             <select id="selectComarca" name="selectComarca" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!formData.selectedProvincia" 
+                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!formData.selectedProvincia"
                             @input="validateForm" required>
                                 <option disabled selected  value="" class="text-center">Comarca</option>
                                 <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id" class="text-center">
@@ -39,7 +39,7 @@
                             </select>
                             <!--Municipi-->
                             <select id="selectMunicipi" name="selectMunicipi" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca" 
+                            v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca"
                             @input="validateForm" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
@@ -109,30 +109,29 @@
 
                             <!--CALLE-->
                             <div class="tab-pane container fade" id="calle">
-                                <div class="form-group">
-                                    <label for="inputVia" class=" mt-2 ">Tipo vía</label>
-                                    <input id="inputVia" class="form-control ms-1 mt-1" type="text" name="inputVia"
-                                    placeholder="Introduce Vía" v-model="formData.inputVia">
-                                </div>
                                 <br>
-                                <label for="inputCalle" class="mt-3">Nombre Calle</label>
-                                <input id="inputCalle" class="form-control ms-1 mt-2" type="text" name="inputCalle"
+                                <label for="ExpinputVia"  >Tipo vía</label>
+                                <input id="ExpinputVia" type="text" name="ExpinputVia"
+                                placeholder="Introduce Vía" v-model="formData.inputVia">
+                                <br>
+                                <label for="ExpinputCalle"  >Nombre Calle</label>
+                                <input id="ExpinputCalle"   type="text" name="ExpinputCalle"
                                 placeholder="Introduce Calle" v-model="formData.inputCalle">
                                 <br>
-                                <label for="inputCasa" class="mt-3">Número</label>
-                                <input id="inputCasa" class="form-control ms-1 mt-2" type="text" name="inputCasa"
+                                <label for="ExpExpinputCasa">Número</label>
+                                <input id="ExpinputCasa"   type="text" name="ExpinputCasa"
                                 placeholder="Introduce Casa" v-model="formData.inputCasa">
                                 <br>
-                                <label for="inputEscalera" class="mt-3">Escalera</label>
-                                <input id="inputEscalera" class="form-control ms-1 mt-2" type="text" name="inputEscalera"
+                                <label for="ExpinputEscalera" >Escalera</label>
+                                <input id="ExpinputEscalera"  type="text" name="ExpinputEscalera"
                                 placeholder="Introduce Escalera" v-model="formData.inputEscalera">
                                 <br>
-                                <label for="inputPiso" class="mt-3">Piso</label>
-                                <input id="inputPiso" class="form-control ms-1 mt-2" type="text" name="ninputPiso"
+                                <label for="ExpinputPiso" >Piso</label>
+                                <input id="ExpinputPiso"   type="text" name="ExpinputPiso"
                                 placeholder="Introduce Piso" v-model="formData.inputPiso">
                                 <br>
-                                <label for="inputPuerta" class=" mt-3 ">Puerta</label>
-                                <input id="inputPuerta" class="form-control ms-1 mt-2" type="text" name="inputPuerta"
+                                <label for="ExpinputPuerta" >Puerta</label>
+                                <input id="ExpinputPuerta" type="text" name="ExpinputPuerta"
                                 placeholder="Introduce Puerta" v-model="formData.inputPuerta">
                             </div>
 
@@ -155,7 +154,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p> {{ formData.selectedNavItem }}</p>
+                        <!--<p> {{ formData.selectedNavItem }}</p>-->
                     </div>
                 </div>
                 <!--EXPEDIENTES-FILTRO-->
@@ -166,12 +165,12 @@
                         </td>
                     </tr>
                 </div>
-
             </form>
 
-
         </div> <!--FINAL DIV ROW-->
-        <button :disabled="!formValid" @click="openModalWithData" style="margin-top:140px">Enviado</button>
+        <!--<button :disabled="!formValid" @click="openModalWithData" style="margin-top:140px">Enviado</button>-->
+            <div  style="margin-top:140px" class="badge badge-success" v-show="formValid" >¡Hecho!</div>
+            <div  style="margin-top:14px" class="badge badge-danger" v-show="!formValid">Faltan campos</div>
     </div>
 </template>
 <script>
@@ -263,8 +262,9 @@ export default {
         },
         //Validar Form
         validateForm() {
-           /* if (this.formData.catEscogido === '1') {
-                if (!this.formData.selectedProvincia || !this.formData.selectedComarca || !this.formData.selectedMunicipi){
+            if (this.formData.catEscogido === '1') {
+
+                if (!this.formData.selectedProvincia && !this.formData.selectedComarca && !this.formData.selectedMunicipi){
                     this.formValid = false;
                     console.log('Ha entrado al id de catEscgidos 1 ' + this.formValid)
                 } else {
@@ -273,14 +273,13 @@ export default {
             } else {
                 this.formValid = !!this.formData.provinciaInput;
                 //el && !!this.formData.municipioInput es opcional
-            }*/
-            this.formValid = !!this.formData.provinciaInput
+            }
             //  QUIZAS METER ESTO DENTRO DEL BOOLEANO CUANDOES TRUE
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
                 this.getSearchResults();
-                //console.log(this.formData);
+
             }
         },
         fetchProvincies() {
@@ -349,9 +348,9 @@ export default {
         box-sizing: border-box;
         position: absolute;
         width: 440px;
-        height: 130px;
+        height: 117px;
        /* margin-left: 47px;*/
-        top: 327px;
+        top: 339px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
@@ -366,7 +365,7 @@ export default {
         position: absolute;
         width: 207px;
         height: 35px;
-        left: 78px;
+        left: 69px;
         top: 138px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
@@ -381,7 +380,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 37px;
-        left: 78px;
+        left: 69px;
         /*left: 100px;
         top: 213px;*/
         background: #FFFFFF;
@@ -393,7 +392,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 37px;
-        left: 78px;
+        left: 69px;
         /*left: 100px;*/
         top: 225px;
         background: #FFFFFF;
@@ -405,7 +404,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 37px;
-        left: 78px;
+        left: 69px;
         /*left: 100px;*/
         top: 270px;
         background: #FFFFFF;
@@ -418,6 +417,7 @@ export default {
         width: 363px;
         height: 35px;
         background: #FFFFFF;
+        left:60px;
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
@@ -426,6 +426,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 35px;
+        left:60px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
@@ -473,6 +474,17 @@ export default {
     #inputCarretera, #inputpuntoKM, #inputSentido{
         box-sizing: border-box;
         position: absolute;
+        width: 220px;
+        height: 34px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+        left:150px;
+    }
+    #inputViaLabel{
+        left:2px;
+    }
+    #inputVia {
         width: 220px;
         height: 34px;
         background: #FFFFFF;

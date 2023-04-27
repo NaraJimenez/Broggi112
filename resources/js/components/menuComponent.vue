@@ -11,6 +11,7 @@
                     {{ tab }}
                 </button>
             </div>
+
             <!--Tiempo de Llamada-->
             <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{cartaTrucadaRealizada.fechaHoraActual}}</div>
         </div>
@@ -20,7 +21,7 @@
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
             :objeto-recibido="cartaTrucadaRealizada.objetoRecibido" :objeto-recibido1="cartaTrucadaRealizada.objetoRecibido1"
-            @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" />
+            @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" :phone="phone" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
         <!--:carta-trucada-realizada="cartaTrucadaRealizada.objetoRecibido1" :search-results="objetoRecibido1.searchResults"-->
@@ -51,7 +52,7 @@
             </div>
             <div class="modal-footer">
                 <!--Si no se encunetran elmentos en el filtro, el boton sera deseable-->
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="actualizarExpe()">Actualizar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="actualizarExpe(cartaTrucadaRealizada)">Actualizar</button>
               <button type="button" class="btn btn-primary" @click="guardarCarta(cartaTrucadaRealizada)">Crear</button>
             </div>
           </div>
@@ -66,7 +67,12 @@ import axios from 'axios';
     import Localización from "./pagina2.vue";
     import Agencias from "./pagina3.vue";
     export default {
-        props: ['randomPhone'],
+        props:{
+            phone: {
+                type: String,
+                required: true
+            },
+        },
         //Pasamos los componentes
         components: { Incidencia, Localización, Agencias },
         data() {
@@ -93,15 +99,16 @@ import axios from 'axios';
                     iniciTrucada: "",
                     duracioTrucada: 0,
                     //Codigo Llamada
-                    codiTrucada: this.generarCodiTrucada(), 
+                    codiTrucada: this.generarCodiTrucada(),
                     //Expediente seleccionado con el que relacionar la carta
                     selected:"",
                 },
-                
+
                 //Modal
                 myModal: {},
                 //Buscador final se guarda aqui y este se ha de mostrar en el modal
                 expedientesBuscados: [],
+
             }
         },
         mounted() {
@@ -195,8 +202,8 @@ import axios from 'axios';
                     });
             },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
-            actualizarExpe(){
-                //Con el id del expediente se crea una carta asociado a este
+            actualizarExpe(cartaTrucadaRealizada){
+                //Con el id del expediente se crea una carta asociado a este, ide como estos
                 this.cartaTrucadaRealizada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);

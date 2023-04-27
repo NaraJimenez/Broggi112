@@ -7,7 +7,6 @@ use App\Models\Expedients;
 use Illuminate\Http\Request;
 use App\Models\Interlocutors;
 
-
 use App\Models\Cartes_trucades;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -45,33 +44,35 @@ class CartesTrucadesController extends Controller
             }else{
                 //SE CREA DE CERO
             }*/
-
+            $expedient = new Expedients();
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
-            $expedient = new Expedients();
+
 
            /* EXPEDIENTES -- Guardamos en tabla Expedientes*/
             $expedient->estat_expedients_id = 1;
-            $expedient->codi = 'EXP01' ; 
+            $expedient->codi = 'EXP01' ;
             $expedient->save();
+
 
             //Cogemos el id de los expedientes
             $cartaTrucada->expedients_id = $expedient->id;
 
+
             //INTERLOCUTOR -- Guardamos en la tabla de interlocutor
-            $interlocutor->nom = $request->input('inputNombre');
-            $interlocutor->telefon = $request->input('telefonoLlamada');
-            $interlocutor->cognoms = $request->input('inputApellidos');
+            $interlocutor->nom = $request->inputNombre;
+            $interlocutor->telefon = $request->telefonoLlamada;
+            $interlocutor->cognoms = $request->inputApellidos;
             $interlocutor->save();
+
 
             //Cogemos el id de los interlocutores
             $cartaTrucada->interlocutors_id = $interlocutor->id;
 
             //En el componente Padre
-            $cartaTrucada->temps_trucada = $request->input('tiempoTrucada');
-            $cartaTrucada->codi_trucada = $request->input('codiTrucada');
-            $cartaTrucada->data_hora_trucada = $request->input('tempsTrucada');
-            $cartaTrucada->durada = $request->input('tempsTrucada');
+            $cartaTrucada->codi_trucada = $request->codiTrucada;
+            $cartaTrucada->data_hora_trucada = new \DateTime($request->iniciTrucada);
+            $cartaTrucada->durada = $request->duracioTrucada;
 
             //Primer Form
             $cartaTrucada->telefon = $request->input('telefonoLlamada');
@@ -116,7 +117,7 @@ class CartesTrucadesController extends Controller
                 //MUNICIPI
                 $cartaTrucada->municipis_id = $request->input('municipioInput');
 
-                //No catalunya se mete en los inputs de provincia y monicipi en altres referencies 
+                //No catalunya se mete en los inputs de provincia y monicipi en altres referencies
                 /*$noCat =  $request->input('provinciaInput') . ' ' . $request->input('municipioInput')
                 $cartaTrucada->altres_ref_localitzacio = $noCat;
                 */
@@ -124,7 +125,7 @@ class CartesTrucadesController extends Controller
             }
 
             //Elementos externos
-            //$cartaTrucada->usuaris_id= $request->input('tiempoTrucada');
+            $cartaTrucada->usuaris_id= 1;
 
             //CARTA TRUCADA ES SALVA
             $cartaTrucada->save();

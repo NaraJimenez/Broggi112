@@ -13,6 +13,9 @@ class Expedients extends Model
 {
     use HasFactory;
 
+    public $table = 'expedients';
+    public $primaryKey = 'id'; //Por defecto es id
+    public $incrementing = true; //Por defecto es true
     public $timestamps = false;
 
     /**

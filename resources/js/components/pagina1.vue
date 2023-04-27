@@ -5,14 +5,14 @@
                 <!--Elementos Primer Rectangulo-->
                 <div class="col" id="rectangulo1">
                     <!--Nombre Interlocutor-->
-                    <input id="inputNombre" name="inputNombre" class="mt-4 ms-5 text-muted"  type="text"
+                    <input id="inputNombre" name="inputNombre" class="text-muted"  type="text"
                     placeholder="Nombre interlocutor" v-model="formData1.inputNombre" @input="validateForm1">
                     <!--Apellidos Interlocutor-->
-                    <input id="inputApellidos" name="inputApellidos" class="mt-4 text-muted"  type="text"
+                    <input id="inputApellidos" name="inputApellidos" class="text-muted"  type="text"
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
                     <input id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-model="formData1.telefonoLlamada">
+                    v-model="formData1.telefonoLlamada" >
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
@@ -24,17 +24,16 @@
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente aria-label="selectTipusIncident"-->
-                        <select name="selectTipusIncident" id="selectTipusIncident" class="form-select ms-3 mt-3"
-                        v-model="formData1.selectedTipusIncident" @change="fetchIncidents()"   required
-                        >
+                        <select name="selectTipusIncident" id="selectTipusIncident"  
+                        v-model="formData1.selectedTipusIncident" @change="fetchIncidents()"  >
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
                             :value="tipusIncident.id">{{ tipusIncident.nom }}</option>
                         </select>
 
                         <!--Incidentes aria-label="selectedIncident"-->
-                        <select name="selectedIncident" id="selectedIncident" class="form-select ms-3 mt-3"
-                        v-model="formData1.selectedIncident" :disabled="!formData1.selectedTipusIncident"   required>
+                        <select name="selectedIncident" id="selectedIncident"  
+                        v-model="formData1.selectedIncident" :disabled="!formData1.selectedTipusIncident" >
                             <option value="" disabled selected>Incidencia</option>
                             <option v-for="incident in incidents" :key="incident.id"
                             :value="incident.id">{{ incident.nom }}</option>
@@ -43,9 +42,9 @@
                         <!--Definición y Instrucciones de Incidentes-->
                         <div >
                             <div id="definicionInci"  type="text" name="definicion"
-                            placeholder="Definición" class="ms-3 mt-3"> {{ selectedIncidentData.definicio }}</div> <!--{{ definicio }}-->
+                            placeholder="Definición"> {{ selectedIncidentData.definicio }}</div> <!--{{ definicio }}-->
                             <div id="indicacionesInci" type="text" name="instrucciones"
-                            placeholder="Instrucciones" class="ms-3 mt-3">{{ selectedIncidentData.instruccions }}</div><!--{{ instruccions }}-->
+                            placeholder="Instrucciones">{{ selectedIncidentData.instruccions }}</div><!--{{ instruccions }}-->
                         </div>
                     </div>
                     <!----------Expedentes - Filtro/Buscador------------>
@@ -62,10 +61,10 @@
             </div> <!--FINAL DIV ROW-->
         </form>
         <div>
-            <!--<img v-show="formValid" src="../../../public/img/cheque.png" alt="Imagen 1" />
-            <img v-show="!formValid" src="../../../public/img/alerta.png" alt="Imagen 2" />-->
         </div>
-            <button :disabled="!formValid" @click="submitForm" style="margin-top:15px">Enviado</button>
+            <!--<button :disabled="!formValid" @click="submitForm" style="margin-top:15px">Enviado</button>-->
+            <div  style="margin-top:15px" class="badge badge-success" v-show="formValid" >¡Hecho!</div>
+            <div  style="margin-top:15px" class="badge badge-danger" v-show="!formValid">Faltan campos</div>
     </div>
 </template>
 <script>
@@ -80,13 +79,13 @@ export default {
                 inputNombre: '',
                 inputApellidos:'',
                 inputNotaComuna:'',
-                telefonoLlamada: this.randomPhone,
+                telefonoLlamada: '',
                 //this.randomPhone
                 selectedTipusIncident: "",
                 selectedIncident: "",
                 searchResults: [],
             },
-            
+
             //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
@@ -104,7 +103,7 @@ export default {
         console.log('Pagina 1 Montada');
         this.fetchTipusIncidents();
         this.validateForm1();
-        
+
     },
     computed: {
         selectedIncidentData() {
@@ -125,19 +124,19 @@ export default {
                 .catch((error) => {
                     console.error(error);
                 });
-                
+
             //emitimos un evento al padre con los resultados actualizados
             this.$emit('enviar-objeto1', this.formData1);
         },
         //VALIDACION DEL FORMULARIO
         validateForm1() {
-            //La doble negación !! convierte el resultado en un valor booleano --METER CAMPOS OBLIGATORIOS
+            //La doble negación !! convierte el resultado en un valor booleano
             this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
                 this.getSearchResults();
-                //console.log(this.formData);
+
             }
         },
         //Selectores de los Tipus Incidentes con los Incidentes
@@ -210,6 +209,8 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        top: 160px;
+        left: 90px;
     }
     #inputApellidos{
         box-sizing: border-box;
@@ -221,6 +222,7 @@ export default {
         /* Bordes CLTTT */
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        top: 160px;
     }
     #telefonoLlamada{
         box-sizing: border-box;
@@ -245,20 +247,58 @@ export default {
         border-radius: 10px;
     }
     /*Divs - Parte izquierda*/
-    #selectTipusIncident, #selectedIncident, #definicionInci, #indicacionesInci {
+    #selectTipusIncident  {
         box-sizing: border-box;
         position: absolute;
         width: 376px;
         height: 35px;
-        left: 8px;/*
-        top: 20px;*/
+        left: 27px;
+        top: 20px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+    #selectedIncident {
+        box-sizing: border-box;
+        position: absolute;
+        width: 376px;
+        height: 35px;
+        left: 27px;
+        top: 67px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+     #definicionInci {
+        box-sizing: border-box;
+        position: absolute;
+        width: 376px;
+        height: 35px;
+        left: 27px;
+        top: 115px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+    #indicacionesInci {
+        box-sizing: border-box;
+        position: absolute;
+        width: 376px;
+        height: 35px;
+        left: 27px;
+        top: 163px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+
+
+
+/*
+
     #selectTipusIncident {
        /* top: 5px;*/
-       height: 38px;
+       /*height: 38px;
     }
     #selectedIncident{
        top: 42px;
@@ -271,6 +311,6 @@ export default {
     #indicacionesInci{
         top: 128px;
         overflow: auto;
-    }
+    }*/
 
 </style>

@@ -42,7 +42,7 @@
     //     });
     // });
 
- 
+
 
 Route::get('/', function () {
     return view('index');
@@ -85,15 +85,18 @@ Route::post('/expedientes/update', [ExpedientsController::class, 'update'])->nam
 Route::get('/cartaExpediente', function () {
     return view('paginas/cartaExpediente');
 })->name('cartaExpediente');
+Route::get('/carta2Vue', function () {
+    return view('paginas/carta2Vue');
+})->name('carta2Vue');
 
-//Fusion componentes 
-Route::get('/carta', function () {
+//Fusion componentes
+/*Route::get('/carta', function () {
     return view('paginas/carta');
-})->name('carta');
+})->name('carta');*/
 
 //carta cogiendoel telefono
 Route::get('/carta/{phone}', function ($phone) {
-    return view('carta')->with('phone', $phone);
+    return view('paginas/carta')->with('phone', $phone);
 })->name('carta');
 
 //Prueba de graficos
