@@ -12,13 +12,13 @@
         <div class="card-body">
 
         <div>
-            @foreach ($cartasllamadas as $cartallamada )
+            <!--foreach ($cartasllamadas as $cartallamada )-->
                 
             
             <div id="primero">
                 <div>
-                    <div id="ExpeCodigo">{{$cartallamada -> codi_trucada}}</div>
-                    <div id="ExpeLlamada">{{$cartallamada -> codi_trucada}}</div>
+                    <div id="ExpeCodigo"><!--$cartallamada -> codi_trucada}}--></div>
+                    <div id="ExpeLlamada"><!--{$cartallamada -> codi_trucada}}--></div>
                 </div>
                 
                 <div>
@@ -144,9 +144,9 @@
                         </div>
                     </div>
                 </div>
+            </div>  
             </div>
-            </div>
-            @endforeach
+          
         </div>
 
     </div>
