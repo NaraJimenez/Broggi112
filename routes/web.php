@@ -3,6 +3,8 @@
     use App\Http\Controllers\UsuarioController;
     use App\Http\Controllers\AdminController;
     use Illuminate\Support\Facades\Auth;
+    use App\Http\Controllers\AgenciesController;
+    use App\Http\Controllers\AdminAController;
     use App\Http\Controllers\TelefonController;
     use App\Http\Controllers\ExpedientsController;
     use App\Models\Usuaris;
@@ -29,11 +31,11 @@
     Route::get('/usuarios/editar/{id}', [UsuarioController::class, 'mostraractualizarUsuario'])->name('usuarios.editar');
     Route::get('/usuario/editar/{id}', [UsuarioController::class, 'mostrarcontrasenarUsuario'])->name('usuario.editar');
     //Agencias
-    Route::delete('/adminagencias/eliminar/{id}', [AgenciesController::class, 'eliminar'])->name('agencias.eliminar');
-    Route::get('/adminagencias', [AgenciesController::class, 'index'])->name('adminagencias');
-    Route::get('/adminagencias/crear', [AgenciesController::class, 'crear'])->name('agencias.crear');
-    Route::get('/adminagencias/afegir', [AgenciesController::class, 'afegir'])->name('agencias.afegir');
-    Route::resource('agencias', AgenciasController::class);
+    Route::delete('/adminagencias/eliminar/{id}', [AdminAController::class, 'eliminar'])->name('agencias.eliminar');
+    Route::get('/adminagencias', [AdminAController::class, 'index'])->name('adminagencias');
+    Route::get('/adminagencias/crear', [AdminAController::class, 'crear'])->name('agencias.crear');
+    Route::get('/adminagencias/afegir', [AdminAController::class, 'afegir'])->name('agencias.afegir');
+    Route::resource('agencias', AdminAController::class);
 
     // Rutas que requieren autenticación de usuario
     // Route::middleware(['auth'])->group(function () {

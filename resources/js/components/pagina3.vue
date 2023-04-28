@@ -30,7 +30,7 @@ export default {
     mapboxClient.geocoding
         .forwardGeocode({
           // Deja en query el que tienes tú
-            query: 'objetoRecibido.selectMunicipi', 
+            query: this.objetoRecibido.selectMunicipi.toString(), 
             autocomplete: false,
             limit: 1
         })
@@ -87,6 +87,7 @@ export default {
             });
         });
   }
+}
 }
 </script>
 
