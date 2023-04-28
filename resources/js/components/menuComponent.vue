@@ -13,6 +13,8 @@
             </div>
             <!--Tiempo de Llamada-->
             <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{cartaTrucadaRealizada.fechaHoraActual}}</div>
+            <!-- Paso las props de las agencias -->
+             <router-view :agencias="agencias" />
         </div>
 
 
@@ -215,7 +217,13 @@ import axios from 'axios';
                         }
                     });
             }
-        }
+        },
+         props: {
+    agencias: {
+      type: Array,
+      required: true,
+    },
+  },
     }
 </script>
 <style>

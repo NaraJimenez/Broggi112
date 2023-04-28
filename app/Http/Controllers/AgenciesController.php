@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agencies;
 use Illuminate\Http\Request;
 
+
 class AgenciesController extends Controller
 {
     /**
@@ -14,8 +15,12 @@ class AgenciesController extends Controller
      */
     public function index()
     {
-        //
+        $agencias = Agencies::select('id', 'nom', 'carrer', 'codi_postal')->take(4)->get();
+    
+        // Devuelve la vista con los datos obtenidos
+        return view('paginas.carta', ['agencias' => $agencias]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +29,7 @@ class AgenciesController extends Controller
      */
     public function create()
     {
-        //
+     
     }
 
     /**
