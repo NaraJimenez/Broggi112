@@ -108,7 +108,7 @@
           </div> <!--FINAL CARD -->
 
           <div id="helper">
-            <a href="#">
+            <a href="{{ asset('HelpBox/HelpBox.blade.php') }}">
                 <img src="{{ asset("img/HelpBox.png") }}" alt="HTML tutorial">
                 </a>
           </div>

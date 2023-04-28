@@ -179,7 +179,7 @@ fetch('/EMT/public/api/graficos')
             datos.push(prueba.numeros);
         });
     }
-
+    )
 const mostrar = (incidencias) => {
     incidencias.forEach(element => {
         grafica1.data['labels'].push(element.definicio)
