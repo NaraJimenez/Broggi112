@@ -7,6 +7,7 @@
     use App\Http\Controllers\ExpedientsController;
     use App\Models\Usuaris;
     use App\Http\Controllers\GraficoController;
+    use App\Http\Controllers\CartesTrucadesHasAgenciesController;
 
     // Ruta para mostrar la página de inicio cuando se inicia sesión correctamente
     Route::get('/correcto', function () {
@@ -76,7 +77,20 @@ Route::get('/mapbox', function () {
 Route::get('/expedientes', [ExpedientsController::class, 'index']);
 Route::post('/expedientes/update', [ExpedientsController::class, 'update']) ->name('expedientes.update');
 Route::get('/mostrarcartasllamadas/{id}', [ExpedientsController::class, 'cartasllamadas'])->name('mostrarcartasllamadas');
+// Rutas para la vista principal de las cartas trucadas
+Route::get('/cartes_trucades', [CartesTrucadesHasAgenciesController::class, 'index'])->name('cartes_trucades.index');
+Route::get('/cartes_trucades/create', [CartesTrucadesHasAgenciesController::class, 'create'])->name('cartes_trucades.create');
+Route::post('/cartes_trucades', [CartesTrucadesHasAgenciesController::class, 'store'])->name('cartes_trucades.store');
 
+// Rutas para la vista de detalle de una carta trucada específica
+Route::get('/cartes_trucades/{id}', [CartesTrucadesHasAgenciesController::class, 'show'])->name('cartes_trucades.show');
+
+// Rutas para la vista de edición de una carta trucada específica
+Route::get('/cartes_trucades/{id}/edit', [CartesTrucadesHasAgenciesController::class, 'edit'])->name('cartes_trucades.edit');
+Route::put('/cartes_trucades/{id}', [CartesTrucadesHasAgenciesController::class, 'update'])->name('cartes_trucades.update');
+
+// Rutas para eliminar una carta trucada específica
+Route::delete('/cartes_trucades/{id}', [CartesTrucadesHasAgenciesController::class, 'destroy'])->name('cartes_trucades.destroy');
 //Ruta Admin. Agencias
 
 
