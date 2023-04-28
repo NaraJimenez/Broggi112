@@ -14,17 +14,19 @@
 
             <!--Tiempo de Llamada-->
             <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{cartaTrucadaRealizada.fechaHoraActual}}</div>
-        </div>
+
+             </div>
 
 
         <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"--> <!--:resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" -->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
             :objeto-recibido="cartaTrucadaRealizada.objetoRecibido" :objeto-recibido1="cartaTrucadaRealizada.objetoRecibido1"
-            @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" :phone="phone" />
+            @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
         <!--:carta-trucada-realizada="cartaTrucadaRealizada.objetoRecibido1" :search-results="objetoRecibido1.searchResults"-->
+
     </div>
 
      <!--MODAL-->
@@ -67,14 +69,15 @@ import axios from 'axios';
     import Localización from "./pagina2.vue";
     import Agencias from "./pagina3.vue";
     export default {
-        props:{
-            phone: {
-                type: String,
-                required: true
-            },
-        },
+
         //Pasamos los componentes
         components: { Incidencia, Localización, Agencias },
+        props: {
+            phone: {
+            type: Number, // o el tipo de dato que corresponda
+            required: true // si se requiere el atributo o no
+            }
+        },
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
@@ -114,6 +117,7 @@ import axios from 'axios';
         mounted() {
             this.setFechaHoraActual();
             this.iniciarContador();
+            this.mostrarTelefono();
         },
         beforeDestroy() {
             clearInterval(this.interval);
@@ -126,6 +130,9 @@ import axios from 'axios';
             },
         },
         methods: {
+            mostrarTelefono() {
+            console.log("El teléfono es:", this.phone);
+        },
             //Tiempo
             setFechaHoraActual() {
                 this.cartaTrucadaRealizada.fechaHoraActual = new Date().toLocaleString('es-ES');
