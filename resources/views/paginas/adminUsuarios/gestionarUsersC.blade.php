@@ -51,22 +51,27 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
-                                    <label for="nom" class="form-label">Nombre</label>
+                                    <label for="nom" class="form-label">Nombre</label @disabled(true)>
                                     <input type="text" class="form-control" id="nom" name="nom"
                                         value="{{ $usuario->nom }}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="cognoms" class="form-label">Apellido</label>
+                                    <label for="cognoms" class="form-label">Apellido</label @disabled(true)>
                                     <input type="text" class="form-control" id="cognoms" name="cognoms"
                                         value="{{ $usuario->cognoms }}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Nombre de usuario</label>
+                                    <label for="username" class="form-label">Nombre de usuario</label @disabled(true)>
                                     <input type="text" class="form-control" id="username" name="username"
                                         value="{{ $usuario->username }}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tipus_usuaris_id" class="form-label">Tipo de usuario</label>
+                                    <label for="contrasena" class="form-label">Contraseña</label>
+                                    <input type="text" class="form-control" id="contrasena" name="contrasena"
+                                        value="{{ $usuario->username }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tipus_usuaris_id" class="form-label">Tipo de usuario</label @disabled(true)>
                                     <select class="form-select" aria-label="Tipo de usuario" name="tipus_usuaris_id"
                                         id="tipus_usuaris_id" required>
                                         @foreach ($roles as $rol)
@@ -80,40 +85,9 @@
                                 <a href="{{ route('adminUser') }}" class="btn btn-secondary">Volver</a>
                             </form>
                         </div>
-                    @elseif($editar == 0)
-                        <h1 class="titulo">@yield('titulo', 'Crear usuario')</h1>
-                        <div class="campos">
-                            <form action="{{ route('usuarios.agregar') }}" method="POST">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="nom" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nom" name="nom" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="cognoms" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="cognoms" name="cognoms" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Nombre de usuario</label>
-                                    <input type="text" class="form-control" id="username" name="username" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tipus_usuaris_id" class="form-label">Tipo de usuario</label>
-                                    <select class="form-select" aria-label="Tipo de usuario" name="tipus_usuaris_id"
-                                        id="tipus_usuaris_id" required>
-                                        @foreach ($roles as $rol)
-                                            <option value="{{ $rol->id }}">{{ $rol->nom }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Agregar</button>
-                                <a href="{{ route('adminUser') }}" class="btn btn-secondary">Volver</a>
-                            </form>
-                        </div>
-                    @endif
+                </div>
+            </div>    
+        </div>
+    </div>         
 </body>
 </html>
