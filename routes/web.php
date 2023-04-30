@@ -1,4 +1,5 @@
     <?php
+    use App\Http\Controllers\Api\AdminsController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\UsuarioController;
     use App\Http\Controllers\AdminController;
@@ -73,7 +74,9 @@ Route::get('/mapbox', function () {
 
 
 //Ruta Menu Admin
-
+Route::get('/admin', [AdminsController::class, 'usuarios']);
+Route::get('/admin', [AdminsController::class, 'agencias']);
+Route::get('/admin', [AdminsController::class, 'expedientes']);
 
 //Ruta Admin. expedientes
 Route::get('/expedientes', [ExpedientsController::class, 'index']);
