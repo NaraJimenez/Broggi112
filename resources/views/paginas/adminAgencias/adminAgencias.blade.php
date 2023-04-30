@@ -19,7 +19,7 @@
                 <a href="{{ route('agencias.crear') }}" id="edit">Administrar Agencias</a>
             </div>
         </div>
-        <div class="scroll">
+        <div>
             <table style="border-spacing: 10px 0">
                 <thead>
                     <tr>
@@ -58,6 +58,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="pagination pagination-style">
+            {{ $agencies->links('pagination::default') }}
         </div>
     </div>
 

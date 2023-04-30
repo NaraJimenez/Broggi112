@@ -17,7 +17,7 @@ class AdminAController extends Controller
      */
     public function index()
     {
-        $agencies = Agencies::all();
+        $agencies = Agencies::paginate(6);
         $municipis = Municipis::all();
 
 

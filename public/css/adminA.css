@@ -19,11 +19,6 @@
       color: #fff;
   }
   
-  .scroll {
-      overflow-y: scroll;
-      height: 645px;
-  }
-  
   .admin-background {
       display: flex;
       justify-content: center;
@@ -165,7 +160,16 @@
   }
   
   #delete {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      width: 80px;
+      height: 30px;
+      color: white;
+      border-color: #E33386;
+      border-radius: 15%;
       background-color: #E33386;
+      margin: auto;
   }
   
   #edit {
@@ -175,4 +179,25 @@
   
   #edit:hover {
       background-color: #76DAE4;
+  }
+  
+  .pagination-style {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .pagination-style span,
+  a {
+      background-color: #76DAE4;
+      color: white;
+      text-decoration: none;
+      margin: 10px 5px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+  }
+  
+  nav {
+      margin-top: 15px;
   }
