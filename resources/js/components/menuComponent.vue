@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-
+<p> {{ prueba }}</p>
 </template>
 <script>
 import axios from 'axios';
@@ -71,6 +71,15 @@ import axios from 'axios';
        // props: ['phone'],
         //Pasamos los componentes
         components: { Incidencia, Localización, Agencias },
+         props: {
+    agencias: {
+      type: Array,
+      required: true,
+    },
+    prueba: {
+        type: String,
+    },
+  },
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
@@ -98,6 +107,7 @@ import axios from 'axios';
                     codiTrucada: this.generarCodiTrucada(), 
                     //Expediente seleccionado con el que relacionar la carta
                     selected:"",
+                    prueba: "Plaza urquinaona, Barcelona",
                 },
                 
                 //Modal
@@ -218,12 +228,6 @@ import axios from 'axios';
                     });
             }
         },
-         props: {
-    agencias: {
-      type: Array,
-      required: true,
-    },
-  },
     }
 </script>
 <style>

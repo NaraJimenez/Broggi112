@@ -3,7 +3,7 @@
     use App\Http\Controllers\UsuarioController;
     use App\Http\Controllers\AdminController;
     use Illuminate\Support\Facades\Auth;
-    use App\Http\Controllers\AgenciesController;
+    use App\Http\Controllers\Api\AgenciesController;
     use App\Http\Controllers\AdminAController;
     use App\Http\Controllers\TelefonController;
     use App\Http\Controllers\ExpedientsController;
@@ -59,9 +59,13 @@ Route::get('/home', [TelefonController::class, 'index']);
 
 
 //Ruta Carta llamada - Localización
+Route::get('/mapbox-json',  [App\Http\Controllers\Api\AgenciesController::class, 'mapbox']);
+
 Route::get('/mapbox', function () {
     return view('Mapbox.mapbox');
-});
+})->name('index');
+
+
 
 //Ruta Carta llamada - Agencias
 
