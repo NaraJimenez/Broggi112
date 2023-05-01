@@ -5,7 +5,7 @@
 
         </div>
 
-    </div><button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:40px; margin: 0 auto; ">Finalizar Llamada</button>
+    </div><button id="botonFinal"  @click="openModalWithData" style="margin-top:40px; display: block; margin: 0 auto; ">Finalizar Llamada</button>
 </template>
 
 <script>
@@ -23,6 +23,11 @@ export default {
             calle: 'Passeig de Gràcia, Barcelona',
             agencias: [],
         };
+    },
+    methods:{
+        openModalWithData() {
+            this.$emit('openModalWithData');
+        },
     },
     mounted() {
     mapboxgl.accessToken = 'pk.eyJ1IjoibGFpYWFiYXJxdWVyb28wIiwiYSI6ImNsZ3dqN2JjZTAwb2IzZW56amh2eHR1ajIifQ.SoI7H86nB1eVLqW6f52ntg';
