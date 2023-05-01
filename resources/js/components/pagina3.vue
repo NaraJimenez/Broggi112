@@ -4,8 +4,8 @@
             <!-- <Mapbox></Mapbox> -->
 
         </div>
-        <button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:150px">Finalizar Llamada</button>
-    </div>
+
+    </div><button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:40px; margin: 0 auto; ">Finalizar Llamada</button>
 </template>
 
 <script>
