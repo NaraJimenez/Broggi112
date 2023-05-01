@@ -16,15 +16,31 @@ footer{
     width: 1020px;
     height: 539px;
     left: 470px;
+    top: 120px;
+    background: #35B5C9;
+    border-radius: 20px;
+}
+
+#CartaIncidencia2{
+    position: absolute;
+    width: 1020px;
+    height: 720px;
+    left: 470px;
+    top: 120px;
     background: #35B5C9;
     border-radius: 20px;
 }
 #CartaIncidenciaExpe{
     position: absolute;
-    width: 1020x;
+    width: 1020px;
     height: 615px;
     left: 250px;
+    top: 140px;
     background: #35B5C9;
     border-radius: 20px;
 }
 
+#tituloCarta {
+    text-align: center;
+    position: absolute;
+}

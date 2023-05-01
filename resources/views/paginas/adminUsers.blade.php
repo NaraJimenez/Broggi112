@@ -1,3 +1,4 @@
+@extends('layout.plantilla')
 <!DOCTYPE html>
 <html>
 

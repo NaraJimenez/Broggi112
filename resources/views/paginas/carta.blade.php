@@ -2,19 +2,20 @@
 
 @section('titulo', 'Broggi - Carta Trucada')
 
-@section('content')
-    <div class="text-center mt-5 mb-5" id="titulo">
-        <h2>Carta de Trucada</h2>
+@section('contenido')
+<div>
+    <div class="mt-5" style="text-align: center; margin-left: 800px;">
+        <h1>Carta de Trucada</h1>
     </div>
 
-    <div class="card mt-2 mx-auto" id="CartaIncidencia">
+
+    <div class="card mt-3" id="CartaIncidencia">
         <div class="card-body">
             <!--Componente Menu-->
-            <div id="menuComponent"></div>
+            <div id="menuComponent" :phone="@json($randomPhone)"></div>
 
-            
     </div>
 </div>
-
+</div>
 
 @endsection

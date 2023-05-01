@@ -2,7 +2,7 @@
     <div>
         <div class="tabs mt-3 justify-content-center mb-1">
             <!--Codigo de Carta Llamada-->
-            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3">{{ cartaTrucadaRealizada.codiTrucada }}</p> </div>
+            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3" >{{ cartaTrucadaRealizada.codiTrucada }}</p> </div>
             <!--TABS MENU-->
             <div class="tabs_header ">
                 <button
@@ -11,23 +11,23 @@
                     {{ tab }}
                 </button>
             </div>
+
             <!--Tiempo de Llamada-->
             <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{cartaTrucadaRealizada.fechaHoraActual}}</div>
-        </div>
 
+             </div>
 
-        <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"--> <!--:resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" -->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
-            :objeto-recibido="cartaTrucadaRealizada.objetoRecibido1" @openModalWithData="confirmFinalizarLlamada"
-            @enviar-objeto3="recibirObjeto3"  />
+            :objeto-recibido="cartaTrucadaRealizada.objetoRecibido" :objeto-recibido1="cartaTrucadaRealizada.objetoRecibido1"
+            @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" />
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
-        <!--:carta-trucada-realizada="cartaTrucadaRealizada.objetoRecibido1" :search-results="objetoRecibido1.searchResults"@finalizarLlamada="confirmFinalizarLlamada()"-->
+
     </div>
 
-    <!--MODAL-->
-    <div class="modal" tabindex="-1" id="myModal">
+     <!--MODAL-->
+     <div class="modal" tabindex="-1" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -44,15 +44,15 @@
                 <!--Si se han encontrado elementos en el filtro-->
                 <div v-else>
                     <p>Estas son los Expedientes que coinciden:</p>
-                    <select multiple v-model="selected">
+                    <select name="selected" id="selected" multiple v-model="cartaTrucadaRealizada.selected">
                         <option v-for="expedienteBuscado in expedientesBuscados" :value="expedienteBuscado">{{ expedienteBuscado }}</option>
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
-                <!--Si no se encunetran elmentos en el filtro, el boton sera deseable-->
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="actualizarExpe()">Actualizar</button>
-              <button type="button" class="btn btn-primary" @click="guardarCarta(cartaTrucadaRealizada)">Crear</button>
+                <!--Si no se encunetran elmentos en el filtro, el boton sera desabilitado-->
+              <button type="button" class="btn btn-secondary" id="actualizarBoton" data-bs-dismiss="modal" :disabled="expedientesBuscados.length === 0" @click="actualizarExpe(cartaTrucadaRealizada)">Actualizar</button>
+              <button type="button" class="btn btn-primary" id="guardarBoton" @click="guardarCarta(cartaTrucadaRealizada)">Crear</button>
             </div>
           </div>
         </div>
@@ -60,19 +60,28 @@
 
 </template>
 <script>
+import axios from 'axios';
     //Importamos los componentes hijos
-    import pagina1 from "./pagina1.vue";
-    import pagina2 from "./pagina2.vue";
-    import pagina3 from "./pagina3.vue";
+    import Incidencia from "./pagina1.vue";
+    import Localización from "./pagina2.vue";
+    import Agencias from "./pagina3.vue";
     export default {
+
         //Pasamos los componentes
-        components: { pagina1, pagina2, pagina3 },
+        components: { Incidencia, Localización, Agencias },
+        props:{
+            /*phone: {
+                type: String,
+                required: true,
+
+                }*/
+        },
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
-                tabs: ["pagina1", "pagina2", "pagina3"],
+                tabs: ["Incidencia", "Localización", "Agencias"],
                 //El primer componente en mostrar
-                component: "pagina1",
+                component: "Incidencia",
                 //CREAR BOLLEANO false - Cuando se pasen todos los forms a true
                 pasadoForm1: false,
                 pasadoForm2: false,
@@ -84,7 +93,6 @@
                     objetoRecibido1: null,
                     objetoRecibido: null,
                     objetoRecibido3: null,
-                    //FALTA METER EL TIEMPO Y EL CODIGO AQUI
                     //TIEMPO
                     fechaHoraActual: "",
                     contador: 0,
@@ -93,19 +101,27 @@
                     duracioTrucada: 0,
                     //Codigo Llamada
                     codiTrucada: this.generarCodiTrucada(),
+                    //Expediente seleccionado con el que relacionar la carta
+                    selected:[],
                 },
-                //Expediente seleccionado con el que relacionar la carta
-                selected:"",
+
                 //Modal
                 myModal: {},
                 //Buscador final se guarda aqui y este se ha de mostrar en el modal
                 expedientesBuscados: [],
+                llamada: ""
+
             }
         },
         mounted() {
             this.setFechaHoraActual();
             this.iniciarContador();
+            //this.mostrarTelefono();
+            //console.log(this.phone);
         },
+        /*created(){
+            console.log(this.phone);
+        },*/
         beforeDestroy() {
             clearInterval(this.interval);
         },
@@ -117,6 +133,9 @@
             },
         },
         methods: {
+            /*mostrarTelefono() {
+                console.log("El teléfono es:", this.phone);
+            },*/
             //Tiempo
             setFechaHoraActual() {
                 this.cartaTrucadaRealizada.fechaHoraActual = new Date().toLocaleString('es-ES');
@@ -179,10 +198,12 @@
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
                 axios
-                    .post('/api/cartestrucades', this.cartaTrucadaRealizada)
+                    .post('/Broggi112/public/api/cartestrucades', this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
+                        window.location.href = '/home'
                         //this.myModal.hide();
+                        //Al acabar aparece mensaje y te envia a la pagina inicial
                         //location.reload();
                     })
                     .catch((error) => {
@@ -194,17 +215,17 @@
                     });
             },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
-            actualizarExpe(){
-                //Con el id del expediente se crea una carta asociado a este
+            actualizarExpe(cartaTrucadaRealizada){
+                //Con el id del expediente se crea una carta asociado a este, ide como estos
                 this.cartaTrucadaRealizada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
                 //HAY QUE PASARLE EL NUMERO DE ID DEL EXPE
                 axios
-                    .post("/api/cartestrucades", this.cartaTrucadaRealizada)
+                    .post("/Broggi112/public/api/cartestrucades", this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
-                        location.reload();
+                        window.location.href = '/home';
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -256,4 +277,31 @@
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+    .modal-header{
+        background-color: #76DAE4;
+    }
+    .modal-body, .modal-footer {
+        background-color: #EBEFEF;
+    }
+    #actualizarBoton{
+        background: #FFFFFF;
+        border: 2px solid #E33386;
+        border-radius: 20px;
+        color:#E33386 ;
+    }
+    #guardarBoton{
+        background-color:#E33386 ;
+        border: 2px solid #E33386;
+        border-radius: 20px;
+    }
+    #selected {
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+    #actualizarBoton:disabled {
+        background: #e5e5e5;
+        box-shadow: none;
+        color: #E33386;
+    }
+
 </style>

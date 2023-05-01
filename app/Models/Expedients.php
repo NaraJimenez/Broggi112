@@ -23,18 +23,20 @@ class Expedients extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function estat_expedient() //: BelongsTo
-    {
-        return $this->belongsTo(Estats_expedients::class, 'estats_expedients_id');
-    }
+
 
     /**
      * Get the Cartes_trucades that owns the Estats_expedients
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function cartes_trucades()//: hasMany
+    public function estat_expedient()
     {
+        return $this->belongsTo(Estat_expedients::class, 'estat_expedients_id');
+    }
+    public function cartes_trucades() {
         return $this->hasMany(Cartes_trucades::class, 'expedients_id');
     }
+
+
 }

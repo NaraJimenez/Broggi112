@@ -4,39 +4,41 @@
             <div class="row">
                 <!--Datos Personales - METER COSAS DE LOS INTERLOCUTORES-->
               <div class="col mt-2" id="rec1">
-                <div  id="codExpediente">codigoExp</div>
-                <div id="codLlamada" >codigoLlamda</div>
-                <div id="telefono">telefono</div>
+                <div class="d-flex justify-content-center">
+                  <div  id="codExpediente">codigoExp</div>
+                  <div id="codLlamada" >codigoLlamda</div>
+                </div>
+                
+                <div class="d-flex justify-content-center">
+                  <div id="telefono">telefono</div>
                 <div id="fecha"> fecha</div>
+                </div>
+
                 <div id="nota">nota</div>
               </div>
 
               <!--Agencias-->
               <div class="col" id="rec2">
-                <select name="" id="" class="mt-2">
+                <div  class="d-flex justify-content-center">
+                  <select name="" id="" class="mt-2">
                     <option disabled selected value="" class="text-center">Agencies</option>
                 </select> <br> 
                 <select name="" id="" class="mt-2">
                     <option disabled selected value="" class="text-center">Estados</option>
                 </select>
+                </div>
+                
               </div>
               
               <div class="w-100"></div>
 
               <!--Tipus de Incidentes-->
               <div class="col mt-2" id="rec3">
-                <select name="" id="">
-                    <option disabled selected value="" class="text-center">Tipos Incidentes</option>
-                </select>
-                <select name="" id="">
-                    <option disabled selected value="" class="text-center">Incidentes</option>
-                </select>
-
                 <div>
                     <div type="text" name="definicion"
-                    placeholder="Definición" class="ms-3  mt-3">Definición</div>
+                    placeholder="Definición" class="ms-3  mt-3">Tipo Incidente</div>
                     <div type="text" name="instrucciones"
-                    placeholder="Instrucciones" class="ms-3  mt-3">Instrucciones</div>
+                    placeholder="Instrucciones" class="ms-3  mt-3">Incidentes</div>
                 </div>
               </div>
 
@@ -118,8 +120,8 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-poblacion" role="tabpanel" aria-labelledby="v-pills-poblacion-tab">
-                      <!--POBLACION inputPoblacionNombre-->
-                      <div class=" mt-3" id="poblacion">
+                      <!--POBLACION inputPoblacionNombre MIRAR COMO ESTA HECHO EN tab-->
+                      <div class=" mt-3" id="poblacion">   
                         <label for="inputPob" class="">Nombre Población</label>
                         <input id="inputPob" class="" type="text"
                         name="inputPob" placeholder="Introduce Poblacion">

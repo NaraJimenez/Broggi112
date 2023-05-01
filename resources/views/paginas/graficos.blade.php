@@ -1,4 +1,4 @@
-@extends('plantilla.principal')
+@extends('layout.plantilla')
 
 @section('titulo', 'Broggi - Carta Trucada')
 
@@ -11,9 +11,26 @@
         <div class="card-body">
             <!--Componente Menu-->
 
-            
+
     </div>
 </div>
 
 
 @endsection
+
+
+    {{-- // Seleccionar las cartas de llamada filtrando por el tipo de incidente para poder sumarlo al grafico
+
+
+// CONEXION BD
+
+// $(document).ready(function() {
+//     $.ajax({
+//         url: "GraficoController.php",
+//         dataType: "json",
+//         success: function(data) {
+//             // Manipular los datos en tu código JavaScript
+//             console.log(data);
+//         }
+//     });
+// }); --}}

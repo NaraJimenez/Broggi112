@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Cartes_trucades extends Model
 {
     use HasFactory;
-
+    //protected $fillable = ['expedients_id'];
     protected $table = 'cartes_trucades';
     protected $primaryKey = 'id';
+    public $incrementing = true; //Por defecto es true
     public $timestamps = false;
+
 
 
     public function expedients()

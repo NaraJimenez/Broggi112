@@ -34,7 +34,6 @@ class ExpedientsController extends Controller
     public function store(Request $request)
     {
         $expedients = new Expedients();
-        $expedients->data_creacio = $request->input('data_creacio');
         $expedients->estats_expedients_id = $request->input('estats_expedients_id');
 
         try{

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Interlocutors;
 use Illuminate\Http\Request;
+use App\Models\Interlocutors;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\InterlocutorsResources;
 
 class InterlocutorsController extends Controller
 {
@@ -15,7 +16,9 @@ class InterlocutorsController extends Controller
      */
     public function index()
     {
-        //
+        $expedients = Interlocutors::all();
+
+        return InterlocutorsResources::collection($expedients);
     }
 
     /**

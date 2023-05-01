@@ -19,8 +19,8 @@
                         <div v-if=" formData.catEscogido === '1' ">
                             <!--Provincia-->
                             <select id="selectProvincia" name="selectProvincia" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedProvincia" @change="fetchComarques()" required>
-                                <option disabled selected value="" class="text-center">Provincia</option>
+                            v-model="formData.selectedProvincia" @change="fetchComarques()"  @input="validateForm" required>
+                                <option disabled selected value="" class="text-center" >Provincia</option>
                                 <option v-for="provincia in provincies" :key="provincia.id" :value="provincia.id" class="text-center">
                                     {{ provincia.nom }}
                                 </option>
@@ -29,7 +29,8 @@
 
                             <!--Comarca-->
                             <select id="selectComarca" name="selectComarca" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!formData.selectedProvincia" required>
+                            v-model="formData.selectedComarca" @change="fetchMunicipis()" :disabled="!formData.selectedProvincia"
+                            @input="validateForm" required>
                                 <option disabled selected  value="" class="text-center">Comarca</option>
                                 <option v-for="comarca in comarques" :key="comarca.id" :value="comarca.id" class="text-center">
                                     {{ comarca.nom }}
@@ -38,7 +39,8 @@
                             </select>
                             <!--Municipi-->
                             <select id="selectMunicipi" name="selectMunicipi" class="form-select mt-2 ms-3"
-                            v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca" required>
+                            v-model="formData.selectedMunicipi" :disabled="!formData.selectedComarca"
+                            @input="validateForm" required>
                                 <option disabled selected value="" class="text-center">Municipi</option>
                                 <option v-for="municipi in municipis" :key="municipi.id" :value="municipi.id" class="text-center">
                                     {{ municipi.nom }}
@@ -57,7 +59,7 @@
                             <!--Input Municipi - OPCIONAL-->
                             <input id="municipioInput" placeholder="Introduce Municipio"
                             class="form-control text-center mt-5 ms-4" type="text" name="municipioInput"
-                            v-model="formData.municipioInput" @input="validateForm">
+                            v-model="formData.municipioInput">
                         </div>
 
                 </div>
@@ -84,22 +86,22 @@
                         <div class="tab-content" id="tabOpciones">
                             <!--CARRETERA-->
                             <div class="tab-pane container active" id="carretera">
-                                <div class="ms-1 mt-3">
-                                    <label for="inputCarretera" > Nombre Carretera</label>
-                                    <input id="inputCarretera" class="form-control" type="text" name="inputCarretera"
+                                <div class="mt-3" >
+                                    <label for="inputCarretera" > Carretera</label>
+                                    <input id="inputCarretera"  type="text" name="inputCarretera"
                                     placeholder="Introduce Carretera" v-model="formData.inputCarretera">
                                 </div>
 
                                 <br>
-                                <div class="ms-1 mt-3">
+                                <div  >
                                     <label for="inputpuntoKM">Punto Km</label>
-                                    <input id="inputpuntoKM" class="form-control" type="text" name="inputpuntoKM"
+                                    <input id="inputpuntoKM"   type="text" name="inputpuntoKM"
                                     placeholder="Introduce Kilometro" v-model="formData.inputpuntoKM">
                                 </div>
                                 <br>
-                                <div class="ms-1 mt-3 mb-4">
+                                <div  >
                                     <label for="inputSentido">Sentido</label>
-                                    <input id="inputSentido" class="form-control" type="text" name="inputSentido"
+                                    <input id="inputSentido"  type="text" name="inputSentido"
                                     placeholder="Introduce Sentido" v-model="formData.inputSentido">
                                 </div>
 
@@ -112,25 +114,26 @@
                                     <input id="inputVia" class="form-control ms-1 mt-1" type="text" name="inputVia"
                                     placeholder="Introduce Vía" v-model="formData.inputVia">
                                 </div>
+>>>>>>>>> Temporary merge branch 2
                                 <br>
-                                <label for="inputCalle" class="mt-3">Nombre Calle</label>
-                                <input id="inputCalle" class="form-control ms-1 mt-2" type="text" name="inputCalle"
+                                <label for="ExpinputCalle"  >Nombre Calle</label>
+                                <input id="ExpinputCalle"   type="text" name="ExpinputCalle"
                                 placeholder="Introduce Calle" v-model="formData.inputCalle">
                                 <br>
-                                <label for="inputCasa" class="mt-3">Número</label>
-                                <input id="inputCasa" class="form-control ms-1 mt-2" type="text" name="inputCasa"
+                                <label for="ExpExpinputCasa">Número</label>
+                                <input id="ExpinputCasa"   type="text" name="ExpinputCasa"
                                 placeholder="Introduce Casa" v-model="formData.inputCasa">
                                 <br>
-                                <label for="inputEscalera" class="mt-3">Escalera</label>
-                                <input id="inputEscalera" class="form-control ms-1 mt-2" type="text" name="inputEscalera"
+                                <label for="ExpinputEscalera" >Escalera</label>
+                                <input id="ExpinputEscalera"  type="text" name="ExpinputEscalera"
                                 placeholder="Introduce Escalera" v-model="formData.inputEscalera">
                                 <br>
-                                <label for="inputPiso" class="mt-3">Piso</label>
-                                <input id="inputPiso" class="form-control ms-1 mt-2" type="text" name="ninputPiso"
+                                <label for="ExpinputPiso" >Piso</label>
+                                <input id="ExpinputPiso"   type="text" name="ExpinputPiso"
                                 placeholder="Introduce Piso" v-model="formData.inputPiso">
                                 <br>
-                                <label for="inputPuerta" class=" mt-3 ">Puerta</label>
-                                <input id="inputPuerta" class="form-control ms-1 mt-2" type="text" name="inputPuerta"
+                                <label for="ExpinputPuerta" >Puerta</label>
+                                <input id="ExpinputPuerta" type="text" name="ExpinputPuerta"
                                 placeholder="Introduce Puerta" v-model="formData.inputPuerta">
                             </div>
 
@@ -153,47 +156,48 @@
                                 </div>
                             </div>
                         </div>
-                        <p> {{ formData.selectedNavItem }}</p>
+                        <!--<p> {{ formData.selectedNavItem }}</p>-->
                     </div>
                 </div>
                 <!--EXPEDIENTES-FILTRO-->
                 <div class=" ms-3 mt-4" id="expedientes2">
-                    <ul>
-                        <li></li>
-                    </ul>
+                    <tr >
+                        <td v-for="result in formData.searchResults" :key="result.id" style="display: table-row;">
+                            <span>Expediente ID {{ result.id }} Codigo {{ result.codi }} Estado {{result.estat_expedients_id}}</span>
+                        </td>
+                    </tr>
                 </div>
-
             </form>
 
-
         </div> <!--FINAL DIV ROW-->
-            <button :disabled="!formValid" @click="openModalWithData" style="margin-top:140px">Enviado</button>
+
+            <div  style="margin-top:140px" class="badge bg-success" v-show="formValid" >¡Hecho!</div>
+            <div  style="margin-top:140px" class="badge bg-danger" v-show="!formValid">Faltan campos</div>
+            <button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:150px">Finalizar Llamada</button>
     </div>
 </template>
 <script>
-import { ref, reactive } from "vue";
+import axios from 'axios';
+//import { ref, reactive } from "vue";
 export default {
     props: {
         //searchResults: Array,
-        objetoRecibido: Object
+        objetoRecibido1: Object
     },
     data() {
         return {
             formValid: false,
-            opcionTab: '',
-            //PRUEBAS
-            picked:[],
+
             //Para hacer las consultas
             provincies: [],
             provincia: {},
             comarques: [],
             comarca: {},
             municipis: [],
-            catEscogido:null,
 
             //Este objeto de datos se pasará al padre una vez relleno
             formData: {
-                selectedNavItem: 'Carretera',
+                selectedNavItem: '1',
                 //Si es o no de Cat
                 catEscogido:'1',
                 provinciaInput: '',
@@ -229,33 +233,29 @@ export default {
         console.log('Carta2 montada');
         this.fetchProvincies();
         this.validateForm();
-        if (this.objetoRecibido) {
-            this.formData.searchResults = this.objetoRecibido.searchResults
+        if (this.objetoRecibido1) {
+            this.formData.searchResults = this.objetoRecibido1.searchResults
             console.log('ha pasado bien');
         }
-       // this.formData.searchResults2 = this.objetoRecibido1.searchResults;
-       // this.formData = {searchResults: this.searchResults }
     },
     methods: {
         //PRUEBA MODAL
         openModalWithData() {
             this.$emit('openModalWithData');
         },
-
-
         //Select tab este guardara el tipo de localizacion
-        handleNavItemSelection(value) {
-            this.formData.selectedNavItem = value.target.textContent;
+        handleNavItemSelection(event) {
+            const selectedNavItem = event.target.getAttribute('value');
+            this.formData.selectedNavItem = parseInt(selectedNavItem);
             console.log(this.formData.selectedNavItem);
         },
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
         async getSearchResults() {
             const response = await
                 axios
-                .get('/api/search/' + this.formData.selectedMunicipi)
+                .get('/Broggi112/public/api/search/' + this.formData.selectedMunicipi)
                 .then((response) => {
                     this.formData.searchResults = response.data;
-
                 })
                 .catch((error) => {
                     console.error(error);
@@ -264,21 +264,31 @@ export default {
             //emitimos un evento al padre con los resultados actualizados
             this.$emit('enviar-objeto', this.formData);
         },
-
         //Validar Form
         validateForm() {
-            //La doble negación !! convierte el resultado en un valor booleano
-            this.formValid = !!this.formData.provinciaInput;
+            if (this.formData.catEscogido === '1') {
+
+                if (!this.formData.selectedProvincia && !this.formData.selectedComarca && !this.formData.selectedMunicipi){
+                    this.formValid = false;
+                    console.log('Ha entrado al id de catEscgidos 1 ' + this.formValid)
+                } else {
+                    this.formValid = true;
+                }
+            } else {
+                this.formValid = !!this.formData.provinciaInput;
+                //el && !!this.formData.municipioInput es opcional
+            }
+            //  QUIZAS METER ESTO DENTRO DEL BOOLEANO CUANDOES TRUE
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
                 this.getSearchResults();
-                //console.log(this.formData);
+
             }
         },
         fetchProvincies() {
             axios
-                .get('/api/provincies')
+                .get('/Broggi112/public/api/provincies')
                 .then((response) => {
                     this.provincies = response.data;
                     this.comarques = [];
@@ -290,7 +300,7 @@ export default {
         },
         fetchComarques() {
             axios
-                .get('/api/provincies/' + this.formData.selectedProvincia)
+                .get('/Broggi112/public/api/provincies/' + this.formData.selectedProvincia)
                 .then((response) => {
                     this.provincia = response.data;
                     console.log(response.data);
@@ -304,7 +314,7 @@ export default {
         },
         fetchMunicipis() {
             axios
-                .get('/api/comarques/' + this.formData.selectedComarca)
+                .get('/Broggi112/public/api/comarques/' + this.formData.selectedComarca)
                 .then((response) => {
                     this.comarca = response.data;
                     console.log(response.data);
@@ -342,12 +352,13 @@ export default {
         box-sizing: border-box;
         position: absolute;
         width: 440px;
-        height: 130px;
+        height: 117px;
        /* margin-left: 47px;*/
-        top: 327px;
+        top: 339px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        overflow: auto;
     }
     /*Divs dentro de los resctangulos*/
     .content:not(:first-child) {
@@ -358,7 +369,7 @@ export default {
         position: absolute;
         width: 207px;
         height: 35px;
-        left: 78px;
+        left: 69px;
         top: 138px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
@@ -373,7 +384,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 37px;
-        left: 78px;
+        left: 69px;
         /*left: 100px;
         top: 213px;*/
         background: #FFFFFF;
@@ -385,7 +396,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 37px;
-        left: 78px;
+        left: 69px;
         /*left: 100px;*/
         top: 225px;
         background: #FFFFFF;
@@ -397,7 +408,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 37px;
-        left: 78px;
+        left: 69px;
         /*left: 100px;*/
         top: 270px;
         background: #FFFFFF;
@@ -410,6 +421,7 @@ export default {
         width: 363px;
         height: 35px;
         background: #FFFFFF;
+        left:60px;
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
@@ -418,6 +430,7 @@ export default {
         position: absolute;
         width: 363px;
         height: 35px;
+        left:60px;
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
@@ -471,5 +484,28 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        left:150px;
+    }
+    #inputViaLabel{
+        left:2px;
+    }
+    #inputVia {
+        width: 220px;
+        height: 34px;
+        background: #FFFFFF;
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+
+    #botonFinal{
+        background: #E33386;
+        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        color: white;
+    }
+    #botonFinal:disabled {
+        background: #e5e5e5;
+        box-shadow: none;
+        color: #E33386;
     }
 </style>
