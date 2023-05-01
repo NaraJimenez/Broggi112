@@ -15,13 +15,29 @@ class TelefonController extends Controller
      */
     public function index()
     {
-        $phones = Cartes_trucades::pluck('telefon')->toArray();
+        /*$phones = Cartes_trucades::pluck('telefon')->toArray();
         $count = sizeof($phones);
         $randomIndex = rand(0, $count-1);
-        $randomPhone = $phones[$randomIndex];
+        $randomPhone = $phones[$randomIndex];*/
 
+        // Generar un número aleatorio de 6 dígitos
+        $num1 = rand(10000000, 99999999);
+
+        // Generar un número aleatorio de 3 dígitos
+        $num2 = rand(100, 999);
+
+        // Concatenar los números para formar un número de 9 dígitos que comience con 6
+        $randomPhone = '6' . $num1;
+        session(['randomPhone' => $randomPhone]);
         return view ('NavBar.home', compact('randomPhone'));
     }
+
+    public function carta()
+    {
+        $randomPhone = session('randomPhone');
+        return view('paginas.carta', compact('randomPhone'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

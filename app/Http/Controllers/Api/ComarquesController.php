@@ -41,7 +41,7 @@ class ComarquesController extends Controller
     public function show(Comarques $comarque)
     {
         $comarca= Comarques::with('Municipis')->find($comarque->id);
-        return new ComarquesResources($comarca);  
+        return new ComarquesResources($comarca);
     }
 
     /**

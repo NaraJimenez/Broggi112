@@ -95,9 +95,11 @@ Route::get('/carta2Vue', function () {
 })->name('carta');*/
 
 //carta cogiendoel telefono
-Route::get('/carta/{phone}', function ($phone) {
+/*Route::get('/carta/{randomPhone}', function ($phone) {
     return view('paginas/carta')->with('phone', $phone);
-})->name('carta');
+})->name('carta');*/
+
+Route::get('/carta/{randomPhone}', [TelefonController::class, 'carta'])->name('carta');
 
 //Prueba de graficos
 // Route::get('/graficos', function () {

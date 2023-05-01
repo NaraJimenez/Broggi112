@@ -12,7 +12,7 @@
                     placeholder="Apellidos interlocutor" v-model="formData1.inputApellidos" @input="validateForm1">
                     <!--Telefono-->
                     <input id="telefonoLlamada" name="telefonoLlamada" class="text-muted text-center"
-                    v-model="formData1.telefonoLlamada" >
+                    v-model="formData1.telefonoLlamada" @input="validateForm1">
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
@@ -24,7 +24,7 @@
                     <!--Incidentes-->
                     <div class="mt-3 ms-3" id="incidentes">
                         <!--Tipos de Incidente aria-label="selectTipusIncident"-->
-                        <select name="selectTipusIncident" id="selectTipusIncident"  
+                        <select name="selectTipusIncident" id="selectTipusIncident"
                         v-model="formData1.selectedTipusIncident" @change="fetchIncidents()"  >
                             <option value="" disabled selected>Tipo de Incidencia</option>
                             <option v-for="tipusIncident in tipusIncidents" :key="tipusIncident.id"
@@ -32,7 +32,7 @@
                         </select>
 
                         <!--Incidentes aria-label="selectedIncident"-->
-                        <select name="selectedIncident" id="selectedIncident"  
+                        <select name="selectedIncident" id="selectedIncident"
                         v-model="formData1.selectedIncident" :disabled="!formData1.selectedTipusIncident" >
                             <option value="" disabled selected>Incidencia</option>
                             <option v-for="incident in incidents" :key="incident.id"
@@ -63,14 +63,14 @@
         <div>
         </div>
             <!--<button :disabled="!formValid" @click="submitForm" style="margin-top:15px">Enviado</button>-->
-            <div  style="margin-top:15px" class="badge badge-success" v-show="formValid" >¡Hecho!</div>
-            <div  style="margin-top:15px" class="badge badge-danger" v-show="!formValid">Faltan campos</div>
+            <div  style="margin-top:15px" class="badge bg-success" v-show="formValid" >¡Hecho!</div>
+            <div  style="margin-top:15px" class="badge bg-danger" v-show="!formValid">Faltan campos</div>
     </div>
 </template>
 <script>
 import axios from 'axios';
 export default {
-    props: ['randomPhone'],
+    //props: ['randomPhone'],
     data() {
         return {
             formValid: false,
@@ -131,7 +131,7 @@ export default {
         //VALIDACION DEL FORMULARIO
         validateForm1() {
             //La doble negación !! convierte el resultado en un valor booleano
-            this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos;
+            this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos && !!this.formData1.telefonoLlamada;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
@@ -279,6 +279,7 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+        overflow: auto;
     }
     #indicacionesInci {
         box-sizing: border-box;
@@ -290,27 +291,6 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
-    }
-
-
-
-/*
-
-    #selectTipusIncident {
-       /* top: 5px;*/
-       /*height: 38px;
-    }
-    #selectedIncident{
-       top: 42px;
-       height: 38px;
-    }
-    #definicionInci{
-        top: 85px;
         overflow: auto;
     }
-    #indicacionesInci{
-        top: 128px;
-        overflow: auto;
-    }*/
-
 </style>

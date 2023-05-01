@@ -1,7 +1,7 @@
-#titulo {
+#tituloCarta {
     text-align: center;
+    position: absolute;
 }
-
 #primero{
     box-sizing: border-box;
 
@@ -266,10 +266,10 @@ border-radius: 10px;
     height: 27px;
     left: 25px;
     top: 55px;
-    
+
     background: #FFFFFF;
     /* Bordes CLTTT */
-    
+
     border: 3px solid #76DAE4;
     border-radius: 10px;
 }

@@ -86,22 +86,22 @@
                         <div class="tab-content" id="tabOpciones">
                             <!--CARRETERA-->
                             <div class="tab-pane container active" id="carretera">
-                                <div class="ms-1 mt-3">
-                                    <label for="inputCarretera" > Nombre Carretera</label>
-                                    <input id="inputCarretera" class="form-control" type="text" name="inputCarretera"
+                                <div class="mt-3" >
+                                    <label for="inputCarretera" > Carretera</label>
+                                    <input id="inputCarretera"  type="text" name="inputCarretera"
                                     placeholder="Introduce Carretera" v-model="formData.inputCarretera">
                                 </div>
 
                                 <br>
-                                <div class="ms-1 mt-3">
+                                <div  >
                                     <label for="inputpuntoKM">Punto Km</label>
-                                    <input id="inputpuntoKM" class="form-control" type="text" name="inputpuntoKM"
+                                    <input id="inputpuntoKM"   type="text" name="inputpuntoKM"
                                     placeholder="Introduce Kilometro" v-model="formData.inputpuntoKM">
                                 </div>
                                 <br>
-                                <div class="ms-1 mt-3 mb-4">
+                                <div  >
                                     <label for="inputSentido">Sentido</label>
-                                    <input id="inputSentido" class="form-control" type="text" name="inputSentido"
+                                    <input id="inputSentido"  type="text" name="inputSentido"
                                     placeholder="Introduce Sentido" v-model="formData.inputSentido">
                                 </div>
 
@@ -168,14 +168,15 @@
             </form>
 
         </div> <!--FINAL DIV ROW-->
-        <!--<button :disabled="!formValid" @click="openModalWithData" style="margin-top:140px">Enviado</button>-->
-            <div  style="margin-top:140px" class="badge badge-success" v-show="formValid" >¡Hecho!</div>
-            <div  style="margin-top:14px" class="badge badge-danger" v-show="!formValid">Faltan campos</div>
+
+            <div  style="margin-top:140px" class="badge bg-success" v-show="formValid" >¡Hecho!</div>
+            <div  style="margin-top:140px" class="badge bg-danger" v-show="!formValid">Faltan campos</div>
+            <button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:150px">Finalizar Llamada</button>
     </div>
 </template>
 <script>
 import axios from 'axios';
-import { ref, reactive } from "vue";
+//import { ref, reactive } from "vue";
 export default {
     props: {
         //searchResults: Array,
@@ -490,5 +491,17 @@ export default {
         background: #FFFFFF;
         border: 3px solid #76DAE4;
         border-radius: 10px;
+    }
+
+    #botonFinal{
+        background: #E33386;
+        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        color: white;
+    }
+    #botonFinal:disabled {
+        background: #e5e5e5;
+        box-shadow: none;
+        color: #E33386;
     }
 </style>

@@ -37,16 +37,21 @@ class CartesTrucadesController extends Controller
         try {
             DB::beginTransaction();
 
-          /*  if(){
-                //SE SELECCIONA ID
-                //id pasado despues de seleccionarlo en el modal
-                $idExpedienteSeleccionado = $request->input('selected');
-            }else{
-                //SE CREA DE CERO
-            }*/
             $expedient = new Expedients();
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
+            /*
+            // Obtener el valor del campo selected del objeto cartaTrucadaRealizada
+            $selected = $request->input('cartaTrucadaRealizada.selected');
+
+            //Metemos aqui el id que ha de pasarse para el expediente
+            $idSeleccionado = null;
+
+            if (!empty($selected)) {
+                $idSeleccionado = $selected[0]['id'];
+            } else {
+
+            }*/
 
 
            /* EXPEDIENTES -- Guardamos en tabla Expedientes*/

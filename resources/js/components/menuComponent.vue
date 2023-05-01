@@ -2,7 +2,7 @@
     <div>
         <div class="tabs mt-3 justify-content-center mb-1">
             <!--Codigo de Carta Llamada-->
-            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3">{{ cartaTrucadaRealizada.codiTrucada }}</p> </div>
+            <div id="codiTrucada" name="codiTrucada" class="text-center me-2 mt-1"><p class="mt-3" >{{ cartaTrucadaRealizada.codiTrucada }}</p> </div>
             <!--TABS MENU-->
             <div class="tabs_header ">
                 <button
@@ -17,15 +17,12 @@
 
              </div>
 
-
-        <!--Componentes: variable que se encuentra en data--><!-- @clicked="onClickChild"--> <!--:resultados="cartaTrucadaRealizada.objetoRecibido1.searchResults" -->
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
             :objeto-recibido="cartaTrucadaRealizada.objetoRecibido" :objeto-recibido1="cartaTrucadaRealizada.objetoRecibido1"
             @enviar-objeto3="recibirObjeto3" @openModalWithData="confirmFinalizarLlamada" />
 
-        </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
-        <!--:carta-trucada-realizada="cartaTrucadaRealizada.objetoRecibido1" :search-results="objetoRecibido1.searchResults"-->
+        </keep-alive>
 
     </div>
 
@@ -53,9 +50,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!--Si no se encunetran elmentos en el filtro, el boton sera deseable-->
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="actualizarExpe(cartaTrucadaRealizada)">Actualizar</button>
-              <button type="button" class="btn btn-primary" @click="guardarCarta(cartaTrucadaRealizada)">Crear</button>
+                <!--Si no se encunetran elmentos en el filtro, el boton sera desabilitado-->
+              <button type="button" class="btn btn-secondary" id="actualizarBoton" data-bs-dismiss="modal" :disabled="expedientesBuscados.length === 0" @click="actualizarExpe(cartaTrucadaRealizada)">Actualizar</button>
+              <button type="button" class="btn btn-primary" id="guardarBoton" @click="guardarCarta(cartaTrucadaRealizada)">Crear</button>
             </div>
           </div>
         </div>
@@ -72,11 +69,12 @@ import axios from 'axios';
 
         //Pasamos los componentes
         components: { Incidencia, Localización, Agencias },
-        props: {
-            phone: {
-            type: Number, // o el tipo de dato que corresponda
-            required: true // si se requiere el atributo o no
-            }
+        props:{
+            /*phone: {
+                type: String,
+                required: true,
+
+                }*/
         },
         data() {
             return {
@@ -104,21 +102,26 @@ import axios from 'axios';
                     //Codigo Llamada
                     codiTrucada: this.generarCodiTrucada(),
                     //Expediente seleccionado con el que relacionar la carta
-                    selected:"",
+                    selected:[],
                 },
 
                 //Modal
                 myModal: {},
                 //Buscador final se guarda aqui y este se ha de mostrar en el modal
                 expedientesBuscados: [],
+                llamada: ""
 
             }
         },
         mounted() {
             this.setFechaHoraActual();
             this.iniciarContador();
-            this.mostrarTelefono();
+            //this.mostrarTelefono();
+            //console.log(this.phone);
         },
+        /*created(){
+            console.log(this.phone);
+        },*/
         beforeDestroy() {
             clearInterval(this.interval);
         },
@@ -130,9 +133,9 @@ import axios from 'axios';
             },
         },
         methods: {
-            mostrarTelefono() {
-            console.log("El teléfono es:", this.phone);
-        },
+            /*mostrarTelefono() {
+                console.log("El teléfono es:", this.phone);
+            },*/
             //Tiempo
             setFechaHoraActual() {
                 this.cartaTrucadaRealizada.fechaHoraActual = new Date().toLocaleString('es-ES');
@@ -196,6 +199,7 @@ import axios from 'axios';
                     .post('/Broggi112/public/api/cartestrucades', this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
+                        window.location.href = '/home'
                         //this.myModal.hide();
                         //Al acabar aparece mensaje y te envia a la pagina inicial
                         //location.reload();
@@ -219,7 +223,7 @@ import axios from 'axios';
                     .post("/Broggi112/public/api/cartestrucades", this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
-                        location.reload();
+                        window.location.href = '/home';
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -271,4 +275,31 @@ import axios from 'axios';
         border: 3px solid #76DAE4;
         border-radius: 10px;
     }
+    .modal-header{
+        background-color: #76DAE4;
+    }
+    .modal-body, .modal-footer {
+        background-color: #EBEFEF;
+    }
+    #actualizarBoton{
+        background: #FFFFFF;
+        border: 2px solid #E33386;
+        border-radius: 20px;
+        color:#E33386 ;
+    }
+    #guardarBoton{
+        background-color:#E33386 ;
+        border: 2px solid #E33386;
+        border-radius: 20px;
+    }
+    #selected {
+        border: 3px solid #76DAE4;
+        border-radius: 10px;
+    }
+    #actualizarBoton:disabled {
+        background: #e5e5e5;
+        box-shadow: none;
+        color: #E33386;
+    }
+
 </style>

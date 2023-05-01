@@ -8,16 +8,16 @@
 @endsection
 @section('content')
 <div class="message-container">
-  Bienvenido al menú, pulsa "Aceptar llamada" para acceder al formulario.
-</div>
-	<div class="mobile"> 
+    Bienvenido al menú, pulsa "Aceptar llamada" para acceder al formulario.
+  </div>
+<div class="mobile">
     <div class="screen">
         <span>{{ $randomPhone }}</span>
         <div id="emergency-alert" class="alert">
             <p class="alert-message">¡¡¡Emergencia!!! Acepta la llamada</p>
         </div>
-        <a href="{{ route('carta', ['phone' => $randomPhone]) }}" class="bottom-bar">
-          <div class="button-rounded red">
+      <div class="bottom-bar">
+        <a href="{{ route('carta', ['randomPhone' => $randomPhone]) }}" class="button-rounded red">
             <i class="fa-solid fa-phone fa-beat-fade"></i>
           </a>
       </div>
