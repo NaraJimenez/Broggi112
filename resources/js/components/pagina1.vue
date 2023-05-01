@@ -86,7 +86,6 @@ export default {
                 searchResults: [],
             },
 
-
             //Selects anidados
             tipusIncidents: [],
             tipusIncident: {},
@@ -113,14 +112,6 @@ export default {
             return this.incidents.find(inc => inc.id === selectedIncident) || {};
         }
     },
-    computed: {
-        selectedIncidentData() {
-            // Obtener el incidente seleccionado
-            const selectedIncident = this.formData1.selectedIncident;
-            return this.incidents.find(inc => inc.id === selectedIncident) || {};
-        }
-    },
-
     methods: {
         // llamada a la API en la función getSearchResults cada vez que se actualiza el valor del input o el select.
         async getSearchResults() {
