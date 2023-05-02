@@ -40,34 +40,40 @@ class CartesTrucadesController extends Controller
             $expedient = new Expedients();
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
-            /*
+           
+            
             // Obtener el valor del campo selected del objeto cartaTrucadaRealizada
-            $selected = $request->input('cartaTrucadaRealizada.selected');
+            //$selected = $request->input('selected');
 
             //Metemos aqui el id que ha de pasarse para el expediente
-            $idSeleccionado = null;
+           // $idSeleccionado = null;
 
-            if (!empty($selected)) {
-                $idSeleccionado = $selected[0]['id'];
-            } else {
+            //if (!empty($selected)) {
+            //    $idSeleccionado = $selected[0]['id'];
+             //   $cartaTrucada->expedients_id = $idSeleccionado;
+           // } else {
+                /* EXPEDIENTES -- Guardamos en tabla Expedientes*/
+               // $expedient->estat_expedients_id = 1;
+               // $expedient->codi = 'EXP01' ;
+              //  $expedient->save();
 
-            }*/
+                //Cogemos el id de los expedientes
+               // $cartaTrucada->expedients_id = $expedient->id;
 
+            //}
 
-           /* EXPEDIENTES -- Guardamos en tabla Expedientes*/
             $expedient->estat_expedients_id = 1;
             $expedient->codi = 'EXP01' ;
             $expedient->save();
 
-
             //Cogemos el id de los expedientes
             $cartaTrucada->expedients_id = $expedient->id;
 
-
             //INTERLOCUTOR -- Guardamos en la tabla de interlocutor
-            $interlocutor->nom = $request->inputNombre;
-            $interlocutor->telefon = $request->telefonoLlamada;
-            $interlocutor->cognoms = $request->inputApellidos;
+            $objetoRecibido1 = $request->input("objetoRecibido1");
+            $interlocutor->telefon =  $objetoRecibido1["telefonoLlamada"];
+            $interlocutor->nom = $objetoRecibido1["inputNombre"];
+            $interlocutor->cognoms =  $objetoRecibido1["inputApellidos"];
             $interlocutor->save();
 
 
@@ -80,52 +86,53 @@ class CartesTrucadesController extends Controller
             $cartaTrucada->durada = $request->duracioTrucada;
 
             //Primer Form
-            $cartaTrucada->telefon = $request->input('telefonoLlamada');
-            $cartaTrucada->nom = $request->input('inputNombre');
-            $cartaTrucada->cognoms = $request->input('inputApellidos');
-            $cartaTrucada->nota_comuna = $request->input('InputNotaComuna');
-            $cartaTrucada->incidents_id = $request->input('selectedIncident');
-
+            $cartaTrucada->telefon = $objetoRecibido1["telefonoLlamada"];
+            $cartaTrucada->nom = $objetoRecibido1["inputNombre"];
+            $cartaTrucada->cognoms = $objetoRecibido1["inputApellidos"];
+            $cartaTrucada->nota_comuna = $objetoRecibido1["InputNotaComuna"];
+            $cartaTrucada->incidents_id = $objetoRecibido1['selectedIncident'];
 
             //Segundo FORM
-            if ($request->input('catEscogido') == 0) {
+            $objetoRecibido = $request->input("objetoRecibido");
+            
+            if ($objetoRecibido['catEscogido'] == 0) {
                 //PROVINCIA
-                $cartaTrucada->provincies_id = $request->input('selectProvincia');
+                $cartaTrucada->provincies_id = $objetoRecibido['selectProvincia'];
                 //MUNICIPI
-                $cartaTrucada->municipis_id = $request->input('selecMunicipi');
+                $cartaTrucada->municipis_id = $objetoRecibido['selecMunicipi']; 
 
                 //SE PASA EL INDEX DEL TAB
-                $cartaTrucada->tipus_localitzacions_id = $request->input('selectedNavItem');
+                $cartaTrucada->tipus_localitzacions_id = $objetoRecibido['selectedNavItem'];
 
 
-                if($request->input('selectedNavItem') == 1){
-                    $descripCarretera = $request->input('inputCarretera') . ' ' . $request->input('inputpuntoKM');
+                if($objetoRecibido['selectedNavItem'] == 1){
+                    $descripCarretera = $objetoRecibido['inputCarretera'] . ' ' . $objetoRecibido['inputpuntoKM'];
 
                     $cartaTrucada->descripcio_localitzacio = $descripCarretera;
-                    $cartaTrucada->detall_localitzacio = $request->input('inputSentido');
-                } else if ($request->input('selectedNavItem') == 2){
-                    $carrerDescrip = $request->input('inputVia') . ' ' . $request->input('inputCalle') . ' ' . $request->input('inputCasa');
-                    $detallLoc = $request->input('inputEscalera') . ' ' . $request->input('inputPiso') . ' ' . $request->input('inputPuerta');
+                    $cartaTrucada->detall_localitzacio = $objetoRecibido['inputSentido'];
+                } else if ($objetoRecibido['selectedNavItem'] == 2){
+                    $carrerDescrip = $objetoRecibido['inputVia'] . ' ' . $objetoRecibido['inputCalle'] . ' ' . $objetoRecibido['inputCasa'];
+                    $detallLoc = $objetoRecibido['inputEscalera'] . ' ' . $objetoRecibido['inputPiso'] . ' ' . $objetoRecibido['inputPuerta'];
 
                     $cartaTrucada->descripcio_localitzacio = $carrerDescrip;
                     $cartaTrucada->detall_localitzacio = $detallLoc;
-                } else if ($request->input('selectedNavItem') == 3) {
-                    $cartaTrucada->descripcio_localitzacio = $request->input('inputPS');
-                } else if ($request->input('selectedNavItem') == 4) {
-                    $cartaTrucada->descripcio_localitzacio = $request->input('inputPob');
+                } else if ($objetoRecibido['selectedNavItem'] == 3) {
+                    $cartaTrucada->descripcio_localitzacio = $objetoRecibido['inputPS'];
+                } else if ($objetoRecibido['selectedNavItem'] == 4) {
+                    $cartaTrucada->descripcio_localitzacio = $objetoRecibido['inputPob'];
                 }
 
             } else {
                 //SI NO ES CAT
                 //PROVINCIA
-                $cartaTrucada->provincies_id = $request->input('provinciaInput');
+               /* $cartaTrucada->provincies_id = $request->input('provinciaInput');
                 //MUNICIPI
-                $cartaTrucada->municipis_id = $request->input('municipioInput');
+                $cartaTrucada->municipis_id = $request->input('municipioInput');*/
 
-                //No catalunya se mete en los inputs de provincia y monicipi en altres referencies
-                /*$noCat =  $request->input('provinciaInput') . ' ' . $request->input('municipioInput')
+                //No catalunya se mete en los inputs de provincia y municipi en altres referencies
+                $noCat =  $objetoRecibido['provinciaInput'] . ' ' . $objetoRecibido['municipioInput'];
                 $cartaTrucada->altres_ref_localitzacio = $noCat;
-                */
+                
 
             }
 
