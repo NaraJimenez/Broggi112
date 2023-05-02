@@ -101,16 +101,12 @@ document.getElementById("grafico2").addEventListener("click", function () {
         data: {
             label: etiquetas[i],
             datasets: [
-                { label: TipusIncident1.label, data: [TipusIncident1.data[i]], backgroundColor: TipusIncident1.backgroundColor, borderColor: TipusIncident1.borderColor, borderWidth: TipusIncident1.borderWidth },
-                { label: TipusIncident2.label, data: [TipusIncident2.data[i]], backgroundColor: TipusIncident2.backgroundColor, borderColor: TipusIncident2.borderColor, borderWidth: TipusIncident2.borderWidth },
-                { label: TipusIncident3.label, data: [TipusIncident3.data[i]], backgroundColor: TipusIncident3.backgroundColor, borderColor: TipusIncident3.borderColor, borderWidth: TipusIncident3.borderWidth },
-                { label: TipusIncident4.label, data: [TipusIncident4.data[i]], backgroundColor: TipusIncident4.backgroundColor, borderColor: TipusIncident4.borderColor, borderWidth: TipusIncident4.borderWidth },
-                { label: TipusIncident5.label, data: [TipusIncident5.data[i]], backgroundColor: TipusIncident5.backgroundColor, borderColor: TipusIncident5.borderColor, borderWidth: TipusIncident5.borderWidth },
-                { label: TipusIncident6.label, data: [TipusIncident6.data[i]], backgroundColor: TipusIncident6.backgroundColor, borderColor: TipusIncident6.borderColor, borderWidth: TipusIncident6.borderWidth },
-                { label: TipusIncident7.label, data: [TipusIncident7.data[i]], backgroundColor: TipusIncident7.backgroundColor, borderColor: TipusIncident7.borderColor, borderWidth: TipusIncident7.borderWidth },
-                { label: TipusIncident8.label, data: [TipusIncident8.data[i]], backgroundColor: TipusIncident8.backgroundColor, borderColor: TipusIncident8.borderColor, borderWidth: TipusIncident8.borderWidth },
-                { label: TipusIncident9.label, data: [TipusIncident9.data[i]], backgroundColor: TipusIncident9.backgroundColor, borderColor: TipusIncident9.borderColor, borderWidth: TipusIncident9.borderWidth },
-                { label: TipusIncident10.label, data: [TipusIncident10.data[i]], backgroundColor: TipusIncident10.backgroundColor, borderColor: TipusIncident10.borderColor, borderWidth: TipusIncident10.borderWidth },
+                label: nombres,
+                datasets: [{
+                    label: "Iincidèncias totales",
+                    data: datos,
+
+                }]
             ]
         },
     });
@@ -196,7 +192,7 @@ fetch('/EMT/public/api/graficos')
     });
 
 
-    
+
 const mostrar = (incidencias) => {
     incidencias.forEach(element => {
         grafica1.data['labels'].push(element.definicio)
@@ -207,7 +203,15 @@ const mostrar = (incidencias) => {
 }
 
 
-
+// Grafico Incidencias totales
+const mostrar0 = (incidentestotales) => {
+    incidentestotales.forEach(element => {
+        grafica2.data['labels'].push(element.definicio)
+        // CAMBIAR LOS ELEMENTOS QUE COGE. Y el myChart deberia asignarse el nombre de grafica directamente
+        grafica2.data['datasets'][0].data.push(element.nom)
+    });
+    console.log(grafica3.data)
+}
 
 
 // Grafico BCN
