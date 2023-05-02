@@ -1,3 +1,4 @@
+@extends('layout.plantilla')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,14 +37,14 @@
     <div class="col" id="grafico3">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas perdidas <strong><span id="perdidas">0</span></strong></h5>
+          <h5 class="card-title">Llamadas Barcelona <strong><span id="perdidas">0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico4">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Total abandonadas <strong><span id="abandonadas">0</span></strong></h5>
+          <h5 class="card-title">Llamadas otras provincias <strong><span id="abandonadas">0</span></strong></h5>
         </div>
       </div>
     </div>
@@ -178,7 +179,7 @@ fetch('/EMT/public/api/graficos')
             datos.push(prueba.numeros);
         });
     }
-
+    )
 const mostrar = (incidencias) => {
     incidencias.forEach(element => {
         grafica1.data['labels'].push(element.definicio)

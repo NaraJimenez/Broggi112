@@ -10,7 +10,7 @@
 
 <script>
 import axios from 'axios';
-// import Mapbox from "../components/atoms/Mapbox/Mapbox.vue";
+
 export default {
 
     props: {
@@ -88,6 +88,7 @@ export default {
     }
 };
 </script>
+
 
 <style>
     .map-container {

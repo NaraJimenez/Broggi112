@@ -10,6 +10,7 @@ class Estats_agencies extends Model
 {
     use HasFactory;
 
+    protected $table = "estat_agencies";
     public $timestamps = false;
 
     /**
@@ -19,6 +20,6 @@ class Estats_agencies extends Model
      */
     public function cartes_trucades_has_agencies() //: hasMany
     {
-        return $this->hasMany(Cartes_trucades_has_agencies::class, 'estats_agencies_id');
+        return $this->hasMany(Cartes_trucades_has_agencies::class, 'estat_agencies_id');
     }
 }

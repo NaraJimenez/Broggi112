@@ -11,28 +11,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="card mx-auto bg-light" style="max-width: 500px;">
-        <div class="card-body p-3">
-            <h5 class="card-title">Agregar Agencia</h5>
+    <div class="card mx-auto" style="max-width: 500px;display: flex; justify-content:center; margin-top:100px;border-radius:5%; border-color:black">
+        <div class="card-body p-3" style="max-width: 500px;  background-color: #76DAE4; border-radius:5%;">
+            <h5 class="card-title" style="display: flex; justify-content:center; color:white;">Agregar Agencia</h5>
             <form method="GET" action="{{ route('agencias.afegir') }}">
                 @csrf
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px; color:white; font-weight:bolder">
                     <label for="nom">Nombre</label>
                     <input type="text" name="nom" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px; color:white; font-weight:bolder">
                     <label for="carrer">Calle</label>
                     <input type="text" name="carrer" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px; color:white; font-weight:bolder">
                     <label for="codi_postal">Código Postal</label>
                     <input type="text" name="codi_postal" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px; color:white; font-weight:bolder">
                     <label for="correu">Correo</label>
                     <input type="email" name="correu" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px; color:white; font-weight:bolder">
                     <label for="municipis_id">Municipio</label>
                     <select name="municipis_id" class="form-control">
                         @foreach ($municipis as $municipi)
@@ -40,8 +40,8 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Agregar Agencia</button>
-                <a href="{{ route('adminagencias') }}" class="btn btn-secondary" role="button">Cerrar</a>
+                <button style="background-color: #E33386; color:white;" type="submit" class="btn">Agregar Agencia</button>
+                <a  style="background-color: white; border-color:#E33386; border: solid 1px; color:#E33386" href="{{ route('adminagencias') }}" class="btn" role="button">Cerrar</a>
             </form>
         </div>
     </div>

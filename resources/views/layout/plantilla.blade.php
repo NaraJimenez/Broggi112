@@ -19,14 +19,18 @@
     
     </div>
     <div id="Profile" class="profile">
-        {{-- @if (Auth::check() && $user->tipus_usuaris_id == 2)
+        {{-- @if (Auth::check() && Auth::check()->tipus_usuaris_id == 5)
         <div>
             <span>{{ $user->nom }}</span>
             <span>Administrador</span>
             <div id="menuA" ></div>
         </div>
            
-        @endif --}}
+        @else
+        <div id="Menu">
+    
+        </div> --}}
+        {{-- @endif --}}
 
     </div>
 

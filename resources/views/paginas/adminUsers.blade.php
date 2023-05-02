@@ -82,7 +82,7 @@
                             <td>{{ $usuario->cognoms }}</td>
                             <td>{{ $usuario->tipus_usuaris_id }}</td>
                             <td>
-                                <button class="btn btn-primary d-inline-block editar-btn" type="button"
+                                <button  id="edit" type="button"
                                     data-id="{{ $usuario->id }}" data-username="{{ $usuario->username }}"
                                     data-nombre="{{ $usuario->nom }}" data-apellido="{{ $usuario->cognoms }}"
                                     data-tipo="{{ $usuario->tipus_usuaris_id }}" data-toggle="modal"
@@ -93,7 +93,7 @@
                                     class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" id="delete">
                                         <i class="bi bi-trash"></i> Eliminar
                                     </button>
                                 </form>
@@ -104,8 +104,6 @@
             </table>
         </div>
     </div>
-
-
 </body>
 <script></script>
 </html>

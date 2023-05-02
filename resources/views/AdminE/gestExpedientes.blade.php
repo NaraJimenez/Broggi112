@@ -35,14 +35,14 @@
                             <td>{{ $carta->id }}</td>
                             <td><span>{{ $carta->codi_trucada }}</span></td>
                             <td>{{ $carta->data_hora_trucada }}</td>
-                            {{-- <td>
-                                <form action="{{ route('la ruta que necesites', ['id' =>campos a coger]) }}"
-                                    method="GET">
+                            <td>
+                                <form action="{{ route('cartes_trucades.edit', ['id' => $carta->id]) }}" method="GET">
                                     <button type="submit" style="border: none; background: none; padding: 0;">
                                         <img src="./img/Carta.png" alt="Carta" style="cursor: pointer;">
                                     </button>
                                 </form>
-                            </td> --}}
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>

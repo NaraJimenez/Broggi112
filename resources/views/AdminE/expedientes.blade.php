@@ -104,7 +104,7 @@
         <a class="button" href="{{ url('/adminuser') }}">Usuario</a>
         {{-- El botón de Expedientes aparece seleccionado por defecto --}}
         <a class="button-selected" href="{{ url('/expedientes') }}">Expedientes</a>
-        <a class="button">Agencias</a>
+        <a class="button" href="{{ url('/adminagencias') }}">Agencias</a>
     </div>
 </div>
 

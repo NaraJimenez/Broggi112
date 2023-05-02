@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 
-class AgenciesController extends Controller
+class AdminAController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class AgenciesController extends Controller
      */
     public function index()
     {
-        $agencies = Agencies::all();
+        $agencies = Agencies::paginate(6);
         $municipis = Municipis::all();
 
 
@@ -53,6 +53,3 @@ class AgenciesController extends Controller
         return redirect()->back()->with('success', "L'agència s'ha afegit correctament.");
     }
     }
-
-
-

@@ -16,6 +16,9 @@
             <div id="tiempoTrucada" name="tiempoTrucada" class="text-center mt-1" >{{ contadorFormatejat }} <br> {{cartaTrucadaRealizada.fechaHoraActual}}</div>
 
              </div>
+            <!-- Paso las props de las agencias -->
+             <router-view :agencias="agencias" />
+        </div>
 
         <keep-alive>
             <component :is = "component" @enviar-objeto="recibirObjeto" @enviar-objeto1="recibirObjeto1"
@@ -57,7 +60,7 @@
           </div>
         </div>
       </div>
-
+<p> {{ prueba }}</p>
 </template>
 <script>
 import axios from 'axios';
@@ -69,13 +72,15 @@ import axios from 'axios';
 
         //Pasamos los componentes
         components: { Incidencia, Localización, Agencias },
-        props:{
-            /*phone: {
-                type: String,
-                required: true,
-
-                }*/
-        },
+         props: {
+    agencias: {
+      type: Array,
+      required: true,
+    },
+    prueba: {
+        type: String,
+    },
+  },
         data() {
             return {
                 //TABS con el nombre de nuestros componentes, metidas en arrays
@@ -102,7 +107,8 @@ import axios from 'axios';
                     //Codigo Llamada
                     codiTrucada: this.generarCodiTrucada(),
                     //Expediente seleccionado con el que relacionar la carta
-                    selected:[],
+                    selected:"",
+                    prueba: "Plaza urquinaona, Barcelona",
                 },
 
                 //Modal
@@ -235,7 +241,7 @@ import axios from 'axios';
                         }
                     });
             }
-        }
+        },
     }
 </script>
 <style>
