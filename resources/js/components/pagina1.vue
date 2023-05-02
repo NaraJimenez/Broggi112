@@ -120,6 +120,7 @@ export default {
                 .get('/Broggi112/public/api/search/' + this.formData1.telefonoLlamada + '/' + this.formData1.selectedIncident)
                 .then((response) => {
                     this.formData1.searchResults = response.data;
+                    //if empty
                 })
                 .catch((error) => {
                     console.error(error);
