@@ -10,8 +10,13 @@
     <div class="card" id="CartaIncidencia">
         <div class="card-body">
             <!--Componente Menu-->
-            <div id="menuComponent"></div>       
+            <div id="menuComponent"></div>
     </div>
+    <div id="helper">
+        <a href="{{ asset('HelpBox/HelpBox.blade.php') }}">
+          <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
+        </a>
+      </div>
 </div>
 
 
