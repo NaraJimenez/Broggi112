@@ -40,8 +40,8 @@ class CartesTrucadesController extends Controller
             $expedient = new Expedients();
             $cartaTrucada = new Cartes_trucades();
             $interlocutor = new Interlocutors();
-           
-            
+
+
             // Obtener el valor del campo selected del objeto cartaTrucadaRealizada
             //$selected = $request->input('selected');
 
@@ -83,7 +83,7 @@ class CartesTrucadesController extends Controller
             //En el componente Padre
             $cartaTrucada->codi_trucada = $request->input("codiTrucada");
             $cartaTrucada->data_hora_trucada = new \DateTime($request->input('iniciTrucada'));
-            $cartaTrucada->durada = $request->$request->input("duracioTrucada");
+            $cartaTrucada->durada = $request->input("duracioTrucada");
 
             //Primer Form
             $cartaTrucada->telefon = $objetoRecibido1["telefonoLlamada"];
@@ -94,12 +94,12 @@ class CartesTrucadesController extends Controller
 
             //Segundo FORM
             $objetoRecibido = $request->input("objetoRecibido");
-            
+
             if ($objetoRecibido['catEscogido'] == 0) {
                 //PROVINCIA
                 $cartaTrucada->provincies_id = $objetoRecibido['selectProvincia'];
                 //MUNICIPI
-                $cartaTrucada->municipis_id = $objetoRecibido['selecMunicipi']; 
+                $cartaTrucada->municipis_id = $objetoRecibido['selecMunicipi'];
 
                 //SE PASA EL INDEX DEL TAB
                 $cartaTrucada->tipus_localitzacions_id = $objetoRecibido['selectedNavItem'];
@@ -132,7 +132,7 @@ class CartesTrucadesController extends Controller
                 //No catalunya se mete en los inputs de provincia y municipi en altres referencies
                 $noCat =  $objetoRecibido['provinciaInput'] . ' ' . $objetoRecibido['municipioInput'];
                 $cartaTrucada->altres_ref_localitzacio = $noCat;
-                
+
 
             }
 
