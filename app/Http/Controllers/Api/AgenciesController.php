@@ -23,8 +23,8 @@ class AgenciesController extends Controller
 
     public function mapbox(){
         $agencias = Agencies::select('nom', 'carrer', 'codi_postal')->get();
-        dump($agencias);
-        return response()->json($agencias);
+        
+        return AgenciesResources::collection($agencias);
 
     }
 
