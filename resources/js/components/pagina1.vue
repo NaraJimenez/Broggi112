@@ -16,7 +16,7 @@
                     <!--Nota Comuna-->
                     <div id="" class="text-muted" >
                         <textarea name="inputNotaComuna" id="inputNotaComuna" cols="10" rows="10" class="form-control"
-                        placeholder="Nota Comuna" v-model="formData1.inputNotaComuna"></textarea>
+                        placeholder="Nota Comuna" v-model="formData1.inputNotaComuna" @input="validateForm1"></textarea>
                     </div>
                 </div>
                 <!----------Elementos Segundo Rectangulo------------>
@@ -131,7 +131,8 @@ export default {
         //VALIDACION DEL FORMULARIO
         validateForm1() {
             //La doble negación !! convierte el resultado en un valor booleano
-            this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos && !!this.formData1.telefonoLlamada;
+            this.formValid = !!this.formData1.inputNombre && !!this.formData1.inputApellidos
+            && !!this.formData1.telefonoLlamada && !!this.formData1.inputNotaComuna;
             console.log(this.formValid);
             if (this.formValid == true) {
                 //se envia al componente padre, pasamos el objeto lleno
