@@ -27,8 +27,6 @@
 
         </keep-alive><!--Al finalizar la llamada se ha de pasarle la carta realizada, ademas de la lista de expedientes filtrados-->
 
-    </div>
-
      <!--MODAL-->
      <div class="modal" tabindex="-1" id="myModal">
         <div class="modal-dialog">
