@@ -23,28 +23,28 @@
     <div class="col" id="grafico1">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas total <strong><span id="totales">0</span></strong></h5>
+          <h5 class="card-title">Llamadas total <strong><span id="totales">{{ $datos }}0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico2">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Incidentes total <strong><span id="incidentes">0</span></strong></h5>
+          <h5 class="card-title">Incidentes total <strong><span id="incidentes">{{ $datostotal }}0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico3">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas Barcelona <strong><span id="perdidas">0</span></strong></h5>
+          <h5 class="card-title">Llamadas Barcelona <strong><span id="perdidas">{{ $datosBCN }}0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico4">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas otras provincias <strong><span id="abandonadas">0</span></strong></h5>
+          <h5 class="card-title">Llamadas otras provincias <strong><span id="abandonadas">{{ $datosprov }}0</span></strong></h5>
         </div>
       </div>
     </div>
@@ -55,6 +55,8 @@
 
   <script src="{{ asset('js/Graficos.js') }}">
 
+//   LLAMADOS DESDE LA BASE DE DATOS, LOS MAS largos SON DATOS PUESTOS A MANO
+
 document.getElementById("grafico1").addEventListener("click", function () {
     i = 0;
     let grafico1 = new Chart($grafica, {
@@ -64,7 +66,7 @@ document.getElementById("grafico1").addEventListener("click", function () {
             datasets: [
                 label: nombres,
                 datasets: [{
-                    label: "Incidentes totales",
+                    label: "Llamadas total",
                     data: datos,
 
                 }]
@@ -75,21 +77,17 @@ document.getElementById("grafico1").addEventListener("click", function () {
 
 window.onload = function () {
     i = 0;
-    new Chart($grafica, {
+    let grafico1 = new Chart($grafica, {
         type: 'bar',// Tipo de gráfica
         data: {
             label: etiquetas[i],
             datasets: [
-                { label: TipusIncident1.label, data: [TipusIncident1.data[i]], backgroundColor: TipusIncident1.backgroundColor, borderColor: TipusIncident1.borderColor, borderWidth: TipusIncident1.borderWidth },
-                { label: TipusIncident2.label, data: [TipusIncident2.data[i]], backgroundColor: TipusIncident2.backgroundColor, borderColor: TipusIncident2.borderColor, borderWidth: TipusIncident2.borderWidth },
-                { label: TipusIncident3.label, data: [TipusIncident3.data[i]], backgroundColor: TipusIncident3.backgroundColor, borderColor: TipusIncident3.borderColor, borderWidth: TipusIncident3.borderWidth },
-                { label: TipusIncident4.label, data: [TipusIncident4.data[i]], backgroundColor: TipusIncident4.backgroundColor, borderColor: TipusIncident4.borderColor, borderWidth: TipusIncident4.borderWidth },
-                { label: TipusIncident5.label, data: [TipusIncident5.data[i]], backgroundColor: TipusIncident5.backgroundColor, borderColor: TipusIncident5.borderColor, borderWidth: TipusIncident5.borderWidth },
-                { label: TipusIncident6.label, data: [TipusIncident6.data[i]], backgroundColor: TipusIncident6.backgroundColor, borderColor: TipusIncident6.borderColor, borderWidth: TipusIncident6.borderWidth },
-                { label: TipusIncident7.label, data: [TipusIncident7.data[i]], backgroundColor: TipusIncident7.backgroundColor, borderColor: TipusIncident7.borderColor, borderWidth: TipusIncident7.borderWidth },
-                { label: TipusIncident8.label, data: [TipusIncident8.data[i]], backgroundColor: TipusIncident8.backgroundColor, borderColor: TipusIncident8.borderColor, borderWidth: TipusIncident8.borderWidth },
-                { label: TipusIncident9.label, data: [TipusIncident9.data[i]], backgroundColor: TipusIncident9.backgroundColor, borderColor: TipusIncident9.borderColor, borderWidth: TipusIncident9.borderWidth },
-                { label: TipusIncident10.label, data: [TipusIncident10.data[i]], backgroundColor: TipusIncident10.backgroundColor, borderColor: TipusIncident10.borderColor, borderWidth: TipusIncident10.borderWidth },
+                label: nombres,
+                datasets: [{
+                    label: "Llamadas total",
+                    data: datos,
+
+                }]
             ]
         },
     });
@@ -103,16 +101,12 @@ document.getElementById("grafico2").addEventListener("click", function () {
         data: {
             label: etiquetas[i],
             datasets: [
-                { label: TipusIncident1.label, data: [TipusIncident1.data[i]], backgroundColor: TipusIncident1.backgroundColor, borderColor: TipusIncident1.borderColor, borderWidth: TipusIncident1.borderWidth },
-                { label: TipusIncident2.label, data: [TipusIncident2.data[i]], backgroundColor: TipusIncident2.backgroundColor, borderColor: TipusIncident2.borderColor, borderWidth: TipusIncident2.borderWidth },
-                { label: TipusIncident3.label, data: [TipusIncident3.data[i]], backgroundColor: TipusIncident3.backgroundColor, borderColor: TipusIncident3.borderColor, borderWidth: TipusIncident3.borderWidth },
-                { label: TipusIncident4.label, data: [TipusIncident4.data[i]], backgroundColor: TipusIncident4.backgroundColor, borderColor: TipusIncident4.borderColor, borderWidth: TipusIncident4.borderWidth },
-                { label: TipusIncident5.label, data: [TipusIncident5.data[i]], backgroundColor: TipusIncident5.backgroundColor, borderColor: TipusIncident5.borderColor, borderWidth: TipusIncident5.borderWidth },
-                { label: TipusIncident6.label, data: [TipusIncident6.data[i]], backgroundColor: TipusIncident6.backgroundColor, borderColor: TipusIncident6.borderColor, borderWidth: TipusIncident6.borderWidth },
-                { label: TipusIncident7.label, data: [TipusIncident7.data[i]], backgroundColor: TipusIncident7.backgroundColor, borderColor: TipusIncident7.borderColor, borderWidth: TipusIncident7.borderWidth },
-                { label: TipusIncident8.label, data: [TipusIncident8.data[i]], backgroundColor: TipusIncident8.backgroundColor, borderColor: TipusIncident8.borderColor, borderWidth: TipusIncident8.borderWidth },
-                { label: TipusIncident9.label, data: [TipusIncident9.data[i]], backgroundColor: TipusIncident9.backgroundColor, borderColor: TipusIncident9.borderColor, borderWidth: TipusIncident9.borderWidth },
-                { label: TipusIncident10.label, data: [TipusIncident10.data[i]], backgroundColor: TipusIncident10.backgroundColor, borderColor: TipusIncident10.borderColor, borderWidth: TipusIncident10.borderWidth },
+                label: nombres,
+                datasets: [{
+                    label: "Incidèncias totales",
+                    data: datostotal,
+
+                }]
             ]
         },
     });
@@ -125,16 +119,12 @@ document.getElementById("grafico3").addEventListener("click", function () {
         data: {
             label: etiquetas[i],
             datasets: [
-                { label: TipusIncident1.label, data: [TipusIncident1.data[i]], backgroundColor: TipusIncident1.backgroundColor, borderColor: TipusIncident1.borderColor, borderWidth: TipusIncident1.borderWidth },
-                { label: TipusIncident2.label, data: [TipusIncident2.data[i]], backgroundColor: TipusIncident2.backgroundColor, borderColor: TipusIncident2.borderColor, borderWidth: TipusIncident2.borderWidth },
-                { label: TipusIncident3.label, data: [TipusIncident3.data[i]], backgroundColor: TipusIncident3.backgroundColor, borderColor: TipusIncident3.borderColor, borderWidth: TipusIncident3.borderWidth },
-                { label: TipusIncident4.label, data: [TipusIncident4.data[i]], backgroundColor: TipusIncident4.backgroundColor, borderColor: TipusIncident4.borderColor, borderWidth: TipusIncident4.borderWidth },
-                { label: TipusIncident5.label, data: [TipusIncident5.data[i]], backgroundColor: TipusIncident5.backgroundColor, borderColor: TipusIncident5.borderColor, borderWidth: TipusIncident5.borderWidth },
-                { label: TipusIncident6.label, data: [TipusIncident6.data[i]], backgroundColor: TipusIncident6.backgroundColor, borderColor: TipusIncident6.borderColor, borderWidth: TipusIncident6.borderWidth },
-                { label: TipusIncident7.label, data: [TipusIncident7.data[i]], backgroundColor: TipusIncident7.backgroundColor, borderColor: TipusIncident7.borderColor, borderWidth: TipusIncident7.borderWidth },
-                { label: TipusIncident8.label, data: [TipusIncident8.data[i]], backgroundColor: TipusIncident8.backgroundColor, borderColor: TipusIncident8.borderColor, borderWidth: TipusIncident8.borderWidth },
-                { label: TipusIncident9.label, data: [TipusIncident9.data[i]], backgroundColor: TipusIncident9.backgroundColor, borderColor: TipusIncident9.borderColor, borderWidth: TipusIncident9.borderWidth },
-                { label: TipusIncident10.label, data: [TipusIncident10.data[i]], backgroundColor: TipusIncident10.backgroundColor, borderColor: TipusIncident10.borderColor, borderWidth: TipusIncident10.borderWidth },
+                label: nombres,
+                datasets: [{
+                    label: "Llamadas Barcelona",
+                    data: datosBCN,
+
+                }]
             ]
         },
     });
@@ -142,22 +132,17 @@ document.getElementById("grafico3").addEventListener("click", function () {
 
 document.getElementById("grafico4").addEventListener("click", function () {
     i = 3;
-    // Asignar nombre de grafico 4 para cogerlo para la BD
     let grafico4 = new Chart($grafica, {
         type: 'bar',// Tipo de gráfica
         data: {
             label: etiquetas[i],
             datasets: [
-                { label: TipusIncident1.label, data: [TipusIncident1.data[i]], backgroundColor: TipusIncident1.backgroundColor, borderColor: TipusIncident1.borderColor, borderWidth: TipusIncident1.borderWidth },
-                { label: TipusIncident2.label, data: [TipusIncident2.data[i]], backgroundColor: TipusIncident2.backgroundColor, borderColor: TipusIncident2.borderColor, borderWidth: TipusIncident2.borderWidth },
-                { label: TipusIncident3.label, data: [TipusIncident3.data[i]], backgroundColor: TipusIncident3.backgroundColor, borderColor: TipusIncident3.borderColor, borderWidth: TipusIncident3.borderWidth },
-                { label: TipusIncident4.label, data: [TipusIncident4.data[i]], backgroundColor: TipusIncident4.backgroundColor, borderColor: TipusIncident4.borderColor, borderWidth: TipusIncident4.borderWidth },
-                { label: TipusIncident5.label, data: [TipusIncident5.data[i]], backgroundColor: TipusIncident5.backgroundColor, borderColor: TipusIncident5.borderColor, borderWidth: TipusIncident5.borderWidth },
-                { label: TipusIncident6.label, data: [TipusIncident6.data[i]], backgroundColor: TipusIncident6.backgroundColor, borderColor: TipusIncident6.borderColor, borderWidth: TipusIncident6.borderWidth },
-                { label: TipusIncident7.label, data: [TipusIncident7.data[i]], backgroundColor: TipusIncident7.backgroundColor, borderColor: TipusIncident7.borderColor, borderWidth: TipusIncident7.borderWidth },
-                { label: TipusIncident8.label, data: [TipusIncident8.data[i]], backgroundColor: TipusIncident8.backgroundColor, borderColor: TipusIncident8.borderColor, borderWidth: TipusIncident8.borderWidth },
-                { label: TipusIncident9.label, data: [TipusIncident9.data[i]], backgroundColor: TipusIncident9.backgroundColor, borderColor: TipusIncident9.borderColor, borderWidth: TipusIncident9.borderWidth },
-                { label: TipusIncident10.label, data: [TipusIncident10.data[i]], backgroundColor: TipusIncident10.backgroundColor, borderColor: TipusIncident10.borderColor, borderWidth: TipusIncident10.borderWidth },
+                label: nombres,
+                datasets: [{
+                    label: "Llamadas otras Provincias",
+                    data: datosProv,
+
+                }]
             ]
         },
     });
@@ -168,6 +153,9 @@ document.getElementById("grafico4").addEventListener("click", function () {
     let prueba;
     let nombres[];
     let datos [];
+    let datostotal [];
+    let datosBCN [];
+    let datosprov [];
 
 fetch('/EMT/public/api/graficos')
     .then(response => response.json())
@@ -178,8 +166,49 @@ fetch('/EMT/public/api/graficos')
             nombres.push(prueba.nom);  //datos de la API
             datos.push(prueba.numeros);
         });
-    }
-    )
+    });
+
+
+    //Graficos totales
+fetch('/EMT/public/api/graficos')
+    .then(response => response.json())
+    .then(data => {
+        prueba = data;
+
+        prueba.forEach(function(prueba){
+            nombres.push(prueba.nom);  //datos de la API
+            datostotales.push(prueba.numeros);
+        });
+    });
+
+    // Graficos de Barcelona
+
+fetch('/EMT/public/api/graficos')
+    .then(response => response.json())
+    .then(data => {
+        prueba = data;
+
+        prueba.forEach(function(prueba){
+            nombres.push(prueba.nom);  //datos de la API
+            datosBCN.push(prueba.numeros);
+        });
+    });
+
+    // Graficos diferentes de Barcelona
+
+fetch('/EMT/public/api/graficos')
+    .then(response => response.json())
+    .then(data => {
+        prueba = data;
+
+        prueba.forEach(function(prueba){
+            nombres.push(prueba.nom);  //datos de la API
+            datosProv.push(prueba.numeros);
+        });
+    });
+
+
+
 const mostrar = (incidencias) => {
     incidencias.forEach(element => {
         grafica1.data['labels'].push(element.definicio)
@@ -187,6 +216,39 @@ const mostrar = (incidencias) => {
         grafica1.data['datasets'][0].data.push(element.nom)
     });
     console.log(grafica1.data)
+}
+
+
+// Grafico Incidencias totales
+const mostrar0 = (incidentestotales) => {
+    incidentestotales.forEach(element => {
+        grafica2.data['labels'].push(element.definicio)
+        // CAMBIAR LOS ELEMENTOS QUE COGE. Y el myChart deberia asignarse el nombre de grafica directamente
+        grafica2.data['datasets'][0].data.push(element.nom)
+    });
+    console.log(grafica3.data)
+}
+
+
+// Grafico BCN
+const mostrar1 = (incidentesBCN) => {
+    incidentesBCN.forEach(element => {
+        grafica3.data['labels'].push(element.definicio)
+        // CAMBIAR LOS ELEMENTOS QUE COGE. Y el myChart deberia asignarse el nombre de grafica directamente
+        grafica3.data['datasets'][0].data.push(element.nom)
+    });
+    console.log(grafica3.data)
+}
+
+
+// Grafico OTRAS PROVINCIAS
+const mostrar2 = (incidentesProv) => {
+    incidentesProv.forEach(element => {
+        grafica4.data['labels'].push(element.definicio)
+        // CAMBIAR LOS ELEMENTOS QUE COGE. Y el myChart deberia asignarse el nombre de grafica directamente
+        grafica4.data['datasets'][0].data.push(element.nom)
+    });
+    console.log(grafica4.data)
 }
   </script>
 </body>
