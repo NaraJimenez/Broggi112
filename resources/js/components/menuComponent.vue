@@ -199,10 +199,8 @@ import axios from 'axios';
                     .post('/Broggi112/public/api/cartestrucades', this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
-                        window.location.href = '/home'
-                        //this.myModal.hide();
-                        //Al acabar aparece mensaje y te envia a la pagina inicial
-                        //location.reload();
+                        this.myModal.hide();
+                        window.location.href = '/home';
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -214,15 +212,15 @@ import axios from 'axios';
             },
             //Actualizar Carta de Llamada y guardar la nueva Carta de Llamada
             actualizarExpe(cartaTrucadaRealizada){
-                //Con el id del expediente se crea una carta asociado a este, ide como estos
                 this.cartaTrucadaRealizada.duracioTrucada = this.convertirTiempoASegundos(this.contadorFormatejat);
                 this.cartaTrucadaRealizada.iniciTrucada = new Date().toISOString();
                 console.log('Datos del objeto:', this.cartaTrucadaRealizada);
-                //HAY QUE PASARLE EL NUMERO DE ID DEL EXPE
+
                 axios
                     .post("/Broggi112/public/api/cartestrucades", this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
+                        this.myModal.hide();
                         window.location.href = '/home';
                     })
                     .catch((error) => {

@@ -124,15 +124,10 @@ class CartesTrucadesController extends Controller
 
             } else {
                 //SI NO ES CAT
-                //PROVINCIA
-               /* $cartaTrucada->provincies_id = $request->input('provinciaInput');
-                //MUNICIPI
-                $cartaTrucada->municipis_id = $request->input('municipioInput');*/
 
                 //No catalunya se mete en los inputs de provincia y municipi en altres referencies
                 $noCat =  $objetoRecibido['provinciaInput'] . ' ' . $objetoRecibido['municipioInput'];
                 $cartaTrucada->altres_ref_localitzacio = $noCat;
-
 
             }
 
