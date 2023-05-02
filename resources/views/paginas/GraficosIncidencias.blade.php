@@ -103,8 +103,8 @@ document.getElementById("grafico2").addEventListener("click", function () {
             datasets: [
                 label: nombres,
                 datasets: [{
-                    label: "Iincidèncias totales",
-                    data: datos,
+                    label: "Incidèncias totales",
+                    data: datostotal,
 
                 }]
             ]
@@ -153,6 +153,7 @@ document.getElementById("grafico4").addEventListener("click", function () {
     let prueba;
     let nombres[];
     let datos [];
+    let datostotal [];
 
 fetch('/EMT/public/api/graficos')
     .then(response => response.json())
@@ -162,6 +163,19 @@ fetch('/EMT/public/api/graficos')
         prueba.forEach(function(prueba){
             nombres.push(prueba.nom);  //datos de la API
             datos.push(prueba.numeros);
+        });
+    });
+
+
+    //Graficos totales
+fetch('/EMT/public/api/graficos')
+    .then(response => response.json())
+    .then(data => {
+        prueba = data;
+
+        prueba.forEach(function(prueba){
+            nombres.push(prueba.nom);  //datos de la API
+            datostotales.push(prueba.numeros);
         });
     });
 
