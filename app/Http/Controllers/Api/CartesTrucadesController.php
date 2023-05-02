@@ -72,18 +72,18 @@ class CartesTrucadesController extends Controller
             //INTERLOCUTOR -- Guardamos en la tabla de interlocutor
             $objetoRecibido1 = $request->input("objetoRecibido1");
             $interlocutor->telefon =  $objetoRecibido1["telefonoLlamada"];
+            $interlocutor->antecedents = 'Antecedentes';
             $interlocutor->nom = $objetoRecibido1["inputNombre"];
             $interlocutor->cognoms =  $objetoRecibido1["inputApellidos"];
             $interlocutor->save();
-
 
             //Cogemos el id de los interlocutores
             $cartaTrucada->interlocutors_id = $interlocutor->id;
 
             //En el componente Padre
-            $cartaTrucada->codi_trucada = $request->codiTrucada;
-            $cartaTrucada->data_hora_trucada = new \DateTime($request->iniciTrucada);
-            $cartaTrucada->durada = $request->duracioTrucada;
+            $cartaTrucada->codi_trucada = $request->input("codiTrucada");
+            $cartaTrucada->data_hora_trucada = new \DateTime($request->input('iniciTrucada'));
+            $cartaTrucada->durada = $request->$request->input("duracioTrucada");
 
             //Primer Form
             $cartaTrucada->telefon = $objetoRecibido1["telefonoLlamada"];
