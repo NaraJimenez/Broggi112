@@ -23,28 +23,28 @@
     <div class="col" id="grafico1">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas total <strong><span id="totales">0</span></strong></h5>
+          <h5 class="card-title">Llamadas total <strong><span id="totales">{{ $datos }}0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico2">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Incidentes total <strong><span id="incidentes">0</span></strong></h5>
+          <h5 class="card-title">Incidentes total <strong><span id="incidentes">{{ $datostotal }}0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico3">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas Barcelona <strong><span id="perdidas">0</span></strong></h5>
+          <h5 class="card-title">Llamadas Barcelona <strong><span id="perdidas">{{ $datosBCN }}0</span></strong></h5>
         </div>
       </div>
     </div>
     <div class="col" id="grafico4">
       <div class="card w-50 border-estilo2 btn">
         <div class="card-body">
-          <h5 class="card-title">Llamadas otras provincias <strong><span id="abandonadas">0</span></strong></h5>
+          <h5 class="card-title">Llamadas otras provincias <strong><span id="abandonadas">{{ $datosprov }}0</span></strong></h5>
         </div>
       </div>
     </div>
@@ -154,6 +154,8 @@ document.getElementById("grafico4").addEventListener("click", function () {
     let nombres[];
     let datos [];
     let datostotal [];
+    let datosBCN [];
+    let datosprov [];
 
 fetch('/EMT/public/api/graficos')
     .then(response => response.json())
