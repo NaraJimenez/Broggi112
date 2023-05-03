@@ -17,6 +17,9 @@ class Cartes_trucades_has_agencies extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $fillable = [
+        'cartes_trucades_id', 'agencies_id', 'estat_agencies_id'
+    ];
      public function cartaTrucades()
      {
           return $this->belongsTo(cartes_trucades::class, 'cartes_trucades_id');
@@ -28,6 +31,6 @@ class Cartes_trucades_has_agencies extends Model
         }
        public function estatAgencies()
        {
-            return $this->belongsTo(estat_agencies::class, 'estat_agencies_id');
+            return $this->belongsTo(Estats_agencies::class, 'estat_agencies_id');
        }
 }

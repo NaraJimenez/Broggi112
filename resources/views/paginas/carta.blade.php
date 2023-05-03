@@ -12,10 +12,14 @@
     <div class="card mt-3" id="CartaIncidencia">
         <div class="card-body">
             <!--Componente Menu-->
-            <div id="menuComponent" :phone="@json($randomPhone)"></div>
-
+            <div id="menuComponent" :phone="@json($randomPhone)"></div>       
     </div>
+    <div id="helper">
+        <a href="{{ asset('HelpBox/HelpBox.blade.php') }}">
+          <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
+        </a>
+      </div>
 </div>
-</div>
+
 
 @endsection

@@ -9,11 +9,7 @@ use App\Http\Resources\AgenciesResources;
 
 class AgenciesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         //Buscamos las agencias por el municipio
@@ -25,46 +21,36 @@ class AgenciesController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function mapbox(){
+        $agencias = Agencies::select('nom', 'carrer', 'codi_postal')->get();
+        
+        return AgenciesResources::collection($agencias);
+
+    }
+
+    
+
+
+    
+
+  
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Agencies  $agencies
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Agencies $agencies)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Agencies  $agencies
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Agencies $agencies)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Agencies  $agencies
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Agencies $agencies)
     {
         //

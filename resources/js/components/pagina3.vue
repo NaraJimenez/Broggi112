@@ -10,7 +10,10 @@
 
 <script>
 import axios from 'axios';
-// import Mapbox from "../components/atoms/Mapbox/Mapbox.vue";
+import mapboxgl from 'mapbox-gl';
+import MapboxSdk from '@mapbox/mapbox-sdk/services/geocoding';
+
+
 export default {
 
     props: {
@@ -59,60 +62,66 @@ export default {
         });
             new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
         });
+        new mapboxgl.Marker({className: "marker" }).setLngLat(feature.center).addTo(map);
 
-        axios.get('http://localhost:8080/proyecto2/Broggi112/public/mapbox')
-        .then(response => {
-            console.log(response);
+        axios.get('http://localhost:8080/proyecto2/Broggi112/public/mapbox-json')
+          .then(response => {
             const agencias = response.data;
             if (agencias) {
-        agencias.forEach(agencia => {
-            const el = document.createElement('div');
-            el.className = 'marker';
-
-            // create the marker
-            const marker = new mapboxgl.Marker(el)
-                .setLngLat(feature.center)
-                .addTo(map);
-            // create the popup
-            const popup = new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`<h3>${agencia.nom}</h3>`);
-            // assign the popup to the marker
-            marker.setPopup(popup);
-            });
+              agencias.forEach(agencia => {
+            
+            mapboxClient.geocoding.forwardGeocode({
+                query: agencia.codi_postal  + '' + agencia.carrer,
+                autocomplete: false,
+                limit: 1
+              })
+              .send()
+              .then((response) => {
+            
+                const feature = response.body.features[0];
+                
+                // create the popup
+                const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`<h4>${agencia.nom}</h4>`);
+                // create the marker
+                const marker = new mapboxgl.Marker({className: "marker-agencia" })
+                  .setLngLat(feature.center)
+                  .setPopup(popup)
+                  .addTo(map);
+              });
+          });
         }
-            self.agencias = agencias;
-        })
-        .catch(error => {
-        console.error('Error al obtener las agencias:', error);
-        });
-    }
+      })
+          .catch(error => {
+            console.error('Error al obtener las agencias:', error);
+          });
+      });
+  },
 };
 </script>
 
+
 <style>
-    .map-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 300px;
-        width: 900px;
-    }
-    .marker {
-        background-image: url('https://i.imgur.com/MK4NUzI.png');
-        background-size: cover;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-    }
-    #botonFinal{
-        background: #E33386;
-        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        color: white;
-    }
-    #botonFinal:disabled {
-        background: #e5e5e5;
-        box-shadow: none;
-        color: #E33386;
-    }
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 900px;
+  background-color: orange;
+}
+.marker {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+.mapboxgl-marker-agencia {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: plum;
+}
 </style>
