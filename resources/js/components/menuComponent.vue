@@ -92,7 +92,7 @@ import axios from 'axios';
                     //Aqui se guardan los elementos que se van a enviar a la B
                     objetoRecibido1: null,
                     objetoRecibido: null,
-                    objetoRecibido3: null,
+                    //objetoRecibido3: null,
                     //TIEMPO
                     fechaHoraActual: "",
                     contador: 0,
@@ -174,7 +174,7 @@ import axios from 'axios';
                 this.cartaTrucadaRealizada.objetoRecibido = myForm;
             },
             //FORM 3
-            recibirObjeto3(myForm3) {
+            /*recibirObjeto3(myForm3) {
                 //this.objetoRecibido3 = myForm3;
                 console.log('Ha llegado al padre FORM 3');
                 this.pasadoForm3 = true;
@@ -182,7 +182,7 @@ import axios from 'axios';
                 //Se guarda dentro del objeto padre
                 this.cartaTrucadaRealizada.objetoRecibido3 = myForm3;
                 //CUANDO SE RELLENAN TODOS LOS FORMS SE ACTIVA EL BOTON DE ENVIAR EN LA PAGINA 3
-            },
+            },*/
             //FINALIZAR LLAMADA
             confirmFinalizarLlamada(){
                 this.expedientesBuscados = this.cartaTrucadaRealizada.objetoRecibido.searchResults;

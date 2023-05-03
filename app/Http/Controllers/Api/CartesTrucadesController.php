@@ -43,28 +43,31 @@ class CartesTrucadesController extends Controller
 
 
             // Obtener el valor del campo selected del objeto cartaTrucadaRealizada
-            //$selected = $request->input('selected');
+            $selected = $request->input('selected');
 
             //Metemos aqui el id que ha de pasarse para el expediente
-           // $idSeleccionado = null;
+            $idSeleccionado = null;
 
-            //if (!empty($selected)) {
-            //    $idSeleccionado = $selected[0]['id'];
-             //   $cartaTrucada->expedients_id = $idSeleccionado;
-           // } else {
+            if (!empty($selected)) {
+                $idSeleccionado = $selected[0]['id'];
+                $expedient->estat_expedients_id = 1;
+                $expedient->codi = 'EXP01' ;
+                $expedient->save();
+
+                $cartaTrucada->expedients_id = $idSeleccionado;
+            } else {
                 /* EXPEDIENTES -- Guardamos en tabla Expedientes*/
-               // $expedient->estat_expedients_id = 1;
-               // $expedient->codi = 'EXP01' ;
-              //  $expedient->save();
+                $expedient->estat_expedients_id = 1;
+                $expedient->codi = 'EXP01' ;
+                $expedient->save();
 
                 //Cogemos el id de los expedientes
-               // $cartaTrucada->expedients_id = $expedient->id;
+                //$cartaTrucada->expedients_id = $expedient->id;
+            }
 
-            //}
-
-            $expedient->estat_expedients_id = 1;
+            /*$expedient->estat_expedients_id = 1;
             $expedient->codi = 'EXP01' ;
-            $expedient->save();
+            $expedient->save();*/
 
             //Cogemos el id de los expedientes
             $cartaTrucada->expedients_id = $expedient->id;

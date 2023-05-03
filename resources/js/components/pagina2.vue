@@ -171,7 +171,7 @@
 
             <div  style="margin-top:140px" class="badge bg-success" v-show="formValid" >¡Hecho!</div>
             <div  style="margin-top:140px" class="badge bg-danger" v-show="!formValid">Faltan campos</div>
-            <button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:150px">Finalizar Llamada</button>
+            <!--<button id="botonFinal" :disabled="!formValid" @click="openModalWithData" style="margin-top:150px">Finalizar Llamada</button>-->
     </div>
 </template>
 <script>
