@@ -27,7 +27,7 @@
     </div>
 
      <!--MODAL-->
-     <div class="modal" tabindex="-1" id="myModal">
+     <div class="modal" tabindex="-1" id="myModal"  ref="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -199,8 +199,9 @@ import axios from 'axios';
                     .post('/Broggi112/public/api/cartestrucades', this.cartaTrucadaRealizada)
                     .then((response) => {
                         console.log(response.data.message);
+                        //this.$refs.myModal.hide();
                         this.myModal.hide();
-                        window.location.href = '/Navbar/home';
+                        window.location.href = '/NavBar/home';
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -221,7 +222,8 @@ import axios from 'axios';
                     .then((response) => {
                         console.log(response.data.message);
                         this.myModal.hide();
-                        window.location.href = '/Navbar/home';
+                        //this.$refs.myModal.hide();
+                        window.location.href = '/NavBar/home';
                     })
                     .catch((error) => {
                         if (error.response) {
