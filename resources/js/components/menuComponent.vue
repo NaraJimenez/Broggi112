@@ -200,7 +200,7 @@ import axios from 'axios';
                     .then((response) => {
                         console.log(response.data.message);
                         this.myModal.hide();
-                        window.location.href = '/home';
+                        window.location.href = '/Navbar/home';
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -221,7 +221,7 @@ import axios from 'axios';
                     .then((response) => {
                         console.log(response.data.message);
                         this.myModal.hide();
-                        window.location.href = '/home';
+                        window.location.href = '/Navbar/home';
                     })
                     .catch((error) => {
                         if (error.response) {
