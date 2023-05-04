@@ -157,7 +157,7 @@ document.getElementById("grafico4").addEventListener("click", function () {
     let datosBCN [];
     let datosprov [];
 
-fetch('/EMT/public/api/graficos')
+fetch('/Broggi112/public/api/graficos')
     .then(response => response.json())
     .then(data => {
         prueba = data;
@@ -170,7 +170,7 @@ fetch('/EMT/public/api/graficos')
 
 
     //Graficos totales
-fetch('/EMT/public/api/graficos')
+fetch('/Broggi112/public/api/graficos')
     .then(response => response.json())
     .then(data => {
         prueba = data;
@@ -183,7 +183,7 @@ fetch('/EMT/public/api/graficos')
 
     // Graficos de Barcelona
 
-fetch('/EMT/public/api/graficos')
+fetch('/Broggi112/public/api/graficos')
     .then(response => response.json())
     .then(data => {
         prueba = data;
@@ -196,7 +196,7 @@ fetch('/EMT/public/api/graficos')
 
     // Graficos diferentes de Barcelona
 
-fetch('/EMT/public/api/graficos')
+fetch('/Broggi112/public/api/graficos')
     .then(response => response.json())
     .then(data => {
         prueba = data;

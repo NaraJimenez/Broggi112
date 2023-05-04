@@ -10,8 +10,7 @@
 
 <script>
 import axios from 'axios';
-import mapboxgl from 'mapbox-gl';
-import MapboxSdk from '@mapbox/mapbox-sdk/services/geocoding';
+
 
 
 export default {
@@ -37,7 +36,7 @@ export default {
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
         .forwardGeocode({
-            query: this.objetoRecibido.selectedMunicipi.toString(),
+            query: this.objetoRecibido.selectedProvincia.toString() + '' +  this.objetoRecibido.selectedComarca.toString() + '' + this.objetoRecibido.selectedMunicipi.toString() ,
             autocomplete: false,
             limit: 1
         })
@@ -94,7 +93,7 @@ export default {
           .catch(error => {
             console.error('Error al obtener las agencias:', error);
           });
-      });
+      
   },
 };
 </script>

@@ -14,11 +14,12 @@
             <!--Componente Menu-->
             <div id="menuComponent" :phone="@json($randomPhone)"></div>       
     </div>
+
     <div id="helper">
         <a href="{{ asset('HelpBox/HelpBox.blade.php') }}">
           <img src="{{ asset("img/HelpBox.png") }}" alt="helpBox" >
         </a>
-      </div>
+    </div>
 </div>
 
 

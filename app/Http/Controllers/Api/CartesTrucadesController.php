@@ -98,7 +98,7 @@ class CartesTrucadesController extends Controller
             //Segundo FORM
             $objetoRecibido = $request->input("objetoRecibido");
 
-            if ($objetoRecibido['catEscogido'] == 0) {
+            if ($objetoRecibido['catEscogido'] === 0) {
                 //PROVINCIA
                 $cartaTrucada->provincies_id = $objetoRecibido['selectProvincia'];
                 //MUNICIPI
@@ -108,20 +108,20 @@ class CartesTrucadesController extends Controller
                 $cartaTrucada->tipus_localitzacions_id = $objetoRecibido['selectedNavItem'];
 
 
-                if($objetoRecibido['selectedNavItem'] == 1){
+                if($objetoRecibido['selectedNavItem'] === 1){
                     $descripCarretera = $objetoRecibido['inputCarretera'] . ' ' . $objetoRecibido['inputpuntoKM'];
 
                     $cartaTrucada->descripcio_localitzacio = $descripCarretera;
                     $cartaTrucada->detall_localitzacio = $objetoRecibido['inputSentido'];
-                } else if ($objetoRecibido['selectedNavItem'] == 2){
+                } else if ($objetoRecibido['selectedNavItem'] === 2){
                     $carrerDescrip = $objetoRecibido['inputVia'] . ' ' . $objetoRecibido['inputCalle'] . ' ' . $objetoRecibido['inputCasa'];
                     $detallLoc = $objetoRecibido['inputEscalera'] . ' ' . $objetoRecibido['inputPiso'] . ' ' . $objetoRecibido['inputPuerta'];
 
                     $cartaTrucada->descripcio_localitzacio = $carrerDescrip;
                     $cartaTrucada->detall_localitzacio = $detallLoc;
-                } else if ($objetoRecibido['selectedNavItem'] == 3) {
+                } else if ($objetoRecibido['selectedNavItem'] === 3) {
                     $cartaTrucada->descripcio_localitzacio = $objetoRecibido['inputPS'];
-                } else if ($objetoRecibido['selectedNavItem'] == 4) {
+                } else if ($objetoRecibido['selectedNavItem'] === 4) {
                     $cartaTrucada->descripcio_localitzacio = $objetoRecibido['inputPob'];
                 }
 
