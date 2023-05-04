@@ -92,7 +92,7 @@ class CartesTrucadesController extends Controller
             $cartaTrucada->telefon = $objetoRecibido1["telefonoLlamada"];
             $cartaTrucada->nom = $objetoRecibido1["inputNombre"];
             $cartaTrucada->cognoms = $objetoRecibido1["inputApellidos"];
-            $cartaTrucada->nota_comuna = $objetoRecibido1["InputNotaComuna"];
+            $cartaTrucada->nota_comuna = $objetoRecibido1["inputNotaComuna"];
             $cartaTrucada->incidents_id = $objetoRecibido1['selectedIncident'];
 
             //Segundo FORM
