@@ -34,9 +34,11 @@ export default {
     mounted() {
     mapboxgl.accessToken = 'pk.eyJ1IjoibGFpYWFiYXJxdWVyb28wIiwiYSI6ImNsZ3dqN2JjZTAwb2IzZW56amh2eHR1ajIifQ.SoI7H86nB1eVLqW6f52ntg';
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+    console.log("Puta localizacion");
+    console.log(this.objetoRecibido.selectedProvincia.toString() + ', ' +  this.objetoRecibido.selectedComarca.toString() + ', ' + this.objetoRecibido.selectedMunicipi.toString());
     mapboxClient.geocoding
         .forwardGeocode({
-            query: this.objetoRecibido.selectedProvincia.toString() + '' +  this.objetoRecibido.selectedComarca.toString() + '' + this.objetoRecibido.selectedMunicipi.toString() ,
+            query: this.objetoRecibido.selectedProvincia.toString() + ', ' +  this.objetoRecibido.selectedComarca.toString() + ', ' + this.objetoRecibido.selectedMunicipi.toString() ,
             autocomplete: false,
             limit: 1
         })
@@ -53,17 +55,17 @@ export default {
                 return;
             }
             const feature = response.body.features[0];
-            const map = new mapboxgl.Map({
+            this.map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v12',
                 center: feature.center,
                 zoom: 10
+            });
+            new mapboxgl.Marker().setLngLat(feature.center).addTo(this.map);
         });
-            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
-        });
-        new mapboxgl.Marker({className: "marker" }).setLngLat(feature.center).addTo(map);
+        //  new mapboxgl.Marker({className: "marker" }).setLngLat(feature.center).addTo(map);
 
-        axios.get('http://localhost:8080/proyecto2/Broggi112/public/mapbox-json')
+        axios.get('http://localhost:8080/Broggi112/public/mapbox-json')
           .then(response => {
             const agencias = response.data;
             if (agencias) {
@@ -85,7 +87,7 @@ export default {
                 const marker = new mapboxgl.Marker({className: "marker-agencia" })
                   .setLngLat(feature.center)
                   .setPopup(popup)
-                  .addTo(map);
+                  .addTo(this.map);
               });
           });
         }
